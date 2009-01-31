@@ -10,53 +10,28 @@ event_queue:register_event_source(mouse)
 
 bitmap = Bitmap.load("test/green_leaf.png")
 
-ttf_font = Font.load_ttf("test/times.ttf", 24, 0)
-image_font = Font.load_image("test/font.tga")
+font = Font.load_ttf("test/times.ttf", 24, 0)
 
-pixels = 0
+mouse_x = 0
+mouse_y = 0
+mouse_z = 0
+
 while not quit do
 	event = event_queue:get_next_event()
 	if event.type == Display.EVENT_CLOSE or event.type == Keyboard.EVENT_DOWN and event.keycode == Keyboard.KEY_ESCAPE then
 		quit = true
 	end
-	
-	if event.type and not (event.type == 20) then
-		print("Event ", event.type)
-	end
-	
-	if event.type == Keyboard.EVENT_DOWN then
-		print("\tkey down", Keyboard.keycode_to_name(event.keycode))
-		print("\tkeycode\t", event.keycode)
-		print("\tunichar\t", event.unichar)
-		print("\tmod\t", event.modifiers)
-	end
-	
-	if event.type == Keyboard.EVENT_DOWN then
-		if event.keycode == Keyboard.KEY_A then
-			print("Thou hast presseth A")
-		end
-		if event.keycode == Keyboard.KEY_Z then
-			print("Thou hast presseth Z")
-		end
+
+	if event.type == Mouse.EVENT_AXES then
+		mouse_x = event.x
+		mouse_y = event.y
+		mouse_z = event.z
 	end
 
-	bitmap:draw(100, 100, 0)
+	bitmap:draw(mouse_x, mouse_y, 0)
 
-	r = math.random(0, 255)
-	g = math.random(0, 255)
-	b = math.random(0, 255)
-	color = Color.map_rgba(r, g, b, 255)
-	x = math.random(0, 640)
-	y = math.random(0, 480)
-	Color.put_pixel(x, y, color)
-	--Display.draw_pixel(x, y, color)
+	font:textout(10, 10, "Mouse X:"..mouse_x, -1)
 
-	ttf_font:textout(10, 10, "Wazzup! TTF font!", -1)
-	image_font:textout(10, 50, "Wazzup! Image font!", -1)
-
-	pixels = pixels + 1
-	
 	Display.flip()
+	Display.clear(Color.map_rgba(0, 0, 0, 0))
 end
-
-print("Pixels per second ", pixels / allegro5.current_time())
