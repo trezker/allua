@@ -5,6 +5,8 @@ event_queue = Event_queue.new()
 event_queue:register_event_source(display)
 keyboard = Keyboard.get()
 event_queue:register_event_source(keyboard)
+mouse = Mouse.get()
+event_queue:register_event_source(mouse)
 
 bitmap = Bitmap.load("test/green_leaf.png")
 
@@ -15,7 +17,7 @@ while not quit do
 		quit = true
 	end
 	
-	if event.type then
+	if event.type and not (event.type == 20) then
 		print("Event ", event.type)
 	end
 	

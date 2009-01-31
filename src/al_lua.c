@@ -17,6 +17,7 @@ static int al_lua_init(lua_State *L)
 	printf("Initialized allegro\n");
 	al_init();
 	al_install_keyboard();
+	al_install_mouse();
 	al_iio_init();
 	al_font_init();
 	return 0;
@@ -44,6 +45,7 @@ int al_lua_register(lua_State *L)
 	al_lua_register_event_queue(L);
 	al_lua_register_color(L);
 	al_lua_register_keyboard(L);
+	al_lua_register_mouse(L);
 	al_lua_register_bitmap(L);
 	return 1;
 }
