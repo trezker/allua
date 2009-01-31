@@ -17,5 +17,10 @@ int main(int argc, char *argv[])
 	{
 		printf("Running %s\n", argv[1]);
 		int r = luaL_dofile (state, argv[1]);
+		if(r)
+		{
+			printf("Script returned an error");
+		}
 	}
+	return 0;
 }
