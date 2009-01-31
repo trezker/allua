@@ -3,6 +3,7 @@
 #include "event_queue.h"
 #include "color.h"
 #include "keyboard.h"
+#include "mouse.h"
 #include "bitmap.h"
 #include "font.h"
 #include <stdio.h>
