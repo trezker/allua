@@ -4,6 +4,7 @@
 #include "color.h"
 #include "keyboard.h"
 #include "bitmap.h"
+#include "font.h"
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>
@@ -47,5 +48,6 @@ int al_lua_register(lua_State *L)
 	al_lua_register_keyboard(L);
 	al_lua_register_mouse(L);
 	al_lua_register_bitmap(L);
+	al_lua_register_font(L);
 	return 1;
 }

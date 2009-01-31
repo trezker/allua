@@ -10,6 +10,9 @@ event_queue:register_event_source(mouse)
 
 bitmap = Bitmap.load("test/green_leaf.png")
 
+ttf_font = Font.load_ttf("test/times.ttf", 24, 0)
+image_font = Font.load_image("test/font.tga")
+
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()
@@ -47,6 +50,9 @@ while not quit do
 	y = math.random(0, 480)
 	Color.put_pixel(x, y, color)
 	--Display.draw_pixel(x, y, color)
+
+	ttf_font:textout(10, 10, "Wazzup! TTF font!", -1)
+	image_font:textout(10, 50, "Wazzup! Image font!", -1)
 
 	pixels = pixels + 1
 	
