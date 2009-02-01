@@ -107,7 +107,8 @@ void Font_set_attributes(lua_State *L)
  * */
 int al_lua_register_font (lua_State *L)
 {
-  luaL_register(L, FONT, Font_methods);  /* create methods table,
+  lua_newtable (L);
+  luaL_register(L, NULL, Font_methods);  /* create methods table,
                                                 add it to the globals */
 
 	Font_set_attributes(L);
@@ -124,5 +125,7 @@ int al_lua_register_font (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  return 1;                           /* return methods on the stack */
+  lua_setfield(L, -2, FONT);
+	
+  return 0;                           /* return methods on the stack */
 }

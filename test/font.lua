@@ -10,8 +10,8 @@ event_queue:register_event_source(mouse)
 
 bitmap = Bitmap.load("test/green_leaf.png")
 
-ttf_font = Font.load_ttf("test/times.ttf", 24, 0)
-image_font = Font.load_image("test/font.tga")
+ttf_font = allegro5.Font.load_ttf("test/times.ttf", 24, 0)
+image_font = allegro5.Font.load_image("test/font.tga")
 
 pixels = 0
 while not quit do
