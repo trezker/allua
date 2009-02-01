@@ -102,7 +102,8 @@ int al_lua_register_mouse (lua_State *L)
 	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY, al_lua_mouse_event_callback);
 	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY, al_lua_mouse_event_callback);
 
-  luaL_register(L, MOUSE, Mouse_methods);  /* create methods table,
+  lua_newtable(L);
+  luaL_register(L, NULL, Mouse_methods);  /* create methods table,
                                                 add it to the globals */
 
 	Mouse_set_attributes(L);
@@ -119,5 +120,7 @@ int al_lua_register_mouse (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  return 1;                           /* return methods on the stack */
+  lua_setfield(L, -2, MOUSE);
+
+  return 0;                           /* return methods on the stack */
 }

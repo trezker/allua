@@ -3,14 +3,14 @@ display = Display.new(640, 480, Display.WINDOWED)
 event_queue = Event_queue.new()
 
 event_queue:register_event_source(display)
-keyboard = Keyboard.get()
+keyboard = allegro5.Keyboard.get()
 event_queue:register_event_source(keyboard)
-mouse = Mouse.get()
+mouse = allegro5.Mouse.get()
 event_queue:register_event_source(mouse)
 
-bitmap = Bitmap.load("test/green_leaf.png")
+bitmap = allegro5.Bitmap.load("test/green_leaf.png")
 
-font = Font.load_ttf("test/times.ttf", 16, 0)
+font = allegro5.Font.load_ttf("test/times.ttf", 16, 0)
 
 mouse_x = 0
 mouse_y = 0
@@ -19,20 +19,20 @@ mouse_b = {}
 
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == Display.EVENT_CLOSE or event.type == Keyboard.EVENT_DOWN and event.keycode == Keyboard.KEY_ESCAPE then
+	if event.type == Display.EVENT_CLOSE or event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
 		quit = true
 	end
 
-	if event.type == Mouse.EVENT_AXES then
+	if event.type == allegro5.Mouse.EVENT_AXES then
 		mouse_x = event.x
 		mouse_y = event.y
 		mouse_z = event.z
 	end
 
-	if event.type == Mouse.EVENT_DOWN then
+	if event.type == allegro5.Mouse.EVENT_DOWN then
 		mouse_b[event.button] = true
 	end
-	if event.type == Mouse.EVENT_UP then
+	if event.type == allegro5.Mouse.EVENT_UP then
 		mouse_b[event.button] = false
 	end
 
