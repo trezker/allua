@@ -8,9 +8,9 @@ event_queue:register_event_source(keyboard)
 mouse = allegro5.Mouse.get()
 event_queue:register_event_source(mouse)
 
-bitmap = allegro5.Bitmap.load("test/green_leaf.png")
+bitmap = allegro5.Bitmap.load("data/green_leaf.png")
 
-font = allegro5.Font.load_ttf("test/times.ttf", 16, 0)
+font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
 
 mouse_x = 0
 mouse_y = 0

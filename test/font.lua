@@ -8,8 +8,8 @@ event_queue:register_event_source(keyboard)
 mouse = allegro5.Mouse.get()
 event_queue:register_event_source(mouse)
 
-ttf_font = allegro5.Font.load_ttf("test/times.ttf", 24, 0)
-image_font = allegro5.Font.load_image("test/font.tga")
+ttf_font = allegro5.Font.load_ttf("data/times.ttf", 24, 0)
+image_font = allegro5.Font.load_image("data/font.tga")
 
 while not quit do
 	event = event_queue:get_next_event()
