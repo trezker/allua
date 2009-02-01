@@ -36,10 +36,10 @@ while not quit do
 	r = math.random(0, 255)
 	g = math.random(0, 255)
 	b = math.random(0, 255)
-	color = Color.map_rgba(r, g, b, 0)
+	color = allegro5.Color.map_rgba(r, g, b, 0)
 	x = math.random(0, 640)
 	y = math.random(0, 480)
-	Color.put_pixel(x, y, color)
+	allegro5.Color.put_pixel(x, y, color)
 
 	pixels = pixels + 1
 	

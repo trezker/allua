@@ -48,7 +48,7 @@ int al_lua_register(lua_State *L)
 	al_lua_register_mouse(L);
 	al_lua_register_display(L);
 	al_lua_register_event_queue(L);
-	lua_pop(L, 1);
 	al_lua_register_color(L);
+	lua_pop(L, 1);
 	return 1;
 }

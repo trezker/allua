@@ -76,7 +76,8 @@ static const luaL_reg Color_meta[] = {
  * */
 int al_lua_register_color (lua_State *L)
 {
-  luaL_register(L, COLOR, Color_methods);  /* create methods table,
+  lua_newtable(L);
+  luaL_register(L, NULL, Color_methods);  /* create methods table,
                                                 add it to the globals */
 
   luaL_newmetatable(L, COLOR);        /* create metatable for Image,
@@ -91,5 +92,6 @@ int al_lua_register_color (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  return 1;                           /* return methods on the stack */
+  lua_setfield(L, -2, COLOR);
+  return 0;                           /* return methods on the stack */
 }

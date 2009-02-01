@@ -49,5 +49,5 @@ while not quit do
     end
 
 	allegro5.Display.flip()
-	allegro5.Display.clear(Color.map_rgba(0, 0, 0, 0))
+	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
 end
