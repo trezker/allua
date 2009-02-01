@@ -1,0 +1,8 @@
+.sconf_temp/
+.sconsign.dblite
+config.log
+lib/
+obj/
+test/test
+test/test.lua
+test/test.o
