@@ -7,13 +7,13 @@
 
 /* Common handlers
  * */
-static AL_Mouse toMouse (lua_State *L, int index)
+/*static AL_Mouse toMouse (lua_State *L, int index)
 {
   AL_Mouse *pi = (AL_Mouse*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, MOUSE);
   return *pi;
 }
-
+*/
 AL_Mouse al_lua_check_mouse (lua_State *L, int index)
 {
   AL_Mouse *pi, im;

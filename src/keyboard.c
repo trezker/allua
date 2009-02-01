@@ -7,13 +7,13 @@
 
 /* Common handlers
  * */
-static AL_Keyboard toKeyboard (lua_State *L, int index)
+/*static AL_Keyboard toKeyboard (lua_State *L, int index)
 {
   AL_Keyboard *pi = (AL_Keyboard*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, KEYBOARD);
   return *pi;
 }
-
+*/
 AL_Keyboard al_lua_check_keyboard (lua_State *L, int index)
 {
   AL_Keyboard *pi, im;
