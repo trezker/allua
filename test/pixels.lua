@@ -1,16 +1,16 @@
 allegro5.init()
-display = Display.new(640, 480, Display.WINDOWED)
+display = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
 event_queue = Event_queue.new()
 
 event_queue:register_event_source(display)
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == Display.EVENT_CLOSE then
+	if event.type == allegro5.Display.EVENT_CLOSE then
 		quit = true
 		print(event.type)
 	end
-	if event.type == Display.EVENT_SWITCH_OUT then
+	if event.type == allegro5.Display.EVENT_SWITCH_OUT then
 		print(event.type)
 	end
 	
@@ -24,7 +24,7 @@ while not quit do
 
 	pixels = pixels + 1
 	
-	Display.flip()
+	allegro5.Display.flip()
 end
 
 print("Pixels per second ", pixels / allegro5.current_time())

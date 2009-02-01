@@ -1,5 +1,5 @@
 allegro5.init()
-display = Display.new(640, 480, Display.WINDOWED)
+display = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
 event_queue = Event_queue.new()
 
 event_queue:register_event_source(display)
@@ -19,7 +19,7 @@ mouse_b = {}
 
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == Display.EVENT_CLOSE or event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
+	if event.type == allegro5.Display.EVENT_CLOSE or event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
 		quit = true
 	end
 
@@ -48,6 +48,6 @@ while not quit do
      	y = y + 20
     end
 
-	Display.flip()
-	Display.clear(Color.map_rgba(0, 0, 0, 0))
+	allegro5.Display.flip()
+	allegro5.Display.clear(Color.map_rgba(0, 0, 0, 0))
 end
