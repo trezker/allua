@@ -72,11 +72,25 @@ static int al_lua_draw_pixel(lua_State *L)
 	return 0;
 }
 
+static int al_lua_display_height(lua_State *L)
+{
+	lua_pushinteger(L, al_get_display_height());
+	return 1;
+}
+
+static int al_lua_display_width(lua_State *L)
+{
+	lua_pushinteger(L, al_get_display_width());
+	return 1;
+}
+
 static const luaL_reg Display_methods[] = {
   {"new",           Display_new},
   {"flip",           Display_flip},
   {"clear",           Display_clear},
   {"draw_pixel",           al_lua_draw_pixel},
+  {"height",           al_lua_display_height},
+  {"width",           al_lua_display_width},
   {0,0}
 };
 

@@ -36,10 +36,12 @@ player.angle = 0
 leafs = {}
 
 Screenwrap = function(self)
-	if self.x<0 then self.x = self.x + 640 end
-	if self.x>640 then self.x = self.x - 640 end
-	if self.y<0 then self.y = self.y + 480 end
-	if self.y>480 then self.y = self.y - 480 end
+	width = allegro5.Display.width()
+	height = allegro5.Display.height()
+	if self.x<0 then self.x = self.x + width end
+	if self.x>width then self.x = self.x - width end
+	if self.y<0 then self.y = self.y + height end
+	if self.y>height then self.y = self.y - height end
 end
 
 Update_leaf = function(self, dt)
