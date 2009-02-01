@@ -141,7 +141,8 @@ static const luaL_reg Event_queue_meta[] = {
  * */
 int al_lua_register_event_queue (lua_State *L)
 {
-  luaL_register(L, EVENT_QUEUE, Event_queue_methods);  /* create methods table,
+  lua_newtable(L);
+  luaL_register(L, NULL, Event_queue_methods);  /* create methods table,
                                                 add it to the globals */
   luaL_newmetatable(L, EVENT_QUEUE);        /* create metatable for Image,
                                          add it to the Lua registry */
@@ -154,6 +155,8 @@ int al_lua_register_event_queue (lua_State *L)
   lua_rawset(L, -3);                  /* hide metatable:
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
-  return 1;                           /* return methods on the stack */
+  
+  lua_setfield(L, -2, EVENT_QUEUE);
+  return 0;                           /* return methods on the stack */
 }
 
