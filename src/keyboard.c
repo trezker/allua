@@ -108,7 +108,8 @@ int al_lua_register_keyboard (lua_State *L)
 	al_lua_set_event_callback(ALLEGRO_EVENT_KEY_REPEAT, al_lua_keyboard_event_callback);
 	al_lua_set_event_callback(ALLEGRO_EVENT_KEY_UP, al_lua_keyboard_event_callback);
 
-  luaL_register(L, KEYBOARD, Keyboard_methods);  /* create methods table,
+  lua_newtable(L);
+  luaL_register(L, NULL, Keyboard_methods);  /* create methods table,
                                                 add it to the globals */
 
 	Keyboard_set_attributes(L);
@@ -125,5 +126,7 @@ int al_lua_register_keyboard (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  return 1;                           /* return methods on the stack */
+  lua_setfield(L, -2, KEYBOARD);
+
+  return 0;                           /* return methods on the stack */
 }

@@ -44,11 +44,11 @@ int al_lua_register(lua_State *L)
 	luaL_register (L, "allegro5", al_lua_lib);
 	al_lua_register_font(L);
 	al_lua_register_bitmap(L);
+	al_lua_register_keyboard(L);
 	lua_pop(L, 1);
 	al_lua_register_display(L);
 	al_lua_register_event_queue(L);
 	al_lua_register_color(L);
-	al_lua_register_keyboard(L);
 	al_lua_register_mouse(L);
 	return 1;
 }
