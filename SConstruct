@@ -36,7 +36,7 @@ if int(debug):
 env.Append(CCFLAGS = '-Wall')
 
 env.BuildDir('obj','src', duplicate = 0)
-env.Append(LIBS=['alleg-4.9.5','a5_iio','a5_font','a5_ttf'])
+env.Append(LIBS=['allegro-4.9.8','a5_iio-4.9.8','a5_font-4.9.8','a5_ttf-4.9.8'])
 env.StaticLibrary('lib/al_lua',files)
 
 
