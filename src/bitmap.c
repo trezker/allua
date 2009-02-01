@@ -63,13 +63,28 @@ static int Bitmap_draw (lua_State *L)
   int flags = luaL_checkint(L, 4);
 
   al_draw_bitmap(bitmap, dx, dy, flags);
-  return 1;
+  return 0;
+}
+
+static int Bitmap_draw_rotated (lua_State *L)
+{
+  AL_Bitmap bitmap = al_lua_check_bitmap(L, 1);
+  float cx = luaL_checknumber(L, 2);
+  float cy = luaL_checknumber(L, 3);
+  float dx = luaL_checknumber(L, 4);
+  float dy = luaL_checknumber(L, 5);
+  float angle = luaL_checknumber(L, 6);
+  int flags = luaL_checkint(L, 7);
+
+  al_draw_rotated_bitmap(bitmap, cx, cy, dx, dy, angle, flags);
+  return 0;
 }
 
 static const luaL_reg Bitmap_methods[] = {
   {"new",           Bitmap_new},
   {"load",           Bitmap_load},
   {"draw",           Bitmap_draw},
+  {"draw_rotated",           Bitmap_draw_rotated},
   {0,0}
 };
 
