@@ -55,6 +55,22 @@ static int Bitmap_load (lua_State *L)
   return 1;
 }
 
+static int Bitmap_width (lua_State *L)
+{
+  AL_Bitmap bitmap = al_lua_check_bitmap(L, 1);
+
+  lua_pushinteger(L, al_get_bitmap_width(bitmap));
+  return 1;
+}
+
+static int Bitmap_height (lua_State *L)
+{
+  AL_Bitmap bitmap = al_lua_check_bitmap(L, 1);
+
+  lua_pushinteger(L, al_get_bitmap_height(bitmap));
+  return 1;
+}
+
 static int Bitmap_draw (lua_State *L)
 {
   AL_Bitmap bitmap = al_lua_check_bitmap(L, 1);
@@ -83,6 +99,8 @@ static int Bitmap_draw_rotated (lua_State *L)
 static const luaL_reg Bitmap_methods[] = {
   {"new",           Bitmap_new},
   {"load",           Bitmap_load},
+  {"width",           Bitmap_width},
+  {"height",           Bitmap_height},
   {"draw",           Bitmap_draw},
   {"draw_rotated",           Bitmap_draw_rotated},
   {0,0}

@@ -37,7 +37,9 @@ while not quit do
 	end
 
 	bitmap:draw(10, 100, 0)
-	bitmap:draw_rotated(10, 10, mouse_x, mouse_y, allegro5.current_time(), 0)
+	cx = bitmap:width()/2
+	cy = bitmap:height()/2
+	bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
 
 	allegro5.Display.flip()
 	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
