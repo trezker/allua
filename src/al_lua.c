@@ -31,11 +31,20 @@ static int al_lua_current_time(lua_State *L)
 	return 1;
 }
 
+
+static int al_lua_rest(lua_State *L)
+{
+	float t = luaL_checknumber(L, 1);
+	al_rest(t);
+	return 0;
+}
+
 /* Register
  * */
 static const luaL_reg al_lua_lib[] = {
   {"init", al_lua_init},
   {"current_time", al_lua_current_time},
+  {"rest", al_lua_rest},
   {NULL, NULL}
 };
 
