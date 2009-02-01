@@ -66,13 +66,13 @@ static int Event_queue_register_event_source (lua_State *L)
 struct Event_callback
 {
 	ALLEGRO_EVENT_TYPE event;
-	int (*cb) (lua_State *L, ALLEGRO_EVENT *e);
+	void (*cb) (lua_State *L, ALLEGRO_EVENT *e);
 }event_callbacks[29];
 
 //Event_callback ;
 int num_event_callbacks = 0;
 
-void al_lua_set_event_callback(ALLEGRO_EVENT_TYPE event, int (*cb) (lua_State *L, ALLEGRO_EVENT *e))
+void al_lua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *L, ALLEGRO_EVENT *e))
 {
 	event_callbacks[num_event_callbacks].event = event;
 	event_callbacks[num_event_callbacks].cb = cb;
