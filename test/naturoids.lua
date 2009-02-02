@@ -34,6 +34,7 @@ player.vx = 0
 player.vy = 0
 player.angle = 0
 player.fire_time = 0
+player.image = bumblebee
 
 leafs = {}
 stingers = {}
@@ -94,8 +95,8 @@ Create_stinger = function()
 
 	new.x = player.x
 	new.y = player.y
-	new.vx = math.cos(-player.angle) * 100
-	new.vy = math.sin(-player.angle) * 100
+	new.vx = math.cos(-player.angle) * 500
+	new.vy = math.sin(-player.angle) * 500
 	new.angle = player.angle
 
 	new.update = Update_stinger
@@ -207,9 +208,7 @@ while not quit do
 		player.fire_time = player.fire_time -dt
 	end
 
-	player.x = player.x + player.vx * dt
-	player.y = player.y + player.vy * dt
-	Screenwrap (player)
+	Update_moving_object (player)
 	
 	for i,v in ipairs(leafs) do 
 		v:draw()
@@ -219,9 +218,7 @@ while not quit do
 		v:draw()
 	end
 
-	cx = bumblebee:width()/2
-	cy = bumblebee:height()/2
-	bumblebee:draw_rotated(cx, cy, player.x, player.y, player.angle, 0)
+	Draw_object(player)
 
 	allegro5.Display.flip()
 	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
