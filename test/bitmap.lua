@@ -38,6 +38,7 @@ while not quit do
 
 	bitmap:draw(10, 100, 0)
 	sub_bitmap:draw(50, 100, 0)
+	bitmap:draw_region(0, 10, 10, 10, 10, 150, 0)
 
 	cx = bitmap:width()/2
 	cy = bitmap:height()/2
