@@ -159,10 +159,7 @@ static int Bitmap_draw_scaled (lua_State *L)
   al_draw_scaled_bitmap(bitmap, sx, sy, sw, sh, dx, dy, dw, dh, flags);
   return 0;
 }
-/*
-# al_draw_line
-# al_draw_rectangle
-*/
+
 static const luaL_reg Bitmap_methods[] = {
   {"new",           Bitmap_new},
   {"create_sub",           Bitmap_create_sub},
