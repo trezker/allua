@@ -126,12 +126,42 @@ static int Bitmap_draw_rotated (lua_State *L)
   al_draw_rotated_bitmap(bitmap, cx, cy, dx, dy, angle, flags);
   return 0;
 }
+
+static int Bitmap_draw_rotated_scaled (lua_State *L)
+{
+  AL_Bitmap bitmap = al_lua_check_bitmap(L, 1);
+  float cx = luaL_checknumber(L, 2);
+  float cy = luaL_checknumber(L, 3);
+  float dx = luaL_checknumber(L, 4);
+  float dy = luaL_checknumber(L, 5);
+  float scalex = luaL_checknumber(L, 6);
+  float scaley = luaL_checknumber(L, 7);
+  float angle = luaL_checknumber(L, 8);
+  int flags = luaL_checkint(L, 9);
+
+  al_draw_rotated_scaled_bitmap(bitmap, cx, cy, dx, dy, scalex, scaley, angle, flags);
+  return 0;
+}
+
+static int Bitmap_draw_scaled (lua_State *L)
+{
+  AL_Bitmap bitmap = al_lua_check_bitmap(L, 1);
+  float sx = luaL_checknumber(L, 2);
+  float sy = luaL_checknumber(L, 3);
+  float sw = luaL_checknumber(L, 4);
+  float sh = luaL_checknumber(L, 5);
+  float dx = luaL_checknumber(L, 6);
+  float dy = luaL_checknumber(L, 7);
+  float dw = luaL_checknumber(L, 8);
+  float dh = luaL_checknumber(L, 9);
+  int flags = luaL_checkint(L, 10);
+
+  al_draw_scaled_bitmap(bitmap, sx, sy, sw, sh, dx, dy, dw, dh, flags);
+  return 0;
+}
 /*
-# al_draw_bitmap_region
 # al_draw_line
 # al_draw_rectangle
-# al_draw_rotated_scaled_bitmap
-# al_draw_scaled_bitmap
 */
 static const luaL_reg Bitmap_methods[] = {
   {"new",           Bitmap_new},
@@ -142,6 +172,8 @@ static const luaL_reg Bitmap_methods[] = {
   {"draw",           Bitmap_draw},
   {"draw_region",           Bitmap_draw_region},
   {"draw_rotated",           Bitmap_draw_rotated},
+  {"draw_rotated_scaled",           Bitmap_draw_rotated_scaled},
+  {"draw_scaled",           Bitmap_draw_scaled},
   {0,0}
 };
 
