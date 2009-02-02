@@ -105,6 +105,52 @@ void Keyboard_set_attributes(lua_State *L)
 		key[4] = 'A' + (i-ALLEGRO_KEY_A);
 		Set_string(key, i, -3);
 	}
+
+	Set_literal("KEY_0", ALLEGRO_KEY_0, -3);
+	Set_literal("KEY_1", ALLEGRO_KEY_1, -3);
+	Set_literal("KEY_2", ALLEGRO_KEY_2, -3);
+	Set_literal("KEY_3", ALLEGRO_KEY_3, -3);
+	Set_literal("KEY_4", ALLEGRO_KEY_4, -3);
+	Set_literal("KEY_5", ALLEGRO_KEY_5, -3);
+	Set_literal("KEY_6", ALLEGRO_KEY_6, -3);
+	Set_literal("KEY_7", ALLEGRO_KEY_7, -3);
+	Set_literal("KEY_8", ALLEGRO_KEY_8, -3);
+	Set_literal("KEY_9", ALLEGRO_KEY_9, -3);
+
+	Set_literal("KEY_PAD_0", ALLEGRO_KEY_PAD_0, -3);
+	Set_literal("KEY_PAD_1", ALLEGRO_KEY_PAD_1, -3);
+	Set_literal("KEY_PAD_2", ALLEGRO_KEY_PAD_2, -3);
+	Set_literal("KEY_PAD_3", ALLEGRO_KEY_PAD_3, -3);
+	Set_literal("KEY_PAD_4", ALLEGRO_KEY_PAD_4, -3);
+	Set_literal("KEY_PAD_5", ALLEGRO_KEY_PAD_5, -3);
+	Set_literal("KEY_PAD_6", ALLEGRO_KEY_PAD_6, -3);
+	Set_literal("KEY_PAD_7", ALLEGRO_KEY_PAD_7, -3);
+	Set_literal("KEY_PAD_8", ALLEGRO_KEY_PAD_8, -3);
+	Set_literal("KEY_PAD_9", ALLEGRO_KEY_PAD_9, -3);
+
+	Set_literal("KEY_F1", ALLEGRO_KEY_F1, -3);
+	Set_literal("KEY_F2", ALLEGRO_KEY_F2, -3);
+	Set_literal("KEY_F3", ALLEGRO_KEY_F3, -3);
+	Set_literal("KEY_F4", ALLEGRO_KEY_F4, -3);
+	Set_literal("KEY_F5", ALLEGRO_KEY_F5, -3);
+	Set_literal("KEY_F6", ALLEGRO_KEY_F6, -3);
+	Set_literal("KEY_F7", ALLEGRO_KEY_F7, -3);
+	Set_literal("KEY_F8", ALLEGRO_KEY_F8, -3);
+	Set_literal("KEY_F9", ALLEGRO_KEY_F9, -3);
+	Set_literal("KEY_F10", ALLEGRO_KEY_F10, -3);
+	Set_literal("KEY_F11", ALLEGRO_KEY_F11, -3);
+	Set_literal("KEY_F12", ALLEGRO_KEY_F12, -3);
+
+	Set_literal("KEY_TILDE", ALLEGRO_KEY_TILDE, -3);
+	Set_literal("KEY_MINUS", ALLEGRO_KEY_MINUS, -3);
+	Set_literal("KEY_EQUALS", ALLEGRO_KEY_EQUALS, -3);
+	Set_literal("KEY_BACKSPACE", ALLEGRO_KEY_BACKSPACE, -3);
+	Set_literal("KEY_TAB", ALLEGRO_KEY_TAB, -3);
+	Set_literal("KEY_OPENBRACE", ALLEGRO_KEY_OPENBRACE, -3);
+	Set_literal("KEY_CLOSEBRACE", ALLEGRO_KEY_CLOSEBRACE, -3);
+	Set_literal("KEY_SEMICOLON", ALLEGRO_KEY_SEMICOLON, -3);
+	Set_literal("KEY_QUOTE", ALLEGRO_KEY_QUOTE, -3);
+	Set_literal("KEY_BACKSLASH", ALLEGRO_KEY_BACKSLASH, -3);
 }
 
 /* Register
