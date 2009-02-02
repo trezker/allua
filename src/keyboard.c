@@ -95,6 +95,8 @@ void Keyboard_set_attributes(lua_State *L)
 	Set_literal("KEY_LEFT", ALLEGRO_KEY_LEFT, -3);
 	Set_literal("KEY_RIGHT", ALLEGRO_KEY_RIGHT, -3);
 	Set_literal("KEY_SPACE", ALLEGRO_KEY_SPACE, -3);
+	Set_literal("KEY_ENTER", ALLEGRO_KEY_ENTER, -3);
+	Set_literal("KEY_PAD_ENTER", ALLEGRO_KEY_PAD_ENTER, -3);
 
 	char key[6] = "KEY_A";
 	int i;
