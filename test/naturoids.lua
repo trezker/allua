@@ -17,6 +17,7 @@ mouse = allegro5.Mouse.get()
 event_queue:register_event_source(mouse)
 
 leaf = allegro5.Bitmap.load("data/green_leaf.png")
+stinger = allegro5.Bitmap.load("data/stinger.png")
 bumblebee = allegro5.Bitmap.load("data/bumblebee.png")
 
 font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
@@ -32,8 +33,10 @@ player.y = 240
 player.vx = 0
 player.vy = 0
 player.angle = 0
+player.fire_time = 0
 
 leafs = {}
+stingers = {}
 
 Screenwrap = function(self)
 	width = allegro5.Display.width()
@@ -44,20 +47,25 @@ Screenwrap = function(self)
 	if self.y>height then self.y = self.y - height end
 end
 
-Update_leaf = function(self, dt)
+Draw_object = function(self)
+	cx = self.image:width()/2
+	cy = self.image:height()/2
+	self.image:draw_rotated(cx, cy, self.x, self.y, self.angle, 0)
+end
+
+Update_moving_object = function(self)
 	self.x = self.x + self.vx * dt
 	self.y = self.y + self.vy * dt
-
 	Screenwrap(self)
+end
+
+-- Leaf functions
+
+Update_leaf = function(self, dt)
+	Update_moving_object(self)
 
 	self.vangle = self.vangle + (math.random() - .5) * dt
 	self.angle = self.angle + self.vangle * dt
-end
-
-Draw_leaf = function(self)
-	cx = leaf:width()/2
-	cy = leaf:height()/2
-	leaf:draw_rotated(cx, cy, self.x, self.y, self.angle, 0)
 end
 
 Create_leaf = function()
@@ -71,7 +79,28 @@ Create_leaf = function()
 	new.vangle = math.random() - .5
 
 	new.update = Update_leaf
-	new.draw = Draw_leaf
+	new.draw = Draw_object
+	new.image = leaf
+	return new
+end
+
+-- Stinger functions
+Update_stinger = function(self, dt)
+	Update_moving_object(self)
+end
+
+Create_stinger = function()
+	new = {}
+
+	new.x = player.x
+	new.y = player.y
+	new.vx = math.cos(-player.angle) * 100
+	new.vy = math.sin(-player.angle) * 100
+	new.angle = player.angle
+
+	new.update = Update_stinger
+	new.draw = Draw_object
+	new.image = stinger
 	return new
 end
 
@@ -110,6 +139,9 @@ while not quit do
 		if event.keycode == allegro5.Keyboard.KEY_DOWN then
 			player.move_reverse = true
 		end
+		if event.keycode == allegro5.Keyboard.KEY_SPACE then
+			player.firing = true
+		end
 	end
 
 	if event.type == allegro5.Keyboard.EVENT_UP then
@@ -124,6 +156,10 @@ while not quit do
 		end
 		if event.keycode == allegro5.Keyboard.KEY_DOWN then
 			player.move_reverse = false
+		end
+		if event.keycode == allegro5.Keyboard.KEY_SPACE then
+			player.firing = false
+			player.fire_time = 0
 		end
 	end
 
@@ -140,6 +176,10 @@ while not quit do
 	for i,v in ipairs(leafs) do 
 		v:update(dt)
 	end
+
+	for i,v in ipairs(stingers) do 
+		v:update(dt)
+	end
 	
 	if player.turn_left then
 		player.angle = player.angle + 5 * dt
@@ -148,23 +188,34 @@ while not quit do
 		player.angle = player.angle - 5 * dt
 	end
 	if player.move_forward then
-		player.vx = player.vx + math.cos(-player.angle) * 1 * dt
-		player.vy = player.vy + math.sin(-player.angle) * 1 * dt
+		player.vx = player.vx + math.cos(-player.angle) * 1000 * dt
+		player.vy = player.vy + math.sin(-player.angle) * 1000 * dt
 		player.vx = player.vx * .999
 		player.vy = player.vy * .999
 	end
 	if player.move_reverse then
-		player.vx = player.vx - math.cos(-player.angle) * 1 * dt
-		player.vy = player.vy - math.sin(-player.angle) * 1 * dt
-		player.vx = player.vx * .995
-		player.vy = player.vy * .995
+		player.vx = player.vx - math.cos(-player.angle) * 700 * dt
+		player.vy = player.vy - math.sin(-player.angle) * 700 * dt
+		player.vx = player.vx * .999
+		player.vy = player.vy * .999
+	end
+	if player.firing then
+		if player.fire_time <= 0 then
+			player.fire_time = 1
+			table.insert(stingers, Create_stinger())
+		end
+		player.fire_time = player.fire_time -dt
 	end
 
-	player.x = player.x + player.vx
-	player.y = player.y + player.vy
+	player.x = player.x + player.vx * dt
+	player.y = player.y + player.vy * dt
 	Screenwrap (player)
 	
 	for i,v in ipairs(leafs) do 
+		v:draw()
+	end
+
+	for i,v in ipairs(stingers) do 
 		v:draw()
 	end
 
