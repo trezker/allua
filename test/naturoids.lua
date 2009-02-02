@@ -35,6 +35,10 @@ player.vy = 0
 player.angle = 0
 player.fire_time = 0
 player.image = bumblebee
+player.score = 0
+player.lives = 3
+player.invulnerable_time = 0
+player.flash_time = 0
 
 leafs = {}
 stingers = {}
@@ -67,6 +71,19 @@ Update_leaf = function(self, dt)
 
 	self.vangle = self.vangle + (math.random() - .5) * dt
 	self.angle = self.angle + self.vangle * dt
+
+	dx = self.x - player.x
+	dy = self.y - player.y
+	if dy*dy + dx*dx < 100 then
+		table.remove(leafs, i)
+		self.dead = true
+		player.lives = player.lives - 1
+		player.x = allegro5.Display.width()/2
+		player.y = allegro5.Display.height()/2
+		player.invulnerable_time = 5
+		player.vx = 0
+		player.vy = 0
+	end
 end
 
 Create_leaf = function()
@@ -88,6 +105,15 @@ end
 -- Stinger functions
 Update_stinger = function(self, dt)
 	Update_moving_object(self)
+	for i,v in ipairs(leafs) do 
+		dx = self.x - v.x
+		dy = self.y - v.y
+		if dy*dy + dx*dx < 100 then
+			table.remove(leafs, i)
+			self.dead = true
+			player.score = player.score + 1
+		end
+	end
 end
 
 Create_stinger = function()
@@ -161,6 +187,21 @@ while not quit do
 		if event.keycode == allegro5.Keyboard.KEY_SPACE then
 			player.firing = false
 			player.fire_time = 0
+			
+			if game_over then
+				
+			end
+		end
+		if event.keycode == allegro5.Keyboard.KEY_ENTER or event.keycode == allegro5.Keyboard.KEY_PAD_ENTER then
+				print("Pressed enter")
+			if game_over then
+				player.lives = 3
+				player.score = 0
+				player.invulnerable_time = 0
+				leafs = {}
+				stingers = {}
+				game_over = false
+			end
 		end
 	end
 
@@ -168,47 +209,65 @@ while not quit do
 	dt = time_now - time_previous
 	time_previous = time_now
 
-	leaf_spawn_time = leaf_spawn_time - dt
-	if leaf_spawn_time <= 0 then
-		table.insert(leafs, Create_leaf())
-		leaf_spawn_time = leaf_spawn_time +1
-	end
-
-	for i,v in ipairs(leafs) do 
-		v:update(dt)
-	end
-
-	for i,v in ipairs(stingers) do 
-		v:update(dt)
-	end
-	
-	if player.turn_left then
-		player.angle = player.angle + 5 * dt
-	end
-	if player.turn_right then
-		player.angle = player.angle - 5 * dt
-	end
-	if player.move_forward then
-		player.vx = player.vx + math.cos(-player.angle) * 1000 * dt
-		player.vy = player.vy + math.sin(-player.angle) * 1000 * dt
-		player.vx = player.vx * .999
-		player.vy = player.vy * .999
-	end
-	if player.move_reverse then
-		player.vx = player.vx - math.cos(-player.angle) * 700 * dt
-		player.vy = player.vy - math.sin(-player.angle) * 700 * dt
-		player.vx = player.vx * .999
-		player.vy = player.vy * .999
-	end
-	if player.firing then
-		if player.fire_time <= 0 then
-			player.fire_time = 1
-			table.insert(stingers, Create_stinger())
+	if not game_over then
+		leaf_spawn_time = leaf_spawn_time - dt
+		if leaf_spawn_time <= 0 then
+			table.insert(leafs, Create_leaf())
+			leaf_spawn_time = leaf_spawn_time +1
 		end
-		player.fire_time = player.fire_time -dt
-	end
 
-	Update_moving_object (player)
+		for i,v in ipairs(leafs) do 
+			v:update(dt)
+		end
+
+		for i,v in ipairs(stingers) do 
+			v:update(dt)
+			if v.dead then
+				table.remove(stingers, i)
+			end
+		end
+		
+		if player.turn_left then
+			player.angle = player.angle + 5 * dt
+		end
+		if player.turn_right then
+			player.angle = player.angle - 5 * dt
+		end
+		if player.move_forward then
+			player.vx = player.vx + math.cos(-player.angle) * 1000 * dt
+			player.vy = player.vy + math.sin(-player.angle) * 1000 * dt
+			player.vx = player.vx * .999
+			player.vy = player.vy * .999
+		end
+		if player.move_reverse then
+			player.vx = player.vx - math.cos(-player.angle) * 700 * dt
+			player.vy = player.vy - math.sin(-player.angle) * 700 * dt
+			player.vx = player.vx * .999
+			player.vy = player.vy * .999
+		end
+		if player.firing then
+			if player.fire_time <= 0 then
+				player.fire_time = 1
+				table.insert(stingers, Create_stinger())
+			end
+			player.fire_time = player.fire_time -dt
+		end
+
+		if player.invulnerable_time > 0 then
+			player.invulnerable_time = player.invulnerable_time - dt
+			player.flash_time = player.flash_time -dt
+			if player.flash_time < -.1 then
+				player.flash_time = player.flash_time + .2
+			end
+		end
+
+		Update_moving_object (player)
+		
+		if player.lives <= 0 then
+			game_over = true
+		end
+
+	end
 	
 	for i,v in ipairs(leafs) do 
 		v:draw()
@@ -218,7 +277,19 @@ while not quit do
 		v:draw()
 	end
 
-	Draw_object(player)
+	if player.invulnerable_time <= 0 or player.flash_time > 0 then
+		Draw_object(player)
+	end
+
+	text = "Score: " .. tostring(player.score)
+	font:textout(10, 10, text, -1)
+	text = "Lives: " .. tostring(player.lives)
+	font:textout(10, 20, text, -1)
+
+	if game_over then
+		font:textout(200, 100, "GAME OVER", -1)
+		font:textout(200, 120, "Press enter to play again", -1)
+	end
 
 	allegro5.Display.flip()
 	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
