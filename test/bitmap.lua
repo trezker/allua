@@ -9,7 +9,7 @@ mouse = allegro5.Mouse.get()
 event_queue:register_event_source(mouse)
 
 bitmap = allegro5.Bitmap.load("data/green_leaf.png")
-
+sub_bitmap = bitmap:create_sub(0, 0, 10, 10)
 font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
 
 mouse_x = 0
@@ -37,6 +37,8 @@ while not quit do
 	end
 
 	bitmap:draw(10, 100, 0)
+	sub_bitmap:draw(50, 100, 0)
+
 	cx = bitmap:width()/2
 	cy = bitmap:height()/2
 	bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)

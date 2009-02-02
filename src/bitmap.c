@@ -48,6 +48,22 @@ static int Bitmap_new (lua_State *L)
   return 1;
 }
 
+static int Bitmap_create_sub (lua_State *L)
+{
+  AL_Bitmap parent = al_lua_check_bitmap(L, 1);
+  int x = luaL_checkint(L, 2);
+  int y = luaL_checkint(L, 3);
+  int w = luaL_checkint(L, 4);
+  int h = luaL_checkint(L, 5);
+  AL_Bitmap child = al_create_sub_bitmap(parent, x, y, w, h);
+  if(child)
+    pushBitmap(L, child);
+  else
+    lua_pushnil(L);
+
+  return 1;
+}
+
 static int Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
@@ -95,9 +111,20 @@ static int Bitmap_draw_rotated (lua_State *L)
   al_draw_rotated_bitmap(bitmap, cx, cy, dx, dy, angle, flags);
   return 0;
 }
-
+/*
+# al_create_sub_bitmap
+# al_draw_bitmap
+# al_draw_bitmap_region
+# al_draw_line
+# al_draw_pixel
+# al_draw_rectangle
+# al_draw_rotated_bitmap
+# al_draw_rotated_scaled_bitmap
+# al_draw_scaled_bitmap
+*/
 static const luaL_reg Bitmap_methods[] = {
   {"new",           Bitmap_new},
+  {"create_sub",           Bitmap_create_sub},
   {"load",           Bitmap_load},
   {"width",           Bitmap_width},
   {"height",           Bitmap_height},
