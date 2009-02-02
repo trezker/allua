@@ -49,9 +49,27 @@ static int al_lua_keycode_to_name(lua_State *L)
 	return 1;
 }
 
+static int al_lua_keycode_from_name(lua_State *L)
+{
+	const char *keyname = luaL_checkstring(L, 1);
+
+	int keycode = 0;
+	int i = 0;
+	for(; i < ALLEGRO_KEY_MAX; ++i)
+	{
+		if(!strncmp(al_keycode_to_name(i), keyname, 32))
+		{
+			keycode = i;
+		}
+	}
+	lua_pushinteger(L, keycode);
+	return 1;
+}
+
 static const luaL_reg Keyboard_methods[] = {
   {"get",           al_lua_get_keyboard},
   {"keycode_to_name",           al_lua_keycode_to_name},
+  {"keycode_from_name",           al_lua_keycode_from_name},
   {0,0}
 };
 

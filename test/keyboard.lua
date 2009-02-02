@@ -6,6 +6,8 @@ event_queue:register_event_source(display)
 keyboard = allegro5.Keyboard.get()
 event_queue:register_event_source(keyboard)
 
+print("Keycode of key \"Up\" is " .. tostring(allegro5.Keyboard.keycode_from_name("Up")))
+
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()
