@@ -33,6 +33,10 @@ while not quit do
 	x3 = 50 + math.cos(allegro5.current_time()) * 10
 	y3 = 100 + math.sin(allegro5.current_time()) * 10
 	allegro5.Primitives.draw_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
+	y1 = y1 + 50
+	y2 = y2 + 50
+	y3 = y3 + 50
+	allegro5.Primitives.draw_filled_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
 
 	pixels = pixels + 1
 

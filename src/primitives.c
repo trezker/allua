@@ -19,7 +19,7 @@ static int al_lua_draw_line_ex(lua_State *L)
 	return 0;
 }
 
-static int al_lua_draw_triangle(lua_State *L)
+static void al_lua_draw_triangle_common(lua_State *L, bool filled)
 {
 	float x1 = luaL_checknumber(L, 1);
 	float y1 = luaL_checknumber(L, 2);
@@ -28,14 +28,32 @@ static int al_lua_draw_triangle(lua_State *L)
 	float x3 = luaL_checknumber(L, 5);
 	float y3 = luaL_checknumber(L, 6);
 	AL_Color color = al_lua_check_color(L, 7);
-	float thickness = luaL_checknumber(L, 8);
-	al_draw_triangle(x1, y1, x2, y2, x3, y3, color, thickness);
+
+	if(!filled)
+	{
+		float thickness = luaL_checknumber(L, 8);
+		al_draw_triangle(x1, y1, x2, y2, x3, y3, color, thickness);
+	}
+	else
+	{
+		al_draw_filled_triangle(x1, y1, x2, y2, x3, y3, color);
+	}
+}
+static int al_lua_draw_triangle(lua_State *L)
+{
+	al_lua_draw_triangle_common(L, false);
+	return 0;
+}
+static int al_lua_draw_filled_triangle(lua_State *L)
+{
+	al_lua_draw_triangle_common(L, true);
 	return 0;
 }
 
 static const luaL_reg Primitives_methods[] = {
   {"draw_line_ex",           al_lua_draw_line_ex},
   {"draw_triangle",           al_lua_draw_triangle},
+  {"draw_filled_triangle",           al_lua_draw_filled_triangle},
   {0,0}
 };
 
