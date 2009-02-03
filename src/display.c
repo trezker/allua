@@ -56,6 +56,13 @@ static int Display_flip (lua_State *L)
 	return 0;
 }
 
+static int Display_set_current (lua_State *L)
+{
+	AL_Display display = al_lua_check_display(L, 1);
+	lua_pushboolean(L, al_set_current_display(display));
+	return 1;
+}
+
 static int Display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
