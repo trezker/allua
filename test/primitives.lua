@@ -46,6 +46,13 @@ while not quit do
 	y2 = y2 + 50
 	allegro5.Primitives.draw_filled_rectangle(x1, y1, x2, y2, green)
 
+	x1 = x1 + 50
+	y1 = y1 + 100
+	allegro5.Primitives.draw_ellipse(x1, y1, 50, 25, green, thickness)
+
+	y1 = y1 + 50
+	allegro5.Primitives.draw_filled_ellipse(x1, y1, 50, 25, green)
+
 	pixels = pixels + 1
 
 	allegro5.Display.flip()
