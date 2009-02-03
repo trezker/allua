@@ -6,6 +6,7 @@
 #include "mouse.h"
 #include "bitmap.h"
 #include "font.h"
+#include "primitives.h"
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>
@@ -58,6 +59,7 @@ int al_lua_register(lua_State *L)
 	al_lua_register_display(L);
 	al_lua_register_event_queue(L);
 	al_lua_register_color(L);
+	al_lua_register_primitives(L);
 	lua_pop(L, 1);
 	return 1;
 }
