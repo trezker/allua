@@ -36,7 +36,15 @@ while not quit do
 	y1 = y1 + 50
 	y2 = y2 + 50
 	y3 = y3 + 50
-	allegro5.Primitives.draw_filled_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
+	allegro5.Primitives.draw_filled_triangle(x1, y1, x2, y2, x3, y3, green)
+
+	y1 = y1 + 50
+	y2 = y2 + 100
+	allegro5.Primitives.draw_rectangle(x1, y1, x2, y2, green, thickness)
+
+	y1 = y1 + 50
+	y2 = y2 + 50
+	allegro5.Primitives.draw_filled_rectangle(x1, y1, x2, y2, green)
 
 	pixels = pixels + 1
 
