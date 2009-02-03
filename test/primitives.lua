@@ -5,6 +5,11 @@ event_queue = allegro5.Event_queue.new()
 event_queue:register_event_source(display)
 event_queue:register_event_source(keyboard)
 
+red = allegro5.Color.map_rgba(255, 0, 0, 255)
+green = allegro5.Color.map_rgba(0, 255, 0, 255)
+blue = allegro5.Color.map_rgba(0, 0, 255, 255)
+black = allegro5.Color.map_rgba(0, 0, 0, 255)
+
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()
@@ -12,20 +17,27 @@ while not quit do
 		quit = true
 	end
 	
-	r = math.random(0, 255)
-	g = math.random(0, 255)
-	b = math.random(0, 255)
-	color = allegro5.Color.map_rgba(r, g, b, 255)
-	x1 = math.random(0, 640)
-	y1 = math.random(0, 480)
-	x2 = math.random(0, 640)
-	y2 = math.random(0, 480)
-	thickness = math.random(0, 4)
-	allegro5.Primitives.draw_line_ex(x1, y1, x2, y2, color, thickness)
+	x1 = 10
+	y1 = 10 + math.sin(allegro5.current_time()) * 10
+	x2 = 100
+	y2 = 10 + math.cos(allegro5.current_time()) * 10
+	thickness = 0
+	while thickness < 10 do
+		allegro5.Primitives.draw_line_ex(x1, y1, x2, y2, red, thickness)
+		thickness = thickness + 2
+		y1 = y1 + 10
+		y2 = y2 + 10
+	end
+
+	thickness = 5 + math.cos(allegro5.current_time()) * 5
+	x3 = 50 + math.cos(allegro5.current_time()) * 10
+	y3 = 100 + math.sin(allegro5.current_time()) * 10
+	allegro5.Primitives.draw_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
 
 	pixels = pixels + 1
-	
+
 	allegro5.Display.flip()
+	allegro5.Display.clear(black)
 end
 
 print("Frames per second ", pixels / allegro5.current_time())
