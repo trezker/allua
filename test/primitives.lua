@@ -40,7 +40,7 @@ while not quit do
 
 	y1 = y1 + 50
 	y2 = y2 + 100
-	allegro5.Primitives.draw_rectangle(x1, y1, x2, y2, green, thickness)
+	allegro5.Primitives.draw_rectangle_ex(x1, y1, x2, y2, green, thickness)
 
 	y1 = y1 + 50
 	y2 = y2 + 50

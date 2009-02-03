@@ -64,7 +64,7 @@ static void al_lua_draw_rectangle_common(lua_State *L, bool filled, bool ellipse
 		if(ellipse)
 			al_draw_ellipse(x1, y1, x2, y2, color, thickness);
 		else
-			al_draw_rectangle(x1, y1, x2, y2, color, thickness);
+			al_draw_rectangle_ex(x1, y1, x2, y2, color, thickness);
 	}
 	else
 	{
@@ -74,7 +74,7 @@ static void al_lua_draw_rectangle_common(lua_State *L, bool filled, bool ellipse
 			al_draw_filled_rectangle(x1, y1, x2, y2, color);
 	}
 }
-static int al_lua_draw_rectangle(lua_State *L)
+static int al_lua_draw_rectangle_ex(lua_State *L)
 {
 	al_lua_draw_rectangle_common(L, false, false);
 	return 0;
@@ -99,7 +99,7 @@ static const luaL_reg Primitives_methods[] = {
   {"draw_line_ex",           al_lua_draw_line_ex},
   {"draw_triangle",           al_lua_draw_triangle},
   {"draw_filled_triangle",           al_lua_draw_filled_triangle},
-  {"draw_rectangle",           al_lua_draw_rectangle},
+  {"draw_rectangle_ex",           al_lua_draw_rectangle_ex},
   {"draw_filled_rectangle",           al_lua_draw_filled_rectangle},
   {"draw_ellipse",           al_lua_draw_ellipse},
   {"draw_filled_ellipse",           al_lua_draw_filled_ellipse},
