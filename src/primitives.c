@@ -95,6 +95,34 @@ static int al_lua_draw_filled_ellipse(lua_State *L)
 	return 0;
 }
 
+static void al_lua_draw_circle_common(lua_State *L, bool filled)
+{
+	float x1 = luaL_checknumber(L, 1);
+	float y1 = luaL_checknumber(L, 2);
+	float r = luaL_checknumber(L, 3);
+	AL_Color color = al_lua_check_color(L, 4);
+
+	if(!filled)
+	{
+		float thickness = luaL_checknumber(L, 5);
+		al_draw_circle(x1, y1, r, color, thickness);
+	}
+	else
+	{
+		al_draw_filled_circle(x1, y1, r, color);
+	}
+}
+static int al_lua_draw_circle(lua_State *L)
+{
+	al_lua_draw_circle_common(L, false);
+	return 0;
+}
+static int al_lua_draw_filled_circle(lua_State *L)
+{
+	al_lua_draw_circle_common(L, true);
+	return 0;
+}
+
 static const luaL_reg Primitives_methods[] = {
   {"draw_line_ex",           al_lua_draw_line_ex},
   {"draw_triangle",           al_lua_draw_triangle},
@@ -103,6 +131,8 @@ static const luaL_reg Primitives_methods[] = {
   {"draw_filled_rectangle",           al_lua_draw_filled_rectangle},
   {"draw_ellipse",           al_lua_draw_ellipse},
   {"draw_filled_ellipse",           al_lua_draw_filled_ellipse},
+  {"draw_circle",           al_lua_draw_circle},
+  {"draw_filled_circle",           al_lua_draw_filled_circle},
   {0,0}
 };
 
