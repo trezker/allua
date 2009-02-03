@@ -123,6 +123,20 @@ static int al_lua_draw_filled_circle(lua_State *L)
 	return 0;
 }
 
+static int al_lua_draw_arc(lua_State *L)
+{
+	float x1 = luaL_checknumber(L, 1);
+	float y1 = luaL_checknumber(L, 2);
+	float r = luaL_checknumber(L, 3);
+	float start_theta = luaL_checknumber(L, 4);
+	float delta_theta = luaL_checknumber(L, 5);
+	AL_Color color = al_lua_check_color(L, 6);
+	float thickness = luaL_checknumber(L, 7);
+
+	al_draw_arc(x1, y1, r, start_theta, delta_theta, color, thickness);
+	return 0;
+}
+
 static const luaL_reg Primitives_methods[] = {
   {"draw_line_ex",           al_lua_draw_line_ex},
   {"draw_triangle",           al_lua_draw_triangle},
@@ -133,6 +147,8 @@ static const luaL_reg Primitives_methods[] = {
   {"draw_filled_ellipse",           al_lua_draw_filled_ellipse},
   {"draw_circle",           al_lua_draw_circle},
   {"draw_filled_circle",           al_lua_draw_filled_circle},
+  {"draw_filled_circle",           al_lua_draw_filled_circle},
+  {"draw_arc",           al_lua_draw_arc},
   {0,0}
 };
 

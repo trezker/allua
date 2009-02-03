@@ -10,6 +10,10 @@ green = allegro5.Color.map_rgba(0, 255, 0, 255)
 blue = allegro5.Color.map_rgba(0, 0, 255, 255)
 black = allegro5.Color.map_rgba(0, 0, 0, 255)
 
+last_time = 0
+a1 = 0
+a2 = 0
+
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()
@@ -17,10 +21,14 @@ while not quit do
 		quit = true
 	end
 	
+	current_time = allegro5.current_time()
+	dt = current_time - last_time
+	last_time = current_time
+
 	x1 = 10
-	y1 = 10 + math.sin(allegro5.current_time()) * 10
+	y1 = 10 + math.sin(current_time) * 10
 	x2 = 100
-	y2 = 10 + math.cos(allegro5.current_time()) * 10
+	y2 = 10 + math.cos(current_time) * 10
 	thickness = 0
 	while thickness < 10 do
 		allegro5.Primitives.draw_line_ex(x1, y1, x2, y2, red, thickness)
@@ -29,9 +37,10 @@ while not quit do
 		y2 = y2 + 10
 	end
 
-	thickness = 5 + math.cos(allegro5.current_time()) * 5
-	x3 = 50 + math.cos(allegro5.current_time()) * 10
-	y3 = 100 + math.sin(allegro5.current_time()) * 10
+
+	thickness = 5 + math.cos(current_time) * 5
+	x3 = 50 + math.cos(current_time) * 10
+	y3 = 100 + math.sin(current_time) * 10
 	allegro5.Primitives.draw_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
 	y1 = y1 + 50
 	y2 = y2 + 50
@@ -58,6 +67,18 @@ while not quit do
 	allegro5.Primitives.draw_circle(x1, y1, 50, blue, thickness)
 	y1 = y1 + 110
 	allegro5.Primitives.draw_filled_circle(x1, y1, 50, blue)
+
+	y1 = y1 + 110
+
+	a1 = a1 + dt
+	a2 = a2 + dt
+	if a1 > math.pi * 2 then
+		a1 = 0
+	end
+	if a2 > math.pi * 2 then
+		a2 = 0
+	end
+	allegro5.Primitives.draw_arc(x1, y1, 50, a1, a2, blue, thickness)
 
 	pixels = pixels + 1
 
