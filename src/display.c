@@ -1,6 +1,7 @@
 #include "display.h"
 #include "al_lua.h"
 #include "color.h"
+#include "event_queue.h"
 #include <stdio.h>
 
 #define DISPLAY "Display"
@@ -42,7 +43,7 @@ static int Display_new (lua_State *L)
 {
   int x = luaL_checkint(L, 1);
   int y = luaL_checkint(L, 2);
-  int flags = lua_toboolean (L, 3);
+  int flags = lua_tointeger (L, 3);
 
   al_set_new_display_flags(flags);
   pushDisplay(L, al_create_display(x, y));
@@ -60,6 +61,13 @@ static int Display_set_current (lua_State *L)
 {
 	AL_Display display = al_lua_check_display(L, 1);
 	lua_pushboolean(L, al_set_current_display(display));
+	return 1;
+}
+
+static int Display_acknowledge_resize (lua_State *L)
+{
+	AL_Display display = al_lua_check_display(L, 1);
+	lua_pushboolean(L, al_acknowledge_resize(display));
 	return 1;
 }
 
@@ -116,6 +124,7 @@ static const luaL_reg Display_methods[] = {
   {"new",           Display_new},
   {"flip",           Display_flip},
   {"set_current",           Display_set_current},
+  {"acknowledge_resize",           Display_acknowledge_resize},
   {"clear",           Display_clear},
   {"draw_pixel",           al_lua_draw_pixel},
   {"draw_line",           al_lua_draw_line},
@@ -147,20 +156,39 @@ static const luaL_reg Display_meta[] = {
   {0, 0}
 };
 
+/* Event callbacks
+ * */
+void al_lua_display_event_callback(lua_State *L, ALLEGRO_EVENT *event)
+{
+	///TODO: Find out if making newuserdata is correct in this situation
+/*	pushDisplay(L, event->display.source);
+	lua_setfield(L, -2, "source");
+*/	
+	Set_literal("x", event->display.x, -3);
+	Set_literal("y", event->display.y, -3);
+	Set_literal("width", event->display.width, -3);
+	Set_literal("height", event->display.height, -3);
+}
+
 /* Other attributes
  * */
 void Display_set_attributes(lua_State *L)
 {
 	Set_literal("EVENT_CLOSE", ALLEGRO_EVENT_DISPLAY_CLOSE, -3);
 	Set_literal("EVENT_SWITCH_OUT", ALLEGRO_EVENT_DISPLAY_SWITCH_OUT, -3);
+	Set_literal("EVENT_RESIZE", ALLEGRO_EVENT_DISPLAY_RESIZE, -3);
+
 	Set_literal("WINDOWED", ALLEGRO_WINDOWED, -3);
 	Set_literal("FULLSCREEN", ALLEGRO_FULLSCREEN, -3);
+	Set_literal("RESIZABLE", ALLEGRO_RESIZABLE, -3);
 }
 
 /* Register
  * */
 int al_lua_register_display (lua_State *L)
 {
+	al_lua_set_event_callback(ALLEGRO_EVENT_DISPLAY_RESIZE, al_lua_display_event_callback);
+
   lua_newtable(L);
   luaL_register(L, NULL, Display_methods);  /* create methods table,
                                                 add it to the globals */

@@ -1,5 +1,5 @@
 allegro5.init()
-display1 = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
+display1 = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED + allegro5.Display.RESIZABLE)
 display2 = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
 event_queue = allegro5.Event_queue.new()
 
@@ -23,6 +23,11 @@ while not quit do
 		quit = true
 	end
 
+	if event.type == allegro5.Display.EVENT_RESIZE then
+--		event.source:acknowledge_resize()
+		display1:acknowledge_resize()
+	end
+
 	if event.type == allegro5.Mouse.EVENT_AXES then
 		mouse_x = event.x
 		mouse_y = event.y
@@ -43,12 +48,14 @@ while not quit do
 	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
 	allegro5.rest(0.001)
 
-	display2:set_current()
-	cx = bitmap:width()/2
-	cy = bitmap:height()/2
-	bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
+	if display2 then
+		display2:set_current()
+		cx = bitmap:width()/2
+		cy = bitmap:height()/2
+		bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
 
-	allegro5.Display.flip()
-	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
-	allegro5.rest(0.001)
+		allegro5.Display.flip()
+		allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
+		allegro5.rest(0.001)
+	end
 end
