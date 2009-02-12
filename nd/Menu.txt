@@ -39,7 +39,10 @@ Group: C API  {
    File: mouse.h  (/home/anders/allegro/allua-git/include/mouse.h)
    }  # Group: C API
 
-File: Mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
+Group: Lua functions  {
+
+   File: Mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
+   }  # Group: Lua functions
 
 Group: Index  {
 
