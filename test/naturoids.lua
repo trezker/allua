@@ -2,7 +2,7 @@
 Allua demo game - Naturoids
 Player control a bumblebee, classic asteroids style.
 Leafs whirl around, threatening to destabilise your flight.
-]]--
+]]
 
 leaf_max_speed = 20
 

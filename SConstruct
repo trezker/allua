@@ -36,7 +36,7 @@ if int(debug):
 env.Append(CCFLAGS = '-Wall')
 
 env.BuildDir('obj','src', duplicate = 0)
-env.Append(LIBS=['allegro-4.9.8','a5_iio-4.9.8','a5_font-4.9.8','a5_ttf-4.9.8','a5_primitives-4.9.8'])
+env.Append(LIBS=['allegro-4.9.9','a5_iio-4.9.9','a5_font-4.9.9','a5_ttf-4.9.9','a5_primitives-4.9.9'])
 env.StaticLibrary('lib/al_lua',files)
 
 
@@ -44,3 +44,9 @@ env.Append(LINKFLAGS = '-Llib')
 
 env.Append(LIBS = 'al_lua')
 env.Program('test/test', 'test/test.c')
+
+rebuild_docs = ARGUMENTS.get('rebuild_docs', 0)
+if int(rebuild_docs):
+	os.system("../NaturalDocs/NaturalDocs -i include -i src -i docs/nd -o HTML docs/html -p nd -ro")
+else:
+	os.system("../NaturalDocs/NaturalDocs -i include -i src -i docs/nd -o HTML docs/html -p nd")

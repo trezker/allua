@@ -8,8 +8,15 @@
 
 typedef ALLEGRO_MOUSE* AL_Mouse;
 
+/* Function: al_lua_register_mouse
+ * Registers Mouse functionality to the lua state.
+ * */
 int al_lua_register_mouse (lua_State* L);
 
+/* Function: al_lua_check_mouse
+ * Returns:
+ * Pointer to Mouse instance.
+ * */
 AL_Mouse al_lua_check_mouse (lua_State *L, int index);
 
 #endif
