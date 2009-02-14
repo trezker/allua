@@ -42,6 +42,7 @@ Group: C API  {
 Group: Lua functions  {
 
    File: allegro5  (/home/anders/allegro/allua-git/docs/nd/al_lua.lua)
+   File: Bitmap  (/home/anders/allegro/allua-git/docs/nd/Bitmap.lua)
    File: Getting started  (/home/anders/allegro/allua-git/docs/nd/Getting_started.txt)
    File: Mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
    }  # Group: Lua functions
