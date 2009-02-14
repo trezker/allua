@@ -1,0 +1,9 @@
+Title: Getting started
+
+Topic: The allegro5 table
+All the Lua functions in this library are under the allegro5 table. This is not clear by the documentation for each class.
+So to use Mouse functions for example, you need to use allegro5.Mouse.foo(), not Mouse.foo().
+The functions that don't belong to a class are naturally accessible as allegro5.foo().
+
+If you would prefer not having to write allegro5 on everything you could globalize everything under allegro5, or selected parts.
+But there's no guarantee this will not conflict with other stuff in Lua, so you do it at your own risk.
