@@ -6,3 +6,4 @@ obj/
 test/test
 test/test.lua
 test/test.o
+nd/Data/
