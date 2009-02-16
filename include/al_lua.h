@@ -13,6 +13,9 @@
 	lua_pushinteger(L, value);\
 	lua_settable (L, index);
 
+/* Function: al_lua_register
+ * Registers all subsystem functionality to the lua state.
+ * */
 int al_lua_register(lua_State *L);
 
 #endif

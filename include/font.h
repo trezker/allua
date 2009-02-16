@@ -9,8 +9,15 @@
 
 typedef ALLEGRO_FONT* AL_Font;
 
+/* Function: al_lua_register_font
+ * Registers Font functionality to the lua state.
+ * */
 int al_lua_register_font (lua_State* L);
 
+/* Function: al_lua_check_font
+ * Returns:
+ * Pointer to Font instance.
+ * */
 AL_Font al_lua_check_font (lua_State *L, int index);
 
 #endif

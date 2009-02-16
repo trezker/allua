@@ -8,8 +8,15 @@
 
 typedef ALLEGRO_DISPLAY* AL_Display;
 
+/* Function: al_lua_register_display
+ * Registers Display functionality to the lua state.
+ * */
 int al_lua_register_display (lua_State* L);
 
+/* Function: al_lua_check_display
+ * Returns:
+ * Pointer to Display instance.
+ * */
 AL_Display al_lua_check_display (lua_State *L, int index);
 
 #endif

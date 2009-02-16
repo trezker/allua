@@ -6,6 +6,9 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
+/* Function: al_lua_register_primitives
+ * Registers Primitives functionality to the lua state.
+ * */
 int al_lua_register_primitives (lua_State* L);
 
 #endif
