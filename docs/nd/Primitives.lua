@@ -1,0 +1,41 @@
+-- Class: Primitives
+
+-- Function: draw_line_ex
+-- Parameters:
+function draw_line_ex (x1, y1, x2, y2, color, thickness) end
+
+-- Function: draw_triangle
+-- Parameters:
+function draw_triangle (x1, y1, x2, y2, x3, y3, color, thickness) end
+
+-- Function: draw_filled_triangle
+-- Parameters:
+function draw_filled_triangle (x1, y1, x2, y2, x3, y3, color) end
+
+-- Function: draw_rectangle_ex
+-- Parameters:
+function draw_rectangle_ex (x1, y1, x2, y2, color, thickness) end
+
+-- Function: draw_filled_rectangle
+-- Parameters:
+function draw_filled_rectangle (x1, y1, x2, y2, color) end
+
+-- Function: draw_ellipse
+-- Parameters:
+function draw_ellipse (x1, y1, x2, y2, color, thickness) end
+
+-- Function: draw_filled_ellipse
+-- Parameters:
+function draw_filled_ellipse (x1, y1, x2, y2, color) end
+
+-- Function: draw_circle
+-- Parameters:
+function draw_circle (x1, y1, r, color, thickness) end
+
+-- Function: draw_filled_circle
+-- Parameters:
+function draw_filled_circle (x1, y1, r, color) end
+
+-- Function: draw_arc
+-- Parameters:
+function draw_arc (x1, y1, r, start_theta, delta_theta, color, thickness) end

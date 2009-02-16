@@ -44,11 +44,13 @@ Group: Lua functions  {
    File: allegro5  (/home/anders/allegro/allua-git/docs/nd/al_lua.lua)
    File: Bitmap  (/home/anders/allegro/allua-git/docs/nd/Bitmap.lua)
    File: Color  (/home/anders/allegro/allua-git/docs/nd/Color.lua)
+   File: Color  (/home/anders/allegro/allua-git/docs/nd/Keyboard.lua)
    File: Display  (/home/anders/allegro/allua-git/docs/nd/Display.lua)
    File: Event_queue  (/home/anders/allegro/allua-git/docs/nd/Event_queue.lua)
    File: Font  (/home/anders/allegro/allua-git/docs/nd/Font.lua)
    File: Getting started  (/home/anders/allegro/allua-git/docs/nd/Getting_started.txt)
    File: Mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
+   File: Primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
    }  # Group: Lua functions
 
 Group: Index  {

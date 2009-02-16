@@ -147,7 +147,6 @@ static const luaL_reg Primitives_methods[] = {
   {"draw_filled_ellipse",           al_lua_draw_filled_ellipse},
   {"draw_circle",           al_lua_draw_circle},
   {"draw_filled_circle",           al_lua_draw_filled_circle},
-  {"draw_filled_circle",           al_lua_draw_filled_circle},
   {"draw_arc",           al_lua_draw_arc},
   {0,0}
 };
