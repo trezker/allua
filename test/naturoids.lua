@@ -1,6 +1,6 @@
 --[[
 Allua demo game - Naturoids
-Player control a bumblebee, classic asteroids style.
+Player control a wasp, classic asteroids style.
 Leafs whirl around, threatening to destabilise your flight.
 ]]
 
@@ -16,9 +16,9 @@ event_queue:register_event_source(keyboard)
 mouse = allegro5.Mouse.get()
 event_queue:register_event_source(mouse)
 
-leaf = allegro5.Bitmap.load("data/green_leaf.png")
+leaf = allegro5.Bitmap.load("data/leaf.png")
 stinger = allegro5.Bitmap.load("data/stinger.png")
-bumblebee = allegro5.Bitmap.load("data/bumblebee.png")
+wasp = allegro5.Bitmap.load("data/wasp.png")
 
 font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
 
@@ -34,7 +34,7 @@ player.vx = 0
 player.vy = 0
 player.angle = 0
 player.fire_time = 0
-player.image = bumblebee
+player.image = wasp
 player.score = 0
 player.lives = 3
 player.invulnerable_time = 0
