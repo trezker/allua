@@ -19,6 +19,7 @@ event_queue:register_event_source(mouse)
 leaf = allegro5.Bitmap.load("data/leaf.png")
 stinger = allegro5.Bitmap.load("data/stinger.png")
 wasp = allegro5.Bitmap.load("data/wasp.png")
+background = allegro5.Bitmap.load("data/background.png")
 
 font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
 
@@ -268,6 +269,8 @@ while not quit do
 		end
 
 	end
+	
+	background:draw_scaled(0, 0, background:width(), background:height(), 0, 0, display:width(), display:height(), 0)
 	
 	for i,v in ipairs(leafs) do 
 		v:draw()
