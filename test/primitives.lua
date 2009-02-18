@@ -31,7 +31,7 @@ while not quit do
 	y2 = 10 + math.cos(current_time) * 10
 	thickness = 0
 	while thickness < 10 do
-		allegro5.Primitives.draw_line_ex(x1, y1, x2, y2, red, thickness)
+		allegro5.Primitives.draw_line(x1, y1, x2, y2, red, thickness)
 		thickness = thickness + 2
 		y1 = y1 + 10
 		y2 = y2 + 10
@@ -49,7 +49,7 @@ while not quit do
 
 	y1 = y1 + 50
 	y2 = y2 + 100
-	allegro5.Primitives.draw_rectangle_ex(x1, y1, x2, y2, green, thickness)
+	allegro5.Primitives.draw_rectangle(x1, y1, x2, y2, green, thickness)
 
 	y1 = y1 + 50
 	y2 = y2 + 50

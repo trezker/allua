@@ -86,6 +86,7 @@ static int al_lua_draw_pixel(lua_State *L)
 	al_draw_pixel(x, y, color);
 	return 0;
 }
+/*
 static int al_lua_draw_line(lua_State *L)
 {
 	int fx = luaL_checkint(L, 1);
@@ -107,7 +108,7 @@ static int al_lua_draw_rectangle(lua_State *L)
 	al_draw_rectangle(tlx, tly, brx, bry, color, flags);
 	return 0;
 }
-
+*/
 static int al_lua_display_height(lua_State *L)
 {
 	lua_pushinteger(L, al_get_display_height());
@@ -127,8 +128,8 @@ static const luaL_reg Display_methods[] = {
   {"acknowledge_resize",           Display_acknowledge_resize},
   {"clear",           Display_clear},
   {"draw_pixel",           al_lua_draw_pixel},
-  {"draw_line",           al_lua_draw_line},
-  {"draw_rectangle",           al_lua_draw_rectangle},
+//  {"draw_line",           al_lua_draw_line},
+//  {"draw_rectangle",           al_lua_draw_rectangle},
   {"height",           al_lua_display_height},
   {"width",           al_lua_display_width},
   {0,0}

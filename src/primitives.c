@@ -7,7 +7,7 @@
 
 /* Methods
  * */
-static int al_lua_draw_line_ex(lua_State *L)
+static int al_lua_draw_line(lua_State *L)
 {
 	float x1 = luaL_checknumber(L, 1);
 	float y1 = luaL_checknumber(L, 2);
@@ -15,7 +15,7 @@ static int al_lua_draw_line_ex(lua_State *L)
 	float y2 = luaL_checknumber(L, 4);
 	AL_Color color = al_lua_check_color(L, 5);
 	float thickness = luaL_checknumber(L, 6);
-	al_draw_line_ex(x1, y1, x2, y2, color, thickness);
+	al_draw_line(x1, y1, x2, y2, color, thickness);
 	return 0;
 }
 
@@ -64,7 +64,7 @@ static void al_lua_draw_rectangle_common(lua_State *L, bool filled, bool ellipse
 		if(ellipse)
 			al_draw_ellipse(x1, y1, x2, y2, color, thickness);
 		else
-			al_draw_rectangle_ex(x1, y1, x2, y2, color, thickness);
+			al_draw_rectangle(x1, y1, x2, y2, color, thickness);
 	}
 	else
 	{
@@ -74,7 +74,7 @@ static void al_lua_draw_rectangle_common(lua_State *L, bool filled, bool ellipse
 			al_draw_filled_rectangle(x1, y1, x2, y2, color);
 	}
 }
-static int al_lua_draw_rectangle_ex(lua_State *L)
+static int al_lua_draw_rectangle(lua_State *L)
 {
 	al_lua_draw_rectangle_common(L, false, false);
 	return 0;
@@ -138,10 +138,10 @@ static int al_lua_draw_arc(lua_State *L)
 }
 
 static const luaL_reg Primitives_methods[] = {
-  {"draw_line_ex",           al_lua_draw_line_ex},
+  {"draw_line",           al_lua_draw_line},
   {"draw_triangle",           al_lua_draw_triangle},
   {"draw_filled_triangle",           al_lua_draw_filled_triangle},
-  {"draw_rectangle_ex",           al_lua_draw_rectangle_ex},
+  {"draw_rectangle",           al_lua_draw_rectangle},
   {"draw_filled_rectangle",           al_lua_draw_filled_rectangle},
   {"draw_ellipse",           al_lua_draw_ellipse},
   {"draw_filled_ellipse",           al_lua_draw_filled_ellipse},
