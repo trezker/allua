@@ -1,3 +1,6 @@
+-- Title: Primitives example
+-- Demonstrates usage of Primitives functions
+
 allegro5.init()
 display = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
 keyboard = allegro5.Keyboard.get()

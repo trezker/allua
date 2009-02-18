@@ -61,6 +61,18 @@ Group: Lua functions  {
    File: Primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
    }  # Group: Lua functions
 
+Group: Examples  {
+
+   File: Bitmap example  (/home/anders/allegro/allua-git/test/bitmap.lua)
+   File: Display example  (/home/anders/allegro/allua-git/test/display.lua)
+   File: Font example  (/home/anders/allegro/allua-git/test/font.lua)
+   File: Keyboard example  (/home/anders/allegro/allua-git/test/keyboard.lua)
+   File: Mouse example  (/home/anders/allegro/allua-git/test/mouse.lua)
+   File: Naturoids  (/home/anders/allegro/allua-git/test/naturoids.lua)
+   File: Pixels example  (/home/anders/allegro/allua-git/test/pixels.lua)
+   File: Primitives example  (/home/anders/allegro/allua-git/test/primitives.lua)
+   }  # Group: Examples
+
 Group: Index  {
 
    Index: Everything
@@ -74,4 +86,5 @@ Group: Index  {
 ##### Do not change or remove these lines. #####
 Data: 1(D3333RuEG3p\fGH63pooG`Hu3pooNpz`8t38\9oNfG)
 Data: 1(h3333RuEG3p\fGH63pooG`Hu3pooNpz`8t36H9)
+Data: 1(-3333RuEG3p\fGH63pooG`Hu3pooNpz`8t3tG6t)
 Data: 1(T3333RuEG3p\fGH63pooG`Hu3pooNpz`8t3fu963\f)

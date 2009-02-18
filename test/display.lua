@@ -1,3 +1,6 @@
+-- Title: Display example
+-- Demonstrates usage of Display functions
+
 allegro5.init()
 display1 = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED + allegro5.Display.RESIZABLE)
 display2 = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)

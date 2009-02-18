@@ -1,3 +1,6 @@
+-- Title: Font example
+-- Demonstrates usage of Font functions
+
 allegro5.init()
 display = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
 event_queue = allegro5.Event_queue.new()

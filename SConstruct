@@ -47,6 +47,6 @@ env.Program('test/test', 'test/test.c')
 
 rebuild_docs = ARGUMENTS.get('rebuild_docs', 0)
 if int(rebuild_docs):
-	os.system("../NaturalDocs/NaturalDocs -i include -i src -i docs/nd -o HTML docs/html -p nd -ro")
+	os.system("../NaturalDocs/NaturalDocs -i include -i src -i test -i docs/nd -o HTML docs/html -p nd -ro")
 else:
-	os.system("../NaturalDocs/NaturalDocs -i include -i src -i docs/nd -o HTML docs/html -p nd")
+	os.system("../NaturalDocs/NaturalDocs -i include -i src -i test -i docs/nd -o HTML docs/html -p nd")
