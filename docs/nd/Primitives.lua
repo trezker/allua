@@ -1,8 +1,8 @@
 -- Class: Primitives
 
--- Function: draw_line_ex
+-- Function: draw_line
 -- Parameters:
-function draw_line_ex (x1, y1, x2, y2, color, thickness) end
+function draw_line (x1, y1, x2, y2, color, thickness) end
 
 -- Function: draw_triangle
 -- Parameters:
@@ -12,9 +12,9 @@ function draw_triangle (x1, y1, x2, y2, x3, y3, color, thickness) end
 -- Parameters:
 function draw_filled_triangle (x1, y1, x2, y2, x3, y3, color) end
 
--- Function: draw_rectangle_ex
+-- Function: draw_rectangle
 -- Parameters:
-function draw_rectangle_ex (x1, y1, x2, y2, color, thickness) end
+function draw_rectangle (x1, y1, x2, y2, color, thickness) end
 
 -- Function: draw_filled_rectangle
 -- Parameters:

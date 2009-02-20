@@ -41,25 +41,6 @@ function clear () end
 -- color - Color
 function draw_pixel (x, y, color) end
 
--- Function: draw_line
--- Parameters:
--- fx - Start x
--- fy - Start y
--- tx - End x
--- ty - End y
--- color - Color
-function draw_line (fx, fy, tx, ty, color) end
-
--- Function: draw_rectangle
--- Parameters:
--- tlx - Top left x
--- tly - Top left y
--- brx - Bottom right x
--- bry - Bottom right y
--- color - Color
--- flags - Flags
-function draw_rectangle (tlx, tly, brx, bry, color, flags) end
-
 -- Function: height
 -- Returns:
 -- Height of current display
