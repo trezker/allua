@@ -37,12 +37,10 @@ env.Append(CCFLAGS = '-Wall')
 
 env.BuildDir('obj','src', duplicate = 0)
 env.Append(LIBS=['allegro-4.9.10','a5_iio-4.9.10','a5_font-4.9.10','a5_ttf-4.9.10','a5_primitives-4.9.10'])
-env.StaticLibrary('lib/al_lua',files)
+al_lua = env.StaticLibrary('lib/al_lua',files)
 
 
-env.Append(LINKFLAGS = '-Llib')
-
-env.Append(LIBS = 'al_lua')
+env.Append(LIBS = [al_lua])
 env.Program('test/test', 'test/test.c')
 
 rebuild_docs = ARGUMENTS.get('rebuild_docs', 0)
