@@ -2,7 +2,7 @@
 
 -- Function: draw_line
 -- Parameters:
-function draw_line (x1, y1, x2, y2, color, thickness) end
+function draw_line (x1, y1, x2, y2, color) end
 
 -- Function: draw_triangle
 -- Parameters:

@@ -44,7 +44,7 @@ static int Font_load_ttf (lua_State *L)
   int size = luaL_checkint(L, 2);
   int options = luaL_checkint(L, 3);
 
-  pushFont(L, al_ttf_load_font(filename, size, options));
+  pushFont(L, al_load_ttf_font(filename, size, options));
   return 1;
 }
 
@@ -52,7 +52,7 @@ static int Font_load_image (lua_State *L)
 {
   const char* filename = luaL_checkstring(L, 1);
 
-  pushFont(L, al_font_load_font(filename, NULL));
+  pushFont(L, al_load_bitmap_font(filename));
   return 1;
 }
 
@@ -64,7 +64,10 @@ static int Font_textout (lua_State *L)
   const char* text = luaL_checkstring(L, 4);
   int chars = luaL_checkint(L, 5);
 
-  al_font_textout(font, x, y, text, chars);
+  int flags = 0;
+  int start = 0;
+  int end = chars;
+  al_draw_text(font, x, y, flags, text, start, end);
   return 1;
 }
 
@@ -81,7 +84,7 @@ static int Font_gc (lua_State *L)
 {
   AL_Font im = toFont(L, 1);
   printf("goodbye Font (%p)\n", im);
-  if (im) al_font_destroy_font(im);
+  if (im) al_destroy_font(im);
   return 0;
 }
 

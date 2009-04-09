@@ -32,6 +32,8 @@ while not quit do
 	y1 = 10 + math.sin(current_time) * 10
 	x2 = 100
 	y2 = 10 + math.cos(current_time) * 10
+
+--	allegro5.Primitives.draw_line(x1, y1, x2, y2, red)
 	thickness = 0
 	while thickness < 10 do
 		allegro5.Primitives.draw_line(x1, y1, x2, y2, red, thickness)
@@ -40,6 +42,8 @@ while not quit do
 		y2 = y2 + 10
 	end
 
+--	y1 = y1 + 20
+--	y2 = y2 + 20
 
 	thickness = 5 + math.cos(current_time) * 5
 	x3 = 50 + math.cos(current_time) * 10

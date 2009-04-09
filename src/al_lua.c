@@ -21,8 +21,8 @@ static int al_lua_init(lua_State *L)
 	al_init();
 	al_install_keyboard();
 	al_install_mouse();
-	al_iio_init();
-	al_font_init();
+	al_init_iio_addon();
+	al_init_font_addon();
 	return 0;
 }
 
