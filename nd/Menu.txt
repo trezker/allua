@@ -36,15 +36,15 @@ Format: 1.35
 
 Group: C API  {
 
-   File: al_lua_register  (/home/anders/allegro/allua-git/include/al_lua.h)
-   File: al_lua_register_primitives  (/home/anders/allegro/allua-git/include/primitives.h)
-   File: bitmap.h  (/home/anders/allegro/allua-git/include/bitmap.h)
-   File: color.h  (/home/anders/allegro/allua-git/include/color.h)
-   File: display.h  (/home/anders/allegro/allua-git/include/display.h)
-   File: event_queue.h  (/home/anders/allegro/allua-git/include/event_queue.h)
-   File: font.h  (/home/anders/allegro/allua-git/include/font.h)
-   File: keyboard.h  (/home/anders/allegro/allua-git/include/keyboard.h)
-   File: mouse.h  (/home/anders/allegro/allua-git/include/mouse.h)
+   File: al_lua_register  (/home/anders/allegro/allua-git/include/allua/al_lua.h)
+   File: al_lua_register_primitives  (/home/anders/allegro/allua-git/include/allua/primitives.h)
+   File: bitmap.h  (/home/anders/allegro/allua-git/include/allua/bitmap.h)
+   File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
+   File: display.h  (/home/anders/allegro/allua-git/include/allua/display.h)
+   File: event_queue.h  (/home/anders/allegro/allua-git/include/allua/event_queue.h)
+   File: font.h  (/home/anders/allegro/allua-git/include/allua/font.h)
+   File: keyboard.h  (/home/anders/allegro/allua-git/include/allua/keyboard.h)
+   File: mouse.h  (/home/anders/allegro/allua-git/include/allua/mouse.h)
    }  # Group: C API
 
 Group: Lua functions  {

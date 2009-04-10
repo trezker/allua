@@ -1,4 +1,4 @@
-#include "al_lua.h"
+#include "allua/al_lua.h"
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>

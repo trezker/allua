@@ -1,12 +1,12 @@
-#include "al_lua.h"
-#include "display.h"
-#include "event_queue.h"
-#include "color.h"
-#include "keyboard.h"
-#include "mouse.h"
-#include "bitmap.h"
-#include "font.h"
-#include "primitives.h"
+#include "allua/al_lua.h"
+#include "allua/display.h"
+#include "allua/event_queue.h"
+#include "allua/color.h"
+#include "allua/keyboard.h"
+#include "allua/mouse.h"
+#include "allua/bitmap.h"
+#include "allua/font.h"
+#include "allua/primitives.h"
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>

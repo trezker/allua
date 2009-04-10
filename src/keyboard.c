@@ -1,6 +1,6 @@
-#include "keyboard.h"
-#include "event_queue.h"
-#include "al_lua.h"
+#include "allua/keyboard.h"
+#include "allua/event_queue.h"
+#include "allua/al_lua.h"
 #include <stdio.h>
 
 #define KEYBOARD "Keyboard"

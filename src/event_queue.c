@@ -1,5 +1,5 @@
-#include "event_queue.h"
-#include "display.h"
+#include "allua/event_queue.h"
+#include "allua/display.h"
 #include <stdio.h>
 
 #define EVENT_QUEUE "Event_queue"

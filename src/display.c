@@ -1,7 +1,7 @@
-#include "display.h"
-#include "al_lua.h"
-#include "color.h"
-#include "event_queue.h"
+#include "allua/display.h"
+#include "allua/al_lua.h"
+#include "allua/color.h"
+#include "allua/event_queue.h"
 #include <stdio.h>
 
 #define DISPLAY "Display"
