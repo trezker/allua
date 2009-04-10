@@ -39,9 +39,15 @@ env.BuildDir('obj','src', duplicate = 0)
 env.Append(LIBS=['allegro-4.9.10','a5_iio-4.9.10','a5_font-4.9.10','a5_ttf-4.9.10','a5_primitives-4.9.10'])
 al_lua = env.StaticLibrary('lib/al_lua',files)
 
-
 env.Append(LIBS = [al_lua])
 env.Program('test/test', 'test/test.c')
+
+##### Install #####
+env.Alias('install', '/usr/local')
+env.Install('/usr/local/lib', al_lua)
+include_files = glob.glob('include/allua/*.h')
+env.Install('/usr/local/include/allua', include_files)
+
 
 rebuild_docs = ARGUMENTS.get('rebuild_docs', 0)
 if int(rebuild_docs):
