@@ -67,7 +67,7 @@ static int Bitmap_create_sub (lua_State *L)
 static int Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
-  pushBitmap(L, al_load_image(filename));
+  pushBitmap(L, al_load_bitmap(filename));
   return 1;
 }
 

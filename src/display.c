@@ -74,7 +74,7 @@ static int Display_acknowledge_resize (lua_State *L)
 static int Display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
-	al_clear(color);
+	al_clear_to_color(color);
 	return 0;
 }
 

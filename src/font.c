@@ -65,9 +65,7 @@ static int Font_textout (lua_State *L)
   int chars = luaL_checkint(L, 5);
 
   int flags = 0;
-  int start = 0;
-  int end = chars;
-  al_draw_text(font, x, y, flags, text, start, end);
+  al_draw_text(font, x, y, flags, text);
   return 1;
 }
 
