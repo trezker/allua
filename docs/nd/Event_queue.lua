@@ -11,6 +11,12 @@ function new () end
 -- event_source - Event_source
 function register_event_source (event_queue, event_source) end
 
+-- Function: unregister_event_source
+-- Parameters:
+-- event_queue - Event_queue to which unregistering is done
+-- event_source - Event_source
+function unregister_event_source (event_queue, event_source) end
+
 -- Function: get_next_event
 -- Returns:
 -- A table with information about the event.
