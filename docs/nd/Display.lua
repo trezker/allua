@@ -1,6 +1,6 @@
 -- Class: Display
 
--- Function: new
+-- Function: create
 -- Parameters:
 -- x - Width
 -- y - Height
@@ -8,7 +8,7 @@
 --
 -- Returns:
 -- Display
-function new (x, y, flags) end
+function create (x, y, flags) end
 
 -- Function: flip
 -- Flips current display.

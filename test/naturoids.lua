@@ -6,7 +6,7 @@
 leaf_max_speed = 20
 
 allegro5.init()
-display = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
+display = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
 event_queue = allegro5.Event_queue.new()
 
 event_queue:register_event_source(display)

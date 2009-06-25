@@ -69,7 +69,7 @@ Group: Examples  {
    File: Keyboard example  (/home/anders/allegro/allua-git/test/keyboard.lua)
    File: Mouse example  (/home/anders/allegro/allua-git/test/mouse.lua)
    File: Naturoids  (/home/anders/allegro/allua-git/test/naturoids.lua)
-   File: Nomhack  (/home/anders/allegro/allua-git/test/nomhack/nomhack.lua)
+   File: Naturoids  (/home/anders/allegro/allua-git/test/nomhack/nomhack.lua)
    File: Pixels example  (/home/anders/allegro/allua-git/test/pixels.lua)
    File: Primitives example  (/home/anders/allegro/allua-git/test/primitives.lua)
    }  # Group: Examples

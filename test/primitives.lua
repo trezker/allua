@@ -2,7 +2,7 @@
 -- Demonstrates usage of Primitives functions
 
 allegro5.init()
-display = allegro5.Display.new(640, 480, allegro5.Display.WINDOWED)
+display = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
 keyboard = allegro5.Keyboard.get()
 event_queue = allegro5.Event_queue.new()
 event_queue:register_event_source(display)

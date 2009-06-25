@@ -39,7 +39,7 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 
 /* Constructor and methods
  * */
-static int Display_new (lua_State *L)
+static int Display_create (lua_State *L)
 {
   int x = luaL_checkint(L, 1);
   int y = luaL_checkint(L, 2);
@@ -86,29 +86,7 @@ static int al_lua_draw_pixel(lua_State *L)
 	al_draw_pixel(x, y, color);
 	return 0;
 }
-/*
-static int al_lua_draw_line(lua_State *L)
-{
-	int fx = luaL_checkint(L, 1);
-	int fy = luaL_checkint(L, 2);
-	int tx = luaL_checkint(L, 3);
-	int ty = luaL_checkint(L, 4);
-	AL_Color color = al_lua_check_color(L, 5);
-	al_draw_line(fx, fy, tx, ty, color);
-	return 0;
-}
-static int al_lua_draw_rectangle(lua_State *L)
-{
-	int tlx = luaL_checkint(L, 1);
-	int tly = luaL_checkint(L, 2);
-	int brx = luaL_checkint(L, 3);
-	int bry = luaL_checkint(L, 4);
-	AL_Color color = al_lua_check_color(L, 5);
-	int flags = luaL_checkint(L, 6);
-	al_draw_rectangle(tlx, tly, brx, bry, color, flags);
-	return 0;
-}
-*/
+
 static int al_lua_display_height(lua_State *L)
 {
 	lua_pushinteger(L, al_get_display_height());
@@ -122,14 +100,12 @@ static int al_lua_display_width(lua_State *L)
 }
 
 static const luaL_reg Display_methods[] = {
-  {"new",           Display_new},
+  {"create",           Display_create},
   {"flip",           Display_flip},
   {"set_current",           Display_set_current},
   {"acknowledge_resize",           Display_acknowledge_resize},
   {"clear",           Display_clear},
   {"draw_pixel",           al_lua_draw_pixel},
-//  {"draw_line",           al_lua_draw_line},
-//  {"draw_rectangle",           al_lua_draw_rectangle},
   {"height",           al_lua_display_height},
   {"width",           al_lua_display_width},
   {0,0}
