@@ -37,11 +37,12 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
   return pi;
 }
 */
+
 static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 {
 	lua_getfield (L, LUA_REGISTRYINDEX, "allegro5udatamap");
-    lua_pushlightuserdata(L, (void *)im);  /* push address */
-    lua_gettable(L, -2);  /* retrieve value */
+    lua_pushlightuserdata(L, (void *)im);  // push address 
+    lua_gettable(L, -2);  // retrieve value 
 
 	AL_Display *pi;
 	if(!lua_isnil (L, -1))
@@ -53,7 +54,7 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 	{
 		lua_pop(L, 1); //Pop the nil
 		printf("Creating new display udata \n");
-		/* Create new userdata */
+		// Create new userdata
 		lua_pushlightuserdata(L, (void *)im); //Key
 		pi = (AL_Display *)lua_newuserdata(L, sizeof(AL_Display)); //value
 		*pi = im;
@@ -61,8 +62,8 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 		lua_setmetatable(L, -2);
 		lua_settable(L, -3);
 
-		lua_pushlightuserdata(L, (void *)im);  /* push address */
-		lua_gettable(L, -2);  /* retrieve value */
+		lua_pushlightuserdata(L, (void *)im);  // push address
+		lua_gettable(L, -2);  // retrieve value
 	}
 	lua_remove (L, -2);
 	return pi;

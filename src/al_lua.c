@@ -62,10 +62,11 @@ int al_lua_register(lua_State *L)
 
 	/* Initialize weak udata mapping table, weak on the udata */
 	lua_newtable (L);
+	lua_newtable (L);
 	lua_pushliteral(L, "v");
     lua_setfield(L, -2, "__mode");
+	lua_setmetatable (L, -2);
     lua_setfield(L, LUA_REGISTRYINDEX, "allegro5udatamap");
-
 
 
 

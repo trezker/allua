@@ -2,8 +2,13 @@
 -- Demonstrates usage of Display functions
 
 allegro5.init()
+display0 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
+display0 = nil
+collectgarbage("collect")
+
 display1 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED + allegro5.Display.RESIZABLE)
 display2 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
+
 event_queue = allegro5.Event_queue.new()
 
 event_queue:register_event_source(display1)
@@ -27,21 +32,16 @@ while not quit do
 	end
 
 	if event.type == allegro5.Display.EVENT_CLOSE then
-		print("Event close")
-		print(event.source)
-		print(display2)
 		if event.source == display2 then
 			event_queue:unregister_event_source(display2)
 			display2 = nil
 			event.source = nil
-			print("nilled display2")
-			collectgarbage("collect")
 		end
 	end
 
+	collectgarbage("collect")
 	if event.type == allegro5.Display.EVENT_RESIZE then
 		event.source:acknowledge_resize()
---		display1:acknowledge_resize()
 	end
 
 	if event.type == allegro5.Mouse.EVENT_AXES then
@@ -57,12 +57,6 @@ while not quit do
 		mouse_b[event.button] = false
 	end
 
-	display1:set_current()
-	bitmap:draw(10, 100, 0)
-
-	allegro5.Display.flip()
-	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
-	allegro5.rest(0.001)
 
 	if display2 then
 		display2:set_current()
@@ -74,4 +68,11 @@ while not quit do
 		allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
 		allegro5.rest(0.001)
 	end
+
+	display1:set_current()
+	bitmap:draw(10, 100, 0)
+
+	allegro5.Display.flip()
+	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
+	allegro5.rest(0.001)
 end
