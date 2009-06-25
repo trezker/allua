@@ -51,15 +51,6 @@ static const luaL_reg al_lua_lib[] = {
 
 int al_lua_register(lua_State *L)
 {
-//    lua_pushlightuserdata(L, (void *)&Key);  /* push address */
-//    lua_pushnumber(L, myNumber);  /* push value */
-    /* registry[&Key] = myNumber */
-//    lua_settable(L, LUA_REGISTRYINDEX);
-    /* retrieve a number */
-//    lua_pushlightuserdata(L, (void *)&Key);  /* push address */
-//    lua_gettable(L, LUA_REGISTRYINDEX);  /* retrieve value */
-//    myNumber = lua_tonumber(L, -1);  /* convert to number */
-
 	/* Initialize weak udata mapping table, weak on the udata */
 	lua_newtable (L);
 	lua_newtable (L);
@@ -68,10 +59,7 @@ int al_lua_register(lua_State *L)
 	lua_setmetatable (L, -2);
     lua_setfield(L, LUA_REGISTRYINDEX, "allegro5udatamap");
 
-
-
-
-
+	// Register everything
 	luaL_register (L, "allegro5", al_lua_lib);
 	al_lua_register_font(L);
 	al_lua_register_bitmap(L);
