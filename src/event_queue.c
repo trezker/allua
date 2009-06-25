@@ -63,6 +63,23 @@ static int Event_queue_register_event_source (lua_State *L)
   return 0;
 }
 
+static int Event_queue_unregister_event_source (lua_State *L)
+{
+  AL_Event_queue event_queue = al_lua_check_event_queue(L, 1);
+
+  ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
+  ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
+  if (!event_source)
+  {
+    luaL_error(L, "null Event_source");
+  }
+  al_unregister_event_source(event_queue, event_source);
+
+  printf("Event_queue (%p) ", event_queue);
+  printf("unregistered (%p)\n", event_source);
+  return 0;
+}
+
 struct Event_callback
 {
 	ALLEGRO_EVENT_TYPE event;
@@ -111,6 +128,7 @@ static int Event_queue_get_next_event (lua_State *L)
 static const luaL_reg Event_queue_methods[] = {
   {"new",           Event_queue_new},
   {"register_event_source",           Event_queue_register_event_source},
+  {"unregister_event_source",           Event_queue_unregister_event_source},
   {"get_next_event",           Event_queue_get_next_event},
   {0,0}
 };

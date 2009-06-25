@@ -31,8 +31,11 @@ while not quit do
 		print(event.source)
 		print(display2)
 		if event.source == display2 then
+			event_queue:unregister_event_source(display2)
 			display2 = nil
+			event.source = nil
 			print("nilled display2")
+			collectgarbage("collect")
 		end
 	end
 
