@@ -10,6 +10,12 @@
 -- Display
 function create (x, y, flags) end
 
+-- Function: get_num_display_formats
+--
+-- Returns:
+-- Number of available display formats
+function get_num_display_formats () end
+
 -- Function: flip
 -- Flips current display.
 function flip () end

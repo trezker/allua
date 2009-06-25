@@ -83,6 +83,12 @@ static int Display_create (lua_State *L)
   return 1;
 }
 
+static int Display_get_num_display_formats(lua_State *L)
+{
+	lua_pushnumber(L, al_get_num_display_formats());
+	return 1;
+}
+
 static int Display_flip (lua_State *L)
 {
 	al_flip_display();
@@ -133,6 +139,7 @@ static int al_lua_display_width(lua_State *L)
 
 static const luaL_reg Display_methods[] = {
   {"create",           Display_create},
+  {"get_num_display_formats",	Display_get_num_display_formats},
   {"flip",           Display_flip},
   {"set_current",           Display_set_current},
   {"acknowledge_resize",           Display_acknowledge_resize},

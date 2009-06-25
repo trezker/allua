@@ -3,6 +3,7 @@
 
 allegro5.init()
 display0 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
+print("Number of available display formats: " .. allegro5.Display.get_num_display_formats())
 display0 = nil
 collectgarbage("collect")
 
