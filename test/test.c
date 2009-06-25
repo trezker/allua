@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 		if(r)
 		{
 			printf("Script returned an error\n");
+			printf(lua_tostring (state, -1));
 		}
 	}
 	return 0;

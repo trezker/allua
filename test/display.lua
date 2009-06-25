@@ -22,13 +22,23 @@ mouse_b = {}
 
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == allegro5.Display.EVENT_CLOSE or event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
+	if event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
 		quit = true
 	end
 
+	if event.type == allegro5.Display.EVENT_CLOSE then
+		print("Event close")
+		print(event.source)
+		print(display2)
+		if event.source == display2 then
+			display2 = nil
+			print("nilled display2")
+		end
+	end
+
 	if event.type == allegro5.Display.EVENT_RESIZE then
---		event.source:acknowledge_resize()
-		display1:acknowledge_resize()
+		event.source:acknowledge_resize()
+--		display1:acknowledge_resize()
 	end
 
 	if event.type == allegro5.Mouse.EVENT_AXES then

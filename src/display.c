@@ -27,7 +27,7 @@ AL_Display al_lua_check_display (lua_State *L, int index)
     luaL_error(L, "null Display");
   return im;
 }
-
+/*
 static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 {
   AL_Display *pi = (AL_Display *)lua_newuserdata(L, sizeof(AL_Display));
@@ -35,6 +35,37 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
   luaL_getmetatable(L, DISPLAY);
   lua_setmetatable(L, -2);
   return pi;
+}
+*/
+static AL_Display *pushDisplay (lua_State *L, AL_Display im)
+{
+	lua_getfield (L, LUA_REGISTRYINDEX, "allegro5udatamap");
+    lua_pushlightuserdata(L, (void *)im);  /* push address */
+    lua_gettable(L, -2);  /* retrieve value */
+
+	AL_Display *pi;
+	if(!lua_isnil (L, -1))
+	{
+		pi = lua_touserdata (L, -1);
+		printf("Retrieved existing display udata \n");
+	}
+	else
+	{
+		lua_pop(L, 1); //Pop the nil
+		printf("Creating new display udata \n");
+		/* Create new userdata */
+		lua_pushlightuserdata(L, (void *)im); //Key
+		pi = (AL_Display *)lua_newuserdata(L, sizeof(AL_Display)); //value
+		*pi = im;
+		luaL_getmetatable(L, DISPLAY);
+		lua_setmetatable(L, -2);
+		lua_settable(L, -3);
+
+		lua_pushlightuserdata(L, (void *)im);  /* push address */
+		lua_gettable(L, -2);  /* retrieve value */
+	}
+	lua_remove (L, -2);
+	return pi;
 }
 
 /* Constructor and methods
@@ -137,10 +168,10 @@ static const luaL_reg Display_meta[] = {
  * */
 void al_lua_display_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
-	///TODO: Find out if making newuserdata is correct in this situation
-/*	pushDisplay(L, event->display.source);
+	printf("Allegro event source: %p \n",event->display.source);
+	pushDisplay(L, event->display.source);
 	lua_setfield(L, -2, "source");
-*/	
+
 	Set_literal("x", event->display.x, -3);
 	Set_literal("y", event->display.y, -3);
 	Set_literal("width", event->display.width, -3);
@@ -165,6 +196,7 @@ void Display_set_attributes(lua_State *L)
 int al_lua_register_display (lua_State *L)
 {
 	al_lua_set_event_callback(ALLEGRO_EVENT_DISPLAY_RESIZE, al_lua_display_event_callback);
+	al_lua_set_event_callback(ALLEGRO_EVENT_DISPLAY_CLOSE, al_lua_display_event_callback);
 
   lua_newtable(L);
   luaL_register(L, NULL, Display_methods);  /* create methods table,
