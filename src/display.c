@@ -157,6 +157,13 @@ static int Display_set_new_flags(lua_State *L)
 	return 0;
 }
 
+static int Display_set_new_refresh_rate(lua_State *L)
+{
+	int refresh_rate = luaL_checkint(L, 1);
+	al_set_new_display_refresh_rate(refresh_rate);
+	return 0;
+}
+
 static int Display_flip (lua_State *L)
 {
 	al_flip_display();
@@ -215,8 +222,9 @@ static const luaL_reg Display_methods[] = {
 	{"get_new_window_position",	Display_get_new_window_position},
 	{"set_new_option",	Display_set_new_option},
 	{"get_new_option",	Display_get_new_option},
-	{"set_new_flags",	Display_set_new_flags},
 	{"reset_new_options",	Display_reset_new_options},
+	{"set_new_flags",	Display_set_new_flags},
+	{"set_new_refresh_rate",	Display_set_new_refresh_rate},
 	{"flip",           Display_flip},
 	{"set_current",           Display_set_current},
 	{"acknowledge_resize",           Display_acknowledge_resize},

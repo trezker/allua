@@ -75,6 +75,11 @@ function reset_new_options() end
 -- flags - new display flags
 function set_new_flags(flags) end
 
+-- Function: set_new_refresh_rate
+-- Parameters:
+-- refresh_rate - new display refresh rate
+function set_new_refresh_rate(refresh_rate) end
+
 -- Function: flip
 -- Flips current display.
 function flip () end
