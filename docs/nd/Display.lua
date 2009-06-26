@@ -38,6 +38,12 @@ function set_new_format (i) end
 -- Flags set for new display
 function get_new_flags () end
 
+-- Function: get_new_refresh_rate
+--
+-- Returns:
+-- Refresh rate set for new display
+function get_new_refresh_rate () end
+
 -- Function: flip
 -- Flips current display.
 function flip () end
