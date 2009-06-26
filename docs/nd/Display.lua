@@ -67,6 +67,10 @@ function set_new_option(option, value, importance) end
 -- value and importance of the option
 function get_new_option(option) end
 
+-- Function: reset_new_options
+-- Undoes all set options
+function reset_new_options() end
+
 -- Function: flip
 -- Flips current display.
 function flip () end

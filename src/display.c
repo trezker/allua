@@ -145,6 +145,12 @@ static int Display_get_new_option(lua_State *L)
 	return 2;
 }
 
+static int Display_reset_new_options(lua_State *L)
+{
+	al_reset_new_display_options();
+	return 0;
+}
+
 static int Display_flip (lua_State *L)
 {
 	al_flip_display();
@@ -203,6 +209,7 @@ static const luaL_reg Display_methods[] = {
 	{"get_new_window_position",	Display_get_new_window_position},
 	{"set_new_option",	Display_set_new_option},
 	{"get_new_option",	Display_get_new_option},
+	{"reset_new_options",	Display_reset_new_options},
 	{"flip",           Display_flip},
 	{"set_current",           Display_set_current},
 	{"acknowledge_resize",           Display_acknowledge_resize},
