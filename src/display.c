@@ -97,6 +97,14 @@ static int Display_get_format_option(lua_State *L)
 	return 1;
 }
 
+static int Display_set_new_format(lua_State *L)
+{
+	int i = luaL_checkint(L, 1);
+	al_set_new_display_format(i);
+	return 0;
+}
+
+
 static int Display_flip (lua_State *L)
 {
 	al_flip_display();
@@ -149,6 +157,7 @@ static const luaL_reg Display_methods[] = {
   {"create",           Display_create},
   {"get_num_display_formats",	Display_get_num_display_formats},
   {"get_format_option",	Display_get_format_option},
+  {"set_new_format",	Display_set_new_format},
   {"flip",           Display_flip},
   {"set_current",           Display_set_current},
   {"acknowledge_resize",           Display_acknowledge_resize},

@@ -26,6 +26,12 @@ function get_num_display_formats () end
 -- Value of the option
 function get_format_option (i, option) end
 
+-- Function: set_new_format
+--
+-- Parameters:
+-- i - Which display format
+function set_new_format (i) end
+
 -- Function: flip
 -- Flips current display.
 function flip () end
