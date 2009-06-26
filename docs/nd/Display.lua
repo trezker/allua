@@ -32,6 +32,12 @@ function get_format_option (i, option) end
 -- i - Which display format
 function set_new_format (i) end
 
+-- Function: get_new_flags
+--
+-- Returns:
+-- Flags set for new display
+function get_new_flags () end
+
 -- Function: flip
 -- Flips current display.
 function flip () end

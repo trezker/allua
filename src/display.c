@@ -104,6 +104,11 @@ static int Display_set_new_format(lua_State *L)
 	return 0;
 }
 
+static int Display_get_new_flags(lua_State *L)
+{
+	lua_pushnumber(L, al_get_new_display_flags());
+	return 1;
+}
 
 static int Display_flip (lua_State *L)
 {
@@ -154,18 +159,19 @@ static int al_lua_display_width(lua_State *L)
 }
 
 static const luaL_reg Display_methods[] = {
-  {"create",           Display_create},
-  {"get_num_display_formats",	Display_get_num_display_formats},
-  {"get_format_option",	Display_get_format_option},
-  {"set_new_format",	Display_set_new_format},
-  {"flip",           Display_flip},
-  {"set_current",           Display_set_current},
-  {"acknowledge_resize",           Display_acknowledge_resize},
-  {"clear",           Display_clear},
-  {"draw_pixel",           al_lua_draw_pixel},
-  {"height",           al_lua_display_height},
-  {"width",           al_lua_display_width},
-  {0,0}
+	{"create",           Display_create},
+	{"get_num_display_formats",	Display_get_num_display_formats},
+	{"get_format_option",	Display_get_format_option},
+	{"set_new_format",	Display_set_new_format},
+	{"get_new_flags",	Display_get_new_flags},
+	{"flip",           Display_flip},
+	{"set_current",           Display_set_current},
+	{"acknowledge_resize",           Display_acknowledge_resize},
+	{"clear",           Display_clear},
+	{"draw_pixel",           al_lua_draw_pixel},
+	{"height",           al_lua_display_height},
+	{"width",           al_lua_display_width},
+	{0,0}
 };
 
 /* GC and meta
