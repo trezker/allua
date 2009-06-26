@@ -208,13 +208,13 @@ static int al_lua_draw_pixel(lua_State *L)
 	return 0;
 }
 
-static int al_lua_display_height(lua_State *L)
+static int al_lua_display_get_height(lua_State *L)
 {
 	lua_pushinteger(L, al_get_display_height());
 	return 1;
 }
 
-static int al_lua_display_width(lua_State *L)
+static int al_lua_display_get_width(lua_State *L)
 {
 	lua_pushinteger(L, al_get_display_width());
 	return 1;
@@ -234,13 +234,15 @@ static const luaL_reg Display_methods[] = {
 	{"set_new_flags",	Display_set_new_flags},
 	{"set_new_refresh_rate",	Display_set_new_refresh_rate},
 	{"set_new_window_position",	Display_set_new_window_position},
-	{"flip",           Display_flip},
-	{"set_current",           Display_set_current},
 	{"acknowledge_resize",           Display_acknowledge_resize},
+	{"flip",           Display_flip},
+	//TODO: ALLEGRO_BITMAP *al_get_backbuffer(void) to int al_get_display_format(void)
+	//ALLEGRO_DISPLAY *al_get_current_display(void)
+	{"get_height",           al_lua_display_get_height},
+	{"get_width",           al_lua_display_get_width},
+	{"set_current",           Display_set_current},
 	{"clear",           Display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},
-	{"height",           al_lua_display_height},
-	{"width",           al_lua_display_width},
 	{0,0}
 };
 

@@ -106,6 +106,16 @@ function set_current (display) end
 -- true on success
 function acknowledge_resize (display) end
 
+-- Function: get_height
+-- Returns:
+-- Height of current display
+function get_height () end
+
+-- Function: get_width
+-- Returns:
+-- Width of current display
+function get_width () end
+
 -- Function: clear
 -- Clears current display
 function clear () end
@@ -117,15 +127,6 @@ function clear () end
 -- color - Color
 function draw_pixel (x, y, color) end
 
--- Function: height
--- Returns:
--- Height of current display
-function height () end
-
--- Function: width
--- Returns:
--- Width of current display
-function width () end
 
 -- List: Events
 -- EVENT_CLOSE - The close button of the window has been pressed.
