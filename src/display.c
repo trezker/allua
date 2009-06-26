@@ -2,6 +2,9 @@
 #include "allua/al_lua.h"
 #include "allua/color.h"
 #include "allua/event_queue.h"
+
+//#include <allegro5/a5_direct3d.h>
+#include <allegro5/a5_opengl.h>
 #include <stdio.h>
 
 #define DISPLAY "Display"
@@ -273,6 +276,9 @@ void Display_set_attributes(lua_State *L)
 	Set_literal("WINDOWED", ALLEGRO_WINDOWED, -3);
 	Set_literal("FULLSCREEN", ALLEGRO_FULLSCREEN, -3);
 	Set_literal("RESIZABLE", ALLEGRO_RESIZABLE, -3);
+	Set_literal("OPENGL", ALLEGRO_OPENGL, -3);
+//	Set_literal("DIRECT3D", ALLEGRO_DIRECT3D, -3);
+	Set_literal("NOFRAME", ALLEGRO_NOFRAME, -3);
 	
 	/* display options */
 	Set_literal("RED_SIZE", ALLEGRO_RED_SIZE, -3);
