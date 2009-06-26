@@ -8,6 +8,12 @@
 
 typedef ALLEGRO_BITMAP* AL_Bitmap;
 
+struct AL_Bitmap_s
+{
+	ALLEGRO_BITMAP* bitmap;
+	int gc_allowed;
+};
+
 /* Function: al_lua_register_bitmap
  * Registers Bitmap functionality to the lua state.
  * */
@@ -17,6 +23,6 @@ int al_lua_register_bitmap (lua_State* L);
  * Returns:
  * Pointer to Bitmap instance.
  * */
-AL_Bitmap al_lua_check_bitmap (lua_State *L, int index);
+AL_Bitmap al_lua_check_bitmap (lua_State *L, int index);//, int *gc_allowed);
 
 #endif

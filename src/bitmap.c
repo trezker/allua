@@ -7,30 +7,36 @@
 
 /* Common handlers
  * */
-static AL_Bitmap toBitmap (lua_State *L, int index)
+/*static AL_Bitmap toBitmap (lua_State *L, int index)//, int *gc_allowed)
 {
-  AL_Bitmap *pi = (AL_Bitmap*)lua_touserdata(L, index);
+  struct AL_Bitmap_s *pi = (struct AL_Bitmap_s*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, BITMAP);
-  return *pi;
+//  if(gc_allowed)
+//  	*gc_allowed = pi->gc_allowed;
+  return pi->bitmap;
 }
-
-AL_Bitmap al_lua_check_bitmap (lua_State *L, int index)
+*/
+AL_Bitmap al_lua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
 {
-  AL_Bitmap *pi, im;
+  struct AL_Bitmap_s *pi;
+  AL_Bitmap im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Bitmap*)luaL_checkudata(L, index, BITMAP);
+  pi = (struct AL_Bitmap_s*)luaL_checkudata(L, index, BITMAP);
   if (pi == NULL)
   	luaL_typerror(L, index, BITMAP);
-  im = *pi;
+  im = pi->bitmap;
+//  if(gc_allowed)
+//  	*gc_allowed = pi->gc_allowed;
   if (!im)
     luaL_error(L, "null Bitmap");
   return im;
 }
 
-static AL_Bitmap *pushBitmap (lua_State *L, AL_Bitmap im)
+static struct AL_Bitmap_s *pushBitmap (lua_State *L, AL_Bitmap im, int gc_allowed)
 {
-  AL_Bitmap *pi = (AL_Bitmap *)lua_newuserdata(L, sizeof(AL_Bitmap));
-  *pi = im;
+  struct AL_Bitmap_s *pi = (struct AL_Bitmap_s *)lua_newuserdata(L, sizeof(struct AL_Bitmap_s));
+  pi->bitmap = im;
+  pi->gc_allowed = gc_allowed;
   luaL_getmetatable(L, BITMAP);
   lua_setmetatable(L, -2);
   return pi;
@@ -43,7 +49,7 @@ static int Bitmap_new (lua_State *L)
   int w = luaL_checkint(L, 1);
   int h = luaL_checkint(L, 2);
 
-  pushBitmap(L, al_create_bitmap(w, h));
+  pushBitmap(L, al_create_bitmap(w, h), true);
 
   return 1;
 }
@@ -57,7 +63,7 @@ static int Bitmap_create_sub (lua_State *L)
   int h = luaL_checkint(L, 5);
   AL_Bitmap child = al_create_sub_bitmap(parent, x, y, w, h);
   if(child)
-    pushBitmap(L, child);
+    pushBitmap(L, child, true);
   else
     lua_pushnil(L);
 
@@ -67,7 +73,7 @@ static int Bitmap_create_sub (lua_State *L)
 static int Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
-  pushBitmap(L, al_load_bitmap(filename));
+  pushBitmap(L, al_load_bitmap(filename), true);
   return 1;
 }
 
@@ -178,9 +184,13 @@ static const luaL_reg Bitmap_methods[] = {
  * */
 static int Bitmap_gc (lua_State *L)
 {
-  AL_Bitmap im = toBitmap(L, 1);
-  printf("goodbye Bitmap (%p)\n", im);
-  if (im) al_destroy_bitmap(im);
+  struct AL_Bitmap_s *pi = (struct AL_Bitmap_s*)lua_touserdata(L, 1);
+  if(pi->gc_allowed)
+  {
+	  AL_Bitmap im = pi->bitmap;
+	  printf("goodbye Bitmap (%p)\n", im);
+	  if (im) al_destroy_bitmap(im);
+  }
   return 0;
 }
 

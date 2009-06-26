@@ -2,7 +2,8 @@
 -- Demonstrates usage of Bitmap functions
 
 allegro5.init()
-display = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
+allegro5.Display.set_new_flags(allegro5.Display.WINDOWED)
+display = allegro5.Display.create(640, 480)
 event_queue = allegro5.Event_queue.new()
 
 event_queue:register_event_source(display)
@@ -14,6 +15,9 @@ event_queue:register_event_source(mouse)
 bitmap = allegro5.Bitmap.load("data/leaf.png")
 sub_bitmap = bitmap:create_sub(0, 0, 10, 10)
 font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
+
+gctest_bitmap = allegro5.Bitmap.load("data/leaf.png")
+gctest_bitmap = nil
 
 mouse_x = 0
 mouse_y = 0

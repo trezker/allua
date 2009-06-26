@@ -236,6 +236,7 @@ static const luaL_reg Display_methods[] = {
 	{"set_new_window_position",	Display_set_new_window_position},
 	{"acknowledge_resize",           Display_acknowledge_resize},
 	{"flip",           Display_flip},
+	//Notice: I wont add al_get_backbuffer and al_get_frontbuffer as these would get GC'd by lua.
 	//TODO: ALLEGRO_BITMAP *al_get_backbuffer(void) to int al_get_display_format(void)
 	{"get_height",           al_lua_display_get_height},
 	//TODO: int al_get_display_refresh_rate(void)
