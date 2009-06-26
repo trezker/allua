@@ -50,6 +50,14 @@ function get_new_refresh_rate () end
 -- x and y position for new display
 function get_new_window_position() end
 
+-- Function: set_new_option
+--
+-- Parameters:
+-- option - Option
+-- value - Option value
+-- importance - How important the option is
+function set_new_option(option, value, importance) end
+
 -- Function: flip
 -- Flips current display.
 function flip () end
