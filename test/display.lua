@@ -2,13 +2,16 @@
 -- Demonstrates usage of Display functions
 
 allegro5.init()
-display0 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
+allegro5.Display.set_new_flags(allegro5.Display.WINDOWED)
+display0 = allegro5.Display.create(640, 480)
 print("Number of available display formats: " .. allegro5.Display.get_num_display_formats())
 display0 = nil
 collectgarbage("collect")
 
-display1 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED + allegro5.Display.RESIZABLE)
-display2 = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
+allegro5.Display.set_new_flags(allegro5.Display.WINDOWED + allegro5.Display.RESIZABLE)
+display1 = allegro5.Display.create(640, 480)
+allegro5.Display.set_new_flags(allegro5.Display.WINDOWED)
+display2 = allegro5.Display.create(640, 480)
 
 event_queue = allegro5.Event_queue.new()
 

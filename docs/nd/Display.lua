@@ -2,13 +2,12 @@
 
 -- Function: create
 -- Parameters:
--- x - Width
--- y - Height
--- flags - Display flags
+-- w - Width
+-- h - Height
 --
 -- Returns:
 -- Display
-function create (x, y, flags) end
+function create (w, h) end
 
 -- Function: get_num_display_formats
 --
@@ -70,6 +69,11 @@ function get_new_option(option) end
 -- Function: reset_new_options
 -- Undoes all set options
 function reset_new_options() end
+
+-- Function: set_new_flags
+-- Parameters:
+-- flags - new display flags
+function set_new_flags(flags) end
 
 -- Function: flip
 -- Flips current display.

@@ -73,13 +73,9 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
  * */
 static int Display_create (lua_State *L)
 {
-  int x = luaL_checkint(L, 1);
-  int y = luaL_checkint(L, 2);
-  int flags = lua_tointeger (L, 3);
-
-  al_set_new_display_flags(flags);
-  pushDisplay(L, al_create_display(x, y));
-
+  int w = luaL_checkint(L, 1);
+  int h = luaL_checkint(L, 2);
+  pushDisplay(L, al_create_display(w, h));
   return 1;
 }
 
@@ -151,6 +147,13 @@ static int Display_reset_new_options(lua_State *L)
 	return 0;
 }
 
+static int Display_set_new_flags(lua_State *L)
+{
+	int flags = luaL_checkint(L, 1);
+	al_set_new_display_flags(flags);
+	return 0;
+}
+
 static int Display_flip (lua_State *L)
 {
 	al_flip_display();
@@ -209,6 +212,7 @@ static const luaL_reg Display_methods[] = {
 	{"get_new_window_position",	Display_get_new_window_position},
 	{"set_new_option",	Display_set_new_option},
 	{"get_new_option",	Display_get_new_option},
+	{"set_new_flags",	Display_set_new_flags},
 	{"reset_new_options",	Display_reset_new_options},
 	{"flip",           Display_flip},
 	{"set_current",           Display_set_current},
