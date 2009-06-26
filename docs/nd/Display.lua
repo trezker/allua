@@ -48,7 +48,7 @@ function get_new_refresh_rate () end
 --
 -- Returns:
 -- x and y position for new display
-function al_get_new_window_position() end
+function get_new_window_position() end
 
 -- Function: flip
 -- Flips current display.
