@@ -44,6 +44,12 @@ function get_new_flags () end
 -- Refresh rate set for new display
 function get_new_refresh_rate () end
 
+-- Function: get_new_window_position
+--
+-- Returns:
+-- x and y position for new display
+function al_get_new_window_position() end
+
 -- Function: flip
 -- Flips current display.
 function flip () end
