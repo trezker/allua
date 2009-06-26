@@ -16,6 +16,16 @@ function create (x, y, flags) end
 -- Number of available display formats
 function get_num_display_formats () end
 
+-- Function: get_format_option
+--
+-- Parameters:
+-- i - Which display format
+-- option - Which option to look at
+--
+-- Returns:
+-- Value of the option
+function get_format_option (i, option) end
+
 -- Function: flip
 -- Flips current display.
 function flip () end

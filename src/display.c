@@ -89,6 +89,14 @@ static int Display_get_num_display_formats(lua_State *L)
 	return 1;
 }
 
+static int Display_get_format_option(lua_State *L)
+{
+	int i = luaL_checkint(L, 1);
+	int option = luaL_checkint(L, 2);
+	lua_pushnumber(L, al_get_display_format_option(i, option));
+	return 1;
+}
+
 static int Display_flip (lua_State *L)
 {
 	al_flip_display();
@@ -140,6 +148,7 @@ static int al_lua_display_width(lua_State *L)
 static const luaL_reg Display_methods[] = {
   {"create",           Display_create},
   {"get_num_display_formats",	Display_get_num_display_formats},
+  {"get_format_option",	Display_get_format_option},
   {"flip",           Display_flip},
   {"set_current",           Display_set_current},
   {"acknowledge_resize",           Display_acknowledge_resize},
@@ -190,13 +199,49 @@ void al_lua_display_event_callback(lua_State *L, ALLEGRO_EVENT *event)
  * */
 void Display_set_attributes(lua_State *L)
 {
+	/* events */
 	Set_literal("EVENT_CLOSE", ALLEGRO_EVENT_DISPLAY_CLOSE, -3);
 	Set_literal("EVENT_SWITCH_OUT", ALLEGRO_EVENT_DISPLAY_SWITCH_OUT, -3);
 	Set_literal("EVENT_RESIZE", ALLEGRO_EVENT_DISPLAY_RESIZE, -3);
 
+	/* flags */
 	Set_literal("WINDOWED", ALLEGRO_WINDOWED, -3);
 	Set_literal("FULLSCREEN", ALLEGRO_FULLSCREEN, -3);
 	Set_literal("RESIZABLE", ALLEGRO_RESIZABLE, -3);
+	
+	/* display options */
+	Set_literal("RED_SIZE", ALLEGRO_RED_SIZE, -3);
+	Set_literal("GREEN_SIZE", ALLEGRO_GREEN_SIZE, -3);
+	Set_literal("BLUE_SIZE", ALLEGRO_BLUE_SIZE, -3);
+	Set_literal("ALPHA_SIZE", ALLEGRO_ALPHA_SIZE, -3);
+	Set_literal("COLOR_SIZE", ALLEGRO_COLOR_SIZE, -3);
+	Set_literal("RED_SHIFT", ALLEGRO_RED_SHIFT, -3);
+	Set_literal("GREEN_SHIFT", ALLEGRO_GREEN_SHIFT, -3);
+	Set_literal("BLUE_SHIFT", ALLEGRO_BLUE_SHIFT, -3);
+	Set_literal("ALPHA_SHIFT", ALLEGRO_ALPHA_SHIFT, -3);
+	Set_literal("ACC_RED_SIZE", ALLEGRO_ACC_RED_SIZE, -3);
+	Set_literal("ACC_GREEN_SIZE", ALLEGRO_ACC_GREEN_SIZE, -3);
+	Set_literal("ACC_BLUE_SIZE", ALLEGRO_ACC_BLUE_SIZE, -3);
+	Set_literal("ACC_ALPHA_SIZE", ALLEGRO_ACC_ALPHA_SIZE, -3);
+	Set_literal("STEREO", ALLEGRO_STEREO, -3);
+	Set_literal("AUX_BUFFERS", ALLEGRO_AUX_BUFFERS, -3);
+	Set_literal("DEPTH_SIZE", ALLEGRO_DEPTH_SIZE, -3);
+	Set_literal("STENCIL_SIZE", ALLEGRO_STENCIL_SIZE, -3);
+	Set_literal("SAMPLE_BUFFERS", ALLEGRO_SAMPLE_BUFFERS, -3);
+	Set_literal("SAMPLES", ALLEGRO_SAMPLES, -3);
+	Set_literal("RENDER_METHOD", ALLEGRO_RENDER_METHOD, -3);
+	Set_literal("FLOAT_COLOR", ALLEGRO_FLOAT_COLOR, -3);
+	Set_literal("FLOAT_DEPTH", ALLEGRO_FLOAT_DEPTH, -3);
+	Set_literal("SINGLE_BUFFER", ALLEGRO_SINGLE_BUFFER, -3);
+	Set_literal("SWAP_METHOD", ALLEGRO_SWAP_METHOD, -3);
+	Set_literal("COMPATIBLE_DISPLAY", ALLEGRO_COMPATIBLE_DISPLAY, -3);
+	Set_literal("UPDATE_DISPLAY_REGION", ALLEGRO_UPDATE_DISPLAY_REGION, -3);
+	Set_literal("VSYNC", ALLEGRO_VSYNC, -3);
+
+	/* Option importance */
+	Set_literal("REQUIRE", ALLEGRO_REQUIRE, -3);
+	Set_literal("SUGGEST", ALLEGRO_SUGGEST, -3);
+	Set_literal("DONTCARE", ALLEGRO_DONTCARE, -3);
 }
 
 /* Register
