@@ -237,10 +237,13 @@ static const luaL_reg Display_methods[] = {
 	{"acknowledge_resize",           Display_acknowledge_resize},
 	{"flip",           Display_flip},
 	//TODO: ALLEGRO_BITMAP *al_get_backbuffer(void) to int al_get_display_format(void)
-	//ALLEGRO_DISPLAY *al_get_current_display(void)
 	{"get_height",           al_lua_display_get_height},
+	//TODO: int al_get_display_refresh_rate(void)
 	{"get_width",           al_lua_display_get_width},
+	//TODO: ALLEGRO_BITMAP *al_get_frontbuffer(void) to bool al_resize_display(int width, int height)
 	{"set_current",           Display_set_current},
+	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
+	//TODO: Start graphics.c and move these two there
 	{"clear",           Display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},
 	{0,0}
