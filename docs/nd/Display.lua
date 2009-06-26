@@ -80,6 +80,12 @@ function set_new_flags(flags) end
 -- refresh_rate - new display refresh rate
 function set_new_refresh_rate(refresh_rate) end
 
+-- Function: set_new_window_position
+-- Parameters:
+-- x - horizontal position
+-- y - vertical position
+function set_new_window_position(x, y) end
+
 -- Function: flip
 -- Flips current display.
 function flip () end
