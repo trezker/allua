@@ -96,6 +96,12 @@ function flip () end
 -- backbuffer Bitmap
 function get_backbuffer () end
 
+-- Function: get_current
+--
+-- Returns:
+-- current Display
+function get_current () end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set
