@@ -114,6 +114,12 @@ function get_flags () end
 -- current display pixel format
 function get_format () end
 
+-- Function: get_refresh_rate
+--
+-- Returns:
+-- current display refreshrate
+function get_refresh_rate () end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set

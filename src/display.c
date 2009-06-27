@@ -203,6 +203,12 @@ static int Display_get_format (lua_State *L)
 	return 1;
 }
 
+static int Display_get_refresh_rate (lua_State *L)
+{
+	lua_pushnumber(L, al_get_display_refresh_rate());
+	return 1;
+}
+
 static int Display_set_current (lua_State *L)
 {
 	AL_Display display = al_lua_check_display(L, 1);
@@ -266,7 +272,7 @@ static const luaL_reg Display_methods[] = {
 	{"get_flags",           Display_get_flags},
 	{"get_format",           Display_get_format},
 	{"get_height",           al_lua_display_get_height},
-	//TODO: int al_get_display_refresh_rate(void)
+	{"get_refresh_rate",           Display_get_refresh_rate},
 	{"get_width",           al_lua_display_get_width},
 	//TODO: ALLEGRO_BITMAP *al_get_frontbuffer(void) to bool al_resize_display(int width, int height)
 	{"set_current",           Display_set_current},
