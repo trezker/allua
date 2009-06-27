@@ -124,7 +124,14 @@ function get_refresh_rate () end
 --
 -- Returns:
 -- frontbuffer Bitmap
+
 function get_frontbuffer () end
+
+-- Function: get_window_position
+--
+-- Returns:
+-- x, y
+function get_window_position () end
 
 -- Function: set_current
 -- Parameters:

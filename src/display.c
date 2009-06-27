@@ -216,6 +216,17 @@ static int Display_get_refresh_rate (lua_State *L)
 	return 1;
 }
 
+static int Display_get_window_position (lua_State *L)
+{
+	AL_Display display = al_lua_check_display(L, 1);
+	int x;
+	int y;
+	al_get_window_position(display, &x, &y);
+	lua_pushnumber(L, x);
+	lua_pushnumber(L, y);
+	return 2;
+}
+
 static int Display_set_current (lua_State *L)
 {
 	AL_Display display = al_lua_check_display(L, 1);
@@ -282,6 +293,7 @@ static const luaL_reg Display_methods[] = {
 	{"get_refresh_rate",           Display_get_refresh_rate},
 	{"get_width",           al_lua_display_get_width},
 	{"get_frontbuffer",           Display_get_frontbuffer},
+	{"get_window_position",           Display_get_window_position},
 	//TODO: ALLEGRO_BITMAP *al_get_frontbuffer(void) to bool al_resize_display(int width, int height)
 	{"set_current",           Display_set_current},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
