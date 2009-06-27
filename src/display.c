@@ -185,6 +185,13 @@ static int Display_get_backbuffer (lua_State *L)
 	return 1;
 }
 
+static int Display_get_frontbuffer (lua_State *L)
+{
+	ALLEGRO_BITMAP* fb = al_get_frontbuffer();
+	fb ? pushBitmap(L, fb, false): lua_pushnil(L);
+	return 1;
+}
+
 static int Display_get_current (lua_State *L)
 {
 	pushDisplay(L, al_get_current_display());
@@ -274,6 +281,7 @@ static const luaL_reg Display_methods[] = {
 	{"get_height",           al_lua_display_get_height},
 	{"get_refresh_rate",           Display_get_refresh_rate},
 	{"get_width",           al_lua_display_get_width},
+	{"get_frontbuffer",           Display_get_frontbuffer},
 	//TODO: ALLEGRO_BITMAP *al_get_frontbuffer(void) to bool al_resize_display(int width, int height)
 	{"set_current",           Display_set_current},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)

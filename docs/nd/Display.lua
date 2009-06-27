@@ -120,6 +120,12 @@ function get_format () end
 -- current display refreshrate
 function get_refresh_rate () end
 
+-- Function: get_frontbuffer
+--
+-- Returns:
+-- frontbuffer Bitmap
+function get_frontbuffer () end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set
