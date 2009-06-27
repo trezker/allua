@@ -6,17 +6,17 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
-typedef ALLEGRO_DISPLAY* AL_Display;
+typedef ALLEGRO_DISPLAY* AL_display;
 
 /* Function: al_lua_register_display
- * Registers Display functionality to the lua state.
+ * Registers display functionality to the lua state.
  * */
 int al_lua_register_display (lua_State* L);
 
 /* Function: al_lua_check_display
  * Returns:
- * Pointer to Display instance.
+ * Pointer to display instance.
  * */
-AL_Display al_lua_check_display (lua_State *L, int index);
+AL_display al_lua_check_display (lua_State *L, int index);
 
 #endif

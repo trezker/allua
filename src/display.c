@@ -8,33 +8,33 @@
 #include <allegro5/a5_opengl.h>
 #include <stdio.h>
 
-#define DISPLAY "Display"
+#define DISPLAY "display"
 
 /* Common handlers
  * */
-static AL_Display toDisplay (lua_State *L, int index)
+static AL_display todisplay (lua_State *L, int index)
 {
-  AL_Display *pi = (AL_Display*)lua_touserdata(L, index);
+  AL_display *pi = (AL_display*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, DISPLAY);
   return *pi;
 }
 
-AL_Display al_lua_check_display (lua_State *L, int index)
+AL_display al_lua_check_display (lua_State *L, int index)
 {
-  AL_Display *pi, im;
+  AL_display *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Display*)luaL_checkudata(L, index, DISPLAY);
+  pi = (AL_display*)luaL_checkudata(L, index, DISPLAY);
   if (pi == NULL)
   	luaL_typerror(L, index, DISPLAY);
   im = *pi;
   if (!im)
-    luaL_error(L, "null Display");
+    luaL_error(L, "null display");
   return im;
 }
 /*
-static AL_Display *pushDisplay (lua_State *L, AL_Display im)
+static AL_display *pushdisplay (lua_State *L, AL_display im)
 {
-  AL_Display *pi = (AL_Display *)lua_newuserdata(L, sizeof(AL_Display));
+  AL_display *pi = (AL_display *)lua_newuserdata(L, sizeof(AL_display));
   *pi = im;
   luaL_getmetatable(L, DISPLAY);
   lua_setmetatable(L, -2);
@@ -42,13 +42,13 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 }
 */
 
-static AL_Display *pushDisplay (lua_State *L, AL_Display im)
+static AL_display *pushdisplay (lua_State *L, AL_display im)
 {
 	lua_getfield (L, LUA_REGISTRYINDEX, "allegro5udatamap");
     lua_pushlightuserdata(L, (void *)im);  // push address 
     lua_gettable(L, -2);  // retrieve value 
 
-	AL_Display *pi;
+	AL_display *pi;
 	if(!lua_isnil (L, -1))
 	{
 		pi = lua_touserdata (L, -1);
@@ -60,7 +60,7 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 		printf("Creating new display udata \n");
 		// Create new userdata
 		lua_pushlightuserdata(L, (void *)im); //Key
-		pi = (AL_Display *)lua_newuserdata(L, sizeof(AL_Display)); //value
+		pi = (AL_display *)lua_newuserdata(L, sizeof(AL_display)); //value
 		*pi = im;
 		luaL_getmetatable(L, DISPLAY);
 		lua_setmetatable(L, -2);
@@ -75,21 +75,21 @@ static AL_Display *pushDisplay (lua_State *L, AL_Display im)
 
 /* Constructor and methods
  * */
-static int Display_create (lua_State *L)
+static int display_create (lua_State *L)
 {
   int w = luaL_checkint(L, 1);
   int h = luaL_checkint(L, 2);
-  pushDisplay(L, al_create_display(w, h));
+  pushdisplay(L, al_create_display(w, h));
   return 1;
 }
 
-static int Display_get_num_display_formats(lua_State *L)
+static int display_get_num_display_formats(lua_State *L)
 {
 	lua_pushnumber(L, al_get_num_display_formats());
 	return 1;
 }
 
-static int Display_get_format_option(lua_State *L)
+static int display_get_format_option(lua_State *L)
 {
 	int i = luaL_checkint(L, 1);
 	int option = luaL_checkint(L, 2);
@@ -97,26 +97,26 @@ static int Display_get_format_option(lua_State *L)
 	return 1;
 }
 
-static int Display_set_new_format(lua_State *L)
+static int display_set_new_format(lua_State *L)
 {
 	int i = luaL_checkint(L, 1);
 	al_set_new_display_format(i);
 	return 0;
 }
 
-static int Display_get_new_flags(lua_State *L)
+static int display_get_new_flags(lua_State *L)
 {
 	lua_pushnumber(L, al_get_new_display_flags());
 	return 1;
 }
 
-static int Display_get_new_refresh_rate(lua_State *L)
+static int display_get_new_refresh_rate(lua_State *L)
 {
 	lua_pushnumber(L, al_get_new_display_refresh_rate());
 	return 1;
 }
 
-static int Display_get_new_window_position(lua_State *L)
+static int display_get_new_window_position(lua_State *L)
 {
 	int x;
 	int y;
@@ -126,7 +126,7 @@ static int Display_get_new_window_position(lua_State *L)
 	return 2;
 }
 
-static int Display_set_new_option(lua_State *L)
+static int display_set_new_option(lua_State *L)
 {
 	int option = luaL_checkint(L, 1);
 	int value = luaL_checkint(L, 2);
@@ -135,7 +135,7 @@ static int Display_set_new_option(lua_State *L)
 	return 0;
 }
 
-static int Display_get_new_option(lua_State *L)
+static int display_get_new_option(lua_State *L)
 {
 	int option = luaL_checkint(L, 1);
 	int importance;
@@ -145,27 +145,27 @@ static int Display_get_new_option(lua_State *L)
 	return 2;
 }
 
-static int Display_reset_new_options(lua_State *L)
+static int display_reset_new_options(lua_State *L)
 {
 	al_reset_new_display_options();
 	return 0;
 }
 
-static int Display_set_new_flags(lua_State *L)
+static int display_set_new_flags(lua_State *L)
 {
 	int flags = luaL_checkint(L, 1);
 	al_set_new_display_flags(flags);
 	return 0;
 }
 
-static int Display_set_new_refresh_rate(lua_State *L)
+static int display_set_new_refresh_rate(lua_State *L)
 {
 	int refresh_rate = luaL_checkint(L, 1);
 	al_set_new_display_refresh_rate(refresh_rate);
 	return 0;
 }
 
-static int Display_set_new_window_position(lua_State *L)
+static int display_set_new_window_position(lua_State *L)
 {
 	int x = luaL_checkint(L, 1);
 	int y = luaL_checkint(L, 2);
@@ -173,52 +173,52 @@ static int Display_set_new_window_position(lua_State *L)
 	return 0;
 }
 
-static int Display_flip (lua_State *L)
+static int display_flip (lua_State *L)
 {
 	al_flip_display();
 	return 0;
 }
 
-static int Display_get_backbuffer (lua_State *L)
+static int display_get_backbuffer (lua_State *L)
 {
 	pushBitmap(L, al_get_backbuffer(), false);
 	return 1;
 }
 
-static int Display_get_frontbuffer (lua_State *L)
+static int display_get_frontbuffer (lua_State *L)
 {
 	ALLEGRO_BITMAP* fb = al_get_frontbuffer();
 	fb ? pushBitmap(L, fb, false): lua_pushnil(L);
 	return 1;
 }
 
-static int Display_get_current (lua_State *L)
+static int display_get_current (lua_State *L)
 {
-	pushDisplay(L, al_get_current_display());
+	pushdisplay(L, al_get_current_display());
 	return 1;
 }
 
-static int Display_get_flags (lua_State *L)
+static int display_get_flags (lua_State *L)
 {
 	lua_pushnumber(L, al_get_display_flags());
 	return 1;
 }
 
-static int Display_get_format (lua_State *L)
+static int display_get_format (lua_State *L)
 {
 	lua_pushnumber(L, al_get_display_format());
 	return 1;
 }
 
-static int Display_get_refresh_rate (lua_State *L)
+static int display_get_refresh_rate (lua_State *L)
 {
 	lua_pushnumber(L, al_get_display_refresh_rate());
 	return 1;
 }
 
-static int Display_get_window_position (lua_State *L)
+static int display_get_window_position (lua_State *L)
 {
-	AL_Display display = al_lua_check_display(L, 1);
+	AL_display display = al_lua_check_display(L, 1);
 	int x;
 	int y;
 	al_get_window_position(display, &x, &y);
@@ -227,14 +227,14 @@ static int Display_get_window_position (lua_State *L)
 	return 2;
 }
 
-static int Display_inhibit_screensaver (lua_State *L)
+static int display_inhibit_screensaver (lua_State *L)
 {
 	int inhibit = lua_toboolean(L, 1);
 	lua_pushboolean(L, al_inhibit_screensaver(inhibit));
 	return 1;
 }
 
-static int Display_resize (lua_State *L)
+static int display_resize (lua_State *L)
 {
 	int width = luaL_checkint(L, 1);
 	int height = luaL_checkint(L, 2);
@@ -242,21 +242,21 @@ static int Display_resize (lua_State *L)
 	return 1;
 }
 
-static int Display_set_current (lua_State *L)
+static int display_set_current (lua_State *L)
 {
-	AL_Display display = al_lua_check_display(L, 1);
+	AL_display display = al_lua_check_display(L, 1);
 	lua_pushboolean(L, al_set_current_display(display));
 	return 1;
 }
 
-static int Display_acknowledge_resize (lua_State *L)
+static int display_acknowledge_resize (lua_State *L)
 {
-	AL_Display display = al_lua_check_display(L, 1);
+	AL_display display = al_lua_check_display(L, 1);
 	lua_pushboolean(L, al_acknowledge_resize(display));
 	return 1;
 }
 
-static int Display_clear (lua_State *L)
+static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
 	al_clear_to_color(color);
@@ -284,60 +284,60 @@ static int al_lua_display_get_width(lua_State *L)
 	return 1;
 }
 
-static const luaL_reg Display_methods[] = {
-	{"create",           Display_create},
-	{"get_num_display_formats",	Display_get_num_display_formats},
-	{"get_format_option",	Display_get_format_option},
-	{"set_new_format",	Display_set_new_format},
-	{"get_new_flags",	Display_get_new_flags},
-	{"get_new_refresh_rate",	Display_get_new_refresh_rate},
-	{"get_new_window_position",	Display_get_new_window_position},
-	{"set_new_option",	Display_set_new_option},
-	{"get_new_option",	Display_get_new_option},
-	{"reset_new_options",	Display_reset_new_options},
-	{"set_new_flags",	Display_set_new_flags},
-	{"set_new_refresh_rate",	Display_set_new_refresh_rate},
-	{"set_new_window_position",	Display_set_new_window_position},
-	{"acknowledge_resize",           Display_acknowledge_resize},
-	{"flip",           Display_flip},
-	{"get_backbuffer",           Display_get_backbuffer},
-	{"get_current",           Display_get_current},
-	{"get_flags",           Display_get_flags},
-	{"get_format",           Display_get_format},
+static const luaL_reg display_methods[] = {
+	{"create",           display_create},
+	{"get_num_display_formats",	display_get_num_display_formats},
+	{"get_format_option",	display_get_format_option},
+	{"set_new_format",	display_set_new_format},
+	{"get_new_flags",	display_get_new_flags},
+	{"get_new_refresh_rate",	display_get_new_refresh_rate},
+	{"get_new_window_position",	display_get_new_window_position},
+	{"set_new_option",	display_set_new_option},
+	{"get_new_option",	display_get_new_option},
+	{"reset_new_options",	display_reset_new_options},
+	{"set_new_flags",	display_set_new_flags},
+	{"set_new_refresh_rate",	display_set_new_refresh_rate},
+	{"set_new_window_position",	display_set_new_window_position},
+	{"acknowledge_resize",           display_acknowledge_resize},
+	{"flip",           display_flip},
+	{"get_backbuffer",           display_get_backbuffer},
+	{"get_current",           display_get_current},
+	{"get_flags",           display_get_flags},
+	{"get_format",           display_get_format},
 	{"get_height",           al_lua_display_get_height},
-	{"get_refresh_rate",           Display_get_refresh_rate},
+	{"get_refresh_rate",           display_get_refresh_rate},
 	{"get_width",           al_lua_display_get_width},
-	{"get_frontbuffer",           Display_get_frontbuffer},
-	{"get_window_position",           Display_get_window_position},
-	{"inhibit_screensaver",           Display_inhibit_screensaver},
-	{"resize",           Display_resize},
-	{"set_current",           Display_set_current},
+	{"get_frontbuffer",           display_get_frontbuffer},
+	{"get_window_position",           display_get_window_position},
+	{"inhibit_screensaver",           display_inhibit_screensaver},
+	{"resize",           display_resize},
+	{"set_current",           display_set_current},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
 	//TODO: Start graphics.c and move these two there
-	{"clear",           Display_clear},
+	{"clear",           display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},
 	{0,0}
 };
 
 /* GC and meta
  * */
-static int Display_gc (lua_State *L)
+static int display_gc (lua_State *L)
 {
-  AL_Display im = toDisplay(L, 1);
-  printf("goodbye Display (%p)\n", im);
+  AL_display im = todisplay(L, 1);
+  printf("goodbye display (%p)\n", im);
   if (im) al_destroy_display(im);
   return 0;
 }
 
-static int Display_tostring (lua_State *L)
+static int display_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Display: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "display: %p", lua_touserdata(L, 1));
   return 1;
 }
 
-static const luaL_reg Display_meta[] = {
-  {"__gc",       Display_gc},
-  {"__tostring", Display_tostring},
+static const luaL_reg display_meta[] = {
+  {"__gc",       display_gc},
+  {"__tostring", display_tostring},
   {0, 0}
 };
 
@@ -346,7 +346,7 @@ static const luaL_reg Display_meta[] = {
 void al_lua_display_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
 	printf("Allegro event source: %p \n",event->display.source);
-	pushDisplay(L, event->display.source);
+	pushdisplay(L, event->display.source);
 	lua_setfield(L, -2, "source");
 
 	Set_literal("x", event->display.x, -3);
@@ -357,7 +357,7 @@ void al_lua_display_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 
 /* Other attributes
  * */
-void Display_set_attributes(lua_State *L)
+void display_set_attributes(lua_State *L)
 {
 	/* events */
 	Set_literal("EVENT_CLOSE", ALLEGRO_EVENT_DISPLAY_CLOSE, -3);
@@ -415,14 +415,14 @@ int al_lua_register_display (lua_State *L)
 	al_lua_set_event_callback(ALLEGRO_EVENT_DISPLAY_CLOSE, al_lua_display_event_callback);
 
   lua_newtable(L);
-  luaL_register(L, NULL, Display_methods);  /* create methods table,
+  luaL_register(L, NULL, display_methods);  /* create methods table,
                                                 add it to the globals */
 
-	Display_set_attributes(L);
+	display_set_attributes(L);
 
   luaL_newmetatable(L, DISPLAY);        /* create metatable for Image,
                                          add it to the Lua registry */
-  luaL_register(L, 0, Display_meta);  /* fill metatable */
+  luaL_register(L, 0, display_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -3);               /* dup methods table*/
   lua_rawset(L, -3);                  /* metatable.__index = methods */
