@@ -108,6 +108,12 @@ function get_current () end
 -- display flags
 function get_flags () end
 
+-- Function: get_format
+--
+-- Returns:
+-- current display pixel format
+function get_format () end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set
