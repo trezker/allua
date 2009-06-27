@@ -142,6 +142,16 @@ function get_window_position () end
 -- true if the state was set successfully, otherwise false
 function inhibit_screensaver (inhibit) end
 
+-- Function: resize
+--
+-- Parameters:
+-- width - new width of display
+-- height - new height of display
+--
+-- Returns:
+-- true on success, or false on error
+function resize (width, height) end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set

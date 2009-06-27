@@ -234,6 +234,14 @@ static int Display_inhibit_screensaver (lua_State *L)
 	return 1;
 }
 
+static int Display_resize (lua_State *L)
+{
+	int width = luaL_checkint(L, 1);
+	int height = luaL_checkint(L, 2);
+	lua_pushboolean(L, al_resize_display(width, height));
+	return 1;
+}
+
 static int Display_set_current (lua_State *L)
 {
 	AL_Display display = al_lua_check_display(L, 1);
@@ -302,8 +310,7 @@ static const luaL_reg Display_methods[] = {
 	{"get_frontbuffer",           Display_get_frontbuffer},
 	{"get_window_position",           Display_get_window_position},
 	{"inhibit_screensaver",           Display_inhibit_screensaver},
-
-	//TODO: ALLEGRO_BITMAP *al_get_frontbuffer(void) to bool al_resize_display(int width, int height)
+	{"resize",           Display_resize},
 	{"set_current",           Display_set_current},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
 	//TODO: Start graphics.c and move these two there

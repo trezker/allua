@@ -40,7 +40,7 @@ env.Append(LIBS=['allegro-4.9.11','a5_iio-4.9.11','a5_font-4.9.11','a5_ttf-4.9.1
 al_lua = env.StaticLibrary('lib/al_lua',files)
 
 env.Append(LIBS = [al_lua])
-env.Program('test/test', 'test/test.c')
+test_exe = env.Program('test/test', 'test/test.c')
 
 ##### Install #####
 env.Alias('install', '/usr/local')
@@ -54,3 +54,13 @@ if int(rebuild_docs):
 	os.system("../NaturalDocs/NaturalDocs -i include -i src -i test -i docs/nd -o HTML docs/html -p nd -ro")
 else:
 	os.system("../NaturalDocs/NaturalDocs -i include -i src -i test -i docs/nd -o HTML docs/html -p nd")
+	
+# Unit tests
+#os.chdir("test")
+#os.system("test/test test/test.lua")
+#os.chdir("../")
+
+def runUnitTest(env,target,source):
+	os.system("cd test && ./test unittest_main.lua")
+
+Command("test.passed",'test',runUnitTest)
