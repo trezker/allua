@@ -133,6 +133,15 @@ function get_frontbuffer () end
 -- x, y
 function get_window_position () end
 
+-- Function: inhibit_screensaver
+--
+-- Parameters:
+-- inhibit - stop the system screensaver from starting up if true is passed, or resets the system back to the default state (the state at program start) if false is passed
+--
+-- Returns:
+-- true if the state was set successfully, otherwise false
+function inhibit_screensaver (inhibit) end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set
