@@ -191,6 +191,12 @@ static int Display_get_current (lua_State *L)
 	return 1;
 }
 
+static int Display_get_flags (lua_State *L)
+{
+	lua_pushnumber(L, al_get_display_flags());
+	return 1;
+}
+
 static int Display_set_current (lua_State *L)
 {
 	AL_Display display = al_lua_check_display(L, 1);
@@ -251,6 +257,7 @@ static const luaL_reg Display_methods[] = {
 	{"flip",           Display_flip},
 	{"get_backbuffer",           Display_get_backbuffer},
 	{"get_current",           Display_get_current},
+	{"get_flags",           Display_get_flags},
 	//TODO: ALLEGRO_BITMAP *al_get_backbuffer(void) to int al_get_display_format(void)
 	{"get_height",           al_lua_display_get_height},
 	//TODO: int al_get_display_refresh_rate(void)

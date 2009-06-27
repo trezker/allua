@@ -102,6 +102,12 @@ function get_backbuffer () end
 -- current Display
 function get_current () end
 
+-- Function: get_flags
+--
+-- Returns:
+-- display flags
+function get_flags () end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set
