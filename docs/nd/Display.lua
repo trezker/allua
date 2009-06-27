@@ -90,6 +90,12 @@ function set_new_window_position(x, y) end
 -- Flips current display.
 function flip () end
 
+-- Function: get_backbuffer
+--
+-- Returns:
+-- backbuffer Bitmap
+function get_backbuffer () end
+
 -- Function: set_current
 -- Parameters:
 -- display - Which display to set

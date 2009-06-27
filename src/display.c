@@ -1,4 +1,5 @@
 #include "allua/display.h"
+#include "allua/bitmap.h"
 #include "allua/al_lua.h"
 #include "allua/color.h"
 #include "allua/event_queue.h"
@@ -178,6 +179,12 @@ static int Display_flip (lua_State *L)
 	return 0;
 }
 
+static int Display_get_backbuffer (lua_State *L)
+{
+	pushBitmap(L, al_get_backbuffer(), false);
+	return 1;
+}
+
 static int Display_set_current (lua_State *L)
 {
 	AL_Display display = al_lua_check_display(L, 1);
@@ -236,7 +243,7 @@ static const luaL_reg Display_methods[] = {
 	{"set_new_window_position",	Display_set_new_window_position},
 	{"acknowledge_resize",           Display_acknowledge_resize},
 	{"flip",           Display_flip},
-	//Notice: I wont add al_get_backbuffer and al_get_frontbuffer as these would get GC'd by lua.
+	{"get_backbuffer",           Display_get_backbuffer},
 	//TODO: ALLEGRO_BITMAP *al_get_backbuffer(void) to int al_get_display_format(void)
 	{"get_height",           al_lua_display_get_height},
 	//TODO: int al_get_display_refresh_rate(void)

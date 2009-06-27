@@ -32,7 +32,7 @@ AL_Bitmap al_lua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
   return im;
 }
 
-static struct AL_Bitmap_s *pushBitmap (lua_State *L, AL_Bitmap im, int gc_allowed)
+struct AL_Bitmap_s *pushBitmap (lua_State *L, AL_Bitmap im, int gc_allowed)
 {
   struct AL_Bitmap_s *pi = (struct AL_Bitmap_s *)lua_newuserdata(L, sizeof(struct AL_Bitmap_s));
   pi->bitmap = im;
