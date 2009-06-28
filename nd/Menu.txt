@@ -36,42 +36,41 @@ Format: 1.35
 
 Group: C API  {
 
-   File: al_lua_register  (/home/anders/allegro/allua-git/include/allua/al_lua.h)
-   File: al_lua_register_primitives  (/home/anders/allegro/allua-git/include/allua/primitives.h)
-   File: bitmap.h  (/home/anders/allegro/allua-git/include/allua/bitmap.h)
-   File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
-   File: display.h  (/home/anders/allegro/allua-git/include/allua/display.h)
-   File: event_queue.h  (/home/anders/allegro/allua-git/include/allua/event_queue.h)
-   File: font.h  (/home/anders/allegro/allua-git/include/allua/font.h)
-   File: keyboard.h  (/home/anders/allegro/allua-git/include/allua/keyboard.h)
-   File: mouse.h  (/home/anders/allegro/allua-git/include/allua/mouse.h)
+   File: al_lua_register  (/home/anders/lua/allua/include/allua/al_lua.h)
+   File: al_lua_register_primitives  (/home/anders/lua/allua/include/allua/primitives.h)
+   File: bitmap.h  (/home/anders/lua/allua/include/allua/bitmap.h)
+   File: color.h  (/home/anders/lua/allua/include/allua/color.h)
+   File: display.h  (/home/anders/lua/allua/include/allua/display.h)
+   File: event_queue.h  (/home/anders/lua/allua/include/allua/event_queue.h)
+   File: font.h  (/home/anders/lua/allua/include/allua/font.h)
+   File: keyboard.h  (/home/anders/lua/allua/include/allua/keyboard.h)
+   File: mouse.h  (/home/anders/lua/allua/include/allua/mouse.h)
    }  # Group: C API
 
 Group: Lua functions  {
 
-   File: allegro5  (/home/anders/allegro/allua-git/docs/nd/al_lua.lua)
-   File: Bitmap  (/home/anders/allegro/allua-git/docs/nd/Bitmap.lua)
-   File: Color  (/home/anders/allegro/allua-git/docs/nd/Color.lua)
-   File: Display  (/home/anders/allegro/allua-git/docs/nd/Display.lua)
-   File: Event_queue  (/home/anders/allegro/allua-git/docs/nd/Event_queue.lua)
-   File: Font  (/home/anders/allegro/allua-git/docs/nd/Font.lua)
-   File: Getting started  (/home/anders/allegro/allua-git/docs/nd/Getting_started.txt)
-   File: Keyboard  (/home/anders/allegro/allua-git/docs/nd/Keyboard.lua)
-   File: Mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
-   File: Primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
+   File: allegro5  (/home/anders/lua/allua/docs/nd/al_lua.lua)
+   File: Bitmap  (/home/anders/lua/allua/docs/nd/Bitmap.lua)
+   File: Color  (/home/anders/lua/allua/docs/nd/Color.lua)
+   File: Display  (/home/anders/lua/allua/docs/nd/Display.lua)
+   File: Event_queue  (/home/anders/lua/allua/docs/nd/Event_queue.lua)
+   File: Font  (/home/anders/lua/allua/docs/nd/Font.lua)
+   File: Getting started  (/home/anders/lua/allua/docs/nd/Getting_started.txt)
+   File: Keyboard  (/home/anders/lua/allua/docs/nd/Keyboard.lua)
+   File: Mouse  (/home/anders/lua/allua/docs/nd/Mouse.lua)
+   File: Primitives  (/home/anders/lua/allua/docs/nd/Primitives.lua)
    }  # Group: Lua functions
 
 Group: Examples  {
 
-   File: Bitmap example  (/home/anders/allegro/allua-git/test/bitmap.lua)
-   File: Display example  (/home/anders/allegro/allua-git/test/display.lua)
-   File: Font example  (/home/anders/allegro/allua-git/test/font.lua)
-   File: Keyboard example  (/home/anders/allegro/allua-git/test/keyboard.lua)
-   File: Mouse example  (/home/anders/allegro/allua-git/test/mouse.lua)
-   File: Naturoids  (/home/anders/allegro/allua-git/test/naturoids.lua)
-   File: Naturoids  (/home/anders/allegro/allua-git/test/nomhack/nomhack.lua)
-   File: Pixels example  (/home/anders/allegro/allua-git/test/pixels.lua)
-   File: Primitives example  (/home/anders/allegro/allua-git/test/primitives.lua)
+   File: Bitmap example  (/home/anders/lua/allua/test/bitmap.lua)
+   File: Display example  (/home/anders/lua/allua/test/display.lua)
+   File: Font example  (/home/anders/lua/allua/test/font.lua)
+   File: Keyboard example  (/home/anders/lua/allua/test/keyboard.lua)
+   File: Mouse example  (/home/anders/lua/allua/test/mouse.lua)
+   File: Naturoids  (/home/anders/lua/allua/test/naturoids.lua)
+   File: Pixels example  (/home/anders/lua/allua/test/pixels.lua)
+   File: Primitives example  (/home/anders/lua/allua/test/primitives.lua)
    }  # Group: Examples
 
 Group: Index  {
@@ -85,7 +84,7 @@ Group: Index  {
 
 
 ##### Do not change or remove these lines. #####
-Data: 1(D3333RuEG3p\fGH63pooG`Hu3pooNpz`8t38\9oNfG)
-Data: 1(h3333RuEG3p\fGH63pooG`Hu3pooNpz`8t36H9)
-Data: 1(-3333RuEG3p\fGH63pooG`Hu3pooNpz`8t3tG6t)
-Data: 1(T3333RuEG3p\fGH63pooG`Hu3pooNpz`8t3fu963\f)
+Data: 1(D3333RuEG3p\fGH63oNp3pooNp38\9oNfG)
+Data: 1(h3333RuEG3p\fGH63oNp3pooNp36H9)
+Data: 1(T3333RuEG3p\fGH63oNp3pooNp3tG6t)
+Data: 1(-3333RuEG3p\fGH63oNp3pooNp3fu963\f)

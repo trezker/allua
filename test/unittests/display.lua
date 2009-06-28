@@ -28,3 +28,34 @@ function Test_display:test5_new_flags()
 	assert("number", type(flags_get))
 	assertEquals(flags_set, flags_get)
 end
+
+function Test_display:test6_new_refresh_rate()
+	rate_set = 70
+	allegro5.display.set_new_refresh_rate(rate_set)
+	rate_get = allegro5.display.get_new_refresh_rate()
+	assert("number", type(rate_get))
+	assertEquals(rate_set, rate_get)
+end
+
+function Test_display:test7_new_window_position()
+	set_x, set_y = 70, 40
+	allegro5.display.set_new_window_position(set_x, set_y)
+	get_x, get_y = allegro5.display.get_new_window_position()
+	assert("number", type(get_x))
+	assert("number", type(get_y))
+	assertEquals(set_x, get_x)
+	assertEquals(set_y, get_y)
+end
+
+function Test_display:test8_new_option()
+	value_set = 2
+	importance_set = allegro5.display.REQUIRE
+	allegro5.display.set_new_option(allegro5.display.VSYNC, value_set, importance_set)
+	value_get, importance_get = allegro5.display.get_new_option(allegro5.display.VSYNC)
+	allegro5.display.reset_new_options()
+	assert("number", type(value_get))
+	assert("number", type(importance_get))
+	assertEquals(value_set, value_get)
+	assertEquals(importance_set, importance_get)
+end
+
