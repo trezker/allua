@@ -168,6 +168,11 @@ function set_current (display) end
 -- true on success
 function acknowledge_resize (display) end
 
+-- Function: set_icon
+-- Parameters:
+-- icon - Which bitmap to use
+function set_icon (icon) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

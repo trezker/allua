@@ -256,6 +256,13 @@ static int display_acknowledge_resize (lua_State *L)
 	return 1;
 }
 
+static int display_set_icon (lua_State *L)
+{
+	AL_bitmap bmp = al_lua_check_bitmap(L, 1);
+	al_set_display_icon(bmp);
+	return 0;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -312,6 +319,7 @@ static const luaL_reg display_methods[] = {
 	{"inhibit_screensaver",           display_inhibit_screensaver},
 	{"resize",           display_resize},
 	{"set_current",           display_set_current},
+	{"set_icon",           display_set_icon},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},
