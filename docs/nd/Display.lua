@@ -1,4 +1,4 @@
--- Class: Display
+-- Class: display
 
 -- Function: create
 -- Parameters:

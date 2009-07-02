@@ -107,3 +107,8 @@ function Test_display:test14_resize()
 	assertEquals("boolean", type(gb))
 	assertEquals(true, gb)
 end
+
+function Test_display:test15_icon()
+	i = allegro5.bitmap.create(16, 16)
+	allegro5.display.set_icon(i)
+end

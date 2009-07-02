@@ -1,13 +1,13 @@
--- Class: Bitmap
+-- Class: bitmap
 
--- Function: new
+-- Function: create
 -- Parameters:
 -- w - Width of bitmap
 -- h - Height of bitmap
 --
 -- Returns:
 -- Bitmap instance
-function new (w, h) end
+function create (w, h) end
 
 -- Function: create_sub
 -- Parameters:
