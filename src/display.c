@@ -270,6 +270,16 @@ static int display_get_option (lua_State *L)
 	return 1;
 }
 
+static int display_set_window_position (lua_State *L)
+{
+	AL_display display = al_lua_check_display(L, 1);
+	int x = luaL_checkint(L, 2);
+	int y = luaL_checkint(L, 3);
+
+	al_set_window_position(display, x, y);
+	return 0;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -328,6 +338,7 @@ static const luaL_reg display_methods[] = {
 	{"set_current",           display_set_current},
 	{"set_icon",           display_set_icon},
 	{"get_option",           display_get_option},
+	{"set_window_position",           display_set_window_position},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},

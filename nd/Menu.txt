@@ -64,7 +64,7 @@ Group: Lua functions  {
 Group: Examples  {
 
    File: Bitmap example  (/home/anders/allegro/allua-git/test/bitmap.lua)
-   File: Display example  (/home/anders/allegro/allua-git/test/display.lua)
+   File: display example  (/home/anders/allegro/allua-git/test/display.lua)
    File: Font example  (/home/anders/allegro/allua-git/test/font.lua)
    File: Keyboard example  (/home/anders/allegro/allua-git/test/keyboard.lua)
    File: Mouse example  (/home/anders/allegro/allua-git/test/mouse.lua)

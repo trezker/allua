@@ -92,9 +92,6 @@ function Test_display:test12_get()
 	assertEquals("number", type(gwidth))
 	gfrontbuffer = allegro5.display.get_frontbuffer()
 	assertEquals("bitmap", tostring(gfrontbuffer):sub(1, 6))
-	gpx, gpy = display:get_window_position()
-	assertEquals("number", type(gpx))
-	assertEquals("number", type(gpy))
 end
 
 function Test_display:test13_inhibit_screensaver()
@@ -117,4 +114,13 @@ function Test_display:test16_get_option()
 	i = allegro5.display.VSYNC
 	o = allegro5.display.get_option(i)
 	assertEquals("number", type(o))
+end
+
+function Test_display:test17_window_position()
+	display:set_window_position(100, 50)
+	gpx, gpy = display:get_window_position()
+	assertEquals("number", type(gpx))
+	assertEquals("number", type(gpy))
+	assertEquals(100, gpx)
+	assertEquals(50, gpy)
 end

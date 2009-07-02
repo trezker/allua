@@ -181,6 +181,13 @@ function set_icon (icon) end
 -- value
 function get_option (option) end
 
+-- Function: set_window_position
+-- Parameters:
+-- display - Which display to move
+-- x - Position
+-- y - Position
+function set_window_position (display, x, y) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display
