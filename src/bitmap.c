@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <allegro5/a5_iio.h>
 
-#define BITMAP "Bitmap"
+#define BITMAP "bitmap"
 
 /* Common handlers
  * */
@@ -28,7 +28,7 @@ AL_Bitmap al_lua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
 //  if(gc_allowed)
 //  	*gc_allowed = pi->gc_allowed;
   if (!im)
-    luaL_error(L, "null Bitmap");
+    luaL_error(L, "null bitmap");
   return im;
 }
 
@@ -188,7 +188,7 @@ static int Bitmap_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  AL_Bitmap im = pi->bitmap;
-	  printf("goodbye Bitmap (%p)\n", im);
+	  printf("goodbye bitmap (%p)\n", im);
 	  if (im) al_destroy_bitmap(im);
   }
   return 0;
@@ -196,7 +196,7 @@ static int Bitmap_gc (lua_State *L)
 
 static int Bitmap_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Bitmap: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "bitmap: %p", lua_touserdata(L, 1));
   return 1;
 }
 

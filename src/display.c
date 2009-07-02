@@ -52,12 +52,12 @@ static AL_display *pushdisplay (lua_State *L, AL_display im)
 	if(!lua_isnil (L, -1))
 	{
 		pi = lua_touserdata (L, -1);
-		printf("Retrieved existing display udata \n");
+//		printf("Retrieved existing display udata \n");
 	}
 	else
 	{
 		lua_pop(L, 1); //Pop the nil
-		printf("Creating new display udata \n");
+//		printf("Creating new display udata \n");
 		// Create new userdata
 		lua_pushlightuserdata(L, (void *)im); //Key
 		pi = (AL_display *)lua_newuserdata(L, sizeof(AL_display)); //value
