@@ -52,10 +52,6 @@ while not quit do
 		mouse_x = event.x
 		mouse_y = event.y
 		mouse_z = event.z
-		
-		dix, diy = display1:get_window_position()
-		display1:set_window_position(dix+event.dx, diy+event.dy)
-		print(dix .. " " .. diy)
 	end
 
 	if event.type == allegro5.Mouse.EVENT_DOWN then
@@ -63,6 +59,10 @@ while not quit do
 	end
 	if event.type == allegro5.Mouse.EVENT_UP then
 		mouse_b[event.button] = false
+
+		display1:set_window_position(event.x, event.y)
+		dix, diy = display1:get_window_position()
+		print(dix .. " " .. diy)
 	end
 
 

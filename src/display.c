@@ -222,6 +222,7 @@ static int display_get_window_position (lua_State *L)
 	int x;
 	int y;
 	al_get_window_position(display, &x, &y);
+	printf("Intern: %i, %i", x, y);
 	lua_pushnumber(L, x);
 	lua_pushnumber(L, y);
 	return 2;
