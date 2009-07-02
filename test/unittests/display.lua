@@ -112,3 +112,9 @@ function Test_display:test15_icon()
 	i = allegro5.bitmap.create(16, 16)
 	allegro5.display.set_icon(i)
 end
+
+function Test_display:test16_get_option()
+	i = allegro5.display.VSYNC
+	o = allegro5.display.get_option(i)
+	assertEquals("number", type(o))
+end

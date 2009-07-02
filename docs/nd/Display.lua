@@ -173,6 +173,14 @@ function acknowledge_resize (display) end
 -- icon - Which bitmap to use
 function set_icon (icon) end
 
+-- Function: get_option
+-- Parameters:
+-- option - Which option to get
+--
+-- Returns:
+-- value
+function get_option (option) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display
