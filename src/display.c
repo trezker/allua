@@ -314,6 +314,12 @@ static int display_wait_for_vsync (lua_State *L)
 	return 1;
 }
 
+static int display_get_num_modes (lua_State *L)
+{
+	lua_pushinteger(L, al_get_num_display_modes());
+	return 1;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -377,6 +383,7 @@ static const luaL_reg display_methods[] = {
 	{"toggle_window_frame",           display_toggle_window_frame},
 	{"update_region",           display_update_region},
 	{"wait_for_vsync",           display_wait_for_vsync},
+	{"get_num_modes",           display_get_num_modes},
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},

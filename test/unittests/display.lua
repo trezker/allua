@@ -142,3 +142,8 @@ function Test_display:test21_vsync()
 	gb = allegro5.display.wait_for_vsync()
 	assertEquals("boolean", type(gb))
 end
+
+function Test_display:test22_modes()
+	gnum = allegro5.display.get_num_modes()
+	assertEquals("number", type(gnum))
+end

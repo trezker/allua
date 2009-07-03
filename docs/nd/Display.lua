@@ -212,6 +212,11 @@ function update_region(x, y, width, height)
 -- false if not possible, true if successful.
 function wait_for_vsync () end
 
+-- Function: get_num_modes
+-- Returns:
+-- number of modes available
+function get_num_modes () end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display
