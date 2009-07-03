@@ -188,6 +188,11 @@ function get_option (option) end
 -- y - Position
 function set_window_position (display, x, y) end
 
+-- Function: set_window_title
+-- Parameters:
+-- title - A string
+function set_window_title (title) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

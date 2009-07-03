@@ -222,7 +222,6 @@ static int display_get_window_position (lua_State *L)
 	int x;
 	int y;
 	al_get_window_position(display, &x, &y);
-	printf("Intern: %i, %i", x, y);
 	lua_pushnumber(L, x);
 	lua_pushnumber(L, y);
 	return 2;
@@ -278,6 +277,14 @@ static int display_set_window_position (lua_State *L)
 	int y = luaL_checkint(L, 3);
 
 	al_set_window_position(display, x, y);
+	return 0;
+}
+
+static int display_set_window_title (lua_State *L)
+{
+	const char* title = luaL_checkstring(L, 1);
+
+	al_set_window_title(title);
 	return 0;
 }
 
@@ -340,6 +347,7 @@ static const luaL_reg display_methods[] = {
 	{"set_icon",           display_set_icon},
 	{"get_option",           display_get_option},
 	{"set_window_position",           display_set_window_position},
+	{"set_window_title",           display_set_window_title},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},
