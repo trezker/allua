@@ -207,6 +207,11 @@ function toggle_window_frame (title, onoff) end
 -- height - height
 function update_region(x, y, width, height)
 
+-- Function: wait_for_vsync
+-- Returns:
+-- false if not possible, true if successful.
+function wait_for_vsync () end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

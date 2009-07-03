@@ -137,3 +137,8 @@ end
 function Test_display:test20_update_region()
 	allegro5.display.update_region(10, 10, 100, 100)
 end
+
+function Test_display:test21_vsync()
+	gb = allegro5.display.wait_for_vsync()
+	assertEquals("boolean", type(gb))
+end
