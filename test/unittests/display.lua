@@ -129,3 +129,7 @@ end
 function Test_display:test18_window_title()
 	allegro5.display.set_window_title("A title")
 end
+
+function Test_display:test19_toggle_window_frame()
+	display:toggle_window_frame(true)
+end

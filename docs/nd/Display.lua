@@ -193,6 +193,12 @@ function set_window_position (display, x, y) end
 -- title - A string
 function set_window_title (title) end
 
+-- Function: toggle_window_frame
+-- Parameters:
+-- display - Which display
+-- onoff - toggle
+function toggle_window_frame (title, onoff) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display
