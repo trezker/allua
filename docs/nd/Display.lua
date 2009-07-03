@@ -225,6 +225,16 @@ function get_num_modes () end
 -- nil on failure. On success, a table containing the values for width, height, format and refresh_rate
 function get_mode (index) end
 
+-- Function: set_current_video_adapter
+-- Parameters:
+-- adapter - index
+function set_current_video_adapter (adapter) end
+
+-- Function: get_current_video_adapter
+-- Returns:
+-- index of current video adapter
+function get_current_video_adapter () end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

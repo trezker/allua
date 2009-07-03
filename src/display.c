@@ -344,6 +344,19 @@ static int display_get_mode (lua_State *L)
 	return 1;
 }
 
+static int display_get_current_video_adapter (lua_State *L)
+{
+	lua_pushinteger(L, al_get_current_video_adapter());
+	return 1;
+}
+
+static int display_set_current_video_adapter (lua_State *L)
+{
+	int index = luaL_checkint(L, 1);
+	al_set_current_video_adapter(index);
+	return 0;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -409,6 +422,8 @@ static const luaL_reg display_methods[] = {
 	{"wait_for_vsync",           display_wait_for_vsync},
 	{"get_num_modes",           display_get_num_modes},
 	{"get_mode",           display_get_mode},
+	{"get_current_video_adapter",           display_get_current_video_adapter},
+	{"set_current_video_adapter",           display_set_current_video_adapter},
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},

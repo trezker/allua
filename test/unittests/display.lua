@@ -155,3 +155,9 @@ function Test_display:test22_modes()
 		assertEquals("number", type(mode.refresh_rate))
 	end
 end
+
+function Test_display:test23_video_adapter()
+	gnum = allegro5.display.get_current_video_adapter ()
+	assertEquals("number", type(gnum))
+	allegro5.display.set_current_video_adapter (gnum)
+end
