@@ -217,6 +217,14 @@ function wait_for_vsync () end
 -- number of modes available
 function get_num_modes () end
 
+-- Function: get_mode
+-- Parameters:
+-- index - which mode
+--
+-- Returns:
+-- nil on failure. On success, a table containing the values for width, height, format and refresh_rate
+function get_mode (index) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

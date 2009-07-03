@@ -320,6 +320,30 @@ static int display_get_num_modes (lua_State *L)
 	return 1;
 }
 
+static int display_get_mode (lua_State *L)
+{
+	int index = luaL_checkint(L, 1);
+	ALLEGRO_DISPLAY_MODE m;
+	ALLEGRO_DISPLAY_MODE* rm = al_get_display_mode(index, &m);
+	if(!rm)
+	{
+		lua_pushnil(L);
+	}
+	else
+	{
+		lua_newtable(L);
+		lua_pushinteger(L, rm->width);
+		lua_setfield(L, -2, "width");
+		lua_pushinteger(L, rm->height);
+		lua_setfield(L, -2, "height");
+		lua_pushinteger(L, rm->format);
+		lua_setfield(L, -2, "format");
+		lua_pushinteger(L, rm->refresh_rate);
+		lua_setfield(L, -2, "refresh_rate");
+	}
+	return 1;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -384,6 +408,7 @@ static const luaL_reg display_methods[] = {
 	{"update_region",           display_update_region},
 	{"wait_for_vsync",           display_wait_for_vsync},
 	{"get_num_modes",           display_get_num_modes},
+	{"get_mode",           display_get_mode},
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},
