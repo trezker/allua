@@ -297,6 +297,17 @@ static int display_toggle_window_frame (lua_State *L)
 	return 0;
 }
 
+static int display_update_region (lua_State *L)
+{
+	int x = luaL_checkint(L, 1);
+	int y = luaL_checkint(L, 2);
+	int w = luaL_checkint(L, 3);
+	int h = luaL_checkint(L, 4);
+
+	al_update_display_region(x, y, w, h);
+	return 0;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -358,6 +369,7 @@ static const luaL_reg display_methods[] = {
 	{"set_window_position",           display_set_window_position},
 	{"set_window_title",           display_set_window_title},
 	{"toggle_window_frame",           display_toggle_window_frame},
+	{"update_region",           display_update_region},
 	//TODO: void al_set_display_icon(ALLEGRO_BITMAP *icon) to bool al_wait_for_vsync(void)
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},

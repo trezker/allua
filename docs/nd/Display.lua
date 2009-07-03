@@ -199,6 +199,14 @@ function set_window_title (title) end
 -- onoff - toggle
 function toggle_window_frame (title, onoff) end
 
+-- Function: update_region
+-- Parameters:
+-- x - left
+-- y - top
+-- width - width
+-- height - height
+function update_region(x, y, width, height)
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

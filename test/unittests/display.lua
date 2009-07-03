@@ -133,3 +133,7 @@ end
 function Test_display:test19_toggle_window_frame()
 	display:toggle_window_frame(true)
 end
+
+function Test_display:test20_update_region()
+	allegro5.display.update_region(10, 10, 100, 100)
+end
