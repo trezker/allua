@@ -160,4 +160,13 @@ function Test_display:test23_video_adapter()
 	gnum = allegro5.display.get_current_video_adapter ()
 	assertEquals("number", type(gnum))
 	allegro5.display.set_current_video_adapter (gnum)
+
+	adapters = allegro5.display.get_num_video_adapters ()
+	assertEquals("number", type(adapters))
+
+	info = allegro5.display.get_monitor_info (0)
+	assertEquals("number", type(info.x1))
+	assertEquals("number", type(info.y1))
+	assertEquals("number", type(info.x2))
+	assertEquals("number", type(info.y2))
 end

@@ -235,6 +235,19 @@ function set_current_video_adapter (adapter) end
 -- index of current video adapter
 function get_current_video_adapter () end
 
+-- Function: get_num_video_adapters
+-- Returns:
+-- the number of video "adapters" attached to the computer.
+function get_num_video_adapters () end
+
+-- Function: get_monitor_info
+-- Parameters:
+-- adapter - adapter index
+--
+-- Returns:
+-- a table containing the values for monitor position on the desktop: x1, y1, x2, y2
+function get_monitor_info (adapter) end
+
 -- Function: get_height
 -- Returns:
 -- Height of current display

@@ -357,6 +357,29 @@ static int display_set_current_video_adapter (lua_State *L)
 	return 0;
 }
 
+static int display_get_num_video_adapters (lua_State *L)
+{
+	lua_pushinteger(L, al_get_num_video_adapters());
+	return 1;
+}
+
+static int display_get_monitor_info (lua_State *L)
+{
+	int index = luaL_checkint(L, 1);
+	ALLEGRO_MONITOR_INFO info;
+	al_get_monitor_info(index, &info);
+	lua_newtable(L);
+	lua_pushinteger(L, info.x1);
+	lua_setfield(L, -2, "x1");
+	lua_pushinteger(L, info.y1);
+	lua_setfield(L, -2, "y1");
+	lua_pushinteger(L, info.x2);
+	lua_setfield(L, -2, "x2");
+	lua_pushinteger(L, info.y2);
+	lua_setfield(L, -2, "y2");
+	return 1;
+}
+
 static int display_clear (lua_State *L)
 {
 	AL_Color color = al_lua_check_color(L, 1);
@@ -424,6 +447,8 @@ static const luaL_reg display_methods[] = {
 	{"get_mode",           display_get_mode},
 	{"get_current_video_adapter",           display_get_current_video_adapter},
 	{"set_current_video_adapter",           display_set_current_video_adapter},
+	{"get_num_video_adapters",           display_get_num_video_adapters},
+	{"get_monitor_info",           display_get_monitor_info},
 	//TODO: Start graphics.c and move these two there
 	{"clear",           display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},
