@@ -59,3 +59,8 @@ function Test_bitmap:test09_lock()
 	locked = bitmap:is_locked ()
 	assertEquals("boolean", type(locked))
 end
+
+function Test_bitmap:test10_is_compatible()
+	compatible = bitmap:is_compatible ()
+	assertEquals("boolean", type(compatible))
+end

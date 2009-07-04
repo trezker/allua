@@ -107,6 +107,14 @@ function get_pixel (bitmap, x, y) end
 -- true if bitmap is locked, otherwise false.
 function is_locked (bitmap) end
 
+-- Function: is_compatible
+-- Parameters:
+-- bitmap - bitmap
+--
+-- Returns:
+-- true if bitmap is compatible, otherwise false.
+function is_compatible (bitmap) end
+
 -- Function: draw
 -- Parameters:
 -- bitmap - bitmap
