@@ -29,21 +29,21 @@ function create_sub (parent, x, y, w, h) end
 -- Bitmap instance
 function load (filename) end
 
--- Function: width
+-- Function: get_width
 -- Parameters:
 -- bitmap - bitmap
 --
 -- Returns:
 -- Width of bitmap
-function width (bitmap) end
+function get_width (bitmap) end
 
--- Function: height
+-- Function: get_height
 -- Parameters:
 -- bitmap - bitmap
 --
 -- Returns:
 -- Height of bitmap
-function height (bitmap) end
+function get_height (bitmap) end
 
 -- Function: draw
 -- Parameters:

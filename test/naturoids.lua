@@ -53,8 +53,8 @@ Screenwrap = function(self)
 end
 
 Draw_object = function(self)
-	cx = self.image:width()/2
-	cy = self.image:height()/2
+	cx = self.image:get_width()/2
+	cy = self.image:get_height()/2
 	self.image:draw_rotated(cx, cy, self.x, self.y, self.angle, 0)
 end
 
@@ -269,7 +269,7 @@ while not quit do
 
 	end
 	
-	background:draw_scaled(0, 0, background:width(), background:height(), 0, 0, display:get_width(), display:get_height(), 0)
+	background:draw_scaled(0, 0, background:get_width(), background:get_height(), 0, 0, display:get_width(), display:get_height(), 0)
 	
 	for i,v in ipairs(leafs) do 
 		v:draw()

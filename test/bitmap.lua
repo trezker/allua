@@ -47,8 +47,8 @@ while not quit do
 	sub_bitmap:draw(50, 100, 0)
 	bitmap:draw_region(0, 10, 10, 10, 10, 150, 0)
 
-	cx = bitmap:width()/2
-	cy = bitmap:height()/2
+	cx = bitmap:get_width()/2
+	cy = bitmap:get_height()/2
 	bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
 
 	allegro5.display.flip()

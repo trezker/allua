@@ -68,8 +68,8 @@ while not quit do
 
 	if display2 then
 		display2:set_current()
-		cx = bitmap:width()/2
-		cy = bitmap:height()/2
+		cx = bitmap:get_width()/2
+		cy = bitmap:get_height()/2
 		bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
 
 		allegro5.display.flip()

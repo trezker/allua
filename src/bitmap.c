@@ -77,7 +77,7 @@ static int Bitmap_load (lua_State *L)
   return 1;
 }
 
-static int Bitmap_width (lua_State *L)
+static int Bitmap_get_width (lua_State *L)
 {
   AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
 
@@ -85,7 +85,7 @@ static int Bitmap_width (lua_State *L)
   return 1;
 }
 
-static int Bitmap_height (lua_State *L)
+static int Bitmap_get_height (lua_State *L)
 {
   AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
 
@@ -170,8 +170,8 @@ static const luaL_reg Bitmap_methods[] = {
   {"create",           Bitmap_create},
   {"create_sub",           Bitmap_create_sub},
   {"load",           Bitmap_load},
-  {"width",           Bitmap_width},
-  {"height",           Bitmap_height},
+  {"get_width",           Bitmap_get_width},
+  {"get_height",           Bitmap_get_height},
   {"draw",           Bitmap_draw},
   {"draw_region",           Bitmap_draw_region},
   {"draw_rotated",           Bitmap_draw_rotated},
