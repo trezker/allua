@@ -315,6 +315,11 @@ void Bitmap_set_attributes(lua_State *L)
 	lua_setfield(L, -2, "FORCE_LOCKING");
 	lua_pushinteger(L, ALLEGRO_NO_PRESERVE_TEXTURE);
 	lua_setfield(L, -2, "NO_PRESERVE_TEXTURE");
+
+	lua_pushinteger(L, ALLEGRO_FLIP_HORIZONTAL);
+	lua_setfield(L, -2, "FLIP_HORIZONTAL");
+	lua_pushinteger(L, ALLEGRO_FLIP_VERTICAL);
+	lua_setfield(L, -2, "FLIP_VERTICAL");
 }
 
 /* Register

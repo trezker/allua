@@ -1,6 +1,7 @@
 Test_bitmap = {}
 
 allegro5.init()
+display = allegro5.display.create(800, 600)
 
 function Test_bitmap:test01_create()
 	bitmap = allegro5.bitmap.create(100, 200)
@@ -71,4 +72,9 @@ end
 function Test_bitmap:test11_clear_to_color()
 	color = allegro5.color.map_rgba(1, 1, 1, 1)
 	allegro5.bitmap.clear_to_color (color)
+end
+
+function Test_bitmap:test12_draw()
+	bitmap:draw(1, 1, 0)
+	bitmap:draw_region(1, 2, 3, 4, 5, 6, 0)
 end
