@@ -42,3 +42,10 @@ function Test_bitmap:test06_format()
 	getformat = bitmap:get_format()
 	assertEquals("number", type(getformat))
 end
+
+function Test_bitmap:test07_get_size()
+	getw = bitmap:get_width ()
+	geth = bitmap:get_height  ()
+	assertEquals("number", type(getw))
+	assertEquals("number", type(geth))
+end
