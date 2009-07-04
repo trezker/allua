@@ -34,6 +34,11 @@ function create_sub (parent, x, y, w, h) end
 -- flags
 function get_new_flags () end
 
+-- Function: get_new_format
+-- Returns:
+-- format
+function get_new_format () end
+
 -- Function: load
 -- Parameters:
 -- filename - path to file
