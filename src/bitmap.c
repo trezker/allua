@@ -83,6 +83,13 @@ static int Bitmap_get_new_flags (lua_State *L)
   return 1;
 }
 
+static int Bitmap_set_new_flags (lua_State *L)
+{
+  int flags = luaL_checkint(L, 1);
+  al_set_new_bitmap_flags(flags);
+  return 0;
+}
+
 static int Bitmap_get_new_format (lua_State *L)
 {
   lua_pushinteger(L, al_get_new_bitmap_format());
@@ -190,6 +197,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"create",           Bitmap_create},
   {"create_sub",           Bitmap_create_sub},
   {"get_new_flags",           Bitmap_get_new_flags},
+  {"set_new_flags",           Bitmap_set_new_flags},
   {"get_new_format",           Bitmap_get_new_format},
   {"load",           Bitmap_load},
   {"get_width",           Bitmap_get_width},
@@ -232,6 +240,14 @@ static const luaL_reg Bitmap_meta[] = {
  * */
 void Bitmap_set_attributes(lua_State *L)
 {
+	lua_pushinteger(L, ALLEGRO_MEMORY_BITMAP);
+	lua_setfield(L, -2, "MEMORY_BITMAP");
+	lua_pushinteger(L, ALLEGRO_KEEP_BITMAP_FORMAT);
+	lua_setfield(L, -2, "KEEP_BITMAP_FORMAT");
+	lua_pushinteger(L, ALLEGRO_FORCE_LOCKING);
+	lua_setfield(L, -2, "FORCE_LOCKING");
+	lua_pushinteger(L, ALLEGRO_NO_PRESERVE_TEXTURE);
+	lua_setfield(L, -2, "NO_PRESERVE_TEXTURE");
 }
 
 /* Register

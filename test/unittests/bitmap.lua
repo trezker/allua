@@ -12,8 +12,11 @@ function Test_bitmap:test01_create()
 end
 
 function Test_bitmap:test02_new_flags()
-	flags = allegro5.bitmap.get_new_flags()
-	assertEquals("number", type(flags))
+	setflags = allegro5.bitmap.KEEP_BITMAP_FORMAT
+	allegro5.bitmap.set_new_flags(setflags)
+	getflags = allegro5.bitmap.get_new_flags()
+	assertEquals("number", type(getflags))
+	assertEquals(setflags, getflags)
 end
 
 function Test_bitmap:test03_new_format()
