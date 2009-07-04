@@ -1,4 +1,4 @@
--- Class: Primitives
+-- Class: primitives
 
 -- Function: draw_line
 -- Parameters:

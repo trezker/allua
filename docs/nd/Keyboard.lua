@@ -1,4 +1,4 @@
--- Class: Keyboard
+-- Class: keyboard
 
 -- Function: get
 -- Returns:

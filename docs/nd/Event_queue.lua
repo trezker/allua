@@ -1,4 +1,4 @@
--- Class: Event_queue
+-- Class: event_queue
 
 -- Function: new
 -- Returns:

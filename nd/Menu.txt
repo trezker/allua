@@ -51,27 +51,27 @@ Group: Lua functions  {
 
    File: allegro5  (/home/anders/allegro/allua-git/docs/nd/al_lua.lua)
    File: bitmap  (/home/anders/allegro/allua-git/docs/nd/Bitmap.lua)
-   File: Color  (/home/anders/allegro/allua-git/docs/nd/Color.lua)
+   File: color  (/home/anders/allegro/allua-git/docs/nd/Color.lua)
    File: display  (/home/anders/allegro/allua-git/docs/nd/Display.lua)
-   File: Event_queue  (/home/anders/allegro/allua-git/docs/nd/Event_queue.lua)
-   File: Font  (/home/anders/allegro/allua-git/docs/nd/Font.lua)
+   File: event_queue  (/home/anders/allegro/allua-git/docs/nd/Event_queue.lua)
+   File: font  (/home/anders/allegro/allua-git/docs/nd/Font.lua)
    File: Getting started  (/home/anders/allegro/allua-git/docs/nd/Getting_started.txt)
-   File: Keyboard  (/home/anders/allegro/allua-git/docs/nd/Keyboard.lua)
-   File: Mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
-   File: Primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
+   File: keyboard  (/home/anders/allegro/allua-git/docs/nd/Keyboard.lua)
+   File: mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
+   File: primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
    }  # Group: Lua functions
 
 Group: Examples  {
 
-   File: Bitmap example  (/home/anders/allegro/allua-git/test/bitmap.lua)
+   File: bitmap example  (/home/anders/allegro/allua-git/test/bitmap.lua)
    File: display example  (/home/anders/allegro/allua-git/test/display.lua)
-   File: Font example  (/home/anders/allegro/allua-git/test/font.lua)
-   File: Keyboard example  (/home/anders/allegro/allua-git/test/keyboard.lua)
-   File: Mouse example  (/home/anders/allegro/allua-git/test/mouse.lua)
+   File: font example  (/home/anders/allegro/allua-git/test/font.lua)
+   File: keyboard example  (/home/anders/allegro/allua-git/test/keyboard.lua)
+   File: mouse example  (/home/anders/allegro/allua-git/test/mouse.lua)
    File: Naturoids  (/home/anders/allegro/allua-git/test/naturoids.lua)
    File: Naturoids  (/home/anders/allegro/allua-git/test/nomhack/nomhack.lua)
    File: Pixels example  (/home/anders/allegro/allua-git/test/pixels.lua)
-   File: Primitives example  (/home/anders/allegro/allua-git/test/primitives.lua)
+   File: primitives example  (/home/anders/allegro/allua-git/test/primitives.lua)
    }  # Group: Examples
 
 Group: Index  {

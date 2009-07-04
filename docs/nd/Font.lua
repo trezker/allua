@@ -1,4 +1,4 @@
--- Class: Font
+-- Class: font
 
 -- Function: load_ttf
 -- Parameters:

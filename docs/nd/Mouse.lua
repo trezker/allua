@@ -1,4 +1,4 @@
--- Class: Mouse
+-- Class: mouse
 
 -- Function: get
 -- Returns:

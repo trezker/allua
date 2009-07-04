@@ -1,4 +1,4 @@
--- Class: Color
+-- Class: color
 
 -- Function: map_rgba
 -- Parameters:
