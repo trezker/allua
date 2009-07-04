@@ -110,6 +110,13 @@ static int Bitmap_load (lua_State *L)
   return 1;
 }
 
+static int Bitmap_get_flags (lua_State *L)
+{
+  AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
+  lua_pushinteger(L, al_get_bitmap_flags(bitmap));
+  return 1;
+}
+
 static int Bitmap_get_width (lua_State *L)
 {
   AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
@@ -208,6 +215,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"get_new_format",           Bitmap_get_new_format},
   {"set_new_format",           Bitmap_set_new_format},
   {"load",           Bitmap_load},
+  {"get_flags",           Bitmap_get_flags},
   {"get_width",           Bitmap_get_width},
   {"get_height",           Bitmap_get_height},
   {"draw",           Bitmap_draw},

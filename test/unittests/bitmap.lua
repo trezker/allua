@@ -32,3 +32,8 @@ function Test_bitmap:test04_load()
 	loadbitmap = allegro5.bitmap.load("data/test.png")
 	assertEquals("bitmap", tostring(loadbitmap):sub(1, 6))
 end
+
+function Test_bitmap:test05_flags()
+	getflags = bitmap:get_flags()
+	assertEquals("number", type(getflags))
+end

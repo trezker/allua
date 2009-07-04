@@ -57,6 +57,11 @@ function set_new_format (format) end
 -- Bitmap instance
 function load (filename) end
 
+-- Function: get_flags
+-- Returns:
+-- flags
+function get_flags () end
+
 -- Function: get_width
 -- Parameters:
 -- bitmap - bitmap
