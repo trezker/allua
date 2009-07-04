@@ -185,3 +185,8 @@ function draw_rotated_scaled (bitmap, cx, cy, dx, dy, scalex, scaley, angle, fla
 -- dh - Destination height
 -- flags - Bitmap flags
 function draw_scaled (bitmap, sx, sy, sw, sh, dx, dy, dw, dh, flags) end
+
+-- Function: get_target
+-- Returns:
+-- current target bitmap
+function get_target () end

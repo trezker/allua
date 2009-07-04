@@ -442,7 +442,7 @@ static const luaL_reg display_methods[] = {
 	{"set_current_video_adapter",           display_set_current_video_adapter},
 	{"get_num_video_adapters",           display_get_num_video_adapters},
 	{"get_monitor_info",           display_get_monitor_info},
-	//TODO: Start graphics.c and move these two there
+	//TODO: Move to color
 	{"draw_pixel",           al_lua_draw_pixel},
 	{0,0}
 };

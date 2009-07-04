@@ -251,6 +251,12 @@ static int Bitmap_draw_scaled (lua_State *L)
   return 0;
 }
 
+static int Bitmap_get_target (lua_State *L)
+{
+  pushBitmap(L, al_get_target_bitmap(), false);
+  return 1;
+}
+
 static const luaL_reg Bitmap_methods[] = {
   {"clone",           Bitmap_clone},
   {"create",           Bitmap_create},
@@ -274,6 +280,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"draw_rotated",           Bitmap_draw_rotated},
   {"draw_rotated_scaled",           Bitmap_draw_rotated_scaled},
   {"draw_scaled",           Bitmap_draw_scaled},
+  {"get_target",           Bitmap_get_target},
   {0,0}
 };
 

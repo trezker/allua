@@ -77,4 +77,12 @@ end
 function Test_bitmap:test12_draw()
 	bitmap:draw(1, 1, 0)
 	bitmap:draw_region(1, 2, 3, 4, 5, 6, 0)
+	bitmap:draw_rotated (1, 1, 2, 3, 2, 0)
+	bitmap:draw_rotated_scaled  (1, 1, 2, 3, 2, .2, 1, 0)
+	bitmap:draw_scaled (1, 1, 10, 10, 2, 2, 5, 20, 0)
+end
+
+function Test_bitmap:test13_get_target()
+	gettarget = allegro5.bitmap.get_target ()
+	assertEquals("bitmap", tostring(gettarget):sub(1, 6))
 end
