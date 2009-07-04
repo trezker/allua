@@ -3,31 +3,31 @@
 #include "allua/al_lua.h"
 #include <stdio.h>
 
-#define MOUSE "Mouse"
+#define MOUSE "mouse"
 
 /* Common handlers
  * */
-/*static AL_Mouse toMouse (lua_State *L, int index)
+/*static AL_mouse toMouse (lua_State *L, int index)
 {
-  AL_Mouse *pi = (AL_Mouse*)lua_touserdata(L, index);
+  AL_mouse *pi = (AL_mouse*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, MOUSE);
   return *pi;
 }
 */
-AL_Mouse al_lua_check_mouse (lua_State *L, int index)
+AL_mouse al_lua_check_mouse (lua_State *L, int index)
 {
-  AL_Mouse *pi, im;
+  AL_mouse *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Mouse*)luaL_checkudata(L, index, MOUSE);
+  pi = (AL_mouse*)luaL_checkudata(L, index, MOUSE);
   if (pi == NULL)
   	luaL_typerror(L, index, MOUSE);
   im = *pi;
   return im;
 }
 
-static AL_Mouse *pushMouse (lua_State *L, AL_Mouse im)
+static AL_mouse *pushMouse (lua_State *L, AL_mouse im)
 {
-  AL_Mouse *pi = (AL_Mouse *)lua_newuserdata(L, sizeof(AL_Mouse));
+  AL_mouse *pi = (AL_mouse *)lua_newuserdata(L, sizeof(AL_mouse));
   *pi = im;
   luaL_getmetatable(L, MOUSE);
   lua_setmetatable(L, -2);

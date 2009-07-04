@@ -382,7 +382,7 @@ static int display_get_monitor_info (lua_State *L)
 
 static int display_clear (lua_State *L)
 {
-	AL_Color color = al_lua_check_color(L, 1);
+	AL_color color = al_lua_check_color(L, 1);
 	al_clear_to_color(color);
 	return 0;
 }
@@ -391,7 +391,7 @@ static int al_lua_draw_pixel(lua_State *L)
 {
 	int x = luaL_checkint(L, 1);
 	int y = luaL_checkint(L, 2);
-	AL_Color color = al_lua_check_color(L, 3);
+	AL_color color = al_lua_check_color(L, 3);
 	al_draw_pixel(x, y, color);
 	return 0;
 }

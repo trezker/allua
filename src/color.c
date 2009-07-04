@@ -1,31 +1,31 @@
 #include "allua/color.h"
 #include <stdio.h>
 
-#define COLOR "Color"
+#define COLOR "color"
 
 /* Common handlers
  * */
-/*static AL_Color toColor (lua_State *L, int index)
+/*static AL_color toColor (lua_State *L, int index)
 {
-  AL_Color *pi = (AL_Color*)lua_touserdata(L, index);
+  AL_color *pi = (AL_color*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, COLOR);
   return *pi;
 }
 */
-AL_Color al_lua_check_color (lua_State *L, int index)
+AL_color al_lua_check_color (lua_State *L, int index)
 {
-  AL_Color *pi, im;
+  AL_color *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Color*)luaL_checkudata(L, index, COLOR);
+  pi = (AL_color*)luaL_checkudata(L, index, COLOR);
   if (pi == NULL)
   	luaL_typerror(L, index, COLOR);
   im = *pi;
   return im;
 }
 
-static AL_Color *pushColor (lua_State *L, AL_Color im)
+static AL_color *pushColor (lua_State *L, AL_color im)
 {
-  AL_Color *pi = (AL_Color *)lua_newuserdata(L, sizeof(AL_Color));
+  AL_color *pi = (AL_color *)lua_newuserdata(L, sizeof(AL_color));
   *pi = im;
   luaL_getmetatable(L, COLOR);
   lua_setmetatable(L, -2);
@@ -48,7 +48,7 @@ static int al_lua_put_pixel(lua_State *L)
 {
 	int x = luaL_checkint(L, 1);
 	int y = luaL_checkint(L, 2);
-	AL_Color color = al_lua_check_color(L, 3);
+	AL_color color = al_lua_check_color(L, 3);
 	al_put_pixel(x, y, color);
 	return 0;
 }

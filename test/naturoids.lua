@@ -6,21 +6,21 @@
 leaf_max_speed = 20
 
 allegro5.init()
-display = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
-event_queue = allegro5.Event_queue.new()
+display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
+event_queue = allegro5.event_queue.new()
 
 event_queue:register_event_source(display)
-keyboard = allegro5.Keyboard.get()
+keyboard = allegro5.keyboard.get()
 event_queue:register_event_source(keyboard)
-mouse = allegro5.Mouse.get()
+mouse = allegro5.mouse.get()
 event_queue:register_event_source(mouse)
 
-leaf = allegro5.Bitmap.load("data/leaf.png")
-stinger = allegro5.Bitmap.load("data/stinger.png")
-wasp = allegro5.Bitmap.load("data/wasp.png")
-background = allegro5.Bitmap.load("data/background.png")
+leaf = allegro5.bitmap.load("data/leaf.png")
+stinger = allegro5.bitmap.load("data/stinger.png")
+wasp = allegro5.bitmap.load("data/wasp.png")
+background = allegro5.bitmap.load("data/background.png")
 
-font = allegro5.Font.load_ttf("data/times.ttf", 16, 0)
+font = allegro5.font.load_ttf("data/times.ttf", 16, 0)
 
 mouse_x = 0
 mouse_y = 0
@@ -44,8 +44,8 @@ leafs = {}
 stingers = {}
 
 Screenwrap = function(self)
-	width = allegro5.Display.width()
-	height = allegro5.Display.height()
+	width = allegro5.display.get_width()
+	height = allegro5.display.get_height()
 	if self.x<0 then self.x = self.x + width end
 	if self.x>width then self.x = self.x - width end
 	if self.y<0 then self.y = self.y + height end
@@ -78,8 +78,8 @@ Update_leaf = function(self, dt)
 		table.remove(leafs, i)
 		self.dead = true
 		player.lives = player.lives - 1
-		player.x = allegro5.Display.width()/2
-		player.y = allegro5.Display.height()/2
+		player.x = allegro5.display.get_width()/2
+		player.y = allegro5.display.get_height()/2
 		player.invulnerable_time = 5
 		player.vx = 0
 		player.vy = 0
@@ -121,8 +121,8 @@ Create_stinger = function()
 
 	new.x = player.x
 	new.y = player.y
-	new.vx = math.cos(-player.angle) * 500
-	new.vy = math.sin(-player.angle) * 500
+	new.vx = math.cos(player.angle) * 500
+	new.vy = math.sin(player.angle) * 500
 	new.angle = player.angle
 
 	new.update = Update_stinger
@@ -136,55 +136,55 @@ leaf_spawn_time = 0
 
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == allegro5.Display.EVENT_CLOSE or event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
+	if event.type == allegro5.display.EVENT_CLOSE or event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
 		quit = true
 	end
 
-	if event.type == allegro5.Mouse.EVENT_AXES then
+	if event.type == allegro5.mouse.EVENT_AXES then
 		mouse_x = event.x
 		mouse_y = event.y
 		mouse_z = event.z
 	end
 
-	if event.type == allegro5.Mouse.EVENT_DOWN then
+	if event.type == allegro5.mouse.EVENT_DOWN then
 		mouse_b[event.button] = true
 	end
-	if event.type == allegro5.Mouse.EVENT_UP then
+	if event.type == allegro5.mouse.EVENT_UP then
 		mouse_b[event.button] = false
 	end
 
-	if event.type == allegro5.Keyboard.EVENT_DOWN then
-		if event.keycode == allegro5.Keyboard.KEY_LEFT then
+	if event.type == allegro5.keyboard.EVENT_DOWN then
+		if event.keycode == allegro5.keyboard.KEY_LEFT then
 			player.turn_left = true
 		end
-		if event.keycode == allegro5.Keyboard.KEY_RIGHT then
+		if event.keycode == allegro5.keyboard.KEY_RIGHT then
 			player.turn_right = true
 		end
-		if event.keycode == allegro5.Keyboard.KEY_UP then
+		if event.keycode == allegro5.keyboard.KEY_UP then
 			player.move_forward = true
 		end
-		if event.keycode == allegro5.Keyboard.KEY_DOWN then
+		if event.keycode == allegro5.keyboard.KEY_DOWN then
 			player.move_reverse = true
 		end
-		if event.keycode == allegro5.Keyboard.KEY_SPACE then
+		if event.keycode == allegro5.keyboard.KEY_SPACE then
 			player.firing = true
 		end
 	end
 
-	if event.type == allegro5.Keyboard.EVENT_UP then
-		if event.keycode == allegro5.Keyboard.KEY_LEFT then
+	if event.type == allegro5.keyboard.EVENT_UP then
+		if event.keycode == allegro5.keyboard.KEY_LEFT then
 			player.turn_left = false
 		end
-		if event.keycode == allegro5.Keyboard.KEY_RIGHT then
+		if event.keycode == allegro5.keyboard.KEY_RIGHT then
 			player.turn_right = false
 		end
-		if event.keycode == allegro5.Keyboard.KEY_UP then
+		if event.keycode == allegro5.keyboard.KEY_UP then
 			player.move_forward = false
 		end
-		if event.keycode == allegro5.Keyboard.KEY_DOWN then
+		if event.keycode == allegro5.keyboard.KEY_DOWN then
 			player.move_reverse = false
 		end
-		if event.keycode == allegro5.Keyboard.KEY_SPACE then
+		if event.keycode == allegro5.keyboard.KEY_SPACE then
 			player.firing = false
 			player.fire_time = 0
 			
@@ -192,7 +192,7 @@ while not quit do
 				
 			end
 		end
-		if event.keycode == allegro5.Keyboard.KEY_ENTER or event.keycode == allegro5.Keyboard.KEY_PAD_ENTER then
+		if event.keycode == allegro5.keyboard.KEY_ENTER or event.keycode == allegro5.keyboard.KEY_PAD_ENTER then
 				print("Pressed enter")
 			if game_over then
 				player.lives = 3
@@ -228,14 +228,14 @@ while not quit do
 		end
 		
 		if player.turn_left then
-			player.angle = player.angle + 5 * dt
-		end
-		if player.turn_right then
 			player.angle = player.angle - 5 * dt
 		end
+		if player.turn_right then
+			player.angle = player.angle + 5 * dt
+		end
 		if player.move_forward then
-			player.vx = player.vx + math.cos(-player.angle) * 1000 * dt
-			player.vy = player.vy + math.sin(-player.angle) * 1000 * dt
+			player.vx = player.vx + math.cos(player.angle) * 1000 * dt
+			player.vy = player.vy + math.sin(player.angle) * 1000 * dt
 			player.vx = player.vx * .999
 			player.vy = player.vy * .999
 		end
@@ -269,7 +269,7 @@ while not quit do
 
 	end
 	
-	background:draw_scaled(0, 0, background:width(), background:height(), 0, 0, display:width(), display:height(), 0)
+	background:draw_scaled(0, 0, background:width(), background:height(), 0, 0, display:get_width(), display:get_height(), 0)
 	
 	for i,v in ipairs(leafs) do 
 		v:draw()
@@ -293,7 +293,7 @@ while not quit do
 		font:textout(200, 120, "Press enter to play again", -1)
 	end
 
-	allegro5.Display.flip()
-	allegro5.Display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
+	allegro5.display.flip()
+	allegro5.display.clear(allegro5.color.map_rgba(0, 0, 0, 0))
 	allegro5.rest(0.001)
 end

@@ -3,7 +3,7 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
-typedef ALLEGRO_EVENT_QUEUE* AL_Event_queue;
+typedef ALLEGRO_EVENT_QUEUE* AL_event_queue;
 
 /* Function: al_lua_register_event_queue
  * Registers Event_queue functionality to the lua state.
@@ -14,7 +14,7 @@ int al_lua_register_event_queue (lua_State* L);
  * Returns:
  * Pointer to Event_queue instance.
  * */
-AL_Event_queue al_lua_check_event_queue (lua_State *L, int index);
+AL_event_queue al_lua_check_event_queue (lua_State *L, int index);
 
 /* Function: al_lua_set_event_callback
  * Each type of event source may have different data in the event

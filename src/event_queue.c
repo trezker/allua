@@ -2,22 +2,22 @@
 #include "allua/display.h"
 #include <stdio.h>
 
-#define EVENT_QUEUE "Event_queue"
+#define EVENT_QUEUE "event_queue"
 
 /* Common handlers
  * */
-static AL_Event_queue toEvent_queue (lua_State *L, int index)
+static AL_event_queue toEvent_queue (lua_State *L, int index)
 {
-  AL_Event_queue *pi = (AL_Event_queue*)lua_touserdata(L, index);
+  AL_event_queue *pi = (AL_event_queue*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, EVENT_QUEUE);
   return *pi;
 }
 
-AL_Event_queue al_lua_check_event_queue (lua_State *L, int index)
+AL_event_queue al_lua_check_event_queue (lua_State *L, int index)
 {
-  AL_Event_queue *pi, im;
+  AL_event_queue *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Event_queue*)luaL_checkudata(L, index, EVENT_QUEUE);
+  pi = (AL_event_queue*)luaL_checkudata(L, index, EVENT_QUEUE);
   if (pi == NULL)
   	luaL_typerror(L, index, EVENT_QUEUE);
   im = *pi;
@@ -26,9 +26,9 @@ AL_Event_queue al_lua_check_event_queue (lua_State *L, int index)
   return im;
 }
 
-static AL_Event_queue *pushEvent_queue (lua_State *L, AL_Event_queue im)
+static AL_event_queue *pushEvent_queue (lua_State *L, AL_event_queue im)
 {
-  AL_Event_queue *pi = (AL_Event_queue *)lua_newuserdata(L, sizeof(AL_Event_queue));
+  AL_event_queue *pi = (AL_event_queue *)lua_newuserdata(L, sizeof(AL_event_queue));
   *pi = im;
   luaL_getmetatable(L, EVENT_QUEUE);
   lua_setmetatable(L, -2);
@@ -41,14 +41,14 @@ static int Event_queue_new (lua_State *L)
 {
   pushEvent_queue(L, al_create_event_queue());
 
-/*  AL_Event_queue event_queue = al_lua_check_event_queue(L, 1);
+/*  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
   printf("hello Event_queue (%p)\n", event_queue);
 */  return 1;
 }
 
 static int Event_queue_register_event_source (lua_State *L)
 {
-  AL_Event_queue event_queue = al_lua_check_event_queue(L, 1);
+  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
 
   ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
   ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
@@ -65,7 +65,7 @@ static int Event_queue_register_event_source (lua_State *L)
 
 static int Event_queue_unregister_event_source (lua_State *L)
 {
-  AL_Event_queue event_queue = al_lua_check_event_queue(L, 1);
+  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
 
   ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
   ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
@@ -98,7 +98,7 @@ void al_lua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *
 
 static int Event_queue_get_next_event (lua_State *L)
 {
-  AL_Event_queue event_queue = al_lua_check_event_queue(L, 1);
+  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
 
 	lua_newtable (L);
 
@@ -137,7 +137,7 @@ static const luaL_reg Event_queue_methods[] = {
  * */
 static int Event_queue_gc (lua_State *L)
 {
-  AL_Event_queue im = toEvent_queue(L, 1);
+  AL_event_queue im = toEvent_queue(L, 1);
   printf("goodbye Event_queue (%p)\n", im);
   if (im) al_destroy_event_queue(im);
   return 0;

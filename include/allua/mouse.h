@@ -6,7 +6,7 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
-typedef ALLEGRO_MOUSE* AL_Mouse;
+typedef ALLEGRO_MOUSE* AL_mouse;
 
 /* Function: al_lua_register_mouse
  * Registers Mouse functionality to the lua state.
@@ -17,6 +17,6 @@ int al_lua_register_mouse (lua_State* L);
  * Returns:
  * Pointer to Mouse instance.
  * */
-AL_Mouse al_lua_check_mouse (lua_State *L, int index);
+AL_mouse al_lua_check_mouse (lua_State *L, int index);
 
 #endif

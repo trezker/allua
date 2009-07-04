@@ -1,17 +1,17 @@
--- Title: Primitives example
--- Demonstrates usage of Primitives functions
+-- Title: primitives example
+-- Demonstrates usage of primitives functions
 
 allegro5.init()
-display = allegro5.Display.create(640, 480, allegro5.Display.WINDOWED)
-keyboard = allegro5.Keyboard.get()
-event_queue = allegro5.Event_queue.new()
+display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
+keyboard = allegro5.keyboard.get()
+event_queue = allegro5.event_queue.new()
 event_queue:register_event_source(display)
 event_queue:register_event_source(keyboard)
 
-red = allegro5.Color.map_rgba(255, 0, 0, 255)
-green = allegro5.Color.map_rgba(0, 255, 0, 255)
-blue = allegro5.Color.map_rgba(0, 0, 255, 255)
-black = allegro5.Color.map_rgba(0, 0, 0, 255)
+red = allegro5.color.map_rgba(255, 0, 0, 255)
+green = allegro5.color.map_rgba(0, 255, 0, 255)
+blue = allegro5.color.map_rgba(0, 0, 255, 255)
+black = allegro5.color.map_rgba(0, 0, 0, 255)
 
 last_time = 0
 a1 = 0
@@ -20,7 +20,7 @@ a2 = 0
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == allegro5.Display.EVENT_CLOSE or event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
+	if event.type == allegro5.display.EVENT_CLOSE or event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
 		quit = true
 	end
 	
@@ -33,10 +33,10 @@ while not quit do
 	x2 = 100
 	y2 = 10 + math.cos(current_time) * 10
 
---	allegro5.Primitives.draw_line(x1, y1, x2, y2, red)
+--	allegro5.primitives.draw_line(x1, y1, x2, y2, red)
 	thickness = 0
 	while thickness < 10 do
-		allegro5.Primitives.draw_line(x1, y1, x2, y2, red, thickness)
+		allegro5.primitives.draw_line(x1, y1, x2, y2, red, thickness)
 		thickness = thickness + 2
 		y1 = y1 + 10
 		y2 = y2 + 10
@@ -48,32 +48,32 @@ while not quit do
 	thickness = 5 + math.cos(current_time) * 5
 	x3 = 50 + math.cos(current_time) * 10
 	y3 = 100 + math.sin(current_time) * 10
-	allegro5.Primitives.draw_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
+	allegro5.primitives.draw_triangle(x1, y1, x2, y2, x3, y3, green, thickness)
 	y1 = y1 + 50
 	y2 = y2 + 50
 	y3 = y3 + 50
-	allegro5.Primitives.draw_filled_triangle(x1, y1, x2, y2, x3, y3, green)
+	allegro5.primitives.draw_filled_triangle(x1, y1, x2, y2, x3, y3, green)
 
 	y1 = y1 + 50
 	y2 = y2 + 100
-	allegro5.Primitives.draw_rectangle(x1, y1, x2, y2, green, thickness)
+	allegro5.primitives.draw_rectangle(x1, y1, x2, y2, green, thickness)
 
 	y1 = y1 + 50
 	y2 = y2 + 50
-	allegro5.Primitives.draw_filled_rectangle(x1, y1, x2, y2, green)
+	allegro5.primitives.draw_filled_rectangle(x1, y1, x2, y2, green)
 
 	x1 = x1 + 50
 	y1 = y1 + 100
-	allegro5.Primitives.draw_ellipse(x1, y1, 50, 25, green, thickness)
+	allegro5.primitives.draw_ellipse(x1, y1, 50, 25, green, thickness)
 
 	y1 = y1 + 50
-	allegro5.Primitives.draw_filled_ellipse(x1, y1, 50, 25, green)
+	allegro5.primitives.draw_filled_ellipse(x1, y1, 50, 25, green)
 
 	x1 = 160
 	y1 = 50
-	allegro5.Primitives.draw_circle(x1, y1, 50, blue, thickness)
+	allegro5.primitives.draw_circle(x1, y1, 50, blue, thickness)
 	y1 = y1 + 110
-	allegro5.Primitives.draw_filled_circle(x1, y1, 50, blue)
+	allegro5.primitives.draw_filled_circle(x1, y1, 50, blue)
 
 	y1 = y1 + 110
 
@@ -85,12 +85,12 @@ while not quit do
 	if a2 > math.pi * 2 then
 		a2 = 0
 	end
-	allegro5.Primitives.draw_arc(x1, y1, 50, a1, a2, blue, thickness)
+	allegro5.primitives.draw_arc(x1, y1, 50, a1, a2, blue, thickness)
 
 	pixels = pixels + 1
 
-	allegro5.Display.flip()
-	allegro5.Display.clear(black)
+	allegro5.display.flip()
+	allegro5.display.clear(black)
 end
 
 print("Frames per second ", pixels / allegro5.current_time())

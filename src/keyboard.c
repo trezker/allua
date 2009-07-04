@@ -3,31 +3,31 @@
 #include "allua/al_lua.h"
 #include <stdio.h>
 
-#define KEYBOARD "Keyboard"
+#define KEYBOARD "keyboard"
 
 /* Common handlers
  * */
-/*static AL_Keyboard toKeyboard (lua_State *L, int index)
+/*static AL_keyboard toKeyboard (lua_State *L, int index)
 {
-  AL_Keyboard *pi = (AL_Keyboard*)lua_touserdata(L, index);
+  AL_keyboard *pi = (AL_keyboard*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, KEYBOARD);
   return *pi;
 }
 */
-AL_Keyboard al_lua_check_keyboard (lua_State *L, int index)
+AL_keyboard al_lua_check_keyboard (lua_State *L, int index)
 {
-  AL_Keyboard *pi, im;
+  AL_keyboard *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Keyboard*)luaL_checkudata(L, index, KEYBOARD);
+  pi = (AL_keyboard*)luaL_checkudata(L, index, KEYBOARD);
   if (pi == NULL)
   	luaL_typerror(L, index, KEYBOARD);
   im = *pi;
   return im;
 }
 
-static AL_Keyboard *pushKeyboard (lua_State *L, AL_Keyboard im)
+static AL_keyboard *pushKeyboard (lua_State *L, AL_keyboard im)
 {
-  AL_Keyboard *pi = (AL_Keyboard *)lua_newuserdata(L, sizeof(AL_Keyboard));
+  AL_keyboard *pi = (AL_keyboard *)lua_newuserdata(L, sizeof(AL_keyboard));
   *pi = im;
   luaL_getmetatable(L, KEYBOARD);
   lua_setmetatable(L, -2);

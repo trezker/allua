@@ -3,22 +3,22 @@
 #include <stdio.h>
 #include <allegro5/a5_iio.h>
 
-#define FONT "Font"
+#define FONT "font"
 
 /* Common handlers
  * */
-static AL_Font toFont (lua_State *L, int index)
+static AL_font toFont (lua_State *L, int index)
 {
-  AL_Font *pi = (AL_Font*)lua_touserdata(L, index);
+  AL_font *pi = (AL_font*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, FONT);
   return *pi;
 }
 
-AL_Font al_lua_check_font (lua_State *L, int index)
+AL_font al_lua_check_font (lua_State *L, int index)
 {
-  AL_Font *pi, im;
+  AL_font *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_Font*)luaL_checkudata(L, index, FONT);
+  pi = (AL_font*)luaL_checkudata(L, index, FONT);
   if (pi == NULL)
   	luaL_typerror(L, index, FONT);
   im = *pi;
@@ -27,9 +27,9 @@ AL_Font al_lua_check_font (lua_State *L, int index)
   return im;
 }
 
-static AL_Font *pushFont (lua_State *L, AL_Font im)
+static AL_font *pushFont (lua_State *L, AL_font im)
 {
-  AL_Font *pi = (AL_Font *)lua_newuserdata(L, sizeof(AL_Font));
+  AL_font *pi = (AL_font *)lua_newuserdata(L, sizeof(AL_font));
   *pi = im;
   luaL_getmetatable(L, FONT);
   lua_setmetatable(L, -2);
@@ -58,7 +58,7 @@ static int Font_load_image (lua_State *L)
 
 static int Font_textout (lua_State *L)
 {
-  AL_Font font = al_lua_check_font(L, 1);
+  AL_font font = al_lua_check_font(L, 1);
   float x = luaL_checknumber(L, 2);
   float y = luaL_checknumber(L, 3);
   const char* text = luaL_checkstring(L, 4);
@@ -80,7 +80,7 @@ static const luaL_reg Font_methods[] = {
  * */
 static int Font_gc (lua_State *L)
 {
-  AL_Font im = toFont(L, 1);
+  AL_font im = toFont(L, 1);
   printf("goodbye Font (%p)\n", im);
   if (im) al_destroy_font(im);
   return 0;

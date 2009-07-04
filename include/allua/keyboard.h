@@ -6,7 +6,7 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
-typedef ALLEGRO_KEYBOARD* AL_Keyboard;
+typedef ALLEGRO_KEYBOARD* AL_keyboard;
 
 /* Function: al_lua_register_keyboard
  * Registers Keyboard functionality to the lua state.
@@ -17,6 +17,6 @@ int al_lua_register_keyboard (lua_State* L);
  * Returns:
  * Pointer to Keyboard instance.
  * */
-AL_Keyboard al_lua_check_keyboard (lua_State *L, int index);
+AL_keyboard al_lua_check_keyboard (lua_State *L, int index);
 
 #endif

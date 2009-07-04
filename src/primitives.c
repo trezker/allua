@@ -3,7 +3,7 @@
 #include <allegro5/a5_primitives.h>
 #include <stdio.h>
 
-#define PRIMITIVES "Primitives"
+#define PRIMITIVES "primitives"
 
 /* Methods
  * */
@@ -13,7 +13,7 @@ static int al_lua_draw_line(lua_State *L)
 	float y1 = luaL_checknumber(L, 2);
 	float x2 = luaL_checknumber(L, 3);
 	float y2 = luaL_checknumber(L, 4);
-	AL_Color color = al_lua_check_color(L, 5);
+	AL_color color = al_lua_check_color(L, 5);
 	float thickness = luaL_checknumber(L, 6);
 	al_draw_line(x1, y1, x2, y2, color, thickness);
 	return 0;
@@ -27,7 +27,7 @@ static void al_lua_draw_triangle_common(lua_State *L, bool filled)
 	float y2 = luaL_checknumber(L, 4);
 	float x3 = luaL_checknumber(L, 5);
 	float y3 = luaL_checknumber(L, 6);
-	AL_Color color = al_lua_check_color(L, 7);
+	AL_color color = al_lua_check_color(L, 7);
 
 	if(!filled)
 	{
@@ -56,7 +56,7 @@ static void al_lua_draw_rectangle_common(lua_State *L, bool filled, bool ellipse
 	float y1 = luaL_checknumber(L, 2);
 	float x2 = luaL_checknumber(L, 3);
 	float y2 = luaL_checknumber(L, 4);
-	AL_Color color = al_lua_check_color(L, 5);
+	AL_color color = al_lua_check_color(L, 5);
 
 	if(!filled)
 	{
@@ -100,7 +100,7 @@ static void al_lua_draw_circle_common(lua_State *L, bool filled)
 	float x1 = luaL_checknumber(L, 1);
 	float y1 = luaL_checknumber(L, 2);
 	float r = luaL_checknumber(L, 3);
-	AL_Color color = al_lua_check_color(L, 4);
+	AL_color color = al_lua_check_color(L, 4);
 
 	if(!filled)
 	{
@@ -130,7 +130,7 @@ static int al_lua_draw_arc(lua_State *L)
 	float r = luaL_checknumber(L, 3);
 	float start_theta = luaL_checknumber(L, 4);
 	float delta_theta = luaL_checknumber(L, 5);
-	AL_Color color = al_lua_check_color(L, 6);
+	AL_color color = al_lua_check_color(L, 6);
 	float thickness = luaL_checknumber(L, 7);
 
 	al_draw_arc(x1, y1, r, start_theta, delta_theta, color, thickness);

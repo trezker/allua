@@ -13,13 +13,13 @@ display1 = allegro5.display.create(640, 480)
 allegro5.display.set_new_flags(allegro5.display.WINDOWED)
 display2 = allegro5.display.create(640, 480)
 
-event_queue = allegro5.Event_queue.new()
+event_queue = allegro5.event_queue.new()
 
 event_queue:register_event_source(display1)
 event_queue:register_event_source(display2)
-keyboard = allegro5.Keyboard.get()
+keyboard = allegro5.keyboard.get()
 event_queue:register_event_source(keyboard)
-mouse = allegro5.Mouse.get()
+mouse = allegro5.mouse.get()
 event_queue:register_event_source(mouse)
 
 bitmap = allegro5.bitmap.load("data/leaf.png")
@@ -31,7 +31,7 @@ mouse_b = {}
 
 while not quit do
 	event = event_queue:get_next_event()
-	if event.type == allegro5.Keyboard.EVENT_DOWN and event.keycode == allegro5.Keyboard.KEY_ESCAPE then
+	if event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
 		quit = true
 	end
 
@@ -48,16 +48,16 @@ while not quit do
 		event.source:acknowledge_resize()
 	end
 
-	if event.type == allegro5.Mouse.EVENT_AXES then
+	if event.type == allegro5.mouse.EVENT_AXES then
 		mouse_x = event.x
 		mouse_y = event.y
 		mouse_z = event.z
 	end
 
-	if event.type == allegro5.Mouse.EVENT_DOWN then
+	if event.type == allegro5.mouse.EVENT_DOWN then
 		mouse_b[event.button] = true
 	end
-	if event.type == allegro5.Mouse.EVENT_UP then
+	if event.type == allegro5.mouse.EVENT_UP then
 		mouse_b[event.button] = false
 
 		display1:set_window_position(event.x, event.y)
@@ -73,7 +73,7 @@ while not quit do
 		bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
 
 		allegro5.display.flip()
-		allegro5.display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
+		allegro5.display.clear(allegro5.color.map_rgba(0, 0, 0, 0))
 		allegro5.rest(0.001)
 	end
 
@@ -81,6 +81,6 @@ while not quit do
 	bitmap:draw(10, 100, 0)
 
 	allegro5.display.flip()
-	allegro5.display.clear(allegro5.Color.map_rgba(0, 0, 0, 0))
+	allegro5.display.clear(allegro5.color.map_rgba(0, 0, 0, 0))
 	allegro5.rest(0.001)
 end
