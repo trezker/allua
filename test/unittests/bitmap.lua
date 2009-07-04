@@ -37,3 +37,8 @@ function Test_bitmap:test05_flags()
 	getflags = bitmap:get_flags()
 	assertEquals("number", type(getflags))
 end
+
+function Test_bitmap:test06_format()
+	getformat = bitmap:get_format()
+	assertEquals("number", type(getformat))
+end
