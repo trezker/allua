@@ -29,6 +29,11 @@ function create (w, h) end
 -- Bitmap instance
 function create_sub (parent, x, y, w, h) end
 
+-- Function: get_new_flags
+-- Returns:
+-- flags
+function get_new_flags () end
+
 -- Function: load
 -- Parameters:
 -- filename - path to file

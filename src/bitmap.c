@@ -77,6 +77,12 @@ static int Bitmap_create_sub (lua_State *L)
   return 1;
 }
 
+static int Bitmap_get_new_flags (lua_State *L)
+{
+  lua_pushinteger(L, al_get_new_bitmap_flags());
+  return 1;
+}
+
 static int Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
@@ -177,6 +183,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"clone",           Bitmap_clone},
   {"create",           Bitmap_create},
   {"create_sub",           Bitmap_create_sub},
+  {"get_new_flags",           Bitmap_get_new_flags},
   {"load",           Bitmap_load},
   {"get_width",           Bitmap_get_width},
   {"get_height",           Bitmap_get_height},
