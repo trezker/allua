@@ -258,10 +258,6 @@ function get_height () end
 -- Width of current display
 function get_width () end
 
--- Function: clear
--- Clears current display
-function clear () end
-
 -- Function: draw_pixel
 -- Parameters:
 -- x - Horizonal position

@@ -123,6 +123,11 @@ function is_compatible (bitmap) end
 -- true if bitmap is a sub bitmap, otherwise false.
 function is_sub (bitmap) end
 
+-- Function: clear_to_color
+-- Parameters:
+-- color - color
+function clear_to_color (color) end
+
 -- Function: draw
 -- Parameters:
 -- bitmap - bitmap

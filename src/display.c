@@ -380,13 +380,6 @@ static int display_get_monitor_info (lua_State *L)
 	return 1;
 }
 
-static int display_clear (lua_State *L)
-{
-	AL_color color = al_lua_check_color(L, 1);
-	al_clear_to_color(color);
-	return 0;
-}
-
 static int al_lua_draw_pixel(lua_State *L)
 {
 	int x = luaL_checkint(L, 1);
@@ -450,7 +443,6 @@ static const luaL_reg display_methods[] = {
 	{"get_num_video_adapters",           display_get_num_video_adapters},
 	{"get_monitor_info",           display_get_monitor_info},
 	//TODO: Start graphics.c and move these two there
-	{"clear",           display_clear},
 	{"draw_pixel",           al_lua_draw_pixel},
 	{0,0}
 };

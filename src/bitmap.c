@@ -171,6 +171,13 @@ static int Bitmap_is_sub (lua_State *L)
   return 1;
 }
 
+static int Bitmap_clear_to_color (lua_State *L)
+{
+	AL_color color = al_lua_check_color(L, 1);
+	al_clear_to_color(color);
+	return 0;
+}
+
 static int Bitmap_draw (lua_State *L)
 {
   AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
@@ -261,6 +268,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"is_locked",           Bitmap_is_locked},
   {"is_compatible",           Bitmap_is_compatible},
   {"is_sub",           Bitmap_is_sub},
+  {"clear_to_color",           Bitmap_clear_to_color},
   {"draw",           Bitmap_draw},
   {"draw_region",           Bitmap_draw_region},
   {"draw_rotated",           Bitmap_draw_rotated},

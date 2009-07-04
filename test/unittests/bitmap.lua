@@ -67,3 +67,8 @@ function Test_bitmap:test10_is_compatible()
 	compatible = bitmap:is_compatible ()
 	assertEquals("boolean", type(compatible))
 end
+
+function Test_bitmap:test11_clear_to_color()
+	color = allegro5.color.map_rgba(1, 1, 1, 1)
+	allegro5.bitmap.clear_to_color (color)
+end
