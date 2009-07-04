@@ -99,6 +99,14 @@ function get_height (bitmap) end
 -- color
 function get_pixel (bitmap, x, y) end
 
+-- Function: is_locked
+-- Parameters:
+-- bitmap - bitmap
+--
+-- Returns:
+-- true if bitmap is locked, otherwise false.
+function is_locked (bitmap) end
+
 -- Function: draw
 -- Parameters:
 -- bitmap - bitmap
