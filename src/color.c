@@ -23,7 +23,7 @@ AL_color al_lua_check_color (lua_State *L, int index)
   return im;
 }
 
-static AL_color *pushColor (lua_State *L, AL_color im)
+AL_color *pushColor (lua_State *L, AL_color im)
 {
   AL_color *pi = (AL_color *)lua_newuserdata(L, sizeof(AL_color));
   *pi = im;
@@ -63,7 +63,7 @@ static const luaL_reg Color_methods[] = {
  * */
 static int Color_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Color: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "color: %p", lua_touserdata(L, 1));
   return 1;
 }
 

@@ -89,6 +89,16 @@ function get_width (bitmap) end
 -- Height of bitmap
 function get_height (bitmap) end
 
+-- Function: get_pixel
+-- Parameters:
+-- bitmap - bitmap
+-- x - position
+-- y - position
+--
+-- Returns:
+-- color
+function get_pixel (bitmap, x, y) end
+
 -- Function: draw
 -- Parameters:
 -- bitmap - bitmap

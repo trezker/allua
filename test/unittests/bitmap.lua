@@ -49,3 +49,8 @@ function Test_bitmap:test07_get_size()
 	assertEquals("number", type(getw))
 	assertEquals("number", type(geth))
 end
+
+function Test_bitmap:test08_get_pixel()
+	getpixel = bitmap:get_pixel (0, 0)
+	assertEquals("color", tostring(getpixel):sub(1, 5))
+end

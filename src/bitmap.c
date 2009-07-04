@@ -1,4 +1,5 @@
 #include "allua/bitmap.h"
+#include "allua/color.h"
 #include "allua/al_lua.h"
 #include <stdio.h>
 #include <allegro5/a5_iio.h>
@@ -140,6 +141,15 @@ static int Bitmap_get_height (lua_State *L)
   return 1;
 }
 
+static int Bitmap_get_pixel (lua_State *L)
+{
+  AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
+  float x = luaL_checknumber(L, 2);
+  float y = luaL_checknumber(L, 3);
+  pushColor(L, al_get_pixel(bitmap, x, y));
+  return 1;
+}
+
 static int Bitmap_draw (lua_State *L)
 {
   AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
@@ -226,6 +236,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"get_format",           Bitmap_get_format},
   {"get_width",           Bitmap_get_width},
   {"get_height",           Bitmap_get_height},
+  {"get_pixel",           Bitmap_get_pixel},
   {"draw",           Bitmap_draw},
   {"draw_region",           Bitmap_draw_region},
   {"draw_rotated",           Bitmap_draw_rotated},
