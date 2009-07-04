@@ -96,6 +96,13 @@ static int Bitmap_get_new_format (lua_State *L)
   return 1;
 }
 
+static int Bitmap_set_new_format (lua_State *L)
+{
+  int format = luaL_checkint(L, 1);
+  al_set_new_bitmap_format(format);
+  return 0;
+}
+
 static int Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
@@ -199,6 +206,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"get_new_flags",           Bitmap_get_new_flags},
   {"set_new_flags",           Bitmap_set_new_flags},
   {"get_new_format",           Bitmap_get_new_format},
+  {"set_new_format",           Bitmap_set_new_format},
   {"load",           Bitmap_load},
   {"get_width",           Bitmap_get_width},
   {"get_height",           Bitmap_get_height},

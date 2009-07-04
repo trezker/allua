@@ -20,8 +20,12 @@ function Test_bitmap:test02_new_flags()
 end
 
 function Test_bitmap:test03_new_format()
-	format = allegro5.bitmap.get_new_format()
-	assertEquals("number", type(format))
+	setformat = 32
+	allegro5.bitmap.set_new_format(setformat)
+	getformat = allegro5.bitmap.get_new_format()
+	allegro5.bitmap.set_new_format(0)
+	assertEquals("number", type(getformat))
+	assertEquals(setformat, getformat)
 end
 
 function Test_bitmap:test04_load()

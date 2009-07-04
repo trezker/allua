@@ -44,6 +44,11 @@ function set_new_flags (flags) end
 -- format
 function get_new_format () end
 
+-- Function: set_new_format
+-- Parameters:
+-- format - format
+function set_new_format (format) end
+
 -- Function: load
 -- Parameters:
 -- filename - path to file
