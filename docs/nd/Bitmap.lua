@@ -115,6 +115,14 @@ function is_locked (bitmap) end
 -- true if bitmap is compatible, otherwise false.
 function is_compatible (bitmap) end
 
+-- Function: is_sub
+-- Parameters:
+-- bitmap - bitmap
+--
+-- Returns:
+-- true if bitmap is a sub bitmap, otherwise false.
+function is_sub (bitmap) end
+
 -- Function: draw
 -- Parameters:
 -- bitmap - bitmap

@@ -9,6 +9,9 @@ function Test_bitmap:test01_create()
 	assertEquals("bitmap", tostring(bitmap):sub(1, 6))
 	assertEquals("bitmap", tostring(bitmap_clone):sub(1, 6))
 	assertEquals("bitmap", tostring(subbitmap):sub(1, 6))
+
+	assertEquals(true, subbitmap:is_sub())
+	assertEquals(false, bitmap:is_sub())
 end
 
 function Test_bitmap:test02_new_flags()
