@@ -44,6 +44,13 @@ struct AL_bitmap_s *pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed)
 
 /* Constructor and methods
  * */
+static int Bitmap_clone (lua_State *L)
+{
+  AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
+  pushBitmap(L, al_clone_bitmap(bitmap), true);
+  return 1;
+}
+
 static int Bitmap_create (lua_State *L)
 {
   int w = luaL_checkint(L, 1);
@@ -167,6 +174,7 @@ static int Bitmap_draw_scaled (lua_State *L)
 }
 
 static const luaL_reg Bitmap_methods[] = {
+  {"clone",           Bitmap_clone},
   {"create",           Bitmap_create},
   {"create_sub",           Bitmap_create_sub},
   {"load",           Bitmap_load},

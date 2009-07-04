@@ -1,5 +1,13 @@
 -- Class: bitmap
 
+-- Function: clone
+-- Parameters:
+-- bitmap - bitmap to clone
+--
+-- Returns:
+-- clone of bitmap
+function clone (bitmap) end
+
 -- Function: create
 -- Parameters:
 -- w - Width of bitmap
