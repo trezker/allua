@@ -288,6 +288,14 @@ static int Bitmap_set_clipping_rectangle (lua_State *L)
 	return 0;
 }
 
+static int Bitmap_convert_mask_to_alpha(lua_State *L)
+{
+	AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
+	AL_color color = al_lua_check_color(L, 2);
+	al_convert_mask_to_alpha(bitmap, color);
+	return 0;
+}
+
 static const luaL_reg Bitmap_methods[] = {
   {"clone",           Bitmap_clone},
   {"create",           Bitmap_create},
@@ -315,6 +323,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"set_target",           Bitmap_set_target},
   {"get_clipping_rectangle",           Bitmap_get_clipping_rectangle},
   {"set_clipping_rectangle",           Bitmap_set_clipping_rectangle},
+  {"convert_mask_to_alpha",           Bitmap_convert_mask_to_alpha},
   {0,0}
 };
 

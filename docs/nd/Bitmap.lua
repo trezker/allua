@@ -208,3 +208,9 @@ function get_clipping_rectangle () end
 -- w - w
 -- h - h
 function set_clipping_rectangle (x, y, w, h) end
+
+-- Function: convert_mask_to_alpha
+-- Parameters:
+-- bitmap - bitmap
+-- mask_color - color
+function convert_mask_to_alpha (x, y, w, h) end

@@ -103,3 +103,8 @@ function Test_bitmap:test14_clipping_rectangle()
 	assertEquals(sw, w)
 	assertEquals(sh, h)
 end
+
+function Test_bitmap:test15_convert_mask_to_alpha()
+	color = allegro5.color.map_rgba(235, 26, 23, 100)
+	bitmap:convert_mask_to_alpha (color)
+end
