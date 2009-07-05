@@ -278,6 +278,16 @@ static int Bitmap_get_clipping_rectangle (lua_State *L)
   return 4;
 }
 
+static int Bitmap_set_clipping_rectangle (lua_State *L)
+{
+	int x = luaL_checknumber(L, 1);
+	int y = luaL_checknumber(L, 2);
+	int w = luaL_checknumber(L, 3);
+	int h = luaL_checknumber(L, 4);
+	al_set_clipping_rectangle(x, y, w, h);
+	return 0;
+}
+
 static const luaL_reg Bitmap_methods[] = {
   {"clone",           Bitmap_clone},
   {"create",           Bitmap_create},
@@ -304,6 +314,7 @@ static const luaL_reg Bitmap_methods[] = {
   {"get_target",           Bitmap_get_target},
   {"set_target",           Bitmap_set_target},
   {"get_clipping_rectangle",           Bitmap_get_clipping_rectangle},
+  {"set_clipping_rectangle",           Bitmap_set_clipping_rectangle},
   {0,0}
 };
 

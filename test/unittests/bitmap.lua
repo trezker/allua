@@ -91,9 +91,15 @@ function Test_bitmap:test13_get_target()
 end
 
 function Test_bitmap:test14_clipping_rectangle()
+	sx, sy, sw, sh = 10, 20, 30, 40
+	allegro5.bitmap.set_clipping_rectangle(sx, sy, sw, sh)
 	x, y, w, h = allegro5.bitmap.get_clipping_rectangle()
 	assertEquals("number", type(x))
 	assertEquals("number", type(y))
 	assertEquals("number", type(w))
 	assertEquals("number", type(h))
+	assertEquals(sx, x)
+	assertEquals(sy, y)
+	assertEquals(sw, w)
+	assertEquals(sh, h)
 end
