@@ -195,3 +195,8 @@ function get_target () end
 -- Parameters:
 -- bitmap - bitmap
 function set_target (bitmap) end
+
+-- Function: get_clipping_rectangle
+-- Returns:
+-- x, y, w, h
+function get_clipping_rectangle () end

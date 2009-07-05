@@ -89,3 +89,11 @@ function Test_bitmap:test13_get_target()
 	assertEquals("bitmap", tostring(gettarget1):sub(1, 6))
 	-- get_target and get_backbuffer create non_gc bitmap userdata so they can't be compared.
 end
+
+function Test_bitmap:test14_clipping_rectangle()
+	x, y, w, h = allegro5.bitmap.get_clipping_rectangle()
+	assertEquals("number", type(x))
+	assertEquals("number", type(y))
+	assertEquals("number", type(w))
+	assertEquals("number", type(h))
+end
