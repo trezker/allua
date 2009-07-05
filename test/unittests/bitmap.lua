@@ -83,6 +83,9 @@ function Test_bitmap:test12_draw()
 end
 
 function Test_bitmap:test13_get_target()
-	gettarget = allegro5.bitmap.get_target ()
-	assertEquals("bitmap", tostring(gettarget):sub(1, 6))
+	allegro5.bitmap.set_target(bitmap)	
+	gettarget1 = allegro5.bitmap.get_target ()
+	allegro5.bitmap.set_target(allegro5.display.get_backbuffer())
+	assertEquals("bitmap", tostring(gettarget1):sub(1, 6))
+	-- get_target and get_backbuffer create non_gc bitmap userdata so they can't be compared.
 end

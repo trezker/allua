@@ -190,3 +190,8 @@ function draw_scaled (bitmap, sx, sy, sw, sh, dx, dy, dw, dh, flags) end
 -- Returns:
 -- current target bitmap
 function get_target () end
+
+-- Function: set_target
+-- Parameters:
+-- bitmap - bitmap
+function set_target (bitmap) end
