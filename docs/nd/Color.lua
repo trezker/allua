@@ -86,7 +86,7 @@ function unmap_rgba_f () end
 
 -- Function: put_pixel
 -- Parameters:
+-- color - Color
 -- x - Horizontal position
 -- y - Vertical position
--- color - Color
-function put_pixel (x, y, color) end
+function put_pixel (color, x, y) end

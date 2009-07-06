@@ -155,9 +155,9 @@ static int allua_unmap_rgba_f(lua_State *L)
 
 static int allua_put_pixel(lua_State *L)
 {
-	int x = luaL_checkint(L, 1);
-	int y = luaL_checkint(L, 2);
-	AL_color color = al_lua_check_color(L, 3);
+	AL_color color = al_lua_check_color(L, 1);
+	int x = luaL_checkint(L, 2);
+	int y = luaL_checkint(L, 3);
 	al_put_pixel(x, y, color);
 	return 0;
 }
