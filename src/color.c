@@ -35,7 +35,7 @@ AL_color *pushColor (lua_State *L, AL_color im)
 /* Constructor and methods
  * */
 
-static int test()
+static void test()
 {
 	unsigned char r = 1;
 	unsigned char g = 2;
@@ -56,7 +56,7 @@ static int test()
 
 static int allua_map_rgb(lua_State *L)
 {
-	test();
+//	test();
 	unsigned char r = luaL_checkint(L, 1);
 	unsigned char g = luaL_checkint(L, 2);
 	unsigned char b = luaL_checkint(L, 3);
@@ -162,6 +162,15 @@ static int allua_put_pixel(lua_State *L)
 	return 0;
 }
 
+static int allua_draw_pixel(lua_State *L)
+{
+	AL_color color = al_lua_check_color(L, 1);
+	int x = luaL_checkint(L, 2);
+	int y = luaL_checkint(L, 3);
+	al_draw_pixel(x, y, color);
+	return 0;
+}
+
 static const luaL_reg Color_methods[] = {
   {"map_rgb",           allua_map_rgb},
   {"map_rgb_f",           allua_map_rgb_f},
@@ -172,6 +181,7 @@ static const luaL_reg Color_methods[] = {
   {"unmap_rgba",           allua_unmap_rgba},
   {"unmap_rgba_f",           allua_unmap_rgba_f},
   {"put_pixel",           allua_put_pixel},
+  {"draw_pixel",           allua_draw_pixel},
   {0,0}
 };
 

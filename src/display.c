@@ -380,15 +380,6 @@ static int display_get_monitor_info (lua_State *L)
 	return 1;
 }
 
-static int al_lua_draw_pixel(lua_State *L)
-{
-	int x = luaL_checkint(L, 1);
-	int y = luaL_checkint(L, 2);
-	AL_color color = al_lua_check_color(L, 3);
-	al_draw_pixel(x, y, color);
-	return 0;
-}
-
 static int al_lua_display_get_height(lua_State *L)
 {
 	lua_pushinteger(L, al_get_display_height());
@@ -442,8 +433,6 @@ static const luaL_reg display_methods[] = {
 	{"set_current_video_adapter",           display_set_current_video_adapter},
 	{"get_num_video_adapters",           display_get_num_video_adapters},
 	{"get_monitor_info",           display_get_monitor_info},
-	//TODO: Move to color
-	{"draw_pixel",           al_lua_draw_pixel},
 	{0,0}
 };
 

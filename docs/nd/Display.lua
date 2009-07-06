@@ -258,14 +258,6 @@ function get_height () end
 -- Width of current display
 function get_width () end
 
--- Function: draw_pixel
--- Parameters:
--- x - Horizonal position
--- y - Vertical position
--- color - Color
-function draw_pixel (x, y, color) end
-
-
 -- List: Events
 -- EVENT_CLOSE - The close button of the window has been pressed.
 -- EVENT_SWITCH_OUT - The window is no longer active, that is the user might have clicked into another window or "tabbed" away.
