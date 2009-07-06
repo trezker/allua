@@ -1,4 +1,5 @@
 require('luaunit')
+require('liballua')
 
 dofile("unittests/allegro5.lua")
 dofile("unittests/display.lua")

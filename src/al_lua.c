@@ -13,6 +13,12 @@
 #include <allegro5/a5_ttf.h>
 #include <allegro5/a5_iio.h>
 
+int luaopen_liballua(lua_State* L)
+{
+	al_lua_register(L);
+	return 0;
+}
+
 /* Init
  * */
 static int al_lua_init(lua_State *L)

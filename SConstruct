@@ -37,16 +37,18 @@ env.Append(CCFLAGS = '-Wall')
 
 env.BuildDir('obj','src', duplicate = 0)
 env.Append(LIBS=['allegro-4.9.12','a5_iio-4.9.12','a5_font-4.9.12','a5_ttf-4.9.12','a5_primitives-4.9.12'])
-al_lua = env.StaticLibrary('lib/al_lua',files)
+allua = env.StaticLibrary('lib/allua',files)
+allua_shared = env.SharedLibrary('lib/allua',files)
 
-env.Append(LIBS = [al_lua])
+env.Append(LIBS = [allua])
 test_exe = env.Program('test/test', 'test/test.c')
 
 ##### Install #####
 env.Alias('install', '/usr/local')
-env.Install('/usr/local/lib', al_lua)
+env.Install('/usr/local/lib', allua)
 include_files = glob.glob('include/allua/*.h')
 env.Install('/usr/local/include/allua', include_files)
+env.Install('/usr/local/lib/lua/5.1', allua_shared)
 
 
 rebuild_docs = ARGUMENTS.get('rebuild_docs', 0)
@@ -56,11 +58,9 @@ else:
 	os.system("../NaturalDocs/NaturalDocs -i include -i src -i test -i docs/nd -o HTML docs/html -p nd")
 	
 # Unit tests
-#os.chdir("test")
-#os.system("test/test test/test.lua")
-#os.chdir("../")
 
 def runUnitTest(env,target,source):
-	os.system("cd test && ./test unittest_main.lua")
+	os.system("cp lib/liballua.so test/liballua.so")
+	os.system("cd test && lua unittest_main.lua")
 
 Command("test.passed",'test',runUnitTest)
