@@ -1,9 +1,9 @@
 -- Class: event_queue
 
--- Function: new
+-- Function: create
 -- Returns:
--- Event_queue
-function new () end
+-- event_queue
+function create () end
 
 -- Function: register_event_source
 -- Parameters:

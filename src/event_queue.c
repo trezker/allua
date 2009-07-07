@@ -37,7 +37,7 @@ static AL_event_queue *pushEvent_queue (lua_State *L, AL_event_queue im)
 
 /* Constructor and methods
  * */
-static int Event_queue_new (lua_State *L)
+static int Event_queue_create (lua_State *L)
 {
   pushEvent_queue(L, al_create_event_queue());
 
@@ -126,7 +126,7 @@ static int Event_queue_get_next_event (lua_State *L)
 }
 
 static const luaL_reg Event_queue_methods[] = {
-  {"new",           Event_queue_new},
+  {"create",           Event_queue_create},
   {"register_event_source",           Event_queue_register_event_source},
   {"unregister_event_source",           Event_queue_unregister_event_source},
   {"get_next_event",           Event_queue_get_next_event},
@@ -145,7 +145,7 @@ static int Event_queue_gc (lua_State *L)
 
 static int Event_queue_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Event_queue: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "event_queue: %p", lua_touserdata(L, 1));
   return 1;
 }
 
