@@ -96,18 +96,13 @@ void al_lua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *
 	++num_event_callbacks;
 }
 
-static int Event_queue_getpeek_common (lua_State *L, bool get)
+static int Event_queue_get_event_common (lua_State *L, bool got_event, ALLEGRO_EVENT *event)
 {
-  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
-
 	lua_newtable (L);
-
-	ALLEGRO_EVENT event;
-	bool got_event = get?al_get_next_event(event_queue, &event):al_peek_next_event(event_queue, &event);
 	if (got_event)
 	{
 		lua_pushstring(L, "type");
-		lua_pushinteger(L, event.type);
+		lua_pushinteger(L, event->type);
 		lua_settable(L, -3);
 		
 		/* Each type of event source may have different data in the event
@@ -116,9 +111,9 @@ static int Event_queue_getpeek_common (lua_State *L, bool get)
 		int i = 0;
 		for(; i<num_event_callbacks; ++i)
 		{
-			if(event_callbacks[i].event == event.type)
+			if(event_callbacks[i].event == event->type)
 			{
-				event_callbacks[i].cb(L, &event);
+				event_callbacks[i].cb(L, event);
 				break;
 			}
 		}
@@ -128,12 +123,18 @@ static int Event_queue_getpeek_common (lua_State *L, bool get)
 
 static int Event_queue_get_next_event (lua_State *L)
 {
-	return Event_queue_getpeek_common(L, true);
+	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	ALLEGRO_EVENT event;
+	bool got_event = al_get_next_event(event_queue, &event);
+	return Event_queue_get_event_common(L, got_event, &event);
 }
 
 static int Event_queue_peek_next_event (lua_State *L)
 {
-	return Event_queue_getpeek_common(L, false);
+	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	ALLEGRO_EVENT event;
+	bool got_event = al_peek_next_event(event_queue, &event);
+	return Event_queue_get_event_common(L, got_event, &event);
 }
 
 static int Event_queue_drop_next_event (lua_State *L)
