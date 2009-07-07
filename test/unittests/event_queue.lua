@@ -29,3 +29,8 @@ function Test_event_queue:test05_get_peek()
 	peek = event_queue:peek_next_event ()
 	assertEquals("table", type(get))
 end
+
+function Test_event_queue:test06_register_source()
+	event_queue:register_event_source (display)
+	event_queue:unregister_event_source (display)
+end
