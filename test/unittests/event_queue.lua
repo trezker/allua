@@ -23,3 +23,9 @@ function Test_event_queue:test04_flush()
 	assertEquals("boolean", type(b))
 	assertEquals(true, b)
 end
+
+function Test_event_queue:test05_get_peek()
+	get = event_queue:get_next_event ()
+	peek = event_queue:peek_next_event ()
+	assertEquals("table", type(get))
+end
