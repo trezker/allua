@@ -24,10 +24,13 @@ function Test_event_queue:test04_flush()
 	assertEquals(true, b)
 end
 
-function Test_event_queue:test05_get_peek()
+function Test_event_queue:test05_get_peek_wait()
 	get = event_queue:get_next_event ()
 	peek = event_queue:peek_next_event ()
+	wait_timed = event_queue:wait_for_event_timed (.1)
 	assertEquals("table", type(get))
+	assertEquals("table", type(peek))
+	assertEquals("table", type(wait_timed))
 end
 
 function Test_event_queue:test06_register_source()

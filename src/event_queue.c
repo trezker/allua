@@ -137,6 +137,23 @@ static int Event_queue_peek_next_event (lua_State *L)
 	return Event_queue_get_event_common(L, got_event, &event);
 }
 
+static int Event_queue_wait_for_event (lua_State *L)
+{
+	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	ALLEGRO_EVENT event;
+	al_wait_for_event(event_queue, &event);
+	return Event_queue_get_event_common(L, true, &event);
+}
+
+static int Event_queue_wait_for_event_timed (lua_State *L)
+{
+	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	float secs = luaL_checknumber(L, 2);
+	ALLEGRO_EVENT event;
+	bool got_event = al_wait_for_event_timed(event_queue, &event, secs);
+	return Event_queue_get_event_common(L, got_event, &event);
+}
+
 static int Event_queue_drop_next_event (lua_State *L)
 {
 	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
@@ -165,6 +182,8 @@ static const luaL_reg Event_queue_methods[] = {
   {"flush",           Event_queue_flush},
   {"get_next_event",           Event_queue_get_next_event},
   {"peek_next_event",           Event_queue_peek_next_event},
+  {"wait_for_event",           Event_queue_wait_for_event},
+  {"wait_for_event_timed",           Event_queue_wait_for_event_timed},
   {"register_event_source",           Event_queue_register_event_source},
   {"unregister_event_source",           Event_queue_unregister_event_source},
   {0,0}
