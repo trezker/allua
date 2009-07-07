@@ -5,6 +5,14 @@
 -- event_queue
 function create () end
 
+-- Function: drop_next_event
+-- Parameters:
+-- event_queue - event_queue
+--
+-- Returns:
+-- true if an event was dropped.
+function drop_next_event (event_queue) end
+
 -- Function: register_event_source
 -- Parameters:
 -- event_queue - Event_queue to which registering is done
