@@ -16,3 +16,10 @@ function Test_event_queue:test03_is_empty()
 	b = event_queue:is_empty ()
 	assertEquals("boolean", type(b))
 end
+
+function Test_event_queue:test04_flush()
+	event_queue:flush ()
+	b = event_queue:is_empty ()
+	assertEquals("boolean", type(b))
+	assertEquals(true, b)
+end

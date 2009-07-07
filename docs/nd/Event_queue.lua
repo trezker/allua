@@ -21,6 +21,11 @@ function drop_next_event (event_queue) end
 -- true if the queue is empty.
 function is_empty (event_queue) end
 
+-- Function: flush
+-- Parameters:
+-- event_queue - event_queue
+function flush (event_queue) end
+
 -- Function: register_event_source
 -- Parameters:
 -- event_queue - Event_queue to which registering is done

@@ -139,10 +139,18 @@ static int Event_queue_is_empty (lua_State *L)
 	return 1;
 }
 
+static int Event_queue_flush (lua_State *L)
+{
+	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	al_flush_event_queue(event_queue);
+	return 0;
+}
+
 static const luaL_reg Event_queue_methods[] = {
   {"create",           Event_queue_create},
   {"drop_next_event",           Event_queue_drop_next_event},
   {"is_empty",           Event_queue_is_empty},
+  {"flush",           Event_queue_flush},
   {"register_event_source",           Event_queue_register_event_source},
   {"unregister_event_source",           Event_queue_unregister_event_source},
   {"get_next_event",           Event_queue_get_next_event},
