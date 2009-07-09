@@ -37,3 +37,17 @@ function draw_text (font, x, y, flags, text) end
 -- flags - flags
 -- text - The text
 function draw_justified_text (font, x1, x2, y, diff, flags, text) end
+
+-- Function: get_text_dimensions
+-- Parameters:
+-- font - font
+-- text - text
+--
+-- Returns:
+-- bbx - left
+-- bby - top
+-- bbw - width
+-- bbh - height
+-- ascent - ascent
+-- descent - descent
+function get_text_dimensions(font, text) end

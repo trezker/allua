@@ -89,11 +89,34 @@ static int Font_draw_justified_text (lua_State *L)
   return 0;
 }
 
+static int Font_get_text_dimensions (lua_State *L)
+{
+	AL_font font = al_lua_check_font(L, 1);
+	const char* text = luaL_checkstring(L, 2);
+
+	int bbx;
+	int bby;
+	int bbw;
+	int bbh;
+	int ascent;
+	int descent;
+
+	al_get_text_dimensions(font, text, &bbx, &bby, &bbw, &bbh, &ascent, &descent);
+	lua_pushinteger(L, bbx);
+	lua_pushinteger(L, bby);
+	lua_pushinteger(L, bbw);
+	lua_pushinteger(L, bbh);
+	lua_pushinteger(L, ascent);
+	lua_pushinteger(L, descent);
+	return 6;
+}
+
 static const luaL_reg Font_methods[] = {
   {"load_ttf",           Font_load_ttf},
   {"load_bitmap",           Font_load_bitmap},
   {"draw_text",           Font_draw_text},
   {"draw_justified_text",           Font_draw_justified_text},
+  {"get_text_dimensions",           Font_get_text_dimensions},
   {0,0}
 };
 
