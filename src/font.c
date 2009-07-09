@@ -40,12 +40,15 @@ static AL_font *pushFont (lua_State *L, AL_font im)
  * */
 static int Font_load_ttf (lua_State *L)
 {
-  const char* filename = luaL_checkstring(L, 1);
-  int size = luaL_checkint(L, 2);
-  int options = luaL_checkint(L, 3);
-
-  pushFont(L, al_load_ttf_font(filename, size, options));
-  return 1;
+	const char* filename = luaL_checkstring(L, 1);
+	int size = luaL_checkint(L, 2);
+	int options = luaL_checkint(L, 3);
+	AL_font *font = al_load_ttf_font(filename, size, options);
+	if(font)
+		pushFont(L, font);
+	else
+		lua_pushnil(L);
+	return 1;
 }
 
 static int Font_load_image (lua_State *L)
@@ -88,7 +91,7 @@ static int Font_gc (lua_State *L)
 
 static int Font_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Font: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "font: %p", lua_touserdata(L, 1));
   return 1;
 }
 

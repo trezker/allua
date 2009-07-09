@@ -7,7 +7,7 @@
 -- options - Options
 --
 -- Returns:
--- Font
+-- Font on success, nil on failure
 function load_ttf (filename, size, options) end
 
 -- Function: load_image
