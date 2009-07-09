@@ -8,6 +8,16 @@ function init_addon () end
 -- Initialises the ttf addon
 function init_ttf_addon () end
 
+-- Function: load
+-- Parameters:
+-- filename - Path to font file
+-- size - Size
+-- flags - flags
+--
+-- Returns:
+-- Font on success, nil on failure
+function load (filename, size, flags) end
+
 -- Function: load_ttf
 -- Parameters:
 -- filename - Path to ttf font
