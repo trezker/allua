@@ -75,10 +75,25 @@ static int Font_draw_text (lua_State *L)
   return 0;
 }
 
+static int Font_draw_justified_text (lua_State *L)
+{
+  AL_font font = al_lua_check_font(L, 1);
+  float x1 = luaL_checknumber(L, 2);
+  float x2 = luaL_checknumber(L, 3);
+  float y = luaL_checknumber(L, 4);
+  float diff = luaL_checknumber(L, 5);
+  int flags = luaL_checkinteger(L, 6);
+  const char* text = luaL_checkstring(L, 7);
+
+  al_draw_justified_text(font, x1, x2, y, diff, flags, text);
+  return 0;
+}
+
 static const luaL_reg Font_methods[] = {
   {"load_ttf",           Font_load_ttf},
   {"load_bitmap",           Font_load_bitmap},
   {"draw_text",           Font_draw_text},
+  {"draw_justified_text",           Font_draw_justified_text},
   {0,0}
 };
 

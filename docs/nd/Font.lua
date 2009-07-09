@@ -26,3 +26,14 @@ function load_bitmap (filename) end
 -- flags - flags
 -- text - The text
 function draw_text (font, x, y, flags, text) end
+
+-- Function: draw_justified_text
+-- Parameters:
+-- font - Font to render with
+-- x1 - Horizontal position begin
+-- x2 - Horizontal position end
+-- y - Vertical position
+-- diff - diff
+-- flags - flags
+-- text - The text
+function draw_justified_text (font, x1, x2, y, diff, flags, text) end
