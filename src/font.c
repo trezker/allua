@@ -108,6 +108,12 @@ static const luaL_reg Font_meta[] = {
  * */
 void Font_set_attributes(lua_State *L)
 {
+	lua_pushinteger(L, ALLEGRO_ALIGN_LEFT);
+	lua_setfield(L, -2, "ALIGN_LEFT");
+	lua_pushinteger(L, ALLEGRO_ALIGN_CENTRE);
+	lua_setfield(L, -2, "ALIGN_CENTRE");
+	lua_pushinteger(L, ALLEGRO_ALIGN_RIGHT);
+	lua_setfield(L, -2, "ALIGN_RIGHT");
 }
 
 /* Register
