@@ -152,6 +152,9 @@ void Font_set_attributes(lua_State *L)
 	lua_setfield(L, -2, "ALIGN_CENTRE");
 	lua_pushinteger(L, ALLEGRO_ALIGN_RIGHT);
 	lua_setfield(L, -2, "ALIGN_RIGHT");
+
+	lua_pushinteger(L, ALLEGRO_TTF_NO_KERNING);
+	lua_setfield(L, -2, "TTF_NO_KERNING");
 }
 
 /* Register
