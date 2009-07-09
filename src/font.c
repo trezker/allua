@@ -63,23 +63,22 @@ static int Font_load_bitmap (lua_State *L)
 	return 1;
 }
 
-static int Font_textout (lua_State *L)
+static int Font_draw_text (lua_State *L)
 {
   AL_font font = al_lua_check_font(L, 1);
   float x = luaL_checknumber(L, 2);
   float y = luaL_checknumber(L, 3);
-  const char* text = luaL_checkstring(L, 4);
-  int chars = luaL_checkint(L, 5);
+  int flags = luaL_checkinteger(L, 4);
+  const char* text = luaL_checkstring(L, 5);
 
-  int flags = 0;
   al_draw_text(font, x, y, flags, text);
-  return 1;
+  return 0;
 }
 
 static const luaL_reg Font_methods[] = {
   {"load_ttf",           Font_load_ttf},
   {"load_bitmap",           Font_load_bitmap},
-  {"textout",           Font_textout},
+  {"draw_text",           Font_draw_text},
   {0,0}
 };
 

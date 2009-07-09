@@ -18,11 +18,11 @@ function load_ttf (filename, size, options) end
 -- Font on success, nil on failure
 function load_bitmap (filename) end
 
--- Function: textout
+-- Function: draw_text
 -- Parameters:
 -- font - Font to render with
 -- x - Horizontal position
 -- y - Vertical position
+-- flags - flags
 -- text - The text
--- chars - Number of characters to actually render
-function textout (font, x, y, text, chars) end
+function draw_text (font, x, y, flags, text) end
