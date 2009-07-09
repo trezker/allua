@@ -1,5 +1,13 @@
 -- Class: font
 
+-- Function: init_addon
+-- Initialises the font addon
+function init_addon () end
+
+-- Function: init_ttf_addon
+-- Initialises the ttf addon
+function init_ttf_addon () end
+
 -- Function: load_ttf
 -- Parameters:
 -- filename - Path to ttf font

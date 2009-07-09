@@ -38,6 +38,19 @@ static AL_font *pushFont (lua_State *L, AL_font im)
 
 /* Constructor and methods
  * */
+
+static int Font_init_addon (lua_State *L)
+{
+	al_init_font_addon();
+	return 0;
+}
+
+static int Font_init_ttf_addon (lua_State *L)
+{
+	lua_pushboolean(L, al_init_ttf_addon());
+	return 1;
+}
+
 static int Font_load_ttf (lua_State *L)
 {
 	const char* filename = luaL_checkstring(L, 1);
@@ -112,6 +125,8 @@ static int Font_get_text_dimensions (lua_State *L)
 }
 
 static const luaL_reg Font_methods[] = {
+  {"init_addon",           Font_init_addon},
+  {"init_ttf_addon",           Font_init_ttf_addon},
   {"load_ttf",           Font_load_ttf},
   {"load_bitmap",           Font_load_bitmap},
   {"draw_text",           Font_draw_text},
