@@ -137,6 +137,21 @@ static int Font_get_text_dimensions (lua_State *L)
 	return 6;
 }
 
+static int Font_get_line_height (lua_State *L)
+{
+	AL_font font = al_lua_check_font(L, 1);
+	lua_pushinteger(L, al_get_font_line_height(font));
+	return 1;
+}
+
+static int Font_get_text_width (lua_State *L)
+{
+	AL_font font = al_lua_check_font(L, 1);
+	const char* text = luaL_checkstring(L, 2);
+	lua_pushinteger(L, al_get_text_width(font, text));
+	return 1;
+}
+
 static const luaL_reg Font_methods[] = {
   {"init_addon",           Font_init_addon},
   {"init_ttf_addon",           Font_init_ttf_addon},
@@ -146,6 +161,8 @@ static const luaL_reg Font_methods[] = {
   {"draw_text",           Font_draw_text},
   {"draw_justified_text",           Font_draw_justified_text},
   {"get_text_dimensions",           Font_get_text_dimensions},
+  {"get_line_height",           Font_get_line_height},
+  {"get_text_width",           Font_get_text_width},
   {0,0}
 };
 

@@ -69,3 +69,20 @@ function draw_justified_text (font, x1, x2, y, diff, flags, text) end
 -- ascent - ascent
 -- descent - descent
 function get_text_dimensions(font, text) end
+
+-- Function: get_line_height
+-- Parameters:
+-- font - font
+--
+-- Returns:
+-- height of a line of this font
+function get_line_height(font) end
+
+-- Function: get_text_width
+-- Parameters:
+-- font - font
+-- text - text
+--
+-- Returns:
+-- Width of the text drawn with this font
+function get_text_width(font, text) end
