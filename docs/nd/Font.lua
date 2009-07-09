@@ -10,13 +10,13 @@
 -- Font on success, nil on failure
 function load_ttf (filename, size, options) end
 
--- Function: load_image
+-- Function: load_bitmap
 -- Parameters:
--- filename - Path to ttf font
+-- filename - Path to bitmap font
 --
 -- Returns:
--- Font
-function load_image (filename) end
+-- Font on success, nil on failure
+function load_bitmap (filename) end
 
 -- Function: textout
 -- Parameters:

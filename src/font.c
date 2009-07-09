@@ -51,12 +51,16 @@ static int Font_load_ttf (lua_State *L)
 	return 1;
 }
 
-static int Font_load_image (lua_State *L)
+static int Font_load_bitmap (lua_State *L)
 {
-  const char* filename = luaL_checkstring(L, 1);
+	const char* filename = luaL_checkstring(L, 1);
 
-  pushFont(L, al_load_bitmap_font(filename));
-  return 1;
+	AL_font *font = al_load_bitmap_font(filename);
+	if(font)
+		pushFont(L, font);
+	else
+		lua_pushnil(L);
+	return 1;
 }
 
 static int Font_textout (lua_State *L)
@@ -74,7 +78,7 @@ static int Font_textout (lua_State *L)
 
 static const luaL_reg Font_methods[] = {
   {"load_ttf",           Font_load_ttf},
-  {"load_image",           Font_load_image},
+  {"load_bitmap",           Font_load_bitmap},
   {"textout",           Font_textout},
   {0,0}
 };
