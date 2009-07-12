@@ -33,6 +33,15 @@ function get_num_buttons () end
 -- true on success, false on failure
 function hide_cursor () end
 
+-- Function: set_axis
+-- Parameters:
+-- which - which axis
+-- value - value
+--
+-- Returns:
+-- true on success, false on failure
+function set_axis (which, value) end
+
 -- List: Events
 -- EVENT_AXES - one or more mouse axis values changed. Fields: x, y, z, dx, dy, dz.
 -- EVENT_BUTTON_DOWN - a mouse button was pressed. Fields: x, y, z, button.

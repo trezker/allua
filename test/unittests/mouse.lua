@@ -31,3 +31,8 @@ function Test_mouse:test04_hide_cursor()
 	b = allegro5.mouse.hide_cursor ()
 	assertEquals("boolean", type(b))
 end
+
+function Test_mouse:test05_set_axis()
+	b = allegro5.mouse.set_axis (0, 1)
+	assertEquals("boolean", type(b))
+end
