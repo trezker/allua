@@ -5,10 +5,21 @@
 -- true if successful. If a driver was already installed, nothing happens and true is returned.
 function install () end
 
+-- Function: uninstall
+function uninstall () end
+
 -- Function: is_installed
 -- Returns:
 -- true if keyboard is installed
 function is_installed () end
+
+-- Function: set_leds
+-- Parameters:
+-- leds - leds
+--
+-- Returns:
+-- false if the current keyboard driver cannot set LED indicators.
+function set_leds (leds) end
 
 -- Function: get
 -- Returns:
