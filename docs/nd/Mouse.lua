@@ -53,6 +53,14 @@ function set_axis (which, value) end
 -- true on success, false on failure
 function set_range (x1, y1, x2, y2) end
 
+-- Function: set_w
+-- Parameters:
+-- w - wheel position
+--
+-- Returns:
+-- true on success, false on failure
+function set_w (w) end
+
 -- List: Events
 -- EVENT_AXES - one or more mouse axis values changed. Fields: x, y, z, dx, dy, dz.
 -- EVENT_BUTTON_DOWN - a mouse button was pressed. Fields: x, y, z, button.
