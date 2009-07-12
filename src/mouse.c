@@ -43,6 +43,12 @@ static int allua_mouse_install(lua_State *L)
 	return 1;
 }
 
+static int allua_mouse_uninstall(lua_State *L)
+{
+	al_uninstall_mouse();
+	return 0;
+}
+
 static int allua_mouse_is_installed(lua_State *L)
 {
 	lua_pushboolean(L, al_is_mouse_installed());
@@ -128,6 +134,7 @@ static int allua_mouse_set_xy(lua_State *L)
 
 static const luaL_reg Mouse_methods[] = {
   {"install",           allua_mouse_install},
+  {"uninstall",           allua_mouse_uninstall},
   {"is_installed",           allua_mouse_is_installed},
   {"get",           allua_mouse_get},
   {"get_cursor_position",           allua_mouse_get_cursor_position},

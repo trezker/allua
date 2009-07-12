@@ -5,6 +5,9 @@
 -- true if successful. If a driver was already installed, nothing happens and true is returned.
 function install () end
 
+-- Function: uninstall
+function uninstall () end
+
 -- Function: is_installed
 function is_installed () end
 

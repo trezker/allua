@@ -43,12 +43,16 @@ function Test_mouse:test06_set_range()
 	assertEquals("boolean", type(b))
 end
 
-function Test_mouse:test06_set_w()
+function Test_mouse:test07_set_w()
 	b = allegro5.mouse.set_w (10)
 	assertEquals("boolean", type(b))
 end
 
-function Test_mouse:test06_set_xy()
+function Test_mouse:test08_set_xy()
 	b = allegro5.mouse.set_xy (10, 20)
 	assertEquals("boolean", type(b))
+end
+
+function Test_mouse:test09_uninstall()
+	allegro5.mouse.uninstall ()
 end
