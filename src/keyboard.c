@@ -43,6 +43,12 @@ static int allua_keyboard_install(lua_State *L)
 	return 1;
 }
 
+static int allua_keyboard_is_installed(lua_State *L)
+{
+	lua_pushboolean(L, al_is_keyboard_installed());
+	return 1;
+}
+
 static int al_lua_get_keyboard(lua_State *L)
 {
 	pushKeyboard(L, al_get_keyboard());
@@ -75,6 +81,7 @@ static int al_lua_keycode_from_name(lua_State *L)
 
 static const luaL_reg Keyboard_methods[] = {
   {"install",           allua_keyboard_install},
+  {"is_installed",           allua_keyboard_is_installed},
   {"get",           al_lua_get_keyboard},
   {"keycode_to_name",           al_lua_keycode_to_name},
   {"keycode_from_name",           al_lua_keycode_from_name},
@@ -85,7 +92,7 @@ static const luaL_reg Keyboard_methods[] = {
  * */
 static int Keyboard_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Keyboard: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "keyboard: %p", lua_touserdata(L, 1));
   return 1;
 }
 
