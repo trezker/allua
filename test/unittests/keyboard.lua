@@ -11,3 +11,10 @@ function Test_keyboard:test01_install()
 	assertEquals(b, installed)
 	assertEquals("keyboard", tostring(keyboard):sub(1, 8))
 end
+
+function Test_keyboard:test01_keycode_to_name()
+	key_name = allegro5.keyboard.keycode_to_name (allegro5.keyboard.KEY_UP)
+	key_code = allegro5.keyboard.keycode_from_name (key_name)
+	assertEquals("string", type(key_name))
+	assertEquals(allegro5.keyboard.KEY_UP, key_code)
+end
