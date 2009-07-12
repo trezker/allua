@@ -33,6 +33,11 @@ function get_num_buttons () end
 -- true on success, false on failure
 function hide_cursor () end
 
+-- Function: show_cursor
+-- Returns:
+-- true on success, false on failure
+function show_cursor () end
+
 -- Function: set_axis
 -- Parameters:
 -- which - which axis

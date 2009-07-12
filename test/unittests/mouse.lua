@@ -29,6 +29,7 @@ end
 
 function Test_mouse:test04_hide_cursor()
 	b = allegro5.mouse.hide_cursor ()
+	bs = allegro5.mouse.show_cursor ()
 	assertEquals("boolean", type(b))
 end
 
