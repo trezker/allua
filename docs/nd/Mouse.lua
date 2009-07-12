@@ -1,5 +1,13 @@
 -- Class: mouse
 
+-- Function: install
+-- Returns:
+-- true if successful. If a driver was already installed, nothing happens and true is returned.
+function install () end
+
+-- Function: is_installed
+function is_installed () end
+
 -- Function: get
 -- Returns:
 -- Handle to the Mouse

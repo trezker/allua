@@ -36,6 +36,19 @@ static AL_mouse *pushMouse (lua_State *L, AL_mouse im)
 
 /* Constructor and methods
  * */
+
+static int allua_mouse_install(lua_State *L)
+{
+	lua_pushboolean(L, al_install_mouse());
+	return 1;
+}
+
+static int allua_mouse_is_installed(lua_State *L)
+{
+	lua_pushboolean(L, al_is_mouse_installed());
+	return 1;
+}
+
 static int al_lua_get_mouse(lua_State *L)
 {
 	pushMouse(L, al_get_mouse());
@@ -43,6 +56,8 @@ static int al_lua_get_mouse(lua_State *L)
 }
 
 static const luaL_reg Mouse_methods[] = {
+  {"install",           allua_mouse_install},
+  {"is_installed",           allua_mouse_is_installed},
   {"get",           al_lua_get_mouse},
   {0,0}
 };
