@@ -18,6 +18,11 @@ function get () end
 -- On success x, y. Otherwise nil.
 function get_cursor_position () end
 
+-- Function: get_num_axes
+-- Returns:
+-- Number of movement axes on the mouse
+function get_num_axes () end
+
 -- List: Events
 -- EVENT_AXES - one or more mouse axis values changed. Fields: x, y, z, dx, dy, dz.
 -- EVENT_BUTTON_DOWN - a mouse button was pressed. Fields: x, y, z, button.

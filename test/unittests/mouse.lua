@@ -19,3 +19,8 @@ function Test_mouse:test02_get_cursor_position()
 		assertEquals("number", type(y))
 	end
 end
+
+function Test_mouse:test03_get_stuff()
+	axes = allegro5.mouse.get_num_axes ()
+	assertEquals("number", type(axes))
+end

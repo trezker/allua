@@ -49,7 +49,7 @@ static int allua_mouse_is_installed(lua_State *L)
 	return 1;
 }
 
-static int al_lua_get_mouse(lua_State *L)
+static int allua_mouse_get(lua_State *L)
 {
 	pushMouse(L, al_get_mouse());
 	return 1;
@@ -69,11 +69,18 @@ static int allua_mouse_get_cursor_position(lua_State *L)
 	return 1;
 }
 
+static int allua_mouse_get_num_axes(lua_State *L)
+{
+	lua_pushinteger(L, al_get_mouse_num_axes());
+	return 1;
+}
+
 static const luaL_reg Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"is_installed",           allua_mouse_is_installed},
-  {"get",           al_lua_get_mouse},
+  {"get",           allua_mouse_get},
   {"get_cursor_position",           allua_mouse_get_cursor_position},
+  {"get_num_axes",           allua_mouse_get_num_axes},
   {0,0}
 };
 
