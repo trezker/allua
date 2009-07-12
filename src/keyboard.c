@@ -36,6 +36,13 @@ static AL_keyboard *pushKeyboard (lua_State *L, AL_keyboard im)
 
 /* Constructor and methods
  * */
+
+static int allua_keyboard_install(lua_State *L)
+{
+	lua_pushboolean(L, al_install_keyboard());
+	return 1;
+}
+
 static int al_lua_get_keyboard(lua_State *L)
 {
 	pushKeyboard(L, al_get_keyboard());
@@ -67,6 +74,7 @@ static int al_lua_keycode_from_name(lua_State *L)
 }
 
 static const luaL_reg Keyboard_methods[] = {
+  {"install",           allua_keyboard_install},
   {"get",           al_lua_get_keyboard},
   {"keycode_to_name",           al_lua_keycode_to_name},
   {"keycode_from_name",           al_lua_keycode_from_name},

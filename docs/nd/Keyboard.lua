@@ -1,5 +1,10 @@
 -- Class: keyboard
 
+-- Function: install
+-- Returns:
+-- true if successful. If a driver was already installed, nothing happens and true is returned.
+function install () end
+
 -- Function: get
 -- Returns:
 -- Keyboard
