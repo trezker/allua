@@ -7,6 +7,7 @@ dofile("unittests/bitmap.lua")
 dofile("unittests/color.lua")
 dofile("unittests/event_queue.lua")
 dofile("unittests/font.lua")
+dofile("unittests/keyboard.lua")
 
 assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
