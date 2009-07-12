@@ -22,5 +22,7 @@ end
 
 function Test_mouse:test03_get_stuff()
 	axes = allegro5.mouse.get_num_axes ()
+	buttons = allegro5.mouse.get_num_buttons ()
 	assertEquals("number", type(axes))
+	assertEquals("number", type(buttons))
 end

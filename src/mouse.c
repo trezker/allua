@@ -75,12 +75,19 @@ static int allua_mouse_get_num_axes(lua_State *L)
 	return 1;
 }
 
+static int allua_mouse_get_num_buttons(lua_State *L)
+{
+	lua_pushinteger(L, al_get_mouse_num_buttons());
+	return 1;
+}
+
 static const luaL_reg Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"is_installed",           allua_mouse_is_installed},
   {"get",           allua_mouse_get},
   {"get_cursor_position",           allua_mouse_get_cursor_position},
   {"get_num_axes",           allua_mouse_get_num_axes},
+  {"get_num_buttons",           allua_mouse_get_num_buttons},
   {0,0}
 };
 
