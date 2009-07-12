@@ -112,6 +112,14 @@ static int allua_mouse_set_w(lua_State *L)
 	return 1;
 }
 
+static int allua_mouse_set_xy(lua_State *L)
+{
+	int x = luaL_checkint(L, 1);
+	int y = luaL_checkint(L, 2);
+	lua_pushboolean(L, al_set_mouse_xy(x, y));
+	return 1;
+}
+
 static const luaL_reg Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"is_installed",           allua_mouse_is_installed},
@@ -123,6 +131,8 @@ static const luaL_reg Mouse_methods[] = {
   {"set_axis",           allua_mouse_set_axis},
   {"set_range",           allua_mouse_set_range},
   {"set_w",           allua_mouse_set_w},
+  {"set_z",           allua_mouse_set_w},
+  {"set_xy",           allua_mouse_set_xy},
   {0,0}
 };
 
