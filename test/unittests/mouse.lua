@@ -26,3 +26,8 @@ function Test_mouse:test03_get_stuff()
 	assertEquals("number", type(axes))
 	assertEquals("number", type(buttons))
 end
+
+function Test_mouse:test04_hide_cursor()
+	b = allegro5.mouse.hide_cursor ()
+	assertEquals("boolean", type(b))
+end

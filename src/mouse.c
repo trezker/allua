@@ -81,6 +81,12 @@ static int allua_mouse_get_num_buttons(lua_State *L)
 	return 1;
 }
 
+static int allua_mouse_hide_cursor(lua_State *L)
+{
+	lua_pushboolean(L, al_hide_mouse_cursor());
+	return 1;
+}
+
 static const luaL_reg Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"is_installed",           allua_mouse_is_installed},
@@ -88,6 +94,7 @@ static const luaL_reg Mouse_methods[] = {
   {"get_cursor_position",           allua_mouse_get_cursor_position},
   {"get_num_axes",           allua_mouse_get_num_axes},
   {"get_num_buttons",           allua_mouse_get_num_buttons},
+  {"hide_cursor",           allua_mouse_hide_cursor},
   {0,0}
 };
 
