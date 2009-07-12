@@ -36,3 +36,8 @@ function Test_mouse:test05_set_axis()
 	b = allegro5.mouse.set_axis (0, 1)
 	assertEquals("boolean", type(b))
 end
+
+function Test_mouse:test06_set_range()
+	b = allegro5.mouse.set_range (0, 1, 2, 3)
+	assertEquals("boolean", type(b))
+end
