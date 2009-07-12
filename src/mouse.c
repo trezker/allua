@@ -55,10 +55,25 @@ static int al_lua_get_mouse(lua_State *L)
 	return 1;
 }
 
+static int allua_mouse_get_cursor_position(lua_State *L)
+{
+	int x;
+	int y;
+	if(al_get_cursor_position(&x, &y))
+	{
+		lua_pushinteger(L, x);
+		lua_pushinteger(L, y);
+		return 2;
+	}
+	lua_pushnil(L);
+	return 1;
+}
+
 static const luaL_reg Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"is_installed",           allua_mouse_is_installed},
   {"get",           al_lua_get_mouse},
+  {"get_cursor_position",           allua_mouse_get_cursor_position},
   {0,0}
 };
 

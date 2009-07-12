@@ -13,6 +13,11 @@ function is_installed () end
 -- Handle to the Mouse
 function get () end
 
+-- Function: get_cursor_position
+-- Returns:
+-- On success x, y. Otherwise nil.
+function get_cursor_position () end
+
 -- List: Events
 -- EVENT_AXES - one or more mouse axis values changed. Fields: x, y, z, dx, dy, dz.
 -- EVENT_BUTTON_DOWN - a mouse button was pressed. Fields: x, y, z, button.

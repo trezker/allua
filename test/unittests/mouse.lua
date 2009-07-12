@@ -11,3 +11,11 @@ function Test_mouse:test01_install()
 	assertEquals(b, installed)
 	assertEquals("keyboard", tostring(keyboard):sub(1, 8))
 end
+
+function Test_mouse:test02_get_cursor_position()
+	x, y = allegro5.mouse.get_cursor_position ()
+	if x then
+		assertEquals("number", type(x))
+		assertEquals("number", type(y))
+	end
+end
