@@ -95,6 +95,38 @@ static int al_lua_draw_filled_ellipse(lua_State *L)
 	return 0;
 }
 
+static void al_lua_draw_rounded_rectangle_common(lua_State *L, bool filled)
+{
+	float x1 = luaL_checknumber(L, 1);
+	float y1 = luaL_checknumber(L, 2);
+	float x2 = luaL_checknumber(L, 3);
+	float y2 = luaL_checknumber(L, 4);
+	float rx = luaL_checknumber(L, 5);
+	float ry = luaL_checknumber(L, 6);
+	AL_color color = al_lua_check_color(L, 7);
+
+	if(!filled)
+	{
+		float thickness = luaL_checknumber(L, 8);
+		al_draw_rounded_rectangle(x1, y1, x2, y2, rx, ry, color, thickness);
+	}
+	else
+	{
+		al_draw_filled_rounded_rectangle(x1, y1, x2, y2, rx, ry, color);
+	}
+}
+
+static int al_lua_draw_rounded_rectangle(lua_State *L)
+{
+	al_lua_draw_rounded_rectangle_common(L, false);
+	return 0;
+}
+static int al_lua_draw_filled_rounded_rectangle(lua_State *L)
+{
+	al_lua_draw_rounded_rectangle_common(L, true);
+	return 0;
+}
+
 static void al_lua_draw_circle_common(lua_State *L, bool filled)
 {
 	float x1 = luaL_checknumber(L, 1);
@@ -143,6 +175,8 @@ static const luaL_reg Primitives_methods[] = {
   {"draw_filled_triangle",           al_lua_draw_filled_triangle},
   {"draw_rectangle",           al_lua_draw_rectangle},
   {"draw_filled_rectangle",           al_lua_draw_filled_rectangle},
+  {"draw_rounded_rectangle",           al_lua_draw_rounded_rectangle},
+  {"draw_filled_rounded_rectangle",           al_lua_draw_filled_rounded_rectangle},
   {"draw_ellipse",           al_lua_draw_ellipse},
   {"draw_filled_ellipse",           al_lua_draw_filled_ellipse},
   {"draw_circle",           al_lua_draw_circle},

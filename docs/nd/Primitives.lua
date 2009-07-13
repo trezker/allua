@@ -20,6 +20,14 @@ function draw_rectangle (x1, y1, x2, y2, color, thickness) end
 -- Parameters:
 function draw_filled_rectangle (x1, y1, x2, y2, color) end
 
+-- Function: draw_rounded_rectangle
+-- Parameters:
+function draw_rounded_rectangle (x1, y1, x2, y2, rx, ry, color, thickness) end
+
+-- Function: draw_filled_rounded_rectangle
+-- Parameters:
+function draw_filled_rounded_rectangle (x1, y1, x2, y2, rx, ry, color) end
+
 -- Function: draw_ellipse
 -- Parameters:
 function draw_ellipse (x1, y1, x2, y2, color, thickness) end

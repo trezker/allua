@@ -9,4 +9,6 @@ function Test_primitives:test01_functions()
 	allegro5.primitives.draw_filled_triangle (1, 2, 3, 4, 5, 6, color)
 	allegro5.primitives.draw_rectangle (1, 2, 3, 4, color, 1)
 	allegro5.primitives.draw_filled_rectangle (1, 2, 3, 4, color)
+	allegro5.primitives.draw_rounded_rectangle (1, 2, 11, 22, 3, 4, color, 1)
+	allegro5.primitives.draw_filled_rounded_rectangle (1, 2, 11, 22, 3, 4, color)
 end
