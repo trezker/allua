@@ -12,7 +12,7 @@
   return *pi;
 }
 */
-AL_color al_lua_check_color (lua_State *L, int index)
+AL_color allua_check_color (lua_State *L, int index)
 {
   AL_color *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
@@ -95,7 +95,7 @@ static int allua_map_rgba_f(lua_State *L)
 
 static int allua_unmap_rgb(lua_State *L)
 {
-	AL_color c = al_lua_check_color(L, 1);
+	AL_color c = allua_check_color(L, 1);
 	unsigned char r;
 	unsigned char g;
 	unsigned char b;
@@ -109,7 +109,7 @@ static int allua_unmap_rgb(lua_State *L)
 
 static int allua_unmap_rgb_f(lua_State *L)
 {
-	AL_color c = al_lua_check_color(L, 1);
+	AL_color c = allua_check_color(L, 1);
 	float r;
 	float g;
 	float b;
@@ -123,7 +123,7 @@ static int allua_unmap_rgb_f(lua_State *L)
 
 static int allua_unmap_rgba(lua_State *L)
 {
-	AL_color c = al_lua_check_color(L, 1);
+	AL_color c = allua_check_color(L, 1);
 	unsigned char r;
 	unsigned char g;
 	unsigned char b;
@@ -139,7 +139,7 @@ static int allua_unmap_rgba(lua_State *L)
 
 static int allua_unmap_rgba_f(lua_State *L)
 {
-	AL_color c = al_lua_check_color(L, 1);
+	AL_color c = allua_check_color(L, 1);
 	float r;
 	float g;
 	float b;
@@ -155,7 +155,7 @@ static int allua_unmap_rgba_f(lua_State *L)
 
 static int allua_put_pixel(lua_State *L)
 {
-	AL_color color = al_lua_check_color(L, 1);
+	AL_color color = allua_check_color(L, 1);
 	int x = luaL_checkint(L, 2);
 	int y = luaL_checkint(L, 3);
 	al_put_pixel(x, y, color);
@@ -164,7 +164,7 @@ static int allua_put_pixel(lua_State *L)
 
 static int allua_draw_pixel(lua_State *L)
 {
-	AL_color color = al_lua_check_color(L, 1);
+	AL_color color = allua_check_color(L, 1);
 	int x = luaL_checkint(L, 2);
 	int y = luaL_checkint(L, 3);
 	al_draw_pixel(x, y, color);
@@ -200,7 +200,7 @@ static const luaL_reg Color_meta[] = {
 
 /* Register
  * */
-int al_lua_register_color (lua_State *L)
+int allua_register_color (lua_State *L)
 {
   lua_newtable(L);
   luaL_register(L, NULL, Color_methods);  /* create methods table,

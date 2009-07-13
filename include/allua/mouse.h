@@ -1,5 +1,5 @@
-#ifndef AL_LUA_MOUSE_H
-#define AL_LUA_MOUSE_H
+#ifndef allua_MOUSE_H
+#define allua_MOUSE_H
 
 #include <lua.h>
 #include <lualib.h>
@@ -8,15 +8,15 @@
 
 typedef ALLEGRO_MOUSE* AL_mouse;
 
-/* Function: al_lua_register_mouse
+/* Function: allua_register_mouse
  * Registers Mouse functionality to the lua state.
  * */
-int al_lua_register_mouse (lua_State* L);
+int allua_register_mouse (lua_State* L);
 
-/* Function: al_lua_check_mouse
+/* Function: allua_check_mouse
  * Returns:
  * Pointer to Mouse instance.
  * */
-AL_mouse al_lua_check_mouse (lua_State *L, int index);
+AL_mouse allua_check_mouse (lua_State *L, int index);
 
 #endif

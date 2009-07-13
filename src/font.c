@@ -14,7 +14,7 @@ static AL_font toFont (lua_State *L, int index)
   return *pi;
 }
 
-AL_font al_lua_check_font (lua_State *L, int index)
+AL_font allua_check_font (lua_State *L, int index)
 {
   AL_font *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
@@ -91,7 +91,7 @@ static int Font_load_bitmap (lua_State *L)
 
 static int Font_draw_text (lua_State *L)
 {
-  AL_font font = al_lua_check_font(L, 1);
+  AL_font font = allua_check_font(L, 1);
   float x = luaL_checknumber(L, 2);
   float y = luaL_checknumber(L, 3);
   int flags = luaL_checkinteger(L, 4);
@@ -103,7 +103,7 @@ static int Font_draw_text (lua_State *L)
 
 static int Font_draw_justified_text (lua_State *L)
 {
-  AL_font font = al_lua_check_font(L, 1);
+  AL_font font = allua_check_font(L, 1);
   float x1 = luaL_checknumber(L, 2);
   float x2 = luaL_checknumber(L, 3);
   float y = luaL_checknumber(L, 4);
@@ -117,7 +117,7 @@ static int Font_draw_justified_text (lua_State *L)
 
 static int Font_get_text_dimensions (lua_State *L)
 {
-	AL_font font = al_lua_check_font(L, 1);
+	AL_font font = allua_check_font(L, 1);
 	const char* text = luaL_checkstring(L, 2);
 
 	int bbx;
@@ -139,14 +139,14 @@ static int Font_get_text_dimensions (lua_State *L)
 
 static int Font_get_line_height (lua_State *L)
 {
-	AL_font font = al_lua_check_font(L, 1);
+	AL_font font = allua_check_font(L, 1);
 	lua_pushinteger(L, al_get_font_line_height(font));
 	return 1;
 }
 
 static int Font_get_text_width (lua_State *L)
 {
-	AL_font font = al_lua_check_font(L, 1);
+	AL_font font = allua_check_font(L, 1);
 	const char* text = luaL_checkstring(L, 2);
 	lua_pushinteger(L, al_get_text_width(font, text));
 	return 1;
@@ -205,7 +205,7 @@ void Font_set_attributes(lua_State *L)
 
 /* Register
  * */
-int al_lua_register_font (lua_State *L)
+int allua_register_font (lua_State *L)
 {
   lua_newtable (L);
   luaL_register(L, NULL, Font_methods);  /* create methods table,

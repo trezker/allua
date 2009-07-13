@@ -1,5 +1,5 @@
-#ifndef AL_LUA_DISPLAY_H
-#define AL_LUA_DISPLAY_H
+#ifndef allua_DISPLAY_H
+#define allua_DISPLAY_H
 
 #include <lua.h>
 #include <lualib.h>
@@ -8,15 +8,15 @@
 
 typedef ALLEGRO_DISPLAY* AL_display;
 
-/* Function: al_lua_register_display
+/* Function: allua_register_display
  * Registers display functionality to the lua state.
  * */
-int al_lua_register_display (lua_State* L);
+int allua_register_display (lua_State* L);
 
-/* Function: al_lua_check_display
+/* Function: allua_check_display
  * Returns:
  * Pointer to display instance.
  * */
-AL_display al_lua_check_display (lua_State *L, int index);
+AL_display allua_check_display (lua_State *L, int index);
 
 #endif

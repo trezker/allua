@@ -14,7 +14,7 @@
   return *pi;
 }
 */
-AL_mouse al_lua_check_mouse (lua_State *L, int index)
+AL_mouse allua_check_mouse (lua_State *L, int index)
 {
   AL_mouse *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
@@ -165,7 +165,7 @@ static const luaL_reg Mouse_meta[] = {
 
 /* Event callbacks
  * */
-void al_lua_mouse_event_callback(lua_State *L, ALLEGRO_EVENT *event)
+void allua_mouse_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
 	Set_literal("x", event->mouse.x, -3);
 	Set_literal("y", event->mouse.y, -3);
@@ -197,13 +197,13 @@ void Mouse_set_attributes(lua_State *L)
 
 /* Register
  * */
-int al_lua_register_mouse (lua_State *L)
+int allua_register_mouse (lua_State *L)
 {
-	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_AXES, al_lua_mouse_event_callback);
-	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN, al_lua_mouse_event_callback);
-	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_BUTTON_UP, al_lua_mouse_event_callback);
-	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY, al_lua_mouse_event_callback);
-	al_lua_set_event_callback(ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY, al_lua_mouse_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_MOUSE_AXES, allua_mouse_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN, allua_mouse_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_MOUSE_BUTTON_UP, allua_mouse_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY, allua_mouse_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY, allua_mouse_event_callback);
 
   lua_newtable(L);
   luaL_register(L, NULL, Mouse_methods);  /* create methods table,

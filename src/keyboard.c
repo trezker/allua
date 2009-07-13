@@ -14,7 +14,7 @@
   return *pi;
 }
 */
-AL_keyboard al_lua_check_keyboard (lua_State *L, int index)
+AL_keyboard allua_check_keyboard (lua_State *L, int index)
 {
   AL_keyboard *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
@@ -62,20 +62,20 @@ static int allua_keyboard_set_leds(lua_State *L)
 	return 1;
 }
 
-static int al_lua_get_keyboard(lua_State *L)
+static int allua_get_keyboard(lua_State *L)
 {
 	pushKeyboard(L, al_get_keyboard());
 	return 1;
 }
 
-static int al_lua_keycode_to_name(lua_State *L)
+static int allua_keycode_to_name(lua_State *L)
 {
 	int keycode = luaL_checkint(L, 1);
 	lua_pushstring(L, al_keycode_to_name(keycode));
 	return 1;
 }
 
-static int al_lua_keycode_from_name(lua_State *L)
+static int allua_keycode_from_name(lua_State *L)
 {
 	const char *keyname = luaL_checkstring(L, 1);
 
@@ -97,9 +97,9 @@ static const luaL_reg Keyboard_methods[] = {
   {"uninstall",           allua_keyboard_uninstall},
   {"is_installed",           allua_keyboard_is_installed},
   {"set_leds",           allua_keyboard_set_leds},
-  {"get",           al_lua_get_keyboard},
-  {"keycode_to_name",           al_lua_keycode_to_name},
-  {"keycode_from_name",           al_lua_keycode_from_name},
+  {"get",           allua_get_keyboard},
+  {"keycode_to_name",           allua_keycode_to_name},
+  {"keycode_from_name",           allua_keycode_from_name},
   {0,0}
 };
 
@@ -118,7 +118,7 @@ static const luaL_reg Keyboard_meta[] = {
 
 /* Event callbacks
  * */
-void al_lua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
+void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
 	Set_literal("keycode", event->keyboard.keycode, -3);
 	if(event->type != ALLEGRO_EVENT_KEY_UP)
@@ -263,11 +263,11 @@ void Keyboard_set_attributes(lua_State *L)
 
 /* Register
  * */
-int al_lua_register_keyboard (lua_State *L)
+int allua_register_keyboard (lua_State *L)
 {
-	al_lua_set_event_callback(ALLEGRO_EVENT_KEY_DOWN, al_lua_keyboard_event_callback);
-	al_lua_set_event_callback(ALLEGRO_EVENT_KEY_REPEAT, al_lua_keyboard_event_callback);
-	al_lua_set_event_callback(ALLEGRO_EVENT_KEY_UP, al_lua_keyboard_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_KEY_DOWN, allua_keyboard_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_KEY_REPEAT, allua_keyboard_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_KEY_UP, allua_keyboard_event_callback);
 
   lua_newtable(L);
   luaL_register(L, NULL, Keyboard_methods);  /* create methods table,

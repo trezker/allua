@@ -13,7 +13,7 @@ static AL_event_queue toEvent_queue (lua_State *L, int index)
   return *pi;
 }
 
-AL_event_queue al_lua_check_event_queue (lua_State *L, int index)
+AL_event_queue allua_check_event_queue (lua_State *L, int index)
 {
   AL_event_queue *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
@@ -41,14 +41,14 @@ static int Event_queue_create (lua_State *L)
 {
   pushEvent_queue(L, al_create_event_queue());
 
-/*  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+/*  AL_event_queue event_queue = allua_check_event_queue(L, 1);
   printf("hello Event_queue (%p)\n", event_queue);
 */  return 1;
 }
 
 static int Event_queue_register_event_source (lua_State *L)
 {
-  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+  AL_event_queue event_queue = allua_check_event_queue(L, 1);
 
   ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
   ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
@@ -65,7 +65,7 @@ static int Event_queue_register_event_source (lua_State *L)
 
 static int Event_queue_unregister_event_source (lua_State *L)
 {
-  AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+  AL_event_queue event_queue = allua_check_event_queue(L, 1);
 
   ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
   ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
@@ -89,7 +89,7 @@ struct Event_callback
 //Event_callback ;
 int num_event_callbacks = 0;
 
-void al_lua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *L, ALLEGRO_EVENT *e))
+void allua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *L, ALLEGRO_EVENT *e))
 {
 	event_callbacks[num_event_callbacks].event = event;
 	event_callbacks[num_event_callbacks].cb = cb;
@@ -123,7 +123,7 @@ static int Event_queue_get_event_common (lua_State *L, bool got_event, ALLEGRO_E
 
 static int Event_queue_get_next_event (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	ALLEGRO_EVENT event;
 	bool got_event = al_get_next_event(event_queue, &event);
 	return Event_queue_get_event_common(L, got_event, &event);
@@ -131,7 +131,7 @@ static int Event_queue_get_next_event (lua_State *L)
 
 static int Event_queue_peek_next_event (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	ALLEGRO_EVENT event;
 	bool got_event = al_peek_next_event(event_queue, &event);
 	return Event_queue_get_event_common(L, got_event, &event);
@@ -139,7 +139,7 @@ static int Event_queue_peek_next_event (lua_State *L)
 
 static int Event_queue_wait_for_event (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	ALLEGRO_EVENT event;
 	al_wait_for_event(event_queue, &event);
 	return Event_queue_get_event_common(L, true, &event);
@@ -147,7 +147,7 @@ static int Event_queue_wait_for_event (lua_State *L)
 
 static int Event_queue_wait_for_event_timed (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	float secs = luaL_checknumber(L, 2);
 	ALLEGRO_EVENT event;
 	bool got_event = al_wait_for_event_timed(event_queue, &event, secs);
@@ -156,21 +156,21 @@ static int Event_queue_wait_for_event_timed (lua_State *L)
 
 static int Event_queue_drop_next_event (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	lua_pushboolean(L, al_drop_next_event(event_queue));
 	return 1;
 }
 
 static int Event_queue_is_empty (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	lua_pushboolean(L, al_event_queue_is_empty(event_queue));
 	return 1;
 }
 
 static int Event_queue_flush (lua_State *L)
 {
-	AL_event_queue event_queue = al_lua_check_event_queue(L, 1);
+	AL_event_queue event_queue = allua_check_event_queue(L, 1);
 	al_flush_event_queue(event_queue);
 	return 0;
 }
@@ -213,7 +213,7 @@ static const luaL_reg Event_queue_meta[] = {
 
 /* Register
  * */
-int al_lua_register_event_queue (lua_State *L)
+int allua_register_event_queue (lua_State *L)
 {
   lua_newtable(L);
   luaL_register(L, NULL, Event_queue_methods);  /* create methods table,

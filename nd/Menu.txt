@@ -36,8 +36,8 @@ Format: 1.35
 
 Group: C API  {
 
-   File: al_lua_register  (/home/anders/allegro/allua-git/include/allua/al_lua.h)
-   File: al_lua_register_primitives  (/home/anders/allegro/allua-git/include/allua/primitives.h)
+   File: allua_register  (/home/anders/allegro/allua-git/include/allua/al_lua.h)
+   File: allua_register_primitives  (/home/anders/allegro/allua-git/include/allua/primitives.h)
    File: bitmap.h  (/home/anders/allegro/allua-git/include/allua/bitmap.h)
    File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
    File: display.h  (/home/anders/allegro/allua-git/include/allua/display.h)

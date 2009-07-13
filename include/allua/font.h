@@ -1,5 +1,5 @@
-#ifndef AL_LUA_FONT_H
-#define AL_LUA_FONT_H
+#ifndef allua_FONT_H
+#define allua_FONT_H
 
 #include <lua.h>
 #include <lualib.h>
@@ -9,15 +9,15 @@
 
 typedef ALLEGRO_FONT* AL_font;
 
-/* Function: al_lua_register_font
+/* Function: allua_register_font
  * Registers Font functionality to the lua state.
  * */
-int al_lua_register_font (lua_State* L);
+int allua_register_font (lua_State* L);
 
-/* Function: al_lua_check_font
+/* Function: allua_check_font
  * Returns:
  * Pointer to Font instance.
  * */
-AL_font al_lua_check_font (lua_State *L, int index);
+AL_font allua_check_font (lua_State *L, int index);
 
 #endif

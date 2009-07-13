@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
 	lua_State* state = lua_open();
 	luaL_openlibs(state);
-	al_lua_register(state);
+	allua_register(state);
 	if(argc<2)
 	{
 		printf("Please gimme a lua script to run!\n");
