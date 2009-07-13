@@ -1,4 +1,4 @@
-#include "allua/al_lua.h"
+#include "allua/allua.h"
 #include "allua/display.h"
 #include "allua/event_queue.h"
 #include "allua/color.h"

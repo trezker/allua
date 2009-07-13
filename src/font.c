@@ -1,5 +1,5 @@
 #include "allua/font.h"
-#include "allua/al_lua.h"
+#include "allua/allua.h"
 #include <stdio.h>
 #include <allegro5/a5_iio.h>
 
