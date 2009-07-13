@@ -1,10 +1,16 @@
 -- Title: bitmap example
 -- Demonstrates usage of bitmap functions
 
+require('liballua')
+
 allegro5.init()
+allegro5.keyboard.install()
+allegro5.mouse.install()
+allegro5.bitmap.init_iio_addon ()
+
 allegro5.display.set_new_flags(allegro5.display.WINDOWED)
 display = allegro5.display.create(640, 480)
-event_queue = allegro5.event_queue.new()
+event_queue = allegro5.event_queue.create()
 
 event_queue:register_event_source(display)
 keyboard = allegro5.keyboard.get()
@@ -52,6 +58,6 @@ while not quit do
 	bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
 
 	allegro5.display.flip()
-	allegro5.display.clear(allegro5.color.map_rgba(0, 0, 0, 0))
+	allegro5.bitmap.clear_to_color (allegro5.color.map_rgba(0, 0, 0, 0))
 	allegro5.rest(0.001)
 end

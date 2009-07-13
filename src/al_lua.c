@@ -25,10 +25,6 @@ static int al_lua_init(lua_State *L)
 {
 	printf("Initialized allegro\n");
 	al_init();
-	al_install_keyboard();
-	al_install_mouse();
-	al_init_iio_addon();
-	al_init_font_addon();
 	return 0;
 }
 

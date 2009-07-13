@@ -1,9 +1,15 @@
 -- Title: keyboard example
 -- Demonstrates usage of keyboard functions
+require('liballua')
 
 allegro5.init()
+allegro5.keyboard.install()
+allegro5.mouse.install()
+allegro5.bitmap.init_iio_addon ()
+allegro5.font.init_addon()
+
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
-event_queue = allegro5.event_queue.new()
+event_queue = allegro5.event_queue.create()
 
 event_queue:register_event_source(display)
 keyboard = allegro5.keyboard.get()
@@ -44,7 +50,7 @@ while not quit do
 	color = allegro5.color.map_rgba(r, g, b, 0)
 	x = math.random(0, 640)
 	y = math.random(0, 480)
-	allegro5.color.put_pixel(x, y, color)
+	color:put_pixel(x, y)
 
 	pixels = pixels + 1
 	

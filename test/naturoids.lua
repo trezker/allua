@@ -4,10 +4,16 @@
 -- Leafs whirl around, threatening to destabilise your flight.
 
 leaf_max_speed = 20
+require('liballua')
 
 allegro5.init()
+allegro5.keyboard.install()
+allegro5.mouse.install()
+allegro5.bitmap.init_iio_addon ()
+allegro5.font.init_addon()
+
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
-event_queue = allegro5.event_queue.new()
+event_queue = allegro5.event_queue.create()
 
 event_queue:register_event_source(display)
 keyboard = allegro5.keyboard.get()
@@ -284,16 +290,16 @@ while not quit do
 	end
 
 	text = "Score: " .. tostring(player.score)
-	font:textout(10, 10, text, -1)
+	font:draw_text(10, 10, 0, text)
 	text = "Lives: " .. tostring(player.lives)
-	font:textout(10, 20, text, -1)
+	font:draw_text(10, 20, 0, text)
 
 	if game_over then
-		font:textout(200, 100, "GAME OVER", -1)
-		font:textout(200, 120, "Press enter to play again", -1)
+		font:draw_text(200, 100, 0, "GAME OVER")
+		font:draw_text(200, 120, 0, "Press enter to play again")
 	end
 
 	allegro5.display.flip()
-	allegro5.display.clear(allegro5.color.map_rgba(0, 0, 0, 0))
+	allegro5.bitmap.clear_to_color(allegro5.color.map_rgba(0, 0, 0, 0))
 	allegro5.rest(0.001)
 end

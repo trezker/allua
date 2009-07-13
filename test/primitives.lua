@@ -1,10 +1,16 @@
 -- Title: primitives example
 -- Demonstrates usage of primitives functions
+require('liballua')
 
 allegro5.init()
+allegro5.keyboard.install()
+allegro5.mouse.install()
+allegro5.bitmap.init_iio_addon ()
+allegro5.font.init_addon()
+
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
 keyboard = allegro5.keyboard.get()
-event_queue = allegro5.event_queue.new()
+event_queue = allegro5.event_queue.create()
 event_queue:register_event_source(display)
 event_queue:register_event_source(keyboard)
 
@@ -90,7 +96,7 @@ while not quit do
 	pixels = pixels + 1
 
 	allegro5.display.flip()
-	allegro5.display.clear(black)
+	allegro5.bitmap.clear_to_color(black)
 end
 
 print("Frames per second ", pixels / allegro5.current_time())

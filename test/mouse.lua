@@ -1,9 +1,15 @@
 -- Title: mouse example
 -- Demonstrates usage of mouse functions
+require('liballua')
 
 allegro5.init()
+allegro5.keyboard.install()
+allegro5.mouse.install()
+allegro5.bitmap.init_iio_addon ()
+allegro5.font.init_addon()
+
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
-event_queue = allegro5.event_queue.new()
+event_queue = allegro5.event_queue.create()
 
 event_queue:register_event_source(display)
 keyboard = allegro5.keyboard.get()
@@ -41,16 +47,16 @@ while not quit do
 
 	bitmap:draw(mouse_x, mouse_y, 0)
 
-	font:textout(10, 10, "mouse X:"..mouse_x, -1)
-	font:textout(10, 30, "mouse Y:"..mouse_y, -1)
-	font:textout(10, 50, "mouse Z:"..mouse_z, -1)
+	font:draw_text(10, 10, 0, "mouse X:"..mouse_x)
+	font:draw_text(10, 30, 0, "mouse Y:"..mouse_y)
+	font:draw_text(10, 50, 0, "mouse Z:"..mouse_z)
 	
 	y = 70
     for i,v in ipairs(mouse_b) do
-     	font:textout(10, y, "mouse button " .. tostring(i) .. ": " .. tostring(v), -1)
+     	font:draw_text(10, y, 0, "mouse button " .. tostring(i) .. ": " .. tostring(v))
      	y = y + 20
     end
 
 	allegro5.display.flip()
-	allegro5.display.clear(allegro5.color.map_rgba(0, 0, 0, 0))
+	allegro5.bitmap.clear_to_color(allegro5.color.map_rgba(0, 0, 0, 0))
 end

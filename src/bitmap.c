@@ -45,6 +45,13 @@ struct AL_bitmap_s *pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed)
 
 /* Constructor and methods
  * */
+
+static int Bitmap_init_iio_addon (lua_State *L)
+{
+	lua_pushboolean(L, al_init_iio_addon());
+	return 1;
+}
+
 static int Bitmap_clone (lua_State *L)
 {
   AL_bitmap bitmap = al_lua_check_bitmap(L, 1);
@@ -297,6 +304,7 @@ static int Bitmap_convert_mask_to_alpha(lua_State *L)
 }
 
 static const luaL_reg Bitmap_methods[] = {
+  {"init_iio_addon",           Bitmap_init_iio_addon},
   {"clone",           Bitmap_clone},
   {"create",           Bitmap_create},
   {"create_sub",           Bitmap_create_sub},
