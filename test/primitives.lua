@@ -96,7 +96,7 @@ while not quit do
 	pixels = pixels + 1
 
 	allegro5.display.flip()
-	allegro5.bitmap.clear_to_color(black)
+	allegro5.bitmap.clear_to_colorgit (black)
 end
 
 print("Frames per second ", pixels / allegro5.current_time())
