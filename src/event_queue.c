@@ -2,14 +2,14 @@
 #include "allua/display.h"
 #include <stdio.h>
 
-#define EVENT_QUEUE "event_queue"
+#define EVENT_QUEUE_STRING "event_queue"
 
 /* Common handlers
  * */
 static ALLUA_event_queue allua_toEvent_queue (lua_State *L, int index)
 {
   ALLUA_event_queue *pi = (ALLUA_event_queue*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, EVENT_QUEUE);
+  if (pi == NULL) luaL_typerror(L, index, EVENT_QUEUE_STRING);
   return *pi;
 }
 
@@ -17,9 +17,9 @@ ALLUA_event_queue allua_check_event_queue (lua_State *L, int index)
 {
   ALLUA_event_queue *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (ALLUA_event_queue*)luaL_checkudata(L, index, EVENT_QUEUE);
+  pi = (ALLUA_event_queue*)luaL_checkudata(L, index, EVENT_QUEUE_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, EVENT_QUEUE);
+  	luaL_typerror(L, index, EVENT_QUEUE_STRING);
   im = *pi;
   if (!im)
     luaL_error(L, "null Event_queue");
@@ -30,7 +30,7 @@ static ALLUA_event_queue *allua_pushEvent_queue (lua_State *L, ALLUA_event_queue
 {
   ALLUA_event_queue *pi = (ALLUA_event_queue *)lua_newuserdata(L, sizeof(ALLUA_event_queue));
   *pi = im;
-  luaL_getmetatable(L, EVENT_QUEUE);
+  luaL_getmetatable(L, EVENT_QUEUE_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -218,7 +218,7 @@ int allua_register_event_queue (lua_State *L)
   lua_newtable(L);
   luaL_register(L, NULL, allua_Event_queue_methods);  /* create methods table,
                                                 add it to the globals */
-  luaL_newmetatable(L, EVENT_QUEUE);        /* create metatable for Image,
+  luaL_newmetatable(L, EVENT_QUEUE_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_Event_queue_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -230,7 +230,7 @@ int allua_register_event_queue (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
   
-  lua_setfield(L, -2, EVENT_QUEUE);
+  lua_setfield(L, -2, EVENT_QUEUE_STRING);
   return 0;                           /* return methods on the stack */
 }
 

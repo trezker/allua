@@ -3,7 +3,7 @@
 #include <allegro5/a5_primitives.h>
 #include <stdio.h>
 
-#define PRIMITIVES "primitives"
+#define PRIMITIVES_STRING "primitives"
 
 /* Methods
  * */
@@ -193,6 +193,6 @@ int allua_register_primitives (lua_State *L)
   luaL_register(L, NULL, allua_Primitives_methods);  /* create methods table,
                                                 add it to the globals */
 
-  lua_setfield(L, -2, PRIMITIVES);
+  lua_setfield(L, -2, PRIMITIVES_STRING);
   return 0;                           /* return methods on the stack */
 }

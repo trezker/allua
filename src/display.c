@@ -8,14 +8,14 @@
 #include <allegro5/a5_opengl.h>
 #include <stdio.h>
 
-#define DISPLAY "display"
+#define DISPLAY_STRING "display"
 
 /* Common handlers
  * */
 static ALLUA_display allua_todisplay (lua_State *L, int index)
 {
   ALLUA_display *pi = (ALLUA_display*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, DISPLAY);
+  if (pi == NULL) luaL_typerror(L, index, DISPLAY_STRING);
   return *pi;
 }
 
@@ -23,9 +23,9 @@ ALLUA_display allua_check_display (lua_State *L, int index)
 {
   ALLUA_display *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (ALLUA_display*)luaL_checkudata(L, index, DISPLAY);
+  pi = (ALLUA_display*)luaL_checkudata(L, index, DISPLAY_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, DISPLAY);
+  	luaL_typerror(L, index, DISPLAY_STRING);
   im = *pi;
   if (!im)
     luaL_error(L, "null display");
@@ -36,7 +36,7 @@ static ALLUA_display *pushdisplay (lua_State *L, ALLUA_display im)
 {
   ALLUA_display *pi = (ALLUA_display *)lua_newuserdata(L, sizeof(ALLUA_display));
   *pi = im;
-  luaL_getmetatable(L, DISPLAY);
+  luaL_getmetatable(L, DISPLAY_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -62,7 +62,7 @@ static ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im)
 		lua_pushlightuserdata(L, (void *)im); //Key
 		pi = (ALLUA_display *)lua_newuserdata(L, sizeof(ALLUA_display)); //value
 		*pi = im;
-		luaL_getmetatable(L, DISPLAY);
+		luaL_getmetatable(L, DISPLAY_STRING);
 		lua_setmetatable(L, -2);
 		lua_settable(L, -3);
 
@@ -537,7 +537,7 @@ int allua_register_display (lua_State *L)
 
 	allua_display_set_attributes(L);
 
-  luaL_newmetatable(L, DISPLAY);        /* create metatable for Image,
+  luaL_newmetatable(L, DISPLAY_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_display_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -549,7 +549,7 @@ int allua_register_display (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  lua_setfield(L, -2, DISPLAY);
+  lua_setfield(L, -2, DISPLAY_STRING);
 
   return 0;                           /* return methods on the stack */
 }

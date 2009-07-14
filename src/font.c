@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <allegro5/a5_iio.h>
 
-#define FONT "font"
+#define FONT_STRING "font"
 
 /* Common handlers
  * */
 static ALLUA_font allua_toFont (lua_State *L, int index)
 {
   ALLUA_font *pi = (ALLUA_font*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, FONT);
+  if (pi == NULL) luaL_typerror(L, index, FONT_STRING);
   return *pi;
 }
 
@@ -18,9 +18,9 @@ ALLUA_font allua_check_font (lua_State *L, int index)
 {
   ALLUA_font *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (ALLUA_font*)luaL_checkudata(L, index, FONT);
+  pi = (ALLUA_font*)luaL_checkudata(L, index, FONT_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, FONT);
+  	luaL_typerror(L, index, FONT_STRING);
   im = *pi;
   if (!im)
     luaL_error(L, "null Font");
@@ -31,7 +31,7 @@ static ALLUA_font *allua_pushFont (lua_State *L, ALLUA_font im)
 {
   ALLUA_font *pi = (ALLUA_font *)lua_newuserdata(L, sizeof(ALLUA_font));
   *pi = im;
-  luaL_getmetatable(L, FONT);
+  luaL_getmetatable(L, FONT_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -213,7 +213,7 @@ int allua_register_font (lua_State *L)
 
 	allua_Font_set_attributes(L);
 
-  luaL_newmetatable(L, FONT);        /* create metatable for Image,
+  luaL_newmetatable(L, FONT_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_Font_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -225,7 +225,7 @@ int allua_register_font (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  lua_setfield(L, -2, FONT);
+  lua_setfield(L, -2, FONT_STRING);
 	
   return 0;                           /* return methods on the stack */
 }

@@ -4,14 +4,14 @@
 #include <stdio.h>
 #include <allegro5/a5_iio.h>
 
-#define BITMAP "bitmap"
+#define BITMAP_STRING "bitmap"
 
 /* Common handlers
  * */
 /*static ALLUA_bitmap toBitmap (lua_State *L, int index)//, int *gc_allowed)
 {
   struct ALLUA_bitmap_s *pi = (struct ALLUA_bitmap_s*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, BITMAP);
+  if (pi == NULL) luaL_typerror(L, index, BITMAP_STRING);
 //  if(gc_allowed)
 //  	*gc_allowed = pi->gc_allowed;
   return pi->bitmap;
@@ -22,9 +22,9 @@ ALLUA_bitmap allua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
   struct ALLUA_bitmap_s *pi;
   ALLUA_bitmap im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (struct ALLUA_bitmap_s*)luaL_checkudata(L, index, BITMAP);
+  pi = (struct ALLUA_bitmap_s*)luaL_checkudata(L, index, BITMAP_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, BITMAP);
+  	luaL_typerror(L, index, BITMAP_STRING);
   im = pi->bitmap;
 //  if(gc_allowed)
 //  	*gc_allowed = pi->gc_allowed;
@@ -38,7 +38,7 @@ struct ALLUA_bitmap_s *allua_pushBitmap (lua_State *L, ALLUA_bitmap im, int gc_a
   struct ALLUA_bitmap_s *pi = (struct ALLUA_bitmap_s *)lua_newuserdata(L, sizeof(struct ALLUA_bitmap_s));
   pi->bitmap = im;
   pi->gc_allowed = gc_allowed;
-  luaL_getmetatable(L, BITMAP);
+  luaL_getmetatable(L, BITMAP_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -390,7 +390,7 @@ int allua_register_bitmap (lua_State *L)
 
 	allua_Bitmap_set_attributes(L);
 
-  luaL_newmetatable(L, BITMAP);        /* create metatable for Image,
+  luaL_newmetatable(L, BITMAP_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_Bitmap_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -402,7 +402,7 @@ int allua_register_bitmap (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  lua_setfield(L, -2, BITMAP);
+  lua_setfield(L, -2, BITMAP_STRING);
 
   return 0;                           /* return methods on the stack */
 }

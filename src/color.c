@@ -1,14 +1,14 @@
 #include "allua/color.h"
 #include <stdio.h>
 
-#define COLOR "color"
+#define COLOR_STRING "color"
 
 /* Common handlers
  * */
 /*static ALLUA_color toColor (lua_State *L, int index)
 {
   ALLUA_color *pi = (ALLUA_color*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, COLOR);
+  if (pi == NULL) luaL_typerror(L, index, COLOR_STRING);
   return *pi;
 }
 */
@@ -16,9 +16,9 @@ ALLUA_color allua_check_color (lua_State *L, int index)
 {
   ALLUA_color *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (ALLUA_color*)luaL_checkudata(L, index, COLOR);
+  pi = (ALLUA_color*)luaL_checkudata(L, index, COLOR_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, COLOR);
+  	luaL_typerror(L, index, COLOR_STRING);
   im = *pi;
   return im;
 }
@@ -27,7 +27,7 @@ ALLUA_color *allua_pushColor (lua_State *L, ALLUA_color im)
 {
   ALLUA_color *pi = (ALLUA_color *)lua_newuserdata(L, sizeof(ALLUA_color));
   *pi = im;
-  luaL_getmetatable(L, COLOR);
+  luaL_getmetatable(L, COLOR_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -206,7 +206,7 @@ int allua_register_color (lua_State *L)
   luaL_register(L, NULL, allua_Color_methods);  /* create methods table,
                                                 add it to the globals */
 
-  luaL_newmetatable(L, COLOR);        /* create metatable for Image,
+  luaL_newmetatable(L, COLOR_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_Color_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -218,6 +218,6 @@ int allua_register_color (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  lua_setfield(L, -2, COLOR);
+  lua_setfield(L, -2, COLOR_STRING);
   return 0;                           /* return methods on the stack */
 }

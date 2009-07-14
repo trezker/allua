@@ -3,14 +3,14 @@
 #include "allua/al_lua.h"
 #include <stdio.h>
 
-#define MOUSE "mouse"
+#define MOUSE_STRING "mouse"
 
 /* Common handlers
  * */
 /*static ALLUA_mouse toMouse (lua_State *L, int index)
 {
   ALLUA_mouse *pi = (ALLUA_mouse*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, MOUSE);
+  if (pi == NULL) luaL_typerror(L, index, MOUSE_STRING);
   return *pi;
 }
 */
@@ -18,9 +18,9 @@ ALLUA_mouse allua_check_mouse (lua_State *L, int index)
 {
   ALLUA_mouse *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (ALLUA_mouse*)luaL_checkudata(L, index, MOUSE);
+  pi = (ALLUA_mouse*)luaL_checkudata(L, index, MOUSE_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, MOUSE);
+  	luaL_typerror(L, index, MOUSE_STRING);
   im = *pi;
   return im;
 }
@@ -29,7 +29,7 @@ static ALLUA_mouse *allua_pushMouse (lua_State *L, ALLUA_mouse im)
 {
   ALLUA_mouse *pi = (ALLUA_mouse *)lua_newuserdata(L, sizeof(ALLUA_mouse));
   *pi = im;
-  luaL_getmetatable(L, MOUSE);
+  luaL_getmetatable(L, MOUSE_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -211,7 +211,7 @@ int allua_register_mouse (lua_State *L)
 
 	allua_Mouse_set_attributes(L);
 
-  luaL_newmetatable(L, MOUSE);        /* create metatable for Image,
+  luaL_newmetatable(L, MOUSE_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_Mouse_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -223,7 +223,7 @@ int allua_register_mouse (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  lua_setfield(L, -2, MOUSE);
+  lua_setfield(L, -2, MOUSE_STRING);
 
   return 0;                           /* return methods on the stack */
 }

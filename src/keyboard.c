@@ -3,14 +3,14 @@
 #include "allua/al_lua.h"
 #include <stdio.h>
 
-#define KEYBOARD "keyboard"
+#define KEYBOARD_STRING "keyboard"
 
 /* Common handlers
  * */
 /*static ALLUA_keyboard toKeyboard (lua_State *L, int index)
 {
   ALLUA_keyboard *pi = (ALLUA_keyboard*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, KEYBOARD);
+  if (pi == NULL) luaL_typerror(L, index, KEYBOARD_STRING);
   return *pi;
 }
 */
@@ -18,9 +18,9 @@ ALLUA_keyboard allua_check_keyboard (lua_State *L, int index)
 {
   ALLUA_keyboard *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (ALLUA_keyboard*)luaL_checkudata(L, index, KEYBOARD);
+  pi = (ALLUA_keyboard*)luaL_checkudata(L, index, KEYBOARD_STRING);
   if (pi == NULL)
-  	luaL_typerror(L, index, KEYBOARD);
+  	luaL_typerror(L, index, KEYBOARD_STRING);
   im = *pi;
   return im;
 }
@@ -29,7 +29,7 @@ static ALLUA_keyboard *allua_pushKeyboard (lua_State *L, ALLUA_keyboard im)
 {
   ALLUA_keyboard *pi = (ALLUA_keyboard *)lua_newuserdata(L, sizeof(ALLUA_keyboard));
   *pi = im;
-  luaL_getmetatable(L, KEYBOARD);
+  luaL_getmetatable(L, KEYBOARD_STRING);
   lua_setmetatable(L, -2);
   return pi;
 }
@@ -275,7 +275,7 @@ int allua_register_keyboard (lua_State *L)
 
 	allua_Keyboard_set_attributes(L);
 
-  luaL_newmetatable(L, KEYBOARD);        /* create metatable for Image,
+  luaL_newmetatable(L, KEYBOARD_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
   luaL_register(L, 0, allua_Keyboard_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
@@ -287,7 +287,7 @@ int allua_register_keyboard (lua_State *L)
                                          metatable.__metatable = methods */
   lua_pop(L, 1);                      /* drop metatable */
 
-  lua_setfield(L, -2, KEYBOARD);
+  lua_setfield(L, -2, KEYBOARD_STRING);
 
   return 0;                           /* return methods on the stack */
 }
