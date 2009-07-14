@@ -25,7 +25,7 @@ AL_mouse allua_check_mouse (lua_State *L, int index)
   return im;
 }
 
-static AL_mouse *pushMouse (lua_State *L, AL_mouse im)
+static AL_mouse *allua_pushMouse (lua_State *L, AL_mouse im)
 {
   AL_mouse *pi = (AL_mouse *)lua_newuserdata(L, sizeof(AL_mouse));
   *pi = im;
@@ -57,7 +57,7 @@ static int allua_mouse_is_installed(lua_State *L)
 
 static int allua_mouse_get(lua_State *L)
 {
-	pushMouse(L, al_get_mouse());
+	allua_pushMouse(L, al_get_mouse());
 	return 1;
 }
 
@@ -132,7 +132,7 @@ static int allua_mouse_set_xy(lua_State *L)
 	return 1;
 }
 
-static const luaL_reg Mouse_methods[] = {
+static const luaL_reg allua_Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"uninstall",           allua_mouse_uninstall},
   {"is_installed",           allua_mouse_is_installed},
@@ -152,14 +152,14 @@ static const luaL_reg Mouse_methods[] = {
 
 /* GC and meta
  * */
-static int Mouse_tostring (lua_State *L)
+static int allua_Mouse_tostring (lua_State *L)
 {
   lua_pushfstring(L, "Mouse: %p", lua_touserdata(L, 1));
   return 1;
 }
 
-static const luaL_reg Mouse_meta[] = {
-  {"__tostring", Mouse_tostring},
+static const luaL_reg allua_Mouse_meta[] = {
+  {"__tostring", allua_Mouse_tostring},
   {0, 0}
 };
 
@@ -186,7 +186,7 @@ void allua_mouse_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 
 /* Other attributes
  * */
-void Mouse_set_attributes(lua_State *L)
+void allua_Mouse_set_attributes(lua_State *L)
 {
 	Set_literal("EVENT_AXES", ALLEGRO_EVENT_MOUSE_AXES, -3);
 	Set_literal("EVENT_DOWN", ALLEGRO_EVENT_MOUSE_BUTTON_DOWN, -3);
@@ -206,14 +206,14 @@ int allua_register_mouse (lua_State *L)
 	allua_set_event_callback(ALLEGRO_EVENT_MOUSE_LEAVE_DISPLAY, allua_mouse_event_callback);
 
   lua_newtable(L);
-  luaL_register(L, NULL, Mouse_methods);  /* create methods table,
+  luaL_register(L, NULL, allua_Mouse_methods);  /* create methods table,
                                                 add it to the globals */
 
-	Mouse_set_attributes(L);
+	allua_Mouse_set_attributes(L);
 
   luaL_newmetatable(L, MOUSE);        /* create metatable for Image,
                                          add it to the Lua registry */
-  luaL_register(L, 0, Mouse_meta);  /* fill metatable */
+  luaL_register(L, 0, allua_Mouse_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -3);               /* dup methods table*/
   lua_rawset(L, -3);                  /* metatable.__index = methods */

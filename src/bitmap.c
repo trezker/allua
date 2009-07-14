@@ -33,7 +33,7 @@ AL_bitmap allua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
   return im;
 }
 
-struct AL_bitmap_s *pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed)
+struct AL_bitmap_s *allua_pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed)
 {
   struct AL_bitmap_s *pi = (struct AL_bitmap_s *)lua_newuserdata(L, sizeof(struct AL_bitmap_s));
   pi->bitmap = im;
@@ -46,30 +46,30 @@ struct AL_bitmap_s *pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed)
 /* Constructor and methods
  * */
 
-static int Bitmap_init_iio_addon (lua_State *L)
+static int allua_Bitmap_init_iio_addon (lua_State *L)
 {
 	lua_pushboolean(L, al_init_iio_addon());
 	return 1;
 }
 
-static int Bitmap_clone (lua_State *L)
+static int allua_Bitmap_clone (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
-  pushBitmap(L, al_clone_bitmap(bitmap), true);
+  allua_pushBitmap(L, al_clone_bitmap(bitmap), true);
   return 1;
 }
 
-static int Bitmap_create (lua_State *L)
+static int allua_Bitmap_create (lua_State *L)
 {
   int w = luaL_checkint(L, 1);
   int h = luaL_checkint(L, 2);
 
-  pushBitmap(L, al_create_bitmap(w, h), true);
+  allua_pushBitmap(L, al_create_bitmap(w, h), true);
 
   return 1;
 }
 
-static int Bitmap_create_sub (lua_State *L)
+static int allua_Bitmap_create_sub (lua_State *L)
 {
   AL_bitmap parent = allua_check_bitmap(L, 1);
   int x = luaL_checkint(L, 2);
@@ -78,61 +78,61 @@ static int Bitmap_create_sub (lua_State *L)
   int h = luaL_checkint(L, 5);
   AL_bitmap child = al_create_sub_bitmap(parent, x, y, w, h);
   if(child)
-    pushBitmap(L, child, true);
+    allua_pushBitmap(L, child, true);
   else
     lua_pushnil(L);
 
   return 1;
 }
 
-static int Bitmap_get_new_flags (lua_State *L)
+static int allua_Bitmap_get_new_flags (lua_State *L)
 {
   lua_pushinteger(L, al_get_new_bitmap_flags());
   return 1;
 }
 
-static int Bitmap_set_new_flags (lua_State *L)
+static int allua_Bitmap_set_new_flags (lua_State *L)
 {
   int flags = luaL_checkint(L, 1);
   al_set_new_bitmap_flags(flags);
   return 0;
 }
 
-static int Bitmap_get_new_format (lua_State *L)
+static int allua_Bitmap_get_new_format (lua_State *L)
 {
   lua_pushinteger(L, al_get_new_bitmap_format());
   return 1;
 }
 
-static int Bitmap_set_new_format (lua_State *L)
+static int allua_Bitmap_set_new_format (lua_State *L)
 {
   int format = luaL_checkint(L, 1);
   al_set_new_bitmap_format(format);
   return 0;
 }
 
-static int Bitmap_load (lua_State *L)
+static int allua_Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
-  pushBitmap(L, al_load_bitmap(filename), true);
+  allua_pushBitmap(L, al_load_bitmap(filename), true);
   return 1;
 }
 
-static int Bitmap_get_flags (lua_State *L)
+static int allua_Bitmap_get_flags (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   lua_pushinteger(L, al_get_bitmap_flags(bitmap));
   return 1;
 }
 
-static int Bitmap_get_format (lua_State *L)
+static int allua_Bitmap_get_format (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   lua_pushinteger(L, al_get_bitmap_format(bitmap));
   return 1;
 }
 
-static int Bitmap_get_width (lua_State *L)
+static int allua_Bitmap_get_width (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
 
@@ -140,7 +140,7 @@ static int Bitmap_get_width (lua_State *L)
   return 1;
 }
 
-static int Bitmap_get_height (lua_State *L)
+static int allua_Bitmap_get_height (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
 
@@ -148,44 +148,44 @@ static int Bitmap_get_height (lua_State *L)
   return 1;
 }
 
-static int Bitmap_get_pixel (lua_State *L)
+static int allua_Bitmap_get_pixel (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   float x = luaL_checknumber(L, 2);
   float y = luaL_checknumber(L, 3);
-  pushColor(L, al_get_pixel(bitmap, x, y));
+  allua_pushColor(L, al_get_pixel(bitmap, x, y));
   return 1;
 }
 
-static int Bitmap_is_locked (lua_State *L)
+static int allua_Bitmap_is_locked (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   lua_pushboolean(L, al_is_bitmap_locked(bitmap));
   return 1;
 }
 
-static int Bitmap_is_compatible (lua_State *L)
+static int allua_Bitmap_is_compatible (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   lua_pushboolean(L, al_is_compatible_bitmap(bitmap));
   return 1;
 }
 
-static int Bitmap_is_sub (lua_State *L)
+static int allua_Bitmap_is_sub (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   lua_pushboolean(L, al_is_sub_bitmap(bitmap));
   return 1;
 }
 
-static int Bitmap_clear_to_color (lua_State *L)
+static int allua_Bitmap_clear_to_color (lua_State *L)
 {
 	AL_color color = allua_check_color(L, 1);
 	al_clear_to_color(color);
 	return 0;
 }
 
-static int Bitmap_draw (lua_State *L)
+static int allua_Bitmap_draw (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   float dx = luaL_checknumber(L, 2);
@@ -196,7 +196,7 @@ static int Bitmap_draw (lua_State *L)
   return 0;
 }
 
-static int Bitmap_draw_region (lua_State *L)
+static int allua_Bitmap_draw_region (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   float sx = luaL_checknumber(L, 2);
@@ -211,7 +211,7 @@ static int Bitmap_draw_region (lua_State *L)
   return 0;
 }
 
-static int Bitmap_draw_rotated (lua_State *L)
+static int allua_Bitmap_draw_rotated (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   float cx = luaL_checknumber(L, 2);
@@ -225,7 +225,7 @@ static int Bitmap_draw_rotated (lua_State *L)
   return 0;
 }
 
-static int Bitmap_draw_rotated_scaled (lua_State *L)
+static int allua_Bitmap_draw_rotated_scaled (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   float cx = luaL_checknumber(L, 2);
@@ -241,7 +241,7 @@ static int Bitmap_draw_rotated_scaled (lua_State *L)
   return 0;
 }
 
-static int Bitmap_draw_scaled (lua_State *L)
+static int allua_Bitmap_draw_scaled (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   float sx = luaL_checknumber(L, 2);
@@ -258,20 +258,20 @@ static int Bitmap_draw_scaled (lua_State *L)
   return 0;
 }
 
-static int Bitmap_get_target (lua_State *L)
+static int allua_Bitmap_get_target (lua_State *L)
 {
-  pushBitmap(L, al_get_target_bitmap(), false);
+  allua_pushBitmap(L, al_get_target_bitmap(), false);
   return 1;
 }
 
-static int Bitmap_set_target (lua_State *L)
+static int allua_Bitmap_set_target (lua_State *L)
 {
   AL_bitmap bitmap = allua_check_bitmap(L, 1);
   al_set_target_bitmap(bitmap);
   return 0;
 }
 
-static int Bitmap_get_clipping_rectangle (lua_State *L)
+static int allua_Bitmap_get_clipping_rectangle (lua_State *L)
 {
   int x;
   int y;
@@ -285,7 +285,7 @@ static int Bitmap_get_clipping_rectangle (lua_State *L)
   return 4;
 }
 
-static int Bitmap_set_clipping_rectangle (lua_State *L)
+static int allua_Bitmap_set_clipping_rectangle (lua_State *L)
 {
 	int x = luaL_checknumber(L, 1);
 	int y = luaL_checknumber(L, 2);
@@ -295,7 +295,7 @@ static int Bitmap_set_clipping_rectangle (lua_State *L)
 	return 0;
 }
 
-static int Bitmap_convert_mask_to_alpha(lua_State *L)
+static int allua_Bitmap_convert_mask_to_alpha(lua_State *L)
 {
 	AL_bitmap bitmap = allua_check_bitmap(L, 1);
 	AL_color color = allua_check_color(L, 2);
@@ -303,41 +303,41 @@ static int Bitmap_convert_mask_to_alpha(lua_State *L)
 	return 0;
 }
 
-static const luaL_reg Bitmap_methods[] = {
-  {"init_iio_addon",           Bitmap_init_iio_addon},
-  {"clone",           Bitmap_clone},
-  {"create",           Bitmap_create},
-  {"create_sub",           Bitmap_create_sub},
-  {"get_new_flags",           Bitmap_get_new_flags},
-  {"set_new_flags",           Bitmap_set_new_flags},
-  {"get_new_format",           Bitmap_get_new_format},
-  {"set_new_format",           Bitmap_set_new_format},
-  {"load",           Bitmap_load},
-  {"get_flags",           Bitmap_get_flags},
-  {"get_format",           Bitmap_get_format},
-  {"get_width",           Bitmap_get_width},
-  {"get_height",           Bitmap_get_height},
-  {"get_pixel",           Bitmap_get_pixel},
-  {"is_locked",           Bitmap_is_locked},
-  {"is_compatible",           Bitmap_is_compatible},
-  {"is_sub",           Bitmap_is_sub},
-  {"clear_to_color",           Bitmap_clear_to_color},
-  {"draw",           Bitmap_draw},
-  {"draw_region",           Bitmap_draw_region},
-  {"draw_rotated",           Bitmap_draw_rotated},
-  {"draw_rotated_scaled",           Bitmap_draw_rotated_scaled},
-  {"draw_scaled",           Bitmap_draw_scaled},
-  {"get_target",           Bitmap_get_target},
-  {"set_target",           Bitmap_set_target},
-  {"get_clipping_rectangle",           Bitmap_get_clipping_rectangle},
-  {"set_clipping_rectangle",           Bitmap_set_clipping_rectangle},
-  {"convert_mask_to_alpha",           Bitmap_convert_mask_to_alpha},
+static const luaL_reg allua_Bitmap_methods[] = {
+  {"init_iio_addon",           allua_Bitmap_init_iio_addon},
+  {"clone",           allua_Bitmap_clone},
+  {"create",           allua_Bitmap_create},
+  {"create_sub",           allua_Bitmap_create_sub},
+  {"get_new_flags",           allua_Bitmap_get_new_flags},
+  {"set_new_flags",           allua_Bitmap_set_new_flags},
+  {"get_new_format",           allua_Bitmap_get_new_format},
+  {"set_new_format",           allua_Bitmap_set_new_format},
+  {"load",           allua_Bitmap_load},
+  {"get_flags",           allua_Bitmap_get_flags},
+  {"get_format",           allua_Bitmap_get_format},
+  {"get_width",           allua_Bitmap_get_width},
+  {"get_height",           allua_Bitmap_get_height},
+  {"get_pixel",           allua_Bitmap_get_pixel},
+  {"is_locked",           allua_Bitmap_is_locked},
+  {"is_compatible",           allua_Bitmap_is_compatible},
+  {"is_sub",           allua_Bitmap_is_sub},
+  {"clear_to_color",           allua_Bitmap_clear_to_color},
+  {"draw",           allua_Bitmap_draw},
+  {"draw_region",           allua_Bitmap_draw_region},
+  {"draw_rotated",           allua_Bitmap_draw_rotated},
+  {"draw_rotated_scaled",           allua_Bitmap_draw_rotated_scaled},
+  {"draw_scaled",           allua_Bitmap_draw_scaled},
+  {"get_target",           allua_Bitmap_get_target},
+  {"set_target",           allua_Bitmap_set_target},
+  {"get_clipping_rectangle",           allua_Bitmap_get_clipping_rectangle},
+  {"set_clipping_rectangle",           allua_Bitmap_set_clipping_rectangle},
+  {"convert_mask_to_alpha",           allua_Bitmap_convert_mask_to_alpha},
   {0,0}
 };
 
 /* GC and meta
  * */
-static int Bitmap_gc (lua_State *L)
+static int allua_Bitmap_gc (lua_State *L)
 {
   struct AL_bitmap_s *pi = (struct AL_bitmap_s*)lua_touserdata(L, 1);
   if(pi->gc_allowed)
@@ -349,21 +349,21 @@ static int Bitmap_gc (lua_State *L)
   return 0;
 }
 
-static int Bitmap_tostring (lua_State *L)
+static int allua_Bitmap_tostring (lua_State *L)
 {
   lua_pushfstring(L, "bitmap: %p", lua_touserdata(L, 1));
   return 1;
 }
 
-static const luaL_reg Bitmap_meta[] = {
-  {"__gc",       Bitmap_gc},
-  {"__tostring", Bitmap_tostring},
+static const luaL_reg allua_Bitmap_meta[] = {
+  {"__gc",       allua_Bitmap_gc},
+  {"__tostring", allua_Bitmap_tostring},
   {0, 0}
 };
 
 /* Other attributes
  * */
-void Bitmap_set_attributes(lua_State *L)
+void allua_Bitmap_set_attributes(lua_State *L)
 {
 	lua_pushinteger(L, ALLEGRO_MEMORY_BITMAP);
 	lua_setfield(L, -2, "MEMORY_BITMAP");
@@ -385,14 +385,14 @@ void Bitmap_set_attributes(lua_State *L)
 int allua_register_bitmap (lua_State *L)
 {
   lua_newtable (L);
-  luaL_register(L, NULL, Bitmap_methods);  /* create methods table,
+  luaL_register(L, NULL, allua_Bitmap_methods);  /* create methods table,
                                                 add it to the globals */
 
-	Bitmap_set_attributes(L);
+	allua_Bitmap_set_attributes(L);
 
   luaL_newmetatable(L, BITMAP);        /* create metatable for Image,
                                          add it to the Lua registry */
-  luaL_register(L, 0, Bitmap_meta);  /* fill metatable */
+  luaL_register(L, 0, allua_Bitmap_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -3);               /* dup methods table*/
   lua_rawset(L, -3);                  /* metatable.__index = methods */

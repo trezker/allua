@@ -23,7 +23,7 @@ AL_color allua_check_color (lua_State *L, int index)
   return im;
 }
 
-AL_color *pushColor (lua_State *L, AL_color im)
+AL_color *allua_pushColor (lua_State *L, AL_color im)
 {
   AL_color *pi = (AL_color *)lua_newuserdata(L, sizeof(AL_color));
   *pi = im;
@@ -35,7 +35,7 @@ AL_color *pushColor (lua_State *L, AL_color im)
 /* Constructor and methods
  * */
 
-static void test()
+/*static void test()
 {
 	unsigned char r = 1;
 	unsigned char g = 2;
@@ -53,14 +53,14 @@ static void test()
 	if(gb != b)
 		printf("Wrong blue\n");
 }
-
+*/
 static int allua_map_rgb(lua_State *L)
 {
 //	test();
 	unsigned char r = luaL_checkint(L, 1);
 	unsigned char g = luaL_checkint(L, 2);
 	unsigned char b = luaL_checkint(L, 3);
-	pushColor(L, al_map_rgb(r, g, b));
+	allua_pushColor(L, al_map_rgb(r, g, b));
 	return 1;
 }
 
@@ -69,7 +69,7 @@ static int allua_map_rgb_f(lua_State *L)
 	float r = luaL_checknumber(L, 1);
 	float g = luaL_checknumber(L, 2);
 	float b = luaL_checknumber(L, 3);
-	pushColor(L, al_map_rgb_f(r, g, b));
+	allua_pushColor(L, al_map_rgb_f(r, g, b));
 	return 1;
 }
 
@@ -79,7 +79,7 @@ static int allua_map_rgba(lua_State *L)
 	int g = luaL_checkint(L, 2);
 	int b = luaL_checkint(L, 3);
 	int a = luaL_checkint(L, 4);
-	pushColor(L, al_map_rgba(r, g, b, a));
+	allua_pushColor(L, al_map_rgba(r, g, b, a));
 	return 1;
 }
 
@@ -89,7 +89,7 @@ static int allua_map_rgba_f(lua_State *L)
 	float g = luaL_checknumber(L, 2);
 	float b = luaL_checknumber(L, 3);
 	float a = luaL_checknumber(L, 4);
-	pushColor(L, al_map_rgba_f(r, g, b, a));
+	allua_pushColor(L, al_map_rgba_f(r, g, b, a));
 	return 1;
 }
 
@@ -171,7 +171,7 @@ static int allua_draw_pixel(lua_State *L)
 	return 0;
 }
 
-static const luaL_reg Color_methods[] = {
+static const luaL_reg allua_Color_methods[] = {
   {"map_rgb",           allua_map_rgb},
   {"map_rgb_f",           allua_map_rgb_f},
   {"map_rgba",           allua_map_rgba},
@@ -187,14 +187,14 @@ static const luaL_reg Color_methods[] = {
 
 /* GC and meta
  * */
-static int Color_tostring (lua_State *L)
+static int allua_Color_tostring (lua_State *L)
 {
   lua_pushfstring(L, "color: %p", lua_touserdata(L, 1));
   return 1;
 }
 
-static const luaL_reg Color_meta[] = {
-  {"__tostring", Color_tostring},
+static const luaL_reg allua_Color_meta[] = {
+  {"__tostring", allua_Color_tostring},
   {0, 0}
 };
 
@@ -203,12 +203,12 @@ static const luaL_reg Color_meta[] = {
 int allua_register_color (lua_State *L)
 {
   lua_newtable(L);
-  luaL_register(L, NULL, Color_methods);  /* create methods table,
+  luaL_register(L, NULL, allua_Color_methods);  /* create methods table,
                                                 add it to the globals */
 
   luaL_newmetatable(L, COLOR);        /* create metatable for Image,
                                          add it to the Lua registry */
-  luaL_register(L, 0, Color_meta);  /* fill metatable */
+  luaL_register(L, 0, allua_Color_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -3);               /* dup methods table*/
   lua_rawset(L, -3);                  /* metatable.__index = methods */

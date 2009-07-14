@@ -24,6 +24,6 @@ int allua_register_bitmap (lua_State* L);
  * Pointer to Bitmap instance.
  * */
 AL_bitmap allua_check_bitmap (lua_State *L, int index);//, int *gc_allowed);
-struct AL_bitmap_s *pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed);
+struct AL_bitmap_s *allua_pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed);
 
 #endif

@@ -169,7 +169,7 @@ static int allua_draw_arc(lua_State *L)
 	return 0;
 }
 
-static const luaL_reg Primitives_methods[] = {
+static const luaL_reg allua_Primitives_methods[] = {
   {"draw_line",           allua_draw_line},
   {"draw_triangle",           allua_draw_triangle},
   {"draw_filled_triangle",           allua_draw_filled_triangle},
@@ -190,7 +190,7 @@ static const luaL_reg Primitives_methods[] = {
 int allua_register_primitives (lua_State *L)
 {
   lua_newtable(L);
-  luaL_register(L, NULL, Primitives_methods);  /* create methods table,
+  luaL_register(L, NULL, allua_Primitives_methods);  /* create methods table,
                                                 add it to the globals */
 
   lua_setfield(L, -2, PRIMITIVES);

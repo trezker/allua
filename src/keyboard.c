@@ -25,7 +25,7 @@ AL_keyboard allua_check_keyboard (lua_State *L, int index)
   return im;
 }
 
-static AL_keyboard *pushKeyboard (lua_State *L, AL_keyboard im)
+static AL_keyboard *allua_pushKeyboard (lua_State *L, AL_keyboard im)
 {
   AL_keyboard *pi = (AL_keyboard *)lua_newuserdata(L, sizeof(AL_keyboard));
   *pi = im;
@@ -64,7 +64,7 @@ static int allua_keyboard_set_leds(lua_State *L)
 
 static int allua_get_keyboard(lua_State *L)
 {
-	pushKeyboard(L, al_get_keyboard());
+	allua_pushKeyboard(L, al_get_keyboard());
 	return 1;
 }
 
@@ -92,7 +92,7 @@ static int allua_keycode_from_name(lua_State *L)
 	return 1;
 }
 
-static const luaL_reg Keyboard_methods[] = {
+static const luaL_reg allua_Keyboard_methods[] = {
   {"install",           allua_keyboard_install},
   {"uninstall",           allua_keyboard_uninstall},
   {"is_installed",           allua_keyboard_is_installed},
@@ -105,14 +105,14 @@ static const luaL_reg Keyboard_methods[] = {
 
 /* GC and meta
  * */
-static int Keyboard_tostring (lua_State *L)
+static int allua_Keyboard_tostring (lua_State *L)
 {
   lua_pushfstring(L, "keyboard: %p", lua_touserdata(L, 1));
   return 1;
 }
 
-static const luaL_reg Keyboard_meta[] = {
-  {"__tostring", Keyboard_tostring},
+static const luaL_reg allua_Keyboard_meta[] = {
+  {"__tostring", allua_Keyboard_tostring},
   {0, 0}
 };
 
@@ -130,7 +130,7 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 
 /* Other attributes
  * */
-void Keyboard_set_attributes(lua_State *L)
+void allua_Keyboard_set_attributes(lua_State *L)
 {
 	Set_literal("EVENT_DOWN", ALLEGRO_EVENT_KEY_DOWN, -3);
 	Set_literal("EVENT_REPEAT", ALLEGRO_EVENT_KEY_REPEAT, -3);
@@ -270,14 +270,14 @@ int allua_register_keyboard (lua_State *L)
 	allua_set_event_callback(ALLEGRO_EVENT_KEY_UP, allua_keyboard_event_callback);
 
   lua_newtable(L);
-  luaL_register(L, NULL, Keyboard_methods);  /* create methods table,
+  luaL_register(L, NULL, allua_Keyboard_methods);  /* create methods table,
                                                 add it to the globals */
 
-	Keyboard_set_attributes(L);
+	allua_Keyboard_set_attributes(L);
 
   luaL_newmetatable(L, KEYBOARD);        /* create metatable for Image,
                                          add it to the Lua registry */
-  luaL_register(L, 0, Keyboard_meta);  /* fill metatable */
+  luaL_register(L, 0, allua_Keyboard_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -3);               /* dup methods table*/
   lua_rawset(L, -3);                  /* metatable.__index = methods */

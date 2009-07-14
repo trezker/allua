@@ -7,7 +7,7 @@
 
 /* Common handlers
  * */
-static AL_font toFont (lua_State *L, int index)
+static AL_font allua_toFont (lua_State *L, int index)
 {
   AL_font *pi = (AL_font*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, FONT);
@@ -27,7 +27,7 @@ AL_font allua_check_font (lua_State *L, int index)
   return im;
 }
 
-static AL_font *pushFont (lua_State *L, AL_font im)
+static AL_font *allua_pushFont (lua_State *L, AL_font im)
 {
   AL_font *pi = (AL_font *)lua_newuserdata(L, sizeof(AL_font));
   *pi = im;
@@ -39,57 +39,57 @@ static AL_font *pushFont (lua_State *L, AL_font im)
 /* Constructor and methods
  * */
 
-static int Font_init_addon (lua_State *L)
+static int allua_Font_init_addon (lua_State *L)
 {
 	al_init_font_addon();
 	return 0;
 }
 
-static int Font_init_ttf_addon (lua_State *L)
+static int allua_Font_init_ttf_addon (lua_State *L)
 {
 	lua_pushboolean(L, al_init_ttf_addon());
 	return 1;
 }
 
-static int Font_load (lua_State *L)
+static int allua_Font_load (lua_State *L)
 {
 	const char* filename = luaL_checkstring(L, 1);
 	int size = luaL_checkint(L, 2);
 	int flags = luaL_checkint(L, 3);
 	AL_font *font = al_load_font(filename, size, flags);
 	if(font)
-		pushFont(L, font);
+		allua_pushFont(L, font);
 	else
 		lua_pushnil(L);
 	return 1;
 }
 
-static int Font_load_ttf (lua_State *L)
+static int allua_Font_load_ttf (lua_State *L)
 {
 	const char* filename = luaL_checkstring(L, 1);
 	int size = luaL_checkint(L, 2);
 	int options = luaL_checkint(L, 3);
 	AL_font *font = al_load_ttf_font(filename, size, options);
 	if(font)
-		pushFont(L, font);
+		allua_pushFont(L, font);
 	else
 		lua_pushnil(L);
 	return 1;
 }
 
-static int Font_load_bitmap (lua_State *L)
+static int allua_Font_load_bitmap (lua_State *L)
 {
 	const char* filename = luaL_checkstring(L, 1);
 
 	AL_font *font = al_load_bitmap_font(filename);
 	if(font)
-		pushFont(L, font);
+		allua_pushFont(L, font);
 	else
 		lua_pushnil(L);
 	return 1;
 }
 
-static int Font_draw_text (lua_State *L)
+static int allua_Font_draw_text (lua_State *L)
 {
   AL_font font = allua_check_font(L, 1);
   float x = luaL_checknumber(L, 2);
@@ -101,7 +101,7 @@ static int Font_draw_text (lua_State *L)
   return 0;
 }
 
-static int Font_draw_justified_text (lua_State *L)
+static int allua_Font_draw_justified_text (lua_State *L)
 {
   AL_font font = allua_check_font(L, 1);
   float x1 = luaL_checknumber(L, 2);
@@ -115,7 +115,7 @@ static int Font_draw_justified_text (lua_State *L)
   return 0;
 }
 
-static int Font_get_text_dimensions (lua_State *L)
+static int allua_Font_get_text_dimensions (lua_State *L)
 {
 	AL_font font = allua_check_font(L, 1);
 	const char* text = luaL_checkstring(L, 2);
@@ -137,14 +137,14 @@ static int Font_get_text_dimensions (lua_State *L)
 	return 6;
 }
 
-static int Font_get_line_height (lua_State *L)
+static int allua_Font_get_line_height (lua_State *L)
 {
 	AL_font font = allua_check_font(L, 1);
 	lua_pushinteger(L, al_get_font_line_height(font));
 	return 1;
 }
 
-static int Font_get_text_width (lua_State *L)
+static int allua_Font_get_text_width (lua_State *L)
 {
 	AL_font font = allua_check_font(L, 1);
 	const char* text = luaL_checkstring(L, 2);
@@ -152,45 +152,45 @@ static int Font_get_text_width (lua_State *L)
 	return 1;
 }
 
-static const luaL_reg Font_methods[] = {
-  {"init_addon",           Font_init_addon},
-  {"init_ttf_addon",           Font_init_ttf_addon},
-  {"load",           Font_load},
-  {"load_ttf",           Font_load_ttf},
-  {"load_bitmap",           Font_load_bitmap},
-  {"draw_text",           Font_draw_text},
-  {"draw_justified_text",           Font_draw_justified_text},
-  {"get_text_dimensions",           Font_get_text_dimensions},
-  {"get_line_height",           Font_get_line_height},
-  {"get_text_width",           Font_get_text_width},
+static const luaL_reg allua_Font_methods[] = {
+  {"init_addon",           allua_Font_init_addon},
+  {"init_ttf_addon",           allua_Font_init_ttf_addon},
+  {"load",           allua_Font_load},
+  {"load_ttf",           allua_Font_load_ttf},
+  {"load_bitmap",           allua_Font_load_bitmap},
+  {"draw_text",           allua_Font_draw_text},
+  {"draw_justified_text",           allua_Font_draw_justified_text},
+  {"get_text_dimensions",           allua_Font_get_text_dimensions},
+  {"get_line_height",           allua_Font_get_line_height},
+  {"get_text_width",           allua_Font_get_text_width},
   {0,0}
 };
 
 /* GC and meta
  * */
-static int Font_gc (lua_State *L)
+static int allua_Font_gc (lua_State *L)
 {
-  AL_font im = toFont(L, 1);
+  AL_font im = allua_toFont(L, 1);
   printf("goodbye Font (%p)\n", im);
   if (im) al_destroy_font(im);
   return 0;
 }
 
-static int Font_tostring (lua_State *L)
+static int allua_Font_tostring (lua_State *L)
 {
   lua_pushfstring(L, "font: %p", lua_touserdata(L, 1));
   return 1;
 }
 
-static const luaL_reg Font_meta[] = {
-  {"__gc",       Font_gc},
-  {"__tostring", Font_tostring},
+static const luaL_reg allua_Font_meta[] = {
+  {"__gc",       allua_Font_gc},
+  {"__tostring", allua_Font_tostring},
   {0, 0}
 };
 
 /* Other attributes
  * */
-void Font_set_attributes(lua_State *L)
+void allua_Font_set_attributes(lua_State *L)
 {
 	lua_pushinteger(L, ALLEGRO_ALIGN_LEFT);
 	lua_setfield(L, -2, "ALIGN_LEFT");
@@ -208,14 +208,14 @@ void Font_set_attributes(lua_State *L)
 int allua_register_font (lua_State *L)
 {
   lua_newtable (L);
-  luaL_register(L, NULL, Font_methods);  /* create methods table,
+  luaL_register(L, NULL, allua_Font_methods);  /* create methods table,
                                                 add it to the globals */
 
-	Font_set_attributes(L);
+	allua_Font_set_attributes(L);
 
   luaL_newmetatable(L, FONT);        /* create metatable for Image,
                                          add it to the Lua registry */
-  luaL_register(L, 0, Font_meta);  /* fill metatable */
+  luaL_register(L, 0, allua_Font_meta);  /* fill metatable */
   lua_pushliteral(L, "__index");
   lua_pushvalue(L, -3);               /* dup methods table*/
   lua_rawset(L, -3);                  /* metatable.__index = methods */
