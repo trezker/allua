@@ -7,6 +7,11 @@
 #include "allua/bitmap.h"
 #include "allua/font.h"
 #include "allua/primitives.h"
+#include "allua/audio.h"
+#include "allua/voice.h"
+#include "allua/mixer.h"
+#include "allua/sample.h"
+#include "allua/stream.h"
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>
@@ -71,6 +76,11 @@ int allua_register(lua_State *L)
 	allua_register_event_queue(L);
 	allua_register_color(L);
 	allua_register_primitives(L);
+	allua_register_audio(L);
+	allua_register_voice(L);
+	allua_register_mixer(L);
+	allua_register_sample(L);
+	allua_register_stream(L);
 	lua_pop(L, 1);
 	return 1;
 }

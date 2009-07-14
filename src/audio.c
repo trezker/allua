@@ -14,7 +14,7 @@ static int allua_audio_install(lua_State *L)
 }
 
 static const luaL_reg allua_audio_methods[] = {
-	{"audio_install", allua_audio_install},
+	{"install", allua_audio_install},
 	{0,0}
 };
 
