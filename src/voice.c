@@ -45,13 +45,16 @@ struct ALLUA_voice_s *allua_pushvoice (lua_State *L, ALLUA_voice im, int gc_allo
 
 static int allua_voice_create (lua_State *L)
 {
-  int freq = luaL_checkint(L, 1);
-  int depth = luaL_checkint(L, 2);
-  int chan_conf = luaL_checkint(L, 3);
+	int freq = luaL_checkint(L, 1);
+	int depth = luaL_checkint(L, 2);
+	int chan_conf = luaL_checkint(L, 3);
 
-  allua_pushvoice(L, al_create_voice(freq, depth, chan_conf), true);
-
-  return 1;
+	ALLUA_voice voice = al_create_voice(freq, depth, chan_conf);
+	if(voice)
+		allua_pushvoice(L, voice, true);
+	else
+		lua_pushnil(L);
+	return 1;
 }
 
 static const luaL_reg allua_voice_methods[] = {

@@ -47,6 +47,38 @@ void allua_audio_set_attributes(lua_State *L)
 	lua_setfield(L, -2, "AUDIO_DRIVER_DSOUND");
 	lua_pushinteger(L, ALLEGRO_AUDIO_DRIVER_OSS);
 	lua_setfield(L, -2, "AUDIO_DRIVER_OSS");
+
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_INT8);
+	lua_setfield(L, -2, "AUDIO_DEPTH_INT8");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_INT16);
+	lua_setfield(L, -2, "AUDIO_DEPTH_INT16");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_INT24);
+	lua_setfield(L, -2, "AUDIO_DEPTH_INT24");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_FLOAT32);
+	lua_setfield(L, -2, "AUDIO_DEPTH_FLOAT32");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_UNSIGNED);
+	lua_setfield(L, -2, "AUDIO_DEPTH_UNSIGNED");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_UINT8);
+	lua_setfield(L, -2, "AUDIO_DEPTH_UINT8");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_UINT16);
+	lua_setfield(L, -2, "AUDIO_DEPTH_UINT16");
+	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_UINT24);
+	lua_setfield(L, -2, "AUDIO_DEPTH_UINT24");
+
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_1);
+	lua_setfield(L, -2, "CHANNEL_CONF_1");
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_2);
+	lua_setfield(L, -2, "CHANNEL_CONF_2");
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_3);
+	lua_setfield(L, -2, "CHANNEL_CONF_3");
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_4);
+	lua_setfield(L, -2, "CHANNEL_CONF_4");
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_5_1);
+	lua_setfield(L, -2, "CHANNEL_CONF_5_1");
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_6_1);
+	lua_setfield(L, -2, "CHANNEL_CONF_6_1");
+	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_7_1);
+	lua_setfield(L, -2, "CHANNEL_CONF_7_1");
 }
 
 /* Register

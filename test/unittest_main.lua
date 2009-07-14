@@ -11,6 +11,7 @@ dofile("unittests/keyboard.lua")
 dofile("unittests/mouse.lua")
 dofile("unittests/primitives.lua")
 dofile("unittests/audio.lua")
+dofile("unittests/voice.lua")
 
 assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
