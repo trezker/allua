@@ -55,6 +55,7 @@ Group: C API  {
 Group: Lua functions  {
 
    File: allegro5  (/home/anders/allegro/allua-git/docs/nd/al_lua.lua)
+   File: audio  (/home/anders/allegro/allua-git/docs/nd/audio.lua)
    File: bitmap  (/home/anders/allegro/allua-git/docs/nd/Bitmap.lua)
    File: color  (/home/anders/allegro/allua-git/docs/nd/Color.lua)
    File: display  (/home/anders/allegro/allua-git/docs/nd/Display.lua)

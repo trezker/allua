@@ -13,8 +13,23 @@ static int allua_audio_install(lua_State *L)
 	return 1;
 }
 
+static int allua_audio_uninstall(lua_State *L)
+{
+	al_uninstall_audio();
+	return 0;
+}
+
+static int allua_audio_reserve_samples(lua_State *L)
+{
+	int n = luaL_checkint(L, 1);
+	lua_pushboolean(L, al_reserve_samples(n));
+	return 1;
+}
+
 static const luaL_reg allua_audio_methods[] = {
 	{"install", allua_audio_install},
+	{"uninstall", allua_audio_uninstall},
+	{"reserve_samples", allua_audio_reserve_samples},
 	{0,0}
 };
 
