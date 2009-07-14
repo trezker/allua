@@ -37,6 +37,7 @@ Format: 1.35
 Group: C API  {
 
    File: allua_register  (/home/anders/allegro/allua-git/include/allua/allua.h)
+   File: allua_register_audio  (/home/anders/allegro/allua-git/include/allua/audio.h)
    File: allua_register_primitives  (/home/anders/allegro/allua-git/include/allua/primitives.h)
    File: bitmap.h  (/home/anders/allegro/allua-git/include/allua/bitmap.h)
    File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
@@ -44,7 +45,11 @@ Group: C API  {
    File: event_queue.h  (/home/anders/allegro/allua-git/include/allua/event_queue.h)
    File: font.h  (/home/anders/allegro/allua-git/include/allua/font.h)
    File: keyboard.h  (/home/anders/allegro/allua-git/include/allua/keyboard.h)
+   File: mixer.h  (/home/anders/allegro/allua-git/include/allua/mixer.h)
    File: mouse.h  (/home/anders/allegro/allua-git/include/allua/mouse.h)
+   File: sample.h  (/home/anders/allegro/allua-git/include/allua/sample.h)
+   File: stream.h  (/home/anders/allegro/allua-git/include/allua/stream.h)
+   File: voice.h  (/home/anders/allegro/allua-git/include/allua/voice.h)
    }  # Group: C API
 
 Group: Lua functions  {
