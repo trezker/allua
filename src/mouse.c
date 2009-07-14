@@ -7,27 +7,27 @@
 
 /* Common handlers
  * */
-/*static AL_mouse toMouse (lua_State *L, int index)
+/*static ALLUA_mouse toMouse (lua_State *L, int index)
 {
-  AL_mouse *pi = (AL_mouse*)lua_touserdata(L, index);
+  ALLUA_mouse *pi = (ALLUA_mouse*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, MOUSE);
   return *pi;
 }
 */
-AL_mouse allua_check_mouse (lua_State *L, int index)
+ALLUA_mouse allua_check_mouse (lua_State *L, int index)
 {
-  AL_mouse *pi, im;
+  ALLUA_mouse *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_mouse*)luaL_checkudata(L, index, MOUSE);
+  pi = (ALLUA_mouse*)luaL_checkudata(L, index, MOUSE);
   if (pi == NULL)
   	luaL_typerror(L, index, MOUSE);
   im = *pi;
   return im;
 }
 
-static AL_mouse *allua_pushMouse (lua_State *L, AL_mouse im)
+static ALLUA_mouse *allua_pushMouse (lua_State *L, ALLUA_mouse im)
 {
-  AL_mouse *pi = (AL_mouse *)lua_newuserdata(L, sizeof(AL_mouse));
+  ALLUA_mouse *pi = (ALLUA_mouse *)lua_newuserdata(L, sizeof(ALLUA_mouse));
   *pi = im;
   luaL_getmetatable(L, MOUSE);
   lua_setmetatable(L, -2);

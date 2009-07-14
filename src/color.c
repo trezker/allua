@@ -5,27 +5,27 @@
 
 /* Common handlers
  * */
-/*static AL_color toColor (lua_State *L, int index)
+/*static ALLUA_color toColor (lua_State *L, int index)
 {
-  AL_color *pi = (AL_color*)lua_touserdata(L, index);
+  ALLUA_color *pi = (ALLUA_color*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, COLOR);
   return *pi;
 }
 */
-AL_color allua_check_color (lua_State *L, int index)
+ALLUA_color allua_check_color (lua_State *L, int index)
 {
-  AL_color *pi, im;
+  ALLUA_color *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_color*)luaL_checkudata(L, index, COLOR);
+  pi = (ALLUA_color*)luaL_checkudata(L, index, COLOR);
   if (pi == NULL)
   	luaL_typerror(L, index, COLOR);
   im = *pi;
   return im;
 }
 
-AL_color *allua_pushColor (lua_State *L, AL_color im)
+ALLUA_color *allua_pushColor (lua_State *L, ALLUA_color im)
 {
-  AL_color *pi = (AL_color *)lua_newuserdata(L, sizeof(AL_color));
+  ALLUA_color *pi = (ALLUA_color *)lua_newuserdata(L, sizeof(ALLUA_color));
   *pi = im;
   luaL_getmetatable(L, COLOR);
   lua_setmetatable(L, -2);
@@ -95,7 +95,7 @@ static int allua_map_rgba_f(lua_State *L)
 
 static int allua_unmap_rgb(lua_State *L)
 {
-	AL_color c = allua_check_color(L, 1);
+	ALLUA_color c = allua_check_color(L, 1);
 	unsigned char r;
 	unsigned char g;
 	unsigned char b;
@@ -109,7 +109,7 @@ static int allua_unmap_rgb(lua_State *L)
 
 static int allua_unmap_rgb_f(lua_State *L)
 {
-	AL_color c = allua_check_color(L, 1);
+	ALLUA_color c = allua_check_color(L, 1);
 	float r;
 	float g;
 	float b;
@@ -123,7 +123,7 @@ static int allua_unmap_rgb_f(lua_State *L)
 
 static int allua_unmap_rgba(lua_State *L)
 {
-	AL_color c = allua_check_color(L, 1);
+	ALLUA_color c = allua_check_color(L, 1);
 	unsigned char r;
 	unsigned char g;
 	unsigned char b;
@@ -139,7 +139,7 @@ static int allua_unmap_rgba(lua_State *L)
 
 static int allua_unmap_rgba_f(lua_State *L)
 {
-	AL_color c = allua_check_color(L, 1);
+	ALLUA_color c = allua_check_color(L, 1);
 	float r;
 	float g;
 	float b;
@@ -155,7 +155,7 @@ static int allua_unmap_rgba_f(lua_State *L)
 
 static int allua_put_pixel(lua_State *L)
 {
-	AL_color color = allua_check_color(L, 1);
+	ALLUA_color color = allua_check_color(L, 1);
 	int x = luaL_checkint(L, 2);
 	int y = luaL_checkint(L, 3);
 	al_put_pixel(x, y, color);
@@ -164,7 +164,7 @@ static int allua_put_pixel(lua_State *L)
 
 static int allua_draw_pixel(lua_State *L)
 {
-	AL_color color = allua_check_color(L, 1);
+	ALLUA_color color = allua_check_color(L, 1);
 	int x = luaL_checkint(L, 2);
 	int y = luaL_checkint(L, 3);
 	al_draw_pixel(x, y, color);

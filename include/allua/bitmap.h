@@ -6,9 +6,9 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
-typedef ALLEGRO_BITMAP* AL_bitmap;
+typedef ALLEGRO_BITMAP* ALLUA_bitmap;
 
-struct AL_bitmap_s
+struct ALLUA_bitmap_s
 {
 	ALLEGRO_BITMAP* bitmap;
 	int gc_allowed;
@@ -23,7 +23,7 @@ int allua_register_bitmap (lua_State* L);
  * Returns:
  * Pointer to Bitmap instance.
  * */
-AL_bitmap allua_check_bitmap (lua_State *L, int index);//, int *gc_allowed);
-struct AL_bitmap_s *allua_pushBitmap (lua_State *L, AL_bitmap im, int gc_allowed);
+ALLUA_bitmap allua_check_bitmap (lua_State *L, int index);//, int *gc_allowed);
+struct ALLUA_bitmap_s *allua_pushBitmap (lua_State *L, ALLUA_bitmap im, int gc_allowed);
 
 #endif

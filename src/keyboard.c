@@ -7,27 +7,27 @@
 
 /* Common handlers
  * */
-/*static AL_keyboard toKeyboard (lua_State *L, int index)
+/*static ALLUA_keyboard toKeyboard (lua_State *L, int index)
 {
-  AL_keyboard *pi = (AL_keyboard*)lua_touserdata(L, index);
+  ALLUA_keyboard *pi = (ALLUA_keyboard*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, KEYBOARD);
   return *pi;
 }
 */
-AL_keyboard allua_check_keyboard (lua_State *L, int index)
+ALLUA_keyboard allua_check_keyboard (lua_State *L, int index)
 {
-  AL_keyboard *pi, im;
+  ALLUA_keyboard *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_keyboard*)luaL_checkudata(L, index, KEYBOARD);
+  pi = (ALLUA_keyboard*)luaL_checkudata(L, index, KEYBOARD);
   if (pi == NULL)
   	luaL_typerror(L, index, KEYBOARD);
   im = *pi;
   return im;
 }
 
-static AL_keyboard *allua_pushKeyboard (lua_State *L, AL_keyboard im)
+static ALLUA_keyboard *allua_pushKeyboard (lua_State *L, ALLUA_keyboard im)
 {
-  AL_keyboard *pi = (AL_keyboard *)lua_newuserdata(L, sizeof(AL_keyboard));
+  ALLUA_keyboard *pi = (ALLUA_keyboard *)lua_newuserdata(L, sizeof(ALLUA_keyboard));
   *pi = im;
   luaL_getmetatable(L, KEYBOARD);
   lua_setmetatable(L, -2);

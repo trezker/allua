@@ -7,18 +7,18 @@
 
 /* Common handlers
  * */
-static AL_font allua_toFont (lua_State *L, int index)
+static ALLUA_font allua_toFont (lua_State *L, int index)
 {
-  AL_font *pi = (AL_font*)lua_touserdata(L, index);
+  ALLUA_font *pi = (ALLUA_font*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, FONT);
   return *pi;
 }
 
-AL_font allua_check_font (lua_State *L, int index)
+ALLUA_font allua_check_font (lua_State *L, int index)
 {
-  AL_font *pi, im;
+  ALLUA_font *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_font*)luaL_checkudata(L, index, FONT);
+  pi = (ALLUA_font*)luaL_checkudata(L, index, FONT);
   if (pi == NULL)
   	luaL_typerror(L, index, FONT);
   im = *pi;
@@ -27,9 +27,9 @@ AL_font allua_check_font (lua_State *L, int index)
   return im;
 }
 
-static AL_font *allua_pushFont (lua_State *L, AL_font im)
+static ALLUA_font *allua_pushFont (lua_State *L, ALLUA_font im)
 {
-  AL_font *pi = (AL_font *)lua_newuserdata(L, sizeof(AL_font));
+  ALLUA_font *pi = (ALLUA_font *)lua_newuserdata(L, sizeof(ALLUA_font));
   *pi = im;
   luaL_getmetatable(L, FONT);
   lua_setmetatable(L, -2);
@@ -56,7 +56,7 @@ static int allua_Font_load (lua_State *L)
 	const char* filename = luaL_checkstring(L, 1);
 	int size = luaL_checkint(L, 2);
 	int flags = luaL_checkint(L, 3);
-	AL_font *font = al_load_font(filename, size, flags);
+	ALLUA_font font = al_load_font(filename, size, flags);
 	if(font)
 		allua_pushFont(L, font);
 	else
@@ -69,7 +69,7 @@ static int allua_Font_load_ttf (lua_State *L)
 	const char* filename = luaL_checkstring(L, 1);
 	int size = luaL_checkint(L, 2);
 	int options = luaL_checkint(L, 3);
-	AL_font *font = al_load_ttf_font(filename, size, options);
+	ALLUA_font font = al_load_ttf_font(filename, size, options);
 	if(font)
 		allua_pushFont(L, font);
 	else
@@ -81,7 +81,7 @@ static int allua_Font_load_bitmap (lua_State *L)
 {
 	const char* filename = luaL_checkstring(L, 1);
 
-	AL_font *font = al_load_bitmap_font(filename);
+	ALLUA_font font = al_load_bitmap_font(filename);
 	if(font)
 		allua_pushFont(L, font);
 	else
@@ -91,7 +91,7 @@ static int allua_Font_load_bitmap (lua_State *L)
 
 static int allua_Font_draw_text (lua_State *L)
 {
-  AL_font font = allua_check_font(L, 1);
+  ALLUA_font font = allua_check_font(L, 1);
   float x = luaL_checknumber(L, 2);
   float y = luaL_checknumber(L, 3);
   int flags = luaL_checkinteger(L, 4);
@@ -103,7 +103,7 @@ static int allua_Font_draw_text (lua_State *L)
 
 static int allua_Font_draw_justified_text (lua_State *L)
 {
-  AL_font font = allua_check_font(L, 1);
+  ALLUA_font font = allua_check_font(L, 1);
   float x1 = luaL_checknumber(L, 2);
   float x2 = luaL_checknumber(L, 3);
   float y = luaL_checknumber(L, 4);
@@ -117,7 +117,7 @@ static int allua_Font_draw_justified_text (lua_State *L)
 
 static int allua_Font_get_text_dimensions (lua_State *L)
 {
-	AL_font font = allua_check_font(L, 1);
+	ALLUA_font font = allua_check_font(L, 1);
 	const char* text = luaL_checkstring(L, 2);
 
 	int bbx;
@@ -139,14 +139,14 @@ static int allua_Font_get_text_dimensions (lua_State *L)
 
 static int allua_Font_get_line_height (lua_State *L)
 {
-	AL_font font = allua_check_font(L, 1);
+	ALLUA_font font = allua_check_font(L, 1);
 	lua_pushinteger(L, al_get_font_line_height(font));
 	return 1;
 }
 
 static int allua_Font_get_text_width (lua_State *L)
 {
-	AL_font font = allua_check_font(L, 1);
+	ALLUA_font font = allua_check_font(L, 1);
 	const char* text = luaL_checkstring(L, 2);
 	lua_pushinteger(L, al_get_text_width(font, text));
 	return 1;
@@ -170,7 +170,7 @@ static const luaL_reg allua_Font_methods[] = {
  * */
 static int allua_Font_gc (lua_State *L)
 {
-  AL_font im = allua_toFont(L, 1);
+  ALLUA_font im = allua_toFont(L, 1);
   printf("goodbye Font (%p)\n", im);
   if (im) al_destroy_font(im);
   return 0;

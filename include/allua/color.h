@@ -6,7 +6,7 @@
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
-typedef ALLEGRO_COLOR AL_color;
+typedef ALLEGRO_COLOR ALLUA_color;
 
 /* Function: allua_register_color
  * Registers Color functionality to the lua state.
@@ -17,7 +17,7 @@ int allua_register_color (lua_State* L);
  * Returns:
  * Pointer to Color instance.
  * */
-AL_color allua_check_color (lua_State *L, int index);
-AL_color *allua_pushColor (lua_State *L, AL_color im);
+ALLUA_color allua_check_color (lua_State *L, int index);
+ALLUA_color *allua_pushColor (lua_State *L, ALLUA_color im);
 
 #endif

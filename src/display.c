@@ -12,18 +12,18 @@
 
 /* Common handlers
  * */
-static AL_display allua_todisplay (lua_State *L, int index)
+static ALLUA_display allua_todisplay (lua_State *L, int index)
 {
-  AL_display *pi = (AL_display*)lua_touserdata(L, index);
+  ALLUA_display *pi = (ALLUA_display*)lua_touserdata(L, index);
   if (pi == NULL) luaL_typerror(L, index, DISPLAY);
   return *pi;
 }
 
-AL_display allua_check_display (lua_State *L, int index)
+ALLUA_display allua_check_display (lua_State *L, int index)
 {
-  AL_display *pi, im;
+  ALLUA_display *pi, im;
   luaL_checktype(L, index, LUA_TUSERDATA);
-  pi = (AL_display*)luaL_checkudata(L, index, DISPLAY);
+  pi = (ALLUA_display*)luaL_checkudata(L, index, DISPLAY);
   if (pi == NULL)
   	luaL_typerror(L, index, DISPLAY);
   im = *pi;
@@ -32,9 +32,9 @@ AL_display allua_check_display (lua_State *L, int index)
   return im;
 }
 /*
-static AL_display *pushdisplay (lua_State *L, AL_display im)
+static ALLUA_display *pushdisplay (lua_State *L, ALLUA_display im)
 {
-  AL_display *pi = (AL_display *)lua_newuserdata(L, sizeof(AL_display));
+  ALLUA_display *pi = (ALLUA_display *)lua_newuserdata(L, sizeof(ALLUA_display));
   *pi = im;
   luaL_getmetatable(L, DISPLAY);
   lua_setmetatable(L, -2);
@@ -42,13 +42,13 @@ static AL_display *pushdisplay (lua_State *L, AL_display im)
 }
 */
 
-static AL_display *allua_pushdisplay (lua_State *L, AL_display im)
+static ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im)
 {
 	lua_getfield (L, LUA_REGISTRYINDEX, "allegro5udatamap");
     lua_pushlightuserdata(L, (void *)im);  // push address 
     lua_gettable(L, -2);  // retrieve value 
 
-	AL_display *pi;
+	ALLUA_display *pi;
 	if(!lua_isnil (L, -1))
 	{
 		pi = lua_touserdata (L, -1);
@@ -60,7 +60,7 @@ static AL_display *allua_pushdisplay (lua_State *L, AL_display im)
 //		printf("Creating new display udata \n");
 		// Create new userdata
 		lua_pushlightuserdata(L, (void *)im); //Key
-		pi = (AL_display *)lua_newuserdata(L, sizeof(AL_display)); //value
+		pi = (ALLUA_display *)lua_newuserdata(L, sizeof(ALLUA_display)); //value
 		*pi = im;
 		luaL_getmetatable(L, DISPLAY);
 		lua_setmetatable(L, -2);
@@ -218,7 +218,7 @@ static int allua_display_get_refresh_rate (lua_State *L)
 
 static int allua_display_get_window_position (lua_State *L)
 {
-	AL_display display = allua_check_display(L, 1);
+	ALLUA_display display = allua_check_display(L, 1);
 	int x;
 	int y;
 	al_get_window_position(display, &x, &y);
@@ -244,21 +244,21 @@ static int allua_display_resize (lua_State *L)
 
 static int allua_display_set_current (lua_State *L)
 {
-	AL_display display = allua_check_display(L, 1);
+	ALLUA_display display = allua_check_display(L, 1);
 	lua_pushboolean(L, al_set_current_display(display));
 	return 1;
 }
 
 static int allua_display_acknowledge_resize (lua_State *L)
 {
-	AL_display display = allua_check_display(L, 1);
+	ALLUA_display display = allua_check_display(L, 1);
 	lua_pushboolean(L, al_acknowledge_resize(display));
 	return 1;
 }
 
 static int allua_display_set_icon (lua_State *L)
 {
-	AL_bitmap bmp = allua_check_bitmap(L, 1);
+	ALLUA_bitmap bmp = allua_check_bitmap(L, 1);
 	al_set_display_icon(bmp);
 	return 0;
 }
@@ -272,7 +272,7 @@ static int allua_display_get_option (lua_State *L)
 
 static int allua_display_set_window_position (lua_State *L)
 {
-	AL_display display = allua_check_display(L, 1);
+	ALLUA_display display = allua_check_display(L, 1);
 	int x = luaL_checkint(L, 2);
 	int y = luaL_checkint(L, 3);
 
@@ -290,7 +290,7 @@ static int allua_display_set_window_title (lua_State *L)
 
 static int allua_display_toggle_window_frame (lua_State *L)
 {
-	AL_display display = allua_check_display(L, 1);
+	ALLUA_display display = allua_check_display(L, 1);
 	int onoff = lua_toboolean(L, 2);
 
 	al_toggle_window_frame(display, onoff);
@@ -440,7 +440,7 @@ static const luaL_reg allua_display_methods[] = {
  * */
 static int allua_display_gc (lua_State *L)
 {
-  AL_display im = allua_todisplay(L, 1);
+  ALLUA_display im = allua_todisplay(L, 1);
   printf("goodbye display (%p)\n", im);
   if (im) al_destroy_display(im);
   return 0;
