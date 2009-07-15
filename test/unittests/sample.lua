@@ -10,5 +10,7 @@ end
 
 function Test_sample:test02_load()
 	sample = allegro5.sample.load("data/powerup.ogg")
+	b = sample:save("data/powerup.wav")
 	assertEquals("sample", tostring(sample):sub(1, 6))
+	assertEquals("boolean", type(b))
 end

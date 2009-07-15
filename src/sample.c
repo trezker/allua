@@ -56,8 +56,17 @@ static int allua_sample_load (lua_State *L)
 	return 1;
 }
 
+static int allua_sample_save (lua_State *L)
+{
+	ALLUA_sample sample = allua_check_sample(L, 1);
+	const char* filename = luaL_checkstring(L, 2);
+	lua_pushboolean(L, al_save_sample(sample, filename));
+	return 1;
+}
+
 static const luaL_reg allua_sample_methods[] = {
 	{"load", allua_sample_load},
+	{"save", allua_sample_save},
 	{0,0}
 };
 
