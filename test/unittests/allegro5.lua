@@ -1,5 +1,3 @@
-USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
-
 Test_allegro5 = {}
 
 function Test_allegro5:test1_init()

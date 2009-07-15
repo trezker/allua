@@ -1,4 +1,5 @@
 #include "allua/sample.h"
+#include <allegro5/acodec.h>
 #include <stdio.h>
 
 #define SAMPLE_STRING "sample"
@@ -43,18 +44,20 @@ struct ALLUA_sample_s *allua_pushsample (lua_State *L, ALLUA_sample im, int gc_a
 /* Constructor and methods
  * */
 
-static int allua_sample_create (lua_State *L)
+static int allua_sample_load (lua_State *L)
 {
-//	int w = luaL_checkint(L, 1);
-//	int h = luaL_checkint(L, 2);
+	const char* filename = luaL_checkstring(L, 1);
+	ALLUA_sample sample = al_load_sample(filename);
+	if(sample)
+		allua_pushsample(L, sample, true);
+	else
+		lua_pushnil(L);
 
-//	allua_pushsample(L, al_create_sample(w, h), true);
-
-	return 0;
+	return 1;
 }
 
 static const luaL_reg allua_sample_methods[] = {
-	{"create", allua_sample_create},
+	{"load", allua_sample_load},
 	{0,0}
 };
 
