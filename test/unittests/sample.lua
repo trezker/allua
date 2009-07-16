@@ -17,6 +17,7 @@ end
 
 function Test_sample:test03_play()
 	b, sample_id = sample:play(1.0, 0.5, 1.0, allegro5.audio.PLAYMODE_ONCE)
+	allegro5.audio.stop_samples ()
 	assertEquals("boolean", type(b))
 	assertEquals("sample_id", tostring(sample_id):sub(1, 9))
 end

@@ -20,3 +20,10 @@ function save (sample, filename) end
 -- Returns:
 -- success status, and on success also a sample_id
 function play (sample, gain, pan, speed, loop) end
+
+-- Function: stop_samples
+-- Parameters:
+--
+-- Returns:
+-- 
+function stop_samples () end

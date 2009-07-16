@@ -83,10 +83,17 @@ static int allua_sample_play (lua_State *L)
 	return 1;
 }
 
+static int allua_sample_stop_samples (lua_State *L)
+{
+	al_stop_samples();
+	return 0;
+}
+
 static const luaL_reg allua_sample_methods[] = {
 	{"load", allua_sample_load},
 	{"save", allua_sample_save},
 	{"play", allua_sample_play},
+	{"stop_samples", allua_sample_stop_samples},
 	{0,0}
 };
 
