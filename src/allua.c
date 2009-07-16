@@ -12,6 +12,7 @@
 #include "allua/mixer.h"
 #include "allua/sample.h"
 #include "allua/sample_id.h"
+#include "allua/sample_instance.h"
 #include "allua/stream.h"
 #include <stdio.h>
 
@@ -82,6 +83,7 @@ int allua_register(lua_State *L)
 	allua_register_mixer(L);
 	allua_register_sample(L);
 	allua_register_sample_id(L);
+	allua_register_sample_instance(L);
 	allua_register_stream(L);
 	lua_pop(L, 1);
 	return 1;

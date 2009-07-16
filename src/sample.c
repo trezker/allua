@@ -1,5 +1,6 @@
 #include "allua/sample.h"
 #include "allua/sample_id.h"
+#include "allua/sample_instance.h"
 #include <allegro5/acodec.h>
 #include <stdio.h>
 
@@ -89,11 +90,32 @@ static int allua_sample_stop_samples (lua_State *L)
 	return 0;
 }
 
+static int allua_sample_create_instance (lua_State *L)
+{
+	struct ALLUA_sample_s *pi = (struct ALLUA_sample_s*)(lua_touserdata(L, index));
+	ALLUA_sample sample_data;
+	if (pi == NULL) 
+		sample_data = NULL;
+	else
+		sample_data = allua_check_sample(L, 1);
+	ALLUA_sample_instance instance = al_create_sample_instance(sample_data);
+	if(instance)
+	{
+		allua_pushsample_instance(L, instance, true);
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 static const luaL_reg allua_sample_methods[] = {
 	{"load", allua_sample_load},
 	{"save", allua_sample_save},
 	{"play", allua_sample_play},
 	{"stop_samples", allua_sample_stop_samples},
+	{"create_instance", allua_sample_create_instance},
 	{0,0}
 };
 

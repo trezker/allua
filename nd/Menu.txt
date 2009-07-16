@@ -49,6 +49,7 @@ Group: C API  {
    File: mouse.h  (/home/anders/allegro/allua-git/include/allua/mouse.h)
    File: sample.h  (/home/anders/allegro/allua-git/include/allua/sample.h)
    File: sample_id.h  (/home/anders/allegro/allua-git/include/allua/sample_id.h)
+   File: sample_instance.h  (/home/anders/allegro/allua-git/include/allua/sample_instance.h)
    File: stream.h  (/home/anders/allegro/allua-git/include/allua/stream.h)
    File: voice.h  (/home/anders/allegro/allua-git/include/allua/voice.h)
    }  # Group: C API

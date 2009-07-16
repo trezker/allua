@@ -27,3 +27,10 @@ function play (sample, gain, pan, speed, loop) end
 -- Returns:
 -- 
 function stop_samples () end
+
+-- Function: create_instance
+-- Parameters:
+--
+-- Returns:
+-- sample_instance on success, nil on failure
+function create_instance (sample) end
