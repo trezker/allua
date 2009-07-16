@@ -14,3 +14,9 @@ function Test_sample:test02_load()
 	assertEquals("sample", tostring(sample):sub(1, 6))
 	assertEquals("boolean", type(b))
 end
+
+function Test_sample:test03_play()
+	b, sample_id = sample:play(1.0, 0.5, 1.0, allegro5.audio.PLAYMODE_ONCE)
+	assertEquals("boolean", type(b))
+	assertEquals("sample_id", tostring(sample_id):sub(1, 9))
+end

@@ -79,6 +79,13 @@ void allua_audio_set_attributes(lua_State *L)
 	lua_setfield(L, -2, "CHANNEL_CONF_6_1");
 	lua_pushinteger(L, ALLEGRO_CHANNEL_CONF_7_1);
 	lua_setfield(L, -2, "CHANNEL_CONF_7_1");
+
+	lua_pushinteger(L, ALLEGRO_PLAYMODE_ONCE);
+	lua_setfield(L, -2, "PLAYMODE_ONCE");
+	lua_pushinteger(L, ALLEGRO_PLAYMODE_LOOP);
+	lua_setfield(L, -2, "PLAYMODE_LOOP");
+	lua_pushinteger(L, ALLEGRO_PLAYMODE_BIDIR);
+	lua_setfield(L, -2, "PLAYMODE_BIDIR");
 }
 
 /* Register

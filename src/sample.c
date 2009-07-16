@@ -1,4 +1,5 @@
 #include "allua/sample.h"
+#include "allua/sample_id.h"
 #include <allegro5/acodec.h>
 #include <stdio.h>
 
@@ -64,9 +65,28 @@ static int allua_sample_save (lua_State *L)
 	return 1;
 }
 
+static int allua_sample_play (lua_State *L)
+{
+	ALLUA_sample spl = allua_check_sample(L, 1);
+	float gain = luaL_checknumber(L, 2);
+	float pan = luaL_checknumber(L, 3);
+	float speed = luaL_checknumber(L, 4);
+	int loop = luaL_checkint(L, 5);
+	ALLEGRO_SAMPLE_ID ret_id;
+	int s = al_play_sample(spl, gain, pan, speed, loop, &ret_id);
+	lua_pushboolean(L, s);
+	if(s)
+	{
+		allua_pushsample_id(L, ret_id);
+		return 2;
+	}
+	return 1;
+}
+
 static const luaL_reg allua_sample_methods[] = {
 	{"load", allua_sample_load},
 	{"save", allua_sample_save},
+	{"play", allua_sample_play},
 	{0,0}
 };
 

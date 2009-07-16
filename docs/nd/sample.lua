@@ -13,3 +13,10 @@ function load (filename) end
 -- Returns:
 -- true on success, false on failure
 function save (sample, filename) end
+
+-- Function: play
+-- Parameters:
+--
+-- Returns:
+-- success status, and on success also a sample_id
+function play (sample, gain, pan, speed, loop) end
