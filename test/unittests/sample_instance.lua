@@ -15,3 +15,7 @@ function Test_sample_instance:test02_play()
 	assertEquals("boolean", type(bplay))
 	assertEquals("boolean", type(bstop))
 end
+
+function Test_sample_instance:test03_channels()
+	channels = instance:get_channels ()
+end

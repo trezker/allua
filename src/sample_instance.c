@@ -57,9 +57,17 @@ static int allua_sample_instance_stop (lua_State *L)
   return 1;
 }
 
+static int allua_sample_instance_get_channels (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_channels(si));
+  return 1;
+}
+
 static const luaL_reg allua_sample_instance_methods[] = {
 	{"play", allua_sample_instance_play},
 	{"stop", allua_sample_instance_stop},
+	{"get_channels", allua_sample_instance_get_channels},
 	{0,0}
 };
 

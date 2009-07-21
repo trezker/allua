@@ -13,3 +13,10 @@ function play (sample_instance) end
 -- Returns:
 -- success status
 function stop (sample_instance) end
+
+-- Function: get_channels
+-- Parameters:
+--
+-- Returns:
+-- channel conf
+function get_channels (sample_instance) end
