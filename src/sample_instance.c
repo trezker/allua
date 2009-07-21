@@ -43,9 +43,15 @@ struct ALLUA_sample_instance_s *allua_pushsample_instance (lua_State *L, ALLUA_s
 
 /* Constructor and methods
  * */
-
+static int allua_sample_instance_play (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushboolean(L, al_play_sample_instance(si));
+  return 1;
+}
 
 static const luaL_reg allua_sample_instance_methods[] = {
+	{"play", allua_sample_instance_play},
 	{0,0}
 };
 

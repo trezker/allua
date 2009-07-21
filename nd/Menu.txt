@@ -68,6 +68,7 @@ Group: Lua functions  {
    File: mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
    File: primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
    File: sample  (/home/anders/allegro/allua-git/docs/nd/sample.lua)
+   File: sample_instance  (/home/anders/allegro/allua-git/docs/nd/sample_instance.lua)
    File: voice  (/home/anders/allegro/allua-git/docs/nd/voice.lua)
    }  # Group: Lua functions
 

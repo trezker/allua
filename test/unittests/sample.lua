@@ -22,9 +22,10 @@ function Test_sample:test03_play()
 	assertEquals("sample_id", tostring(sample_id):sub(1, 9))
 end
 
-function Test_sample:test04_instance()
+function Test_sample:test04_create_instance()
 	instance = sample:create_instance ()
 	instance_no_data = allegro5.sample.create_instance (nil)
 	assertEquals("sample_instance", tostring(instance):sub(1, 15))
 	assertEquals("sample_instance", tostring(instance_no_data):sub(1, 15))
 end
+
