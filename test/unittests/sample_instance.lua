@@ -10,6 +10,8 @@ function Test_sample_instance:test01_prepare()
 end
 
 function Test_sample_instance:test02_play()
-	b = instance:play()
-	assertEquals("boolean", type(b))
+	bplay = instance:play()
+	bstop = instance:stop()
+	assertEquals("boolean", type(bplay))
+	assertEquals("boolean", type(bstop))
 end
