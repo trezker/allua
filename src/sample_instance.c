@@ -64,10 +64,18 @@ static int allua_sample_instance_get_channels (lua_State *L)
   return 1;
 }
 
+static int allua_sample_instance_get_depth (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_depth(si));
+  return 1;
+}
+
 static const luaL_reg allua_sample_instance_methods[] = {
 	{"play", allua_sample_instance_play},
 	{"stop", allua_sample_instance_stop},
 	{"get_channels", allua_sample_instance_get_channels},
+	{"get_depth", allua_sample_instance_get_depth},
 	{0,0}
 };
 

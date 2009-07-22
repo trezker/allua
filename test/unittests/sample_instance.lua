@@ -18,4 +18,10 @@ end
 
 function Test_sample_instance:test03_channels()
 	channels = instance:get_channels ()
+	assertEquals("number", type(channels))
+end
+
+function Test_sample_instance:test03_depth()
+	depth = instance:get_depth ()
+	assertEquals("number", type(depth))
 end

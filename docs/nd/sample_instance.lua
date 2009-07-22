@@ -20,3 +20,10 @@ function stop (sample_instance) end
 -- Returns:
 -- channel conf
 function get_channels (sample_instance) end
+
+-- Function: get_depth
+-- Parameters:
+--
+-- Returns:
+-- audio depth
+function get_depth (sample_instance) end
