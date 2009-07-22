@@ -27,3 +27,10 @@ function get_channels (sample_instance) end
 -- Returns:
 -- audio depth
 function get_depth (sample_instance) end
+
+-- Function: get_frequency
+-- Parameters:
+--
+-- Returns:
+-- frequency
+function get_frequency (sample_instance) end

@@ -25,3 +25,8 @@ function Test_sample_instance:test03_depth()
 	depth = instance:get_depth ()
 	assertEquals("number", type(depth))
 end
+
+function Test_sample_instance:test03_frequency()
+	frequency = instance:get_frequency ()
+	assertEquals("number", type(frequency))
+end
