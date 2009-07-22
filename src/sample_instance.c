@@ -77,12 +77,45 @@ static int allua_sample_instance_get_frequency (lua_State *L)
   lua_pushnumber(L, al_get_sample_instance_frequency(si));
   return 1;
 }
+
+static int allua_sample_instance_get_length (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_length(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_position (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_position(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_speed (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_speed(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_gain (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_gain(si));
+  return 1;
+}
+
 static const luaL_reg allua_sample_instance_methods[] = {
 	{"play", allua_sample_instance_play},
 	{"stop", allua_sample_instance_stop},
 	{"get_channels", allua_sample_instance_get_channels},
 	{"get_depth", allua_sample_instance_get_depth},
 	{"get_frequency", allua_sample_instance_get_frequency},
+	{"get_length", allua_sample_instance_get_length},
+	{"get_position", allua_sample_instance_get_position},
+	{"get_speed", allua_sample_instance_get_speed},
+	{"get_gain", allua_sample_instance_get_gain},
 	{0,0}
 };
 
