@@ -72,6 +72,18 @@ function Test_sample_instance:test03_attached()
 end
 
 function Test_sample_instance:test03_get_sample()
-	sample = instance:get_sample ()
-	assertEquals("sample", tostring(sample):sub(1, 6))
+	gsample = instance:get_sample ()
+	assertEquals("sample", tostring(gsample):sub(1, 6))
+end
+
+function Test_sample_instance:test04_shutdown()
+	gsample = nil
+	print(tostring(instance))
+	instance = nil
+	print(tostring(instance_no_data))
+	instance_no_data = nil
+	collectgarbage()
+	print(tostring(sample))
+	sample = nil
+	collectgarbage()
 end

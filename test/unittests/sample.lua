@@ -29,3 +29,13 @@ function Test_sample:test04_create_instance()
 	assertEquals("sample_instance", tostring(instance_no_data):sub(1, 15))
 end
 
+function Test_sample:test05_shutdown()
+	print(tostring(instance))
+	instance = nil
+	print(tostring(instance_no_data))
+	instance_no_data = nil
+	collectgarbage()
+	print(tostring(sample))
+	sample = nil
+	collectgarbage()
+end

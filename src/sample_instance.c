@@ -180,7 +180,7 @@ static int allua_sample_instance_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_sample_instance im = pi->sample_instance;
-	  printf("goodbye sample_instance (%p)\n", im);
+	  printf("goodbye sample_instance (%p)\n", pi);
 	  if (im) al_destroy_sample_instance(im);
   }
   return 0;
