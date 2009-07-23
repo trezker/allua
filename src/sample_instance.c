@@ -1,4 +1,5 @@
 #include "allua/sample_instance.h"
+#include "allua/sample.h"
 #include <allegro5/acodec.h>
 #include <stdio.h>
 
@@ -106,6 +107,52 @@ static int allua_sample_instance_get_gain (lua_State *L)
   return 1;
 }
 
+static int allua_sample_instance_get_pan (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_pan(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_time (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_time(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_playmode (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushnumber(L, al_get_sample_instance_playmode(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_playing (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushboolean(L, al_get_sample_instance_playing(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_attached (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  lua_pushboolean(L, al_get_sample_instance_attached(si));
+  return 1;
+}
+
+static int allua_sample_instance_get_sample (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  ALLUA_sample sample = al_get_sample(si);
+  if(sample)
+	allua_pushsample(L, sample, false);
+  else
+  	lua_pushnil(L);
+  return 1;
+}
+
 static const luaL_reg allua_sample_instance_methods[] = {
 	{"play", allua_sample_instance_play},
 	{"stop", allua_sample_instance_stop},
@@ -116,6 +163,12 @@ static const luaL_reg allua_sample_instance_methods[] = {
 	{"get_position", allua_sample_instance_get_position},
 	{"get_speed", allua_sample_instance_get_speed},
 	{"get_gain", allua_sample_instance_get_gain},
+	{"get_pan", allua_sample_instance_get_pan},
+	{"get_time", allua_sample_instance_get_time},
+	{"get_playmode", allua_sample_instance_get_playmode},
+	{"get_playing", allua_sample_instance_get_playing},
+	{"get_attached", allua_sample_instance_get_attached},
+	{"get_sample", allua_sample_instance_get_sample},
 	{0,0}
 };
 

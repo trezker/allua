@@ -62,3 +62,45 @@ function get_speed (sample_instance) end
 -- Returns:
 -- gain
 function get_gain (sample_instance) end
+
+-- Function: get_pan
+-- Parameters:
+--
+-- Returns:
+-- pan
+function get_pan (sample_instance) end
+
+-- Function: get_time
+-- Parameters:
+--
+-- Returns:
+-- time
+function get_time (sample_instance) end
+
+-- Function: get_playmode
+-- Parameters:
+--
+-- Returns:
+-- playmode
+function get_playmode (sample_instance) end
+
+-- Function: get_playing
+-- Parameters:
+--
+-- Returns:
+-- playing
+function get_playing (sample_instance) end
+
+-- Function: get_attached
+-- Parameters:
+--
+-- Returns:
+-- attached
+function get_attached (sample_instance) end
+
+-- Function: get_sample
+-- Parameters:
+--
+-- Returns:
+-- sample data, or nil
+function get_sample (sample_instance) end

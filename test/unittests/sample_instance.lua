@@ -45,3 +45,33 @@ function Test_sample_instance:test03_gain()
 	gain = instance:get_gain ()
 	assertEquals("number", type(gain))
 end
+
+function Test_sample_instance:test03_pan()
+	pan = instance:get_pan ()
+	assertEquals("number", type(pan))
+end
+
+function Test_sample_instance:test03_time()
+	gtime = instance:get_time ()
+	assertEquals("number", type(gtime))
+end
+
+function Test_sample_instance:test03_playmode()
+	playmode = instance:get_playmode ()
+	assertEquals("number", type(playmode))
+end
+
+function Test_sample_instance:test03_playing()
+	playing = instance:get_playing ()
+	assertEquals("boolean", type(playing))
+end
+
+function Test_sample_instance:test03_attached()
+	attached = instance:get_attached ()
+	assertEquals("boolean", type(attached))
+end
+
+function Test_sample_instance:test03_get_sample()
+	sample = instance:get_sample ()
+	assertEquals("sample", tostring(sample):sub(1, 6))
+end

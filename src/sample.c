@@ -128,7 +128,7 @@ static int allua_sample_gc (lua_State *L)
   {
 	  ALLUA_sample im = pi->sample;
 	  printf("goodbye sample (%p)\n", im);
-	  if (im) al_destroy_sample(im);
+//	  if (im) al_destroy_sample(im);
   }
   return 0;
 }
