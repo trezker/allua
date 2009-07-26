@@ -42,6 +42,13 @@ function get_frequency (sample_instance) end
 -- length
 function get_length (sample_instance) end
 
+-- Function: set_length
+-- Parameters:
+--
+-- Returns:
+--
+function set_length (sample_instance, length) end
+
 -- Function: get_position
 -- Parameters:
 --

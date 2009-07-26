@@ -33,7 +33,9 @@ end
 
 function Test_sample_instance:test03_length()
 	length = instance:get_length ()
+	b = instance:set_length (length)
 	assertEquals("number", type(length))
+	assertEquals("boolean", type(b))
 end
 
 function Test_sample_instance:test03_position()
