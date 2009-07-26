@@ -46,7 +46,7 @@ function get_length (sample_instance) end
 -- Parameters:
 --
 -- Returns:
---
+-- success
 function set_length (sample_instance, length) end
 
 -- Function: get_position
@@ -55,6 +55,13 @@ function set_length (sample_instance, length) end
 -- Returns:
 -- position
 function get_position (sample_instance) end
+
+-- Function: set_position
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_position (sample_instance, pos) end
 
 -- Function: get_speed
 -- Parameters:

@@ -40,7 +40,9 @@ end
 
 function Test_sample_instance:test03_position()
 	position = instance:get_position ()
+	b = instance:set_position (0)
 	assertEquals("number", type(position))
+	assertEquals("boolean", type(b))
 end
 
 function Test_sample_instance:test03_gain()
