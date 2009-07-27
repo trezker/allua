@@ -70,6 +70,13 @@ function set_position (sample_instance, pos) end
 -- speed
 function get_speed (sample_instance) end
 
+-- Function: set_speed
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_speed (sample_instance, speed) end
+
 -- Function: get_gain
 -- Parameters:
 --

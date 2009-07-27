@@ -45,6 +45,13 @@ function Test_sample_instance:test03_position()
 	assertEquals("boolean", type(b))
 end
 
+function Test_sample_instance:test03_speed()
+	speed = instance:get_speed ()
+	b = instance:set_speed (1)
+	assertEquals("number", type(speed))
+	assertEquals("boolean", type(b))
+end
+
 function Test_sample_instance:test03_gain()
 	gain = instance:get_gain ()
 	assertEquals("number", type(gain))

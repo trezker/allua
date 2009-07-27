@@ -116,6 +116,14 @@ static int allua_sample_instance_get_speed (lua_State *L)
   return 1;
 }
 
+static int allua_sample_instance_set_speed (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  float val = luaL_checknumber(L, 2);
+  lua_pushboolean(L, al_set_sample_instance_speed(si, val));
+  return 1;
+}
+
 static int allua_sample_instance_get_gain (lua_State *L)
 {
   ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
@@ -180,6 +188,7 @@ static const luaL_reg allua_sample_instance_methods[] = {
 	{"get_position", allua_sample_instance_get_position},
 	{"set_position", allua_sample_instance_set_position},
 	{"get_speed", allua_sample_instance_get_speed},
+	{"set_speed", allua_sample_instance_set_speed},
 	{"get_gain", allua_sample_instance_get_gain},
 	{"get_pan", allua_sample_instance_get_pan},
 	{"get_time", allua_sample_instance_get_time},
