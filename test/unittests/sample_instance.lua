@@ -54,12 +54,16 @@ end
 
 function Test_sample_instance:test03_gain()
 	gain = instance:get_gain ()
+	b = instance:set_gain (1)
 	assertEquals("number", type(gain))
+	assertEquals("boolean", type(b))
 end
 
 function Test_sample_instance:test03_pan()
 	pan = instance:get_pan ()
+	b = instance:set_pan (0)
 	assertEquals("number", type(pan))
+	assertEquals("boolean", type(b))
 end
 
 function Test_sample_instance:test03_time()

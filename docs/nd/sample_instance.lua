@@ -84,12 +84,26 @@ function set_speed (sample_instance, speed) end
 -- gain
 function get_gain (sample_instance) end
 
+-- Function: set_gain
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_gain (sample_instance, gain) end
+
 -- Function: get_pan
 -- Parameters:
 --
 -- Returns:
 -- pan
 function get_pan (sample_instance) end
+
+-- Function: set_pan
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_pan (sample_instance, pan) end
 
 -- Function: get_time
 -- Parameters:
