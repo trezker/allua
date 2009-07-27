@@ -65,6 +65,25 @@ static int allua_sample_instance_detach (lua_State *L)
   return 1;
 }
 
+static int allua_sample_instance_set_sample (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  ALLUA_sample s = allua_check_sample(L, 2);
+  lua_pushboolean(L, al_set_sample(si, s));
+  return 1;
+}
+
+static int allua_sample_instance_get_sample (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  ALLUA_sample s = al_get_sample(si);
+  if(s)
+    allua_pushsample(L, s, false);
+  else
+    lua_pushnil(L);
+  return 1;
+}
+
 static int allua_sample_instance_get_channels (lua_State *L)
 {
   ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
@@ -205,17 +224,6 @@ static int allua_sample_instance_get_attached (lua_State *L)
   return 1;
 }
 
-static int allua_sample_instance_get_sample (lua_State *L)
-{
-  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
-  ALLUA_sample sample = al_get_sample(si);
-  if(sample)
-	allua_pushsample(L, sample, false);
-  else
-  	lua_pushnil(L);
-  return 1;
-}
-
 static const luaL_reg allua_sample_instance_methods[] = {
 	{"play", allua_sample_instance_play},
 	{"stop", allua_sample_instance_stop},
@@ -240,6 +248,7 @@ static const luaL_reg allua_sample_instance_methods[] = {
 	{"set_playing", allua_sample_instance_set_playing},
 	{"get_attached", allua_sample_instance_get_attached},
 	{"get_sample", allua_sample_instance_get_sample},
+	{"set_sample", allua_sample_instance_set_sample},
 	{0,0}
 };
 

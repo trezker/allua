@@ -9,6 +9,13 @@ function Test_sample_instance:test01_prepare()
 	instance_no_data = allegro5.sample.create_instance (nil)
 end
 
+function Test_sample_instance:test02_sample()
+	b = instance_no_data:set_sample(sample)
+	s = instance_no_data:get_sample()
+	assertEquals("boolean", type(b))
+	assertEquals("sample", tostring(s):sub(1, 6))
+end
+
 function Test_sample_instance:test02_play()
 	bplay = instance:play()
 	bstop = instance:stop()

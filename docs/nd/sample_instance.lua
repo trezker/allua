@@ -21,6 +21,20 @@ function stop (sample_instance) end
 -- success status
 function detach (sample_instance) end
 
+-- Function: get_sample
+-- Parameters:
+--
+-- Returns:
+-- sample, or nil
+function get_sample (sample_instance) end
+
+-- Function: set_sample
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_sample (sample_instance, sample) end
+
 -- Function: get_channels
 -- Parameters:
 --
