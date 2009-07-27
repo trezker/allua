@@ -73,12 +73,16 @@ end
 
 function Test_sample_instance:test03_playmode()
 	playmode = instance:get_playmode ()
+	b = instance:set_playmode (allegro5.audio.PLAYMODE_ONCE)
 	assertEquals("number", type(playmode))
+	assertEquals("boolean", type(b))
 end
 
 function Test_sample_instance:test03_playing()
 	playing = instance:get_playing ()
+	b = instance:set_playing (false)
 	assertEquals("boolean", type(playing))
+	assertEquals("boolean", type(b))
 end
 
 function Test_sample_instance:test03_attached()

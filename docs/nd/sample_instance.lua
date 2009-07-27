@@ -119,12 +119,26 @@ function get_time (sample_instance) end
 -- playmode
 function get_playmode (sample_instance) end
 
+-- Function: set_playmode
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_playmode (sample_instance, mode) end
+
 -- Function: get_playing
 -- Parameters:
 --
 -- Returns:
 -- playing
 function get_playing (sample_instance) end
+
+-- Function: set_playing
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_playing (sample_instance, val) end
 
 -- Function: get_attached
 -- Parameters:

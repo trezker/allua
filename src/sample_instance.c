@@ -168,10 +168,26 @@ static int allua_sample_instance_get_playmode (lua_State *L)
   return 1;
 }
 
+static int allua_sample_instance_set_playmode (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  int mode = luaL_checkint(L, 2);
+  lua_pushboolean(L, al_set_sample_instance_playmode(si, mode));
+  return 1;
+}
+
 static int allua_sample_instance_get_playing (lua_State *L)
 {
   ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
   lua_pushboolean(L, al_get_sample_instance_playing(si));
+  return 1;
+}
+
+static int allua_sample_instance_set_playing (lua_State *L)
+{
+  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+  bool v = lua_toboolean(L, 2);
+  lua_pushboolean(L, al_set_sample_instance_playing(si, v));
   return 1;
 }
 
@@ -211,7 +227,9 @@ static const luaL_reg allua_sample_instance_methods[] = {
 	{"set_pan", allua_sample_instance_set_pan},
 	{"get_time", allua_sample_instance_get_time},
 	{"get_playmode", allua_sample_instance_get_playmode},
+	{"set_playmode", allua_sample_instance_set_playmode},
 	{"get_playing", allua_sample_instance_get_playing},
+	{"set_playing", allua_sample_instance_set_playing},
 	{"get_attached", allua_sample_instance_get_attached},
 	{"get_sample", allua_sample_instance_get_sample},
 	{0,0}
