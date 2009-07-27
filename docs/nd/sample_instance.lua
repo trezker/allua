@@ -14,6 +14,13 @@ function play (sample_instance) end
 -- success status
 function stop (sample_instance) end
 
+-- Function: detach
+-- Parameters:
+--
+-- Returns:
+-- success status
+function detach (sample_instance) end
+
 -- Function: get_channels
 -- Parameters:
 --

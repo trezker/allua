@@ -12,8 +12,10 @@ end
 function Test_sample_instance:test02_play()
 	bplay = instance:play()
 	bstop = instance:stop()
+	bdetach = instance:detach()
 	assertEquals("boolean", type(bplay))
 	assertEquals("boolean", type(bstop))
+	assertEquals("boolean", type(bdetach))
 end
 
 function Test_sample_instance:test03_channels()
