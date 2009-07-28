@@ -34,8 +34,15 @@ ALLUA_sample_id *allua_pushsample_id (lua_State *L, ALLUA_sample_id im)
 
 /* Constructor and methods
  * */
+static int allua_sample_id_stop (lua_State *L)
+{
+	ALLUA_sample_id spl = allua_check_sample_id(L, 1);
+	al_stop_sample(&spl);
+	return 0;
+}
 
 static const luaL_reg allua_sample_id_methods[] = {
+  {"stop",allua_sample_id_stop},
   {0,0}
 };
 

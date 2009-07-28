@@ -34,3 +34,12 @@ function stop_samples () end
 -- Returns:
 -- sample_instance on success, nil on failure
 function create_instance (sample) end
+
+-- Class: sample_id
+
+-- Function: stop
+-- Parameters:
+--
+-- Returns:
+-- 
+function stop (sample_id) end
