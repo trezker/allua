@@ -1,5 +1,6 @@
 #include "allua/stream.h"
 #include <stdio.h>
+#include <allegro5/acodec.h>
 
 #define STREAM_STRING "stream"
 
@@ -56,8 +57,20 @@ static int allua_stream_create (lua_State *L)
   return 1;
 }
 
+static int allua_stream_from_file (lua_State *L)
+{
+  int buffer_count = luaL_checkint(L, 1);
+  int samples = luaL_checkint(L, 2);
+  const char* filename = luaL_checkstring(L, 3);
+
+  allua_pushstream(L, al_stream_from_file(buffer_count, samples, filename), true);
+
+  return 1;
+}
+
 static const luaL_reg allua_stream_methods[] = {
 	{"create", allua_stream_create},
+	{"from_file", allua_stream_from_file},
 	{0,0}
 };
 
