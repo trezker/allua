@@ -68,9 +68,134 @@ static int allua_stream_from_file (lua_State *L)
   return 1;
 }
 
+static int allua_stream_rewind (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushboolean(L, al_rewind_stream(stream));
+  return 1;
+}
+
+static int allua_stream_get_frequency (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_frequency(stream));
+  return 1;
+}
+
+static int allua_stream_get_channels (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_channels(stream));
+  return 1;
+}
+
+static int allua_stream_get_depth (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_depth(stream));
+  return 1;
+}
+
+static int allua_stream_get_length (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_length(stream));
+  return 1;
+}
+
+static int allua_stream_get_speed (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_speed(stream));
+  return 1;
+}
+
+static int allua_stream_set_speed (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  float val = luaL_checknumber(L, 2);
+  lua_pushboolean(L, al_set_stream_speed(stream, val));
+  return 1;
+}
+
+static int allua_stream_get_gain (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_gain(stream));
+  return 1;
+}
+
+static int allua_stream_set_gain (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  float val = luaL_checknumber(L, 2);
+  lua_pushboolean(L, al_set_stream_gain(stream, val));
+  return 1;
+}
+
+static int allua_stream_get_pan (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_pan(stream));
+  return 1;
+}
+
+static int allua_stream_set_pan (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  float val = luaL_checknumber(L, 2);
+  lua_pushboolean(L, al_set_stream_pan(stream, val));
+  return 1;
+}
+
+static int allua_stream_get_playing (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushboolean(L, al_get_stream_playing(stream));
+  return 1;
+}
+
+static int allua_stream_set_playing (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  float val = lua_toboolean(L, 2);
+  lua_pushboolean(L, al_set_stream_playing(stream, val));
+  return 1;
+}
+
+static int allua_stream_get_playmode (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_playmode(stream));
+  return 1;
+}
+
+static int allua_stream_set_playmode (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  int val = luaL_checkint(L, 2);
+  lua_pushboolean(L, al_set_stream_playmode(stream, val));
+  return 1;
+}
+
 static const luaL_reg allua_stream_methods[] = {
 	{"create", allua_stream_create},
 	{"from_file", allua_stream_from_file},
+	{"rewind", allua_stream_rewind},
+	{"get_frequency", allua_stream_get_frequency},
+	{"get_channels", allua_stream_get_channels},
+	{"get_depth", allua_stream_get_depth},
+	{"get_length", allua_stream_get_length},
+	{"get_speed", allua_stream_get_speed},
+	{"set_speed", allua_stream_set_speed},
+	{"get_gain", allua_stream_get_gain},
+	{"set_gain", allua_stream_set_gain},
+	{"get_pan", allua_stream_get_pan},
+	{"set_pan", allua_stream_set_pan},
+	{"get_playing", allua_stream_get_playing},
+	{"set_playing", allua_stream_set_playing},
+	{"get_playmode", allua_stream_get_playmode},
+	{"set_playmode", allua_stream_set_playmode},
 	{0,0}
 };
 
