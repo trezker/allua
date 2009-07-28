@@ -178,6 +178,51 @@ static int allua_stream_set_playmode (lua_State *L)
   return 1;
 }
 
+static int allua_stream_get_attached (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushboolean(L, al_get_stream_attached(stream));
+  return 1;
+}
+
+static int allua_stream_detach (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushboolean(L, al_detach_stream(stream));
+  return 1;
+}
+
+static int allua_stream_seek_secs (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  double t = luaL_checknumber(L, 2);
+  lua_pushboolean(L, al_seek_stream_secs(stream, t));
+  return 1;
+}
+
+static int allua_stream_get_position_secs (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_position_secs(stream));
+  return 1;
+}
+
+static int allua_stream_get_length_secs (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  lua_pushnumber(L, al_get_stream_length_secs(stream));
+  return 1;
+}
+
+static int allua_stream_set_loop_secs (lua_State *L)
+{
+  ALLUA_stream stream = allua_check_stream(L, 1);
+  double start = luaL_checknumber(L, 2);
+  double end = luaL_checknumber(L, 3);
+  lua_pushboolean(L, al_set_stream_loop_secs(stream, start, end));
+  return 1;
+}
+
 static const luaL_reg allua_stream_methods[] = {
 	{"create", allua_stream_create},
 	{"from_file", allua_stream_from_file},
@@ -196,6 +241,12 @@ static const luaL_reg allua_stream_methods[] = {
 	{"set_playing", allua_stream_set_playing},
 	{"get_playmode", allua_stream_get_playmode},
 	{"set_playmode", allua_stream_set_playmode},
+	{"get_attached", allua_stream_get_attached},
+	{"detach", allua_stream_detach},
+	{"seek_secs", allua_stream_seek_secs},
+	{"get_position_secs", allua_stream_get_position_secs},
+	{"get_length_secs", allua_stream_get_length_secs},
+	{"set_loop_secs", allua_stream_set_loop_secs},
 	{0,0}
 };
 

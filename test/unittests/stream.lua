@@ -71,6 +71,24 @@ function Test_stream:test03_playmode()
 	assertEquals("boolean", type(b))
 end
 
+function Test_stream:test04_attachment()
+	g = stream:get_attached ()
+	b = stream:detach ()
+	assertEquals("boolean", type(g))
+	assertEquals("boolean", type(b))
+end
+
+function Test_stream:test05_seek()
+	ss = stream:seek_secs (0)
+	p = stream:get_position_secs()
+	l = stream:get_length_secs()
+	lb = stream:set_loop_secs(0, 1)
+	assertEquals("boolean", type(ss))
+	assertEquals("number", type(p))
+	assertEquals("number", type(l))
+	assertEquals("boolean", type(lb))
+end
+
 function Test_stream:test10_cleanup()
 	stream = nil
 	collectgarbage()

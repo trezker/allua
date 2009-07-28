@@ -111,3 +111,45 @@ function get_playmode (stream) end
 -- Returns:
 -- success
 function set_playmode (stream, val) end
+
+-- Function: get_attached
+-- Parameters:
+--
+-- Returns:
+-- attached or not
+function get_attached (stream) end
+
+-- Function: detach
+-- Parameters:
+--
+-- Returns:
+-- success
+function detach (stream) end
+
+-- Function: seek_secs
+-- Parameters:
+--
+-- Returns:
+-- success
+function seek_secs (stream, time) end
+
+-- Function: get_position_secs
+-- Parameters:
+--
+-- Returns:
+-- position
+function get_position_secs (stream) end
+
+-- Function: get_length_secs
+-- Parameters:
+--
+-- Returns:
+-- length
+function get_length_secs (stream) end
+
+-- Function: set_loop_secs
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_loop_secs (stream, start, end) end
