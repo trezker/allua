@@ -57,8 +57,34 @@ static int allua_mixer_create (lua_State *L)
   return 1;
 }
 
+static int allua_mixer_get_default (lua_State *L)
+{
+	ALLUA_mixer mixer = al_get_default_mixer();
+	if(mixer)
+  		allua_pushmixer(L, mixer, false);
+	else
+		lua_pushnil(L);
+	return 1;
+}
+
+static int allua_mixer_set_default (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushboolean(L, al_set_default_mixer(mixer));
+	return 1;
+}
+
+static int allua_mixer_restore_default (lua_State *L)
+{
+	lua_pushboolean(L, al_restore_default_mixer());
+	return 1;
+}
+
 static const luaL_reg allua_mixer_methods[] = {
 	{"create", allua_mixer_create},
+	{"get_default", allua_mixer_get_default},
+	{"set_default", allua_mixer_set_default},
+	{"restore_default", allua_mixer_restore_default},
 	{0,0}
 };
 
