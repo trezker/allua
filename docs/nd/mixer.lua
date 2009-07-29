@@ -27,3 +27,24 @@ function set_default (mixer) end
 -- Returns:
 -- success
 function restore_default () end
+
+-- Function: attach_mixer
+-- Parameters:
+--
+-- Returns:
+-- success
+function attach_mixer (mixer, stream) end
+
+-- Function: attach_sample
+-- Parameters:
+--
+-- Returns:
+-- success
+function attach_sample (mixer, sample_instance) end
+
+-- Function: attach_stream
+-- Parameters:
+--
+-- Returns:
+-- success
+function attach_stream (mixer, stream) end

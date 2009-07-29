@@ -20,6 +20,22 @@ function Test_mixer:test03_default()
 --	assertEquals("boolean", type(r))
 end
 
+function Test_mixer:test04_attach()
+	mixer2 = allegro5.mixer.create (44100, allegro5.audio.AUDIO_DEPTH_FLOAT32, allegro5.audio.CHANNEL_CONF_2)
+	mb = mixer:attach_mixer(mixer2)
+
+	sample = allegro5.sample.load("data/powerup.ogg")
+	sample_instance = sample:create_instance()
+	sampleb = mixer:attach_sample(sample_instance)
+
+	stream = allegro5.stream.from_file(2, 2, "data/powerup.ogg")
+	streamb = mixer:attach_stream (stream)
+	
+	assertEquals("boolean", type(mb))
+	assertEquals("boolean", type(sampleb))
+	assertEquals("boolean", type(streamb))
+end
+
 function Test_mixer:test20_destroy()
 	mixer = nil
 	collectgarbage()

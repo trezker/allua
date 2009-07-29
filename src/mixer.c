@@ -1,4 +1,7 @@
 #include "allua/mixer.h"
+#include "allua/sample.h"
+#include "allua/sample_instance.h"
+#include "allua/stream.h"
 #include <stdio.h>
 
 #define MIXER_STRING "mixer"
@@ -80,11 +83,38 @@ static int allua_mixer_restore_default (lua_State *L)
 	return 1;
 }
 
+static int allua_mixer_attach_mixer (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	ALLUA_mixer stream = allua_check_mixer(L, 2);
+	lua_pushboolean(L, al_attach_mixer_to_mixer(mixer, stream));
+	return 1;
+}
+
+static int allua_mixer_attach_sample (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	ALLUA_sample_instance sample_instance = allua_check_sample_instance(L, 2);
+	lua_pushboolean(L, al_attach_sample_to_mixer(mixer, sample_instance));
+	return 1;
+}
+
+static int allua_mixer_attach_stream (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	ALLUA_stream stream = allua_check_stream(L, 2);
+	lua_pushboolean(L, al_attach_mixer_to_mixer(mixer, stream));
+	return 1;
+}
+
 static const luaL_reg allua_mixer_methods[] = {
 	{"create", allua_mixer_create},
 	{"get_default", allua_mixer_get_default},
 	{"set_default", allua_mixer_set_default},
 	{"restore_default", allua_mixer_restore_default},
+	{"attach_mixer", allua_mixer_attach_mixer},
+	{"attach_sample", allua_mixer_attach_sample},
+	{"attach_stream", allua_mixer_attach_stream},
 	{0,0}
 };
 
