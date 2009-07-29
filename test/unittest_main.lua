@@ -17,6 +17,7 @@ dofile("unittests/voice.lua")
 dofile("unittests/sample.lua")
 dofile("unittests/sample_instance.lua")
 dofile("unittests/stream.lua")
+dofile("unittests/mixer.lua")
 
 assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)

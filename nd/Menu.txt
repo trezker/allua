@@ -65,6 +65,7 @@ Group: Lua functions  {
    File: font  (/home/anders/allegro/allua-git/docs/nd/Font.lua)
    File: Getting started  (/home/anders/allegro/allua-git/docs/nd/Getting_started.txt)
    File: keyboard  (/home/anders/allegro/allua-git/docs/nd/Keyboard.lua)
+   File: mixer  (/home/anders/allegro/allua-git/docs/nd/mixer.lua)
    File: mouse  (/home/anders/allegro/allua-git/docs/nd/Mouse.lua)
    File: primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
    File: sample  (/home/anders/allegro/allua-git/docs/nd/sample.lua)

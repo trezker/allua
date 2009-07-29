@@ -48,8 +48,11 @@ static int allua_mixer_create (lua_State *L)
   int freq = luaL_checkint(L, 1);
   int depth = luaL_checkint(L, 2);
   int chan_conf = luaL_checkint(L, 3);
-
-  allua_pushmixer(L, al_create_mixer(freq, depth, chan_conf), true);
+	ALLUA_mixer mixer = al_create_mixer(freq, depth, chan_conf);
+	if(mixer)
+  		allua_pushmixer(L, mixer, true);
+	else
+		lua_pushnil(L);
 
   return 1;
 }
