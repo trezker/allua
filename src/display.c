@@ -1,6 +1,6 @@
 #include "allua/display.h"
 #include "allua/bitmap.h"
-#include "allua/al_lua.h"
+#include "allua/allua.h"
 #include "allua/color.h"
 #include "allua/event_queue.h"
 
