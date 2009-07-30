@@ -36,6 +36,13 @@ function Test_mixer:test04_attach()
 	assertEquals("boolean", type(streamb))
 end
 
+function Test_mixer:test05_frequency()
+	gfreq = mixer:get_frequency ()
+	b = mixer:set_frequency(44100)
+	assertEquals("number", type(gfreq))
+	assertEquals("boolean", type(b))
+end
+
 function Test_mixer:test20_destroy()
 	mixer = nil
 	collectgarbage()

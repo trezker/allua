@@ -103,7 +103,22 @@ static int allua_mixer_attach_stream (lua_State *L)
 {
 	ALLUA_mixer mixer = allua_check_mixer(L, 1);
 	ALLUA_stream stream = allua_check_stream(L, 2);
-	lua_pushboolean(L, al_attach_mixer_to_mixer(mixer, stream));
+	lua_pushboolean(L, al_attach_stream_to_mixer(mixer, stream));
+	return 1;
+}
+
+static int allua_mixer_get_frequency (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushnumber(L, al_get_mixer_frequency(mixer));
+	return 1;
+}
+
+static int allua_mixer_set_frequency (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	unsigned long val = luaL_checkint(L, 2);
+	lua_pushboolean(L, al_set_mixer_frequency(mixer, val));
 	return 1;
 }
 
@@ -115,6 +130,8 @@ static const luaL_reg allua_mixer_methods[] = {
 	{"attach_mixer", allua_mixer_attach_mixer},
 	{"attach_sample", allua_mixer_attach_sample},
 	{"attach_stream", allua_mixer_attach_stream},
+	{"get_frequency", allua_mixer_get_frequency},
+	{"set_frequency", allua_mixer_set_frequency},
 	{0,0}
 };
 

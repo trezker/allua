@@ -48,3 +48,17 @@ function attach_sample (mixer, sample_instance) end
 -- Returns:
 -- success
 function attach_stream (mixer, stream) end
+
+-- Function: get_frequency
+-- Parameters:
+--
+-- Returns:
+-- frequency
+function get_frequency (mixer) end
+
+-- Function: set_frequency
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_frequency (mixer, val) end
