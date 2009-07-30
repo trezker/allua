@@ -62,3 +62,59 @@ function get_frequency (mixer) end
 -- Returns:
 -- success
 function set_frequency (mixer, val) end
+
+-- Function: get_channels
+-- Parameters:
+--
+-- Returns:
+-- channel conf
+function get_channels (mixer) end
+
+-- Function: get_depth
+-- Parameters:
+--
+-- Returns:
+-- depth
+function get_depth (mixer) end
+
+-- Function: get_quality
+-- Parameters:
+--
+-- Returns:
+-- quality
+function get_quality (mixer) end
+
+-- Function: set_quality
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_quality (mixer, val) end
+
+-- Function: get_playing
+-- Parameters:
+--
+-- Returns:
+-- playing
+function get_playing (mixer) end
+
+-- Function: set_playing
+-- Parameters:
+--
+-- Returns:
+-- success
+function set_playing (mixer, val) end
+
+-- Function: get_attached
+-- Parameters:
+--
+-- Returns:
+-- attached
+function get_attached (mixer) end
+
+-- Function: detach
+-- Parameters:
+--
+-- Returns:
+-- success
+function detach (mixer) end

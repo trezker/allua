@@ -86,6 +86,11 @@ void allua_audio_set_attributes(lua_State *L)
 	lua_setfield(L, -2, "PLAYMODE_LOOP");
 	lua_pushinteger(L, ALLEGRO_PLAYMODE_BIDIR);
 	lua_setfield(L, -2, "PLAYMODE_BIDIR");
+
+	lua_pushinteger(L, ALLEGRO_MIXER_QUALITY_POINT);
+	lua_setfield(L, -2, "MIXER_QUALITY_POINT");
+	lua_pushinteger(L, ALLEGRO_MIXER_QUALITY_LINEAR);
+	lua_setfield(L, -2, "MIXER_QUALITY_LINEAR");
 }
 
 /* Register

@@ -122,6 +122,63 @@ static int allua_mixer_set_frequency (lua_State *L)
 	return 1;
 }
 
+static int allua_mixer_get_channels (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushnumber(L, al_get_mixer_channels(mixer));
+	return 1;
+}
+
+static int allua_mixer_get_depth (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushnumber(L, al_get_mixer_depth(mixer));
+	return 1;
+}
+
+static int allua_mixer_get_quality (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushnumber(L, al_get_mixer_quality(mixer));
+	return 1;
+}
+
+static int allua_mixer_set_quality (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	int val = luaL_checkint(L, 2);
+	lua_pushboolean(L, al_set_mixer_quality(mixer, val));
+	return 1;
+}
+
+static int allua_mixer_get_playing (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushboolean(L, al_get_mixer_playing(mixer));
+	return 1;
+}
+
+static int allua_mixer_set_playing (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	bool val = lua_toboolean(L, 2);
+	lua_pushboolean(L, al_set_mixer_playing(mixer, val));
+	return 1;
+}
+
+static int allua_mixer_get_attached (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushboolean(L, al_get_mixer_attached(mixer));
+	return 1;
+}
+static int allua_mixer_detach (lua_State *L)
+{
+	ALLUA_mixer mixer = allua_check_mixer(L, 1);
+	lua_pushboolean(L, al_detach_mixer(mixer));
+	return 1;
+}
+
 static const luaL_reg allua_mixer_methods[] = {
 	{"create", allua_mixer_create},
 	{"get_default", allua_mixer_get_default},
@@ -132,6 +189,14 @@ static const luaL_reg allua_mixer_methods[] = {
 	{"attach_stream", allua_mixer_attach_stream},
 	{"get_frequency", allua_mixer_get_frequency},
 	{"set_frequency", allua_mixer_set_frequency},
+	{"get_channels", allua_mixer_get_channels},
+	{"get_depth", allua_mixer_get_depth},
+	{"get_quality", allua_mixer_get_quality},
+	{"set_quality", allua_mixer_set_quality},
+	{"get_playing", allua_mixer_get_playing},
+	{"set_playing", allua_mixer_set_playing},
+	{"get_attached", allua_mixer_get_attached},
+	{"detach", allua_mixer_detach},
 	{0,0}
 };
 

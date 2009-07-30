@@ -30,16 +30,45 @@ function Test_mixer:test04_attach()
 
 	stream = allegro5.stream.from_file(2, 2, "data/powerup.ogg")
 	streamb = mixer:attach_stream (stream)
-	
+
+	ab = mixer2:get_attached()
+	db = mixer2:detach()
+
 	assertEquals("boolean", type(mb))
 	assertEquals("boolean", type(sampleb))
 	assertEquals("boolean", type(streamb))
+	assertEquals("boolean", type(ab))
+	assertEquals("boolean", type(db))
 end
 
 function Test_mixer:test05_frequency()
 	gfreq = mixer:get_frequency ()
 	b = mixer:set_frequency(44100)
 	assertEquals("number", type(gfreq))
+	assertEquals("boolean", type(b))
+end
+
+function Test_mixer:test05_channels()
+	gchannels = mixer:get_channels()
+	assertEquals("number", type(gchannels))
+end
+
+function Test_mixer:test05_depth()
+	gdepth = mixer:get_depth()
+	assertEquals("number", type(gdepth))
+end
+
+function Test_mixer:test05_quality()
+	gquality = mixer:get_quality()
+	b = mixer:set_quality(allegro5.audio.MIXER_QUALITY_LINEAR)
+	assertEquals("number", type(gquality))
+	assertEquals("boolean", type(b))
+end
+
+function Test_mixer:test05_playing()
+	gplaying = mixer:get_playing()
+	b = mixer:set_playing(true)
+	assertEquals("boolean", type(gplaying))
 	assertEquals("boolean", type(b))
 end
 
