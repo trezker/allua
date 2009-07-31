@@ -1,6 +1,8 @@
 Test_display = {}
 
-allegro5.init()
+function Test_display:test00_prepare()
+	allegro5.init()
+end
 
 function Test_display:test01_create()
 	display = allegro5.display.create(800, 600)
@@ -169,4 +171,11 @@ function Test_display:test23_video_adapter()
 	assertEquals("number", type(info.y1))
 	assertEquals("number", type(info.x2))
 	assertEquals("number", type(info.y2))
+end
+
+function Test_display:test24_cleanup()
+	display = nil
+	ca = nil
+	cb = nil
+	collectgarbage()
 end

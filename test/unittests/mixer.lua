@@ -73,6 +73,11 @@ function Test_mixer:test05_playing()
 end
 
 function Test_mixer:test20_destroy()
+	sample_instance = nil
+	collectgarbage()
 	mixer = nil
+	mixer2 = nil
+	stream = nil
+	sample = nil
 	collectgarbage()
 end

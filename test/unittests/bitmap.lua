@@ -1,7 +1,9 @@
 Test_bitmap = {}
 
-allegro5.init()
-display = allegro5.display.create(800, 600)
+function Test_bitmap:test00_prepare()
+	allegro5.init()
+	display = allegro5.display.create(800, 600)
+end
 
 function Test_bitmap:test01_create()
 	bitmap = allegro5.bitmap.create(100, 200)
@@ -108,4 +110,13 @@ end
 function Test_bitmap:test15_convert_mask_to_alpha()
 	color = allegro5.color.map_rgba(235, 26, 23, 100)
 	bitmap:convert_mask_to_alpha (color)
+end
+
+function Test_bitmap:test20_cleanup()
+	bitmap = nil
+	subbitmap = nil
+	bitmap_clone = nil
+	loadbitmap = nil
+	gettarget1 = nil
+	collectgarbage()
 end

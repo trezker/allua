@@ -1,6 +1,9 @@
 Test_font = {}
 
-allegro5.init()
+function Test_font:test00_prepare()
+	allegro5.init()
+	display = allegro5.display.create(800, 600)
+end
 
 function Test_font:test01_init()
 	allegro5.font.init_addon ()
@@ -49,4 +52,11 @@ function Test_font:test06_text_dimensions()
 	assertEquals("number", type(descent))
 	assertEquals("number", type(line_height))
 	assertEquals("number", type(width))
+end
+
+function Test_font:test07_cleanup()
+	display = nil
+	ttf_font = nil
+	bitmap_font = nil
+	collectgarbage()
 end

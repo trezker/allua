@@ -1,6 +1,8 @@
 Test_event_queue = {}
 
-allegro5.init()
+function Test_event_queue:test00_prepare()
+	allegro5.init()
+end
 
 function Test_event_queue:test01_create()
 	event_queue = allegro5.event_queue.create()
@@ -34,6 +36,13 @@ function Test_event_queue:test05_get_peek_wait()
 end
 
 function Test_event_queue:test06_register_source()
+	display = allegro5.display.create(800, 600)
 	event_queue:register_event_source (display)
 	event_queue:unregister_event_source (display)
+end
+
+function Test_event_queue:test07_destroy()
+	display = nil
+	event_queue = nil
+	collectgarbage()
 end

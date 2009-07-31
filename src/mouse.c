@@ -154,7 +154,7 @@ static const luaL_reg allua_Mouse_methods[] = {
  * */
 static int allua_Mouse_tostring (lua_State *L)
 {
-  lua_pushfstring(L, "Mouse: %p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "mouse: %p", lua_touserdata(L, 1));
   return 1;
 }
 

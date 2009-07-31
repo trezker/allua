@@ -1,6 +1,8 @@
 Test_color = {}
 
-allegro5.init()
+function Test_color:test00_prepare()
+	allegro5.init()
+end
 
 function Test_color:test01_map()
 	r, g, b, a = 1, 2, 3, 4
@@ -21,13 +23,13 @@ function Test_color:test01_map()
 	
 	--The commented values are because of a bug in allegro
 	assertEquals(r, g1r)
---	assertEquals(g, g1g)
+	assertEquals(g, g1g)
 	assertEquals(b, g1b)
 
 	assertEquals(r, g2r)
---	assertEquals(g, g2g)
+	assertEquals(g, g2g)
 	assertEquals(b, g2b)
---	assertEquals(a, g2a)
+	assertEquals(a, g2a)
 
 	assertEqualsDelta(rf, g1rf, .001)
 	assertEqualsDelta(gf, g1gf, .001)
@@ -37,11 +39,17 @@ function Test_color:test01_map()
 	assertEqualsDelta(gf, g2gf, .001)
 	assertEqualsDelta(bf, g2bf, .001)
 	assertEqualsDelta(af, g2af, .001)
-	
 end
 
 function Test_color:test02_put_pixel()
+	display = allegro5.display.create(800, 600)
 	color = allegro5.color.map_rgb(2, 34, 4)
 	color:put_pixel(24, 2)
 	color:draw_pixel(24, 2)
+end
+
+function Test_color:test03_cleanup()
+	display = nil
+	color = nil
+	collectgarbage()
 end
