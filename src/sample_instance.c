@@ -32,11 +32,28 @@ ALLUA_sample_instance allua_check_sample_instance (lua_State *L, int index)//, i
   return im;
 }
 
+struct ALLUA_sample_instance_s *allua_check_sample_instance_s (lua_State *L, int index)//, int *gc_allowed)
+{
+  struct ALLUA_sample_instance_s *pi;
+  ALLUA_sample_instance im;
+  luaL_checktype(L, index, LUA_TUSERDATA);
+  pi = (struct ALLUA_sample_instance_s*)luaL_checkudata(L, index, SAMPLE_INSTANCE_STRING);
+  if (pi == NULL)
+  	luaL_typerror(L, index, SAMPLE_INSTANCE_STRING);
+  im = pi->sample_instance;
+//  if(gc_allowed)
+//  	*gc_allowed = pi->gc_allowed;
+  if (!im)
+    luaL_error(L, "null sample_instance");
+  return pi;
+}
+
 struct ALLUA_sample_instance_s *allua_pushsample_instance (lua_State *L, ALLUA_sample_instance im, int gc_allowed)
 {
   struct ALLUA_sample_instance_s *pi = (struct ALLUA_sample_instance_s *)lua_newuserdata(L, sizeof(struct ALLUA_sample_instance_s));
   pi->sample_instance = im;
   pi->gc_allowed = gc_allowed;
+  pi->sample_ref = LUA_REFNIL;
   luaL_getmetatable(L, SAMPLE_INSTANCE_STRING);
   lua_setmetatable(L, -2);
   return pi;
@@ -67,10 +84,21 @@ static int allua_sample_instance_detach (lua_State *L)
 
 static int allua_sample_instance_set_sample (lua_State *L)
 {
-  ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
-  ALLUA_sample s = allua_check_sample(L, 2);
-  lua_pushboolean(L, al_set_sample(si, s));
-  return 1;
+/*
+	ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
+	ALLUA_sample s = allua_check_sample(L, 2);
+	lua_pushboolean(L, al_set_sample(si, s));
+*/
+	struct ALLUA_sample_instance_s *si_s = allua_check_sample_instance_s(L, 1);
+    luaL_unref(L, LUA_REGISTRYINDEX, si_s->sample_ref);
+	lua_pushvalue (L, 2);
+	si_s->sample_ref = luaL_ref(L, LUA_REGISTRYINDEX);
+
+	ALLUA_sample_instance si = si_s->sample_instance;
+
+	ALLUA_sample s = allua_check_sample(L, 2);
+	lua_pushboolean(L, al_set_sample(si, s));
+	return 1;
 }
 
 static int allua_sample_instance_get_sample (lua_State *L)
@@ -256,14 +284,15 @@ static const luaL_reg allua_sample_instance_methods[] = {
  * */
 static int allua_sample_instance_gc (lua_State *L)
 {
-  struct ALLUA_sample_instance_s *pi = (struct ALLUA_sample_instance_s*)lua_touserdata(L, 1);
-  if(pi->gc_allowed)
-  {
-	  ALLUA_sample_instance im = pi->sample_instance;
-	  printf("goodbye sample_instance (%p)\n", pi);
-	  if (im) al_destroy_sample_instance(im);
-  }
-  return 0;
+	struct ALLUA_sample_instance_s *pi = (struct ALLUA_sample_instance_s*)lua_touserdata(L, 1);
+	if(pi->gc_allowed)
+	{
+		ALLUA_sample_instance im = pi->sample_instance;
+		printf("goodbye sample_instance (%p)\n", pi);
+		if (im) al_destroy_sample_instance(im);
+		luaL_unref(L, LUA_REGISTRYINDEX, pi->sample_ref);
+	}
+	return 0;
 }
 
 static int allua_sample_instance_tostring (lua_State *L)

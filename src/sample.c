@@ -92,7 +92,7 @@ static int allua_sample_stop_samples (lua_State *L)
 
 static int allua_sample_create_instance (lua_State *L)
 {
-	struct ALLUA_sample_s *pi = (struct ALLUA_sample_s*)(lua_touserdata(L, index));
+	struct ALLUA_sample_s *pi = (struct ALLUA_sample_s*)(lua_touserdata(L, 1));
 	ALLUA_sample sample_data;
 	if (pi == NULL) 
 		sample_data = NULL;
@@ -101,7 +101,9 @@ static int allua_sample_create_instance (lua_State *L)
 	ALLUA_sample_instance instance = al_create_sample_instance(sample_data);
 	if(instance)
 	{
-		allua_pushsample_instance(L, instance, true);
+		struct ALLUA_sample_instance_s *si_s = allua_pushsample_instance(L, instance, true);
+		lua_pushvalue (L, 1);
+		si_s->sample_ref = luaL_ref(L, LUA_REGISTRYINDEX);
 	}
 	else
 	{

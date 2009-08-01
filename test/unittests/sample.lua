@@ -29,12 +29,10 @@ function Test_sample:test04_create_instance()
 end
 
 function Test_sample:test05_shutdown()
-	print(tostring(instance))
 	instance = nil
-	print(tostring(instance_no_data))
 	instance_no_data = nil
-	collectgarbage()
-	print(tostring(sample))
+--	collectgarbage()
 	sample = nil
+	collectgarbage()
 	collectgarbage()
 end

@@ -13,6 +13,7 @@ struct ALLUA_sample_instance_s
 {
 	ALLEGRO_SAMPLE_INSTANCE* sample_instance;
 	int gc_allowed;
+	int sample_ref;
 };
 
 /* Function: allua_register_sample_instance
@@ -25,6 +26,7 @@ int allua_register_sample_instance (lua_State* L);
  * Pointer to sample_instance instance.
  * */
 ALLUA_sample_instance allua_check_sample_instance (lua_State *L, int index);//, int *gc_allowed);
+struct ALLUA_sample_instance_s *allua_check_sample_instance_s (lua_State *L, int index);//, int *gc_allowed);
 struct ALLUA_sample_instance_s *allua_pushsample_instance (lua_State *L, ALLUA_sample_instance im, int gc_allowed);
 
 #endif
