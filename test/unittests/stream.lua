@@ -4,10 +4,11 @@ function Test_stream:test01_prepare()
 	allegro5.init()
 	allegro5.audio.install(allegro5.audio.AUDIO_DRIVER_AUTODETECT)
 	allegro5.audio.reserve_samples(2)
+	ogg = allegro5.audio.init_ogg_vorbis_addon()
 end
 
 function Test_stream:test02_create()
-	stream = allegro5.stream.from_file (2, 2, "data/powerup.ogg");
+	stream = allegro5.stream.from_file ("data/powerup.ogg", 2, 2);
 	assertEquals("stream", tostring(stream):sub(1, 6))
 end
 

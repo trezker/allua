@@ -1,5 +1,6 @@
 #include "allua/audio.h"
 #include <allegro5/kcm_audio.h>
+#include <allegro5/a5_vorbis.h>
 #include <stdio.h>
 
 #define AUDIO_STRING "audio"
@@ -26,10 +27,17 @@ static int allua_audio_reserve_samples(lua_State *L)
 	return 1;
 }
 
+static int allua_audio_init_ogg_vorbis_addon(lua_State *L)
+{
+	lua_pushboolean(L, al_init_ogg_vorbis_addon());
+	return 1;
+}
+
 static const luaL_reg allua_audio_methods[] = {
 	{"install", allua_audio_install},
 	{"uninstall", allua_audio_uninstall},
 	{"reserve_samples", allua_audio_reserve_samples},
+	{"init_ogg_vorbis_addon", allua_audio_init_ogg_vorbis_addon},
 	{0,0}
 };
 

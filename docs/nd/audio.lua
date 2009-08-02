@@ -18,3 +18,9 @@ function uninstall () end
 -- Returns:
 -- true on success, false on failure
 function install (mode) end
+
+-- Function: init_ogg_vorbis_addon
+--
+-- Returns:
+-- success
+function init_ogg_vorbis_addon () end

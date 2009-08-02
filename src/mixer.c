@@ -87,7 +87,7 @@ static int allua_mixer_attach_mixer (lua_State *L)
 {
 	ALLUA_mixer mixer = allua_check_mixer(L, 1);
 	ALLUA_mixer stream = allua_check_mixer(L, 2);
-	lua_pushboolean(L, al_attach_mixer_to_mixer(mixer, stream));
+	lua_pushboolean(L, al_attach_mixer_to_mixer(stream, mixer));
 	return 1;
 }
 
@@ -95,7 +95,7 @@ static int allua_mixer_attach_sample (lua_State *L)
 {
 	ALLUA_mixer mixer = allua_check_mixer(L, 1);
 	ALLUA_sample_instance sample_instance = allua_check_sample_instance(L, 2);
-	lua_pushboolean(L, al_attach_sample_to_mixer(mixer, sample_instance));
+	lua_pushboolean(L, al_attach_sample_to_mixer(sample_instance, mixer));
 	return 1;
 }
 
@@ -103,7 +103,7 @@ static int allua_mixer_attach_stream (lua_State *L)
 {
 	ALLUA_mixer mixer = allua_check_mixer(L, 1);
 	ALLUA_stream stream = allua_check_stream(L, 2);
-	lua_pushboolean(L, al_attach_stream_to_mixer(mixer, stream));
+	lua_pushboolean(L, al_attach_stream_to_mixer(stream, mixer));
 	return 1;
 }
 

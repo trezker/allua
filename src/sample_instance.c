@@ -1,6 +1,6 @@
 #include "allua/sample_instance.h"
 #include "allua/sample.h"
-#include <allegro5/acodec.h>
+//#include <allegro5/acodec.h>
 #include <stdio.h>
 
 #define SAMPLE_INSTANCE_STRING "sample_instance"

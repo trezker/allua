@@ -1,7 +1,7 @@
 #include "allua/sample.h"
 #include "allua/sample_id.h"
 #include "allua/sample_instance.h"
-#include <allegro5/acodec.h>
+//#include <allegro5/acodec.h>
 #include <stdio.h>
 
 #define SAMPLE_STRING "sample"
@@ -62,7 +62,7 @@ static int allua_sample_save (lua_State *L)
 {
 	ALLUA_sample sample = allua_check_sample(L, 1);
 	const char* filename = luaL_checkstring(L, 2);
-	lua_pushboolean(L, al_save_sample(sample, filename));
+	lua_pushboolean(L, al_save_sample(filename, sample));
 	return 1;
 }
 
