@@ -21,14 +21,25 @@ function Test_sample:test03_play()
 	assertEquals("sample_id", tostring(sample_id):sub(1, 9))
 end
 
-function Test_sample:test04_create_instance()
+function Test_sample:test04_properties()
+	channels = sample:get_channels()
+	depth = sample:get_depth()
+	frequency = sample:get_frequency()
+	length = sample:get_length()
+	assertEquals("number", type(channels))
+	assertEquals("number", type(depth))
+	assertEquals("number", type(frequency))
+	assertEquals("number", type(length))
+end
+
+function Test_sample:test05_create_instance()
 	instance = sample:create_instance ()
 	instance_no_data = allegro5.sample.create_instance (nil)
 	assertEquals("sample_instance", tostring(instance):sub(1, 15))
 	assertEquals("sample_instance", tostring(instance_no_data):sub(1, 15))
 end
 
-function Test_sample:test05_shutdown()
+function Test_sample:test06_shutdown()
 	instance = nil
 	instance_no_data = nil
 --	collectgarbage()
