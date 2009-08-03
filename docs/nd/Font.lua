@@ -86,3 +86,10 @@ function get_line_height(font) end
 -- Returns:
 -- Width of the text drawn with this font
 function get_text_width(font, text) end
+
+-- List: Options
+-- ALIGN_LEFT
+-- ALIGN_CENTRE
+-- ALIGN_RIGHT
+-- TTF_NO_KERNING
+
