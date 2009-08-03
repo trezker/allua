@@ -34,29 +34,8 @@ ALLUA_color *allua_pushColor (lua_State *L, ALLUA_color im)
 
 /* Constructor and methods
  * */
-
-/*static void test()
-{
-	unsigned char r = 1;
-	unsigned char g = 2;
-	unsigned char b = 3;
-	ALLEGRO_COLOR c = al_map_rgb(r, g, b);
-	printf("%f %f %f\n", c.r, c.g, c.b);
-	unsigned char gr;
-	unsigned char gg;
-	unsigned char gb;
-	al_unmap_rgb(c, &gr, &gg, &gb);
-	if(gr != r)
-		printf("Wrong red\n");
-	if(gg != g)
-		printf("Wrong green\n");
-	if(gb != b)
-		printf("Wrong blue\n");
-}
-*/
 static int allua_map_rgb(lua_State *L)
 {
-//	test();
 	unsigned char r = luaL_checkint(L, 1);
 	unsigned char g = luaL_checkint(L, 2);
 	unsigned char b = luaL_checkint(L, 3);

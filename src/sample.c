@@ -1,7 +1,6 @@
 #include "allua/sample.h"
 #include "allua/sample_id.h"
 #include "allua/sample_instance.h"
-//#include <allegro5/acodec.h>
 #include <stdio.h>
 
 #define SAMPLE_STRING "sample"
@@ -26,8 +25,6 @@ ALLUA_sample allua_check_sample (lua_State *L, int index)//, int *gc_allowed)
   if (pi == NULL)
   	luaL_typerror(L, index, SAMPLE_STRING);
   im = pi->sample;
-//  if(gc_allowed)
-//  	*gc_allowed = pi->gc_allowed;
   if (!im)
     luaL_error(L, "null sample");
   return im;
@@ -183,8 +180,6 @@ static const luaL_reg allua_sample_meta[] = {
  * */
 void allua_sample_set_attributes(lua_State *L)
 {
-//	lua_pushinteger(L, ALLEGRO_MEMORY_SAMPLE);
-//	lua_setfield(L, -2, "MEMORY_SAMPLE");
 }
 
 /* Register

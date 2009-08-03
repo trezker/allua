@@ -40,10 +40,7 @@ static ALLUA_event_queue *allua_pushEvent_queue (lua_State *L, ALLUA_event_queue
 static int allua_Event_queue_create (lua_State *L)
 {
   allua_pushEvent_queue(L, al_create_event_queue());
-
-/*  ALLUA_event_queue event_queue = allua_check_event_queue(L, 1);
-  printf("hello Event_queue (%p)\n", event_queue);
-*/  return 1;
+  return 1;
 }
 
 static int allua_Event_queue_register_event_source (lua_State *L)

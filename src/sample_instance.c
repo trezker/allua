@@ -25,8 +25,6 @@ ALLUA_sample_instance allua_check_sample_instance (lua_State *L, int index)//, i
   if (pi == NULL)
   	luaL_typerror(L, index, SAMPLE_INSTANCE_STRING);
   im = pi->sample_instance;
-//  if(gc_allowed)
-//  	*gc_allowed = pi->gc_allowed;
   if (!im)
     luaL_error(L, "null sample_instance");
   return im;
@@ -41,8 +39,6 @@ struct ALLUA_sample_instance_s *allua_check_sample_instance_s (lua_State *L, int
   if (pi == NULL)
   	luaL_typerror(L, index, SAMPLE_INSTANCE_STRING);
   im = pi->sample_instance;
-//  if(gc_allowed)
-//  	*gc_allowed = pi->gc_allowed;
   if (!im)
     luaL_error(L, "null sample_instance");
   return pi;
@@ -84,11 +80,6 @@ static int allua_sample_instance_detach (lua_State *L)
 
 static int allua_sample_instance_set_sample (lua_State *L)
 {
-/*
-	ALLUA_sample_instance si = allua_check_sample_instance(L, 1);
-	ALLUA_sample s = allua_check_sample(L, 2);
-	lua_pushboolean(L, al_set_sample(si, s));
-*/
 	struct ALLUA_sample_instance_s *si_s = allua_check_sample_instance_s(L, 1);
     luaL_unref(L, LUA_REGISTRYINDEX, si_s->sample_ref);
 	lua_pushvalue (L, 2);
@@ -311,8 +302,6 @@ static const luaL_reg allua_sample_instance_meta[] = {
  * */
 void allua_sample_instance_set_attributes(lua_State *L)
 {
-//	lua_pushinteger(L, ALLEGRO_MEMORY_SAMPLE_INSTANCE);
-//	lua_setfield(L, -2, "MEMORY_SAMPLE_INSTANCE");
 }
 
 /* Register

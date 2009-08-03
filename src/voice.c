@@ -23,8 +23,6 @@ ALLUA_voice allua_check_voice (lua_State *L, int index)//, int *gc_allowed)
   if (pi == NULL)
   	luaL_typerror(L, index, VOICE_STRING);
   im = pi->voice;
-//  if(gc_allowed)
-//  	*gc_allowed = pi->gc_allowed;
   if (!im)
     luaL_error(L, "null voice");
   return im;
@@ -92,8 +90,6 @@ static const luaL_reg allua_voice_meta[] = {
  * */
 void allua_voice_set_attributes(lua_State *L)
 {
-//	lua_pushinteger(L, ALLEGRO_MEMORY_VOICE);
-//	lua_setfield(L, -2, "MEMORY_VOICE");
 }
 
 /* Register

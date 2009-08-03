@@ -26,8 +26,6 @@ ALLUA_bitmap allua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
   if (pi == NULL)
   	luaL_typerror(L, index, BITMAP_STRING);
   im = pi->bitmap;
-//  if(gc_allowed)
-//  	*gc_allowed = pi->gc_allowed;
   if (!im)
     luaL_error(L, "null bitmap");
   return im;
