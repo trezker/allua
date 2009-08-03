@@ -219,3 +219,11 @@ function set_clipping_rectangle (x, y, w, h) end
 -- bitmap - bitmap
 -- mask_color - color
 function convert_mask_to_alpha (x, y, w, h) end
+
+-- List: flags
+-- FLIP_HORIZONTAL
+-- FLIP_VERTICAL
+-- MEMORY_BITMAP
+-- KEEP_BITMAP_FORMAT
+-- FORCE_LOCKING
+-- NO_PRESERVE_TEXTURE
