@@ -1,5 +1,6 @@
 #include "allua/keyboard.h"
 #include "allua/event_queue.h"
+#include "allua/event_source.h"
 #include "allua/allua.h"
 #include <stdio.h>
 
@@ -55,6 +56,12 @@ static int allua_keyboard_is_installed(lua_State *L)
 	return 1;
 }
 
+static int allua_keyboard_get_event_source(lua_State *L)
+{
+	allua_pushevent_source(L, al_get_keyboard_event_source());
+	return 1;
+}
+
 static int allua_keyboard_set_leds(lua_State *L)
 {
 	int leds = luaL_checkint(L, 1);
@@ -96,6 +103,7 @@ static const luaL_reg allua_Keyboard_methods[] = {
   {"install",           allua_keyboard_install},
   {"uninstall",           allua_keyboard_uninstall},
   {"is_installed",           allua_keyboard_is_installed},
+  {"get_event_source",           allua_keyboard_get_event_source},
   {"set_leds",           allua_keyboard_set_leds},
   {"get",           allua_get_keyboard},
   {"keycode_to_name",           allua_keycode_to_name},

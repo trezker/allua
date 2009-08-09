@@ -1,5 +1,6 @@
 #include "allua/mouse.h"
 #include "allua/event_queue.h"
+#include "allua/event_source.h"
 #include "allua/allua.h"
 #include <stdio.h>
 
@@ -52,6 +53,12 @@ static int allua_mouse_uninstall(lua_State *L)
 static int allua_mouse_is_installed(lua_State *L)
 {
 	lua_pushboolean(L, al_is_mouse_installed());
+	return 1;
+}
+
+static int allua_mouse_get_event_source(lua_State *L)
+{
+	allua_pushevent_source(L, al_get_mouse_event_source());
 	return 1;
 }
 
@@ -136,6 +143,7 @@ static const luaL_reg allua_Mouse_methods[] = {
   {"install",           allua_mouse_install},
   {"uninstall",           allua_mouse_uninstall},
   {"is_installed",           allua_mouse_is_installed},
+  {"get_event_source",           allua_mouse_get_event_source},
   {"get",           allua_mouse_get},
   {"get_cursor_position",           allua_mouse_get_cursor_position},
   {"get_num_axes",           allua_mouse_get_num_axes},

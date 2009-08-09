@@ -26,6 +26,11 @@ function Test_keyboard:test03_set_leds()
 	assertEquals("boolean", type(b))
 end
 
-function Test_keyboard:test04_uninstall()
+function Test_keyboard:test04_get_event_source()
+	s = allegro5.keyboard.get_event_source ()
+	assertEquals("event_source", tostring(s):sub(1, 12))
+end
+
+function Test_keyboard:test05_uninstall()
 	allegro5.keyboard.uninstall ()
 end

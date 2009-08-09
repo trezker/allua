@@ -16,6 +16,12 @@ function is_installed () end
 -- Handle to the Mouse
 function get () end
 
+-- Function: get_event_source
+--
+-- Returns:
+-- event_source
+function get_event_source () end
+
 -- Function: get_cursor_position
 -- Returns:
 -- On success x, y. Otherwise nil.

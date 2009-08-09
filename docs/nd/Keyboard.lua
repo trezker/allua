@@ -13,6 +13,12 @@ function uninstall () end
 -- true if keyboard is installed
 function is_installed () end
 
+-- Function: get_event_source
+--
+-- Returns:
+-- event_source
+function get_event_source () end
+
 -- Function: set_leds
 -- Parameters:
 -- leds - leds
