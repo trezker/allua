@@ -9,6 +9,12 @@
 -- Display
 function create (w, h) end
 
+-- Function: get_event_source
+--
+-- Returns:
+-- event_source
+function get_event_source (display) end
+
 -- Function: get_num_display_formats
 --
 -- Returns:

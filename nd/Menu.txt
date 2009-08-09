@@ -43,6 +43,7 @@ Group: C API  {
    File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
    File: display.h  (/home/anders/allegro/allua-git/include/allua/display.h)
    File: event_queue.h  (/home/anders/allegro/allua-git/include/allua/event_queue.h)
+   File: event_source.h  (/home/anders/allegro/allua-git/include/allua/event_source.h)
    File: font.h  (/home/anders/allegro/allua-git/include/allua/font.h)
    File: keyboard.h  (/home/anders/allegro/allua-git/include/allua/keyboard.h)
    File: mixer.h  (/home/anders/allegro/allua-git/include/allua/mixer.h)

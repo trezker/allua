@@ -1,6 +1,7 @@
 #include "allua/allua.h"
 #include "allua/display.h"
 #include "allua/event_queue.h"
+#include "allua/event_source.h"
 #include "allua/color.h"
 #include "allua/keyboard.h"
 #include "allua/mouse.h"
@@ -76,6 +77,7 @@ int allua_register(lua_State *L)
 	allua_register_mouse(L);
 	allua_register_display(L);
 	allua_register_event_queue(L);
+	allua_register_event_source(L);
 	allua_register_color(L);
 	allua_register_primitives(L);
 	allua_register_audio(L);

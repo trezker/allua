@@ -3,6 +3,7 @@
 #include "allua/allua.h"
 #include "allua/color.h"
 #include "allua/event_queue.h"
+#include "allua/event_source.h"
 
 //#include <allegro5/a5_direct3d.h>
 #include <allegro5/a5_opengl.h>
@@ -69,6 +70,13 @@ static int allua_display_create (lua_State *L)
   int h = luaL_checkint(L, 2);
   allua_pushdisplay(L, al_create_display(w, h));
   return 1;
+}
+
+static int allua_display_get_event_source(lua_State *L)
+{
+	ALLUA_display display = allua_check_display(L, 1);
+	allua_pushevent_source(L, al_get_display_event_source(display));
+	return 1;
 }
 
 static int allua_display_get_num_display_formats(lua_State *L)
@@ -382,6 +390,7 @@ static int allua_display_get_width(lua_State *L)
 
 static const luaL_reg allua_display_methods[] = {
 	{"create",           allua_display_create},
+	{"get_event_source",	allua_display_get_event_source},
 	{"get_num_display_formats",	allua_display_get_num_display_formats},
 	{"get_format_option",	allua_display_get_format_option},
 	{"set_new_format",	allua_display_set_new_format},

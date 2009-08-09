@@ -37,8 +37,8 @@ end
 
 function Test_event_queue:test06_register_source()
 	display = allegro5.display.create(800, 600)
-	event_queue:register_event_source (display)
-	event_queue:unregister_event_source (display)
+	event_queue:register_event_source (display:get_event_source())
+	event_queue:unregister_event_source (display:get_event_source())
 end
 
 function Test_event_queue:test07_destroy()

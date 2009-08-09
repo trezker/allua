@@ -1,5 +1,5 @@
 #include "allua/event_queue.h"
-#include "allua/display.h"
+#include "allua/event_source.h"
 #include <stdio.h>
 
 #define EVENT_QUEUE_STRING "event_queue"
@@ -47,8 +47,7 @@ static int allua_Event_queue_register_event_source (lua_State *L)
 {
   ALLUA_event_queue event_queue = allua_check_event_queue(L, 1);
 
-  ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
-  ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
+  ALLUA_event_source event_source = allua_check_event_source(L, 2);
   if (!event_source)
   {
     luaL_error(L, "null Event_source");
@@ -64,8 +63,7 @@ static int allua_Event_queue_unregister_event_source (lua_State *L)
 {
   ALLUA_event_queue event_queue = allua_check_event_queue(L, 1);
 
-  ALLEGRO_EVENT_SOURCE** event_sourcep = (ALLEGRO_EVENT_SOURCE**)(lua_touserdata(L, 2));
-  ALLEGRO_EVENT_SOURCE* event_source = *event_sourcep;
+  ALLUA_event_source event_source = allua_check_event_source(L, 2);
   if (!event_source)
   {
     luaL_error(L, "null Event_source");
