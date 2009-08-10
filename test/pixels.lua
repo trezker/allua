@@ -11,7 +11,7 @@ allegro5.font.init_addon()
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
 event_queue = allegro5.event_queue.create()
 
-event_queue:register_event_source(display)
+event_queue:register_event_source(display:get_event_source())
 pixels = 0
 while not quit do
 	event = event_queue:get_next_event()

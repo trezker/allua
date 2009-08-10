@@ -12,10 +12,10 @@ allegro5.display.set_new_flags(allegro5.display.WINDOWED)
 display = allegro5.display.create(640, 480)
 event_queue = allegro5.event_queue.create()
 
-event_queue:register_event_source(display)
-keyboard = allegro5.keyboard.get()
+event_queue:register_event_source(display:get_event_source())
+keyboard = allegro5.keyboard.get_event_source()
 event_queue:register_event_source(keyboard)
-mouse = allegro5.mouse.get()
+mouse = allegro5.mouse.get_event_source()
 event_queue:register_event_source(mouse)
 
 bitmap = allegro5.bitmap.load("data/leaf.png")

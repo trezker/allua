@@ -9,9 +9,9 @@ allegro5.bitmap.init_iio_addon ()
 allegro5.font.init_addon()
 
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
-keyboard = allegro5.keyboard.get()
+keyboard = allegro5.keyboard.get_event_source()
 event_queue = allegro5.event_queue.create()
-event_queue:register_event_source(display)
+event_queue:register_event_source(display:get_event_source())
 event_queue:register_event_source(keyboard)
 
 red = allegro5.color.map_rgba(255, 0, 0, 255)
