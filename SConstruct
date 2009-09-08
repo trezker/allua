@@ -46,6 +46,7 @@ test_exe = env.Program('test/test', 'test/test.c')
 ##### Install #####
 env.Alias('install', '/usr/local')
 env.Install('/usr/local/lib', allua)
+env.Install('/usr/local/lib', allua_shared)
 include_files = glob.glob('include/allua/*.h')
 env.Install('/usr/local/include/allua', include_files)
 env.Install('/usr/local/lib/lua/5.1', allua_shared)

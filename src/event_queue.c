@@ -1,5 +1,6 @@
 #include "allua/event_queue.h"
 #include "allua/event_source.h"
+#include "allua/event.h"
 #include <stdio.h>
 
 #define EVENT_QUEUE_STRING "event_queue"
@@ -91,6 +92,9 @@ void allua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *L
 	++num_event_callbacks;
 }
 
+/* TODO: Make event userdata and add as a field.
+ * This is so that the event can be given back to C/C++.
+ * */
 static int allua_Event_queue_get_event_common (lua_State *L, bool got_event, ALLEGRO_EVENT *event)
 {
 	lua_newtable (L);
@@ -100,6 +104,10 @@ static int allua_Event_queue_get_event_common (lua_State *L, bool got_event, ALL
 		lua_pushinteger(L, event->type);
 		lua_settable(L, -3);
 		
+		lua_pushstring(L, "cevent");
+		allua_pushEvent(L, *event);
+		lua_settable(L, -3);
+
 		/* Each type of event source may have different data in the event
 		 * This lookup calls a handler that fills in that data
 		 * */

@@ -42,6 +42,7 @@ Group: C API  {
    File: bitmap.h  (/home/anders/allegro/allua-git/include/allua/bitmap.h)
    File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
    File: display.h  (/home/anders/allegro/allua-git/include/allua/display.h)
+   File: event.h  (/home/anders/allegro/allua-git/include/allua/event.h)
    File: event_queue.h  (/home/anders/allegro/allua-git/include/allua/event_queue.h)
    File: event_source.h  (/home/anders/allegro/allua-git/include/allua/event_source.h)
    File: font.h  (/home/anders/allegro/allua-git/include/allua/font.h)
