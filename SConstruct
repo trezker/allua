@@ -37,15 +37,15 @@ env.Append(CCFLAGS = '-Wall')
 
 env.BuildDir('obj','src', duplicate = 0)
 env.Append(LIBS=['allegro-4.9.13','a5_iio-4.9.13','a5_font-4.9.13','a5_ttf-4.9.13','a5_primitives-4.9.13','kcm_audio-4.9.13','a5_vorbis-4.9.13'])
-allua = env.StaticLibrary('lib/allua',files)
+#allua = env.StaticLibrary('lib/allua',files)
 allua_shared = env.SharedLibrary('lib/allua',files)
 
-env.Append(LIBS = [allua])
-test_exe = env.Program('test/test', 'test/test.c')
+#env.Append(LIBS = [allua_shared])
+#test_exe = env.Program('test/test', 'test/test.c')
 
 ##### Install #####
 env.Alias('install', '/usr/local')
-env.Install('/usr/local/lib', allua)
+#env.Install('/usr/local/lib', allua)
 env.Install('/usr/local/lib', allua_shared)
 include_files = glob.glob('include/allua/*.h')
 env.Install('/usr/local/include/allua', include_files)

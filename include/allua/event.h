@@ -1,3 +1,6 @@
+#ifndef allua_event_h
+#define allua_event_h
+
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
@@ -14,4 +17,7 @@ int allua_register_event (lua_State* L);
  * */
 ALLEGRO_EVENT allua_check_event (lua_State *L, int index);
 
+
 ALLEGRO_EVENT *allua_pushEvent (lua_State *L, ALLEGRO_EVENT im);
+
+#endif

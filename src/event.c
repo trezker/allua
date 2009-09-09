@@ -1,18 +1,10 @@
 #include "allua/event.h"
-#include "allua/event_source.h"
 #include <stdio.h>
 
 #define EVENT_STRING "event"
 
 /* Common handlers
  * */
-static ALLEGRO_EVENT allua_toEvent (lua_State *L, int index)
-{
-  ALLEGRO_EVENT *pi = (ALLEGRO_EVENT*)lua_touserdata(L, index);
-  if (pi == NULL) luaL_typerror(L, index, EVENT_STRING);
-  return *pi;
-}
-
 ALLEGRO_EVENT allua_check_event (lua_State *L, int index)
 {
   ALLEGRO_EVENT *pi, im;
