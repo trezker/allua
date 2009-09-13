@@ -8,8 +8,8 @@ function Test_audio_stream:test01_prepare()
 end
 
 function Test_audio_stream:test02_create()
-	audio_stream = allegro5.audio_stream.from_file ("data/powerup.ogg", 2, 2);
-	assertEquals("audio_stream", tostring(audio_stream):sub(1, 6))
+	audio_stream = allegro5.audio_stream.load ("data/powerup.ogg", 2, 2);
+	assertEquals("audio_stream", tostring(audio_stream):sub(1, 12))
 end
 
 function Test_audio_stream:test03_rewind()

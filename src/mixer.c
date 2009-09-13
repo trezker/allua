@@ -1,7 +1,7 @@
 #include "allua/mixer.h"
 #include "allua/sample.h"
 #include "allua/sample_instance.h"
-#include "allua/stream.h"
+#include "allua/audio_stream.h"
 #include <stdio.h>
 
 #define MIXER_STRING "mixer"
@@ -97,11 +97,11 @@ static int allua_mixer_attach_sample (lua_State *L)
 	return 1;
 }
 
-static int allua_mixer_attach_stream (lua_State *L)
+static int allua_mixer_attach_audio_stream (lua_State *L)
 {
 	ALLUA_mixer mixer = allua_check_mixer(L, 1);
-	ALLUA_stream stream = allua_check_stream(L, 2);
-	lua_pushboolean(L, al_attach_stream_to_mixer(stream, mixer));
+	ALLUA_audio_stream stream = allua_check_audio_stream(L, 2);
+	lua_pushboolean(L, al_attach_audio_stream_to_mixer(stream, mixer));
 	return 1;
 }
 
@@ -184,7 +184,7 @@ static const luaL_reg allua_mixer_methods[] = {
 	{"restore_default", allua_mixer_restore_default},
 	{"attach_mixer", allua_mixer_attach_mixer},
 	{"attach_sample", allua_mixer_attach_sample},
-	{"attach_stream", allua_mixer_attach_stream},
+	{"attach_audio_stream", allua_mixer_attach_audio_stream},
 	{"get_frequency", allua_mixer_get_frequency},
 	{"set_frequency", allua_mixer_set_frequency},
 	{"get_channels", allua_mixer_get_channels},

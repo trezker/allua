@@ -2,7 +2,7 @@
 #include "allua/color.h"
 #include "allua/allua.h"
 #include <stdio.h>
-#include <allegro5/a5_iio.h>
+#include <allegro5/allegro_image.h>
 
 #define BITMAP_STRING "bitmap"
 
@@ -44,9 +44,9 @@ struct ALLUA_bitmap_s *allua_pushBitmap (lua_State *L, ALLUA_bitmap im, int gc_a
 /* Constructor and methods
  * */
 
-static int allua_Bitmap_init_iio_addon (lua_State *L)
+static int allua_Bitmap_init_image_addon (lua_State *L)
 {
-	lua_pushboolean(L, al_init_iio_addon());
+	lua_pushboolean(L, al_init_image_addon());
 	return 1;
 }
 
@@ -302,7 +302,7 @@ static int allua_Bitmap_convert_mask_to_alpha(lua_State *L)
 }
 
 static const luaL_reg allua_Bitmap_methods[] = {
-  {"init_iio_addon",           allua_Bitmap_init_iio_addon},
+  {"init_image_addon",           allua_Bitmap_init_image_addon},
   {"clone",           allua_Bitmap_clone},
   {"create",           allua_Bitmap_create},
   {"create_sub",           allua_Bitmap_create_sub},

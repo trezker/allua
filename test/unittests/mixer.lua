@@ -28,8 +28,8 @@ function Test_mixer:test04_attach()
 	sample_instance = sample:create_instance()
 	sampleb = mixer:attach_sample(sample_instance)
 
-	stream = allegro5.stream.from_file("data/powerup.ogg", 2, 2)
-	streamb = mixer:attach_stream (stream)
+	stream = allegro5.audio_stream.load("data/powerup.ogg", 2, 2)
+	streamb = mixer:attach_audio_stream (stream)
 
 	ab = mixer2:get_attached()
 	db = mixer2:detach()

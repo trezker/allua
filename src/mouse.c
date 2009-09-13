@@ -61,18 +61,18 @@ static int allua_mouse_get_event_source(lua_State *L)
 	allua_pushevent_source(L, al_get_mouse_event_source());
 	return 1;
 }
-
+/*
 static int allua_mouse_get(lua_State *L)
 {
 	allua_pushMouse(L, al_get_mouse());
 	return 1;
 }
-
+*/
 static int allua_mouse_get_cursor_position(lua_State *L)
 {
 	int x;
 	int y;
-	if(al_get_cursor_position(&x, &y))
+	if(al_get_mouse_cursor_position(&x, &y))
 	{
 		lua_pushinteger(L, x);
 		lua_pushinteger(L, y);
@@ -144,7 +144,7 @@ static const luaL_reg allua_Mouse_methods[] = {
   {"uninstall",           allua_mouse_uninstall},
   {"is_installed",           allua_mouse_is_installed},
   {"get_event_source",           allua_mouse_get_event_source},
-  {"get",           allua_mouse_get},
+//  {"get",           allua_mouse_get},
   {"get_cursor_position",           allua_mouse_get_cursor_position},
   {"get_num_axes",           allua_mouse_get_num_axes},
   {"get_num_buttons",           allua_mouse_get_num_buttons},
