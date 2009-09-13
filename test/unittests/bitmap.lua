@@ -1,8 +1,8 @@
 Test_bitmap = {}
 
 function Test_bitmap:test00_prepare()
-	allegro5.init()
-	display = allegro5.display.create(800, 600)
+--	allegro5.init()
+--	display = allegro5.display.create(800, 600)
 end
 
 function Test_bitmap:test01_create()

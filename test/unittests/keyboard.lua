@@ -1,7 +1,7 @@
 Test_keyboard = {}
 
 function Test_keyboard:test00_prepare()
-	allegro5.init()
+--	allegro5.init()
 end
 
 function Test_keyboard:test01_install()

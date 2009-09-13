@@ -1,8 +1,8 @@
 Test_font = {}
 
 function Test_font:test00_prepare()
-	allegro5.init()
-	display = allegro5.display.create(800, 600)
+--	allegro5.init()
+--	display = allegro5.display.create(800, 600)
 end
 
 function Test_font:test01_init()

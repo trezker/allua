@@ -1,7 +1,7 @@
 Test_mixer = {}
 
 function Test_mixer:test01_prepare()
-	allegro5.init()
+--	allegro5.init()
 	allegro5.audio.install(allegro5.audio.AUDIO_DRIVER_AUTODETECT)
 	allegro5.audio.reserve_samples(2);
 end

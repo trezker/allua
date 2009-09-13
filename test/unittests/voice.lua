@@ -1,7 +1,7 @@
 Test_voice = {}
 
 function Test_voice:test00_prepare()
-	allegro5.init()
+--	allegro5.init()
 	allegro5.audio.install(allegro5.audio.AUDIO_DRIVER_AUTODETECT)
 end
 

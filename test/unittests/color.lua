@@ -1,7 +1,7 @@
 Test_color = {}
 
 function Test_color:test00_prepare()
-	allegro5.init()
+--	allegro5.init()
 end
 
 function Test_color:test01_map()

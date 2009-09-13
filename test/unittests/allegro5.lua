@@ -1,7 +1,7 @@
 Test_allegro5 = {}
 
 function Test_allegro5:test1_init()
-	allegro5.init()
+--	allegro5.init()
 end
 
 function Test_allegro5:test2_current_time()

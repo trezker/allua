@@ -1,7 +1,7 @@
 #include "allua/font.h"
 #include "allua/allua.h"
 #include <stdio.h>
-#include <allegro5/a5_iio.h>
+#include <allegro5/allegro_image.h>
 
 #define FONT_STRING "font"
 

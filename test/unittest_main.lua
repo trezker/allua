@@ -23,4 +23,7 @@ assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
 end
 
+allegro5.init()
+display = allegro5.display.create(800, 600)
+
 LuaUnit:run() -- run all tests

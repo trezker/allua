@@ -1,7 +1,7 @@
 Test_display = {}
 
 function Test_display:test00_prepare()
-	allegro5.init()
+--	allegro5.init()
 end
 
 function Test_display:test01_create()

@@ -1,7 +1,7 @@
 Test_event_queue = {}
 
 function Test_event_queue:test00_prepare()
-	allegro5.init()
+--	allegro5.init()
 end
 
 function Test_event_queue:test01_create()

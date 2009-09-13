@@ -25,7 +25,7 @@ ALLUA_keyboard allua_check_keyboard (lua_State *L, int index)
   im = *pi;
   return im;
 }
-
+/*
 static ALLUA_keyboard *allua_pushKeyboard (lua_State *L, ALLUA_keyboard im)
 {
   ALLUA_keyboard *pi = (ALLUA_keyboard *)lua_newuserdata(L, sizeof(ALLUA_keyboard));
@@ -34,7 +34,7 @@ static ALLUA_keyboard *allua_pushKeyboard (lua_State *L, ALLUA_keyboard im)
   lua_setmetatable(L, -2);
   return pi;
 }
-
+*/
 /* Constructor and methods
  * */
 

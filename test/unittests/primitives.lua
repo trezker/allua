@@ -1,8 +1,8 @@
 Test_primitives = {}
 
 function Test_primitives:test00_prepare()
-	allegro5.init()
-	display = allegro5.display.create(800, 600)
+--	allegro5.init()
+--	display = allegro5.display.create(800, 600)
 end
 
 function Test_primitives:test01_functions()

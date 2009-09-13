@@ -19,8 +19,8 @@
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>
-#include <allegro5/a5_ttf.h>
-#include <allegro5/a5_iio.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
 
 int luaopen_liballua(lua_State* L)
 {

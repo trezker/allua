@@ -5,7 +5,7 @@
 #include <lualib.h>
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
-#include <allegro5/a5_ttf.h>
+#include <allegro5/allegro_ttf.h>
 
 typedef ALLEGRO_FONT* ALLUA_font;
 

@@ -1,7 +1,7 @@
 Test_audio = {}
 
 function Test_audio:test00_prepare()
-	allegro5.init()
+--	allegro5.init()
 end
 
 function Test_audio:test01_functions()

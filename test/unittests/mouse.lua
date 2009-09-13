@@ -1,17 +1,17 @@
 Test_mouse = {}
 
 function Test_mouse:test00_prepare()
-	allegro5.init()
-	display = allegro5.display.create(800, 600)
+--	allegro5.init()
+--	display = allegro5.display.create(800, 600)
 end
 
 function Test_mouse:test01_install()
 	b = allegro5.mouse.install ()
 	installed = allegro5.mouse.is_installed ()
-	mouse = allegro5.mouse.get()
+	--mouse = allegro5.mouse.get()
 	assertEquals("boolean", type(b))
 	assertEquals("boolean", type(installed))
-	assertEquals("mouse", tostring(mouse):sub(1, 5))
+	--assertEquals("mouse", tostring(mouse):sub(1, 5))
 end
 
 function Test_mouse:test02_get_cursor_position()

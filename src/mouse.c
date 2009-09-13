@@ -25,7 +25,7 @@ ALLUA_mouse allua_check_mouse (lua_State *L, int index)
   im = *pi;
   return im;
 }
-
+/*
 static ALLUA_mouse *allua_pushMouse (lua_State *L, ALLUA_mouse im)
 {
   ALLUA_mouse *pi = (ALLUA_mouse *)lua_newuserdata(L, sizeof(ALLUA_mouse));
@@ -34,7 +34,7 @@ static ALLUA_mouse *allua_pushMouse (lua_State *L, ALLUA_mouse im)
   lua_setmetatable(L, -2);
   return pi;
 }
-
+*/
 /* Constructor and methods
  * */
 
