@@ -5,7 +5,7 @@
 #include <lualib.h>
 #include <lauxlib.h>
 #include <allegro5/allegro5.h>
-#include <allegro5/kcm_audio.h>
+#include <allegro5/allegro_audio.h>
 
 typedef ALLEGRO_SAMPLE_INSTANCE* ALLUA_sample_instance;
 

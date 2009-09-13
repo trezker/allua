@@ -1,6 +1,6 @@
 #include "allua/audio.h"
-#include <allegro5/kcm_audio.h>
-#include <allegro5/a5_vorbis.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_vorbis.h>
 #include <stdio.h>
 
 #define AUDIO_STRING "audio"

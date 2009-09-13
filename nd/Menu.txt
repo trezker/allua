@@ -39,6 +39,7 @@ Group: C API  {
    File: allua_register  (/home/anders/allegro/allua-git/include/allua/allua.h)
    File: allua_register_audio  (/home/anders/allegro/allua-git/include/allua/audio.h)
    File: allua_register_primitives  (/home/anders/allegro/allua-git/include/allua/primitives.h)
+   File: audio_stream.h  (/home/anders/allegro/allua-git/include/allua/audio_stream.h)
    File: bitmap.h  (/home/anders/allegro/allua-git/include/allua/bitmap.h)
    File: color.h  (/home/anders/allegro/allua-git/include/allua/color.h)
    File: display.h  (/home/anders/allegro/allua-git/include/allua/display.h)
@@ -52,7 +53,6 @@ Group: C API  {
    File: sample.h  (/home/anders/allegro/allua-git/include/allua/sample.h)
    File: sample_id.h  (/home/anders/allegro/allua-git/include/allua/sample_id.h)
    File: sample_instance.h  (/home/anders/allegro/allua-git/include/allua/sample_instance.h)
-   File: stream.h  (/home/anders/allegro/allua-git/include/allua/stream.h)
    File: voice.h  (/home/anders/allegro/allua-git/include/allua/voice.h)
    }  # Group: C API
 
@@ -60,6 +60,7 @@ Group: Lua functions  {
 
    File: allegro5  (/home/anders/allegro/allua-git/docs/nd/allua.lua)
    File: audio  (/home/anders/allegro/allua-git/docs/nd/audio.lua)
+   File: audio_stream  (/home/anders/allegro/allua-git/docs/nd/audio_stream.lua)
    File: bitmap  (/home/anders/allegro/allua-git/docs/nd/Bitmap.lua)
    File: color  (/home/anders/allegro/allua-git/docs/nd/Color.lua)
    File: display  (/home/anders/allegro/allua-git/docs/nd/Display.lua)
@@ -72,7 +73,6 @@ Group: Lua functions  {
    File: primitives  (/home/anders/allegro/allua-git/docs/nd/Primitives.lua)
    File: sample  (/home/anders/allegro/allua-git/docs/nd/sample.lua)
    File: sample_instance  (/home/anders/allegro/allua-git/docs/nd/sample_instance.lua)
-   File: stream  (/home/anders/allegro/allua-git/docs/nd/stream.lua)
    File: voice  (/home/anders/allegro/allua-git/docs/nd/voice.lua)
    }  # Group: Lua functions
 

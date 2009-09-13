@@ -1,10 +1,10 @@
--- Class: stream
+-- Class: audio_stream
 
 -- Function: from_file
 -- Parameters:
 --
 -- Returns:
--- stream on success, nil on failure
+-- audio_stream on success, nil on failure
 function from_file (filename, buffer_count, samples) end
 
 -- Function: rewind
@@ -12,144 +12,144 @@ function from_file (filename, buffer_count, samples) end
 --
 -- Returns:
 -- success
-function rewind (stream) end
+function rewind (audio_stream) end
 
 -- Function: get_frequency
 -- Parameters:
 --
 -- Returns:
 -- frequency
-function get_frequency (stream) end
+function get_frequency (audio_stream) end
 
 -- Function: get_channels
 -- Parameters:
 --
 -- Returns:
 -- channels
-function get_channels (stream) end
+function get_channels (audio_stream) end
 
 -- Function: get_depth
 -- Parameters:
 --
 -- Returns:
 -- depth
-function get_depth (stream) end
+function get_depth (audio_stream) end
 
 -- Function: get_length
 -- Parameters:
 --
 -- Returns:
 -- length
-function get_length (stream) end
+function get_length (audio_stream) end
 
 -- Function: get_speed
 -- Parameters:
 --
 -- Returns:
 -- speed
-function get_speed (stream) end
+function get_speed (audio_stream) end
 
 -- Function: set_speed
 -- Parameters:
 --
 -- Returns:
 -- success
-function set_speed (stream, val) end
+function set_speed (audio_stream, val) end
 
 -- Function: get_gain
 -- Parameters:
 --
 -- Returns:
 -- gain
-function get_gain (stream) end
+function get_gain (audio_stream) end
 
 -- Function: set_gain
 -- Parameters:
 --
 -- Returns:
 -- success
-function set_gain (stream, val) end
+function set_gain (audio_stream, val) end
 
 -- Function: get_pan
 -- Parameters:
 --
 -- Returns:
 -- pan
-function get_pan (stream) end
+function get_pan (audio_stream) end
 
 -- Function: set_pan
 -- Parameters:
 --
 -- Returns:
 -- success
-function set_pan (stream, val) end
+function set_pan (audio_stream, val) end
 
 -- Function: get_playing
 -- Parameters:
 --
 -- Returns:
 -- playing
-function get_playing (stream) end
+function get_playing (audio_stream) end
 
 -- Function: set_playing
 -- Parameters:
 --
 -- Returns:
 -- success
-function set_playing (stream, val) end
+function set_playing (audio_stream, val) end
 
 -- Function: get_playmode
 -- Parameters:
 --
 -- Returns:
 -- playmode
-function get_playmode (stream) end
+function get_playmode (audio_stream) end
 
 -- Function: set_playmode
 -- Parameters:
 --
 -- Returns:
 -- success
-function set_playmode (stream, val) end
+function set_playmode (audio_stream, val) end
 
 -- Function: get_attached
 -- Parameters:
 --
 -- Returns:
 -- attached or not
-function get_attached (stream) end
+function get_attached (audio_stream) end
 
 -- Function: detach
 -- Parameters:
 --
 -- Returns:
 -- success
-function detach (stream) end
+function detach (audio_stream) end
 
 -- Function: seek_secs
 -- Parameters:
 --
 -- Returns:
 -- success
-function seek_secs (stream, time) end
+function seek_secs (audio_stream, time) end
 
 -- Function: get_position_secs
 -- Parameters:
 --
 -- Returns:
 -- position
-function get_position_secs (stream) end
+function get_position_secs (audio_stream) end
 
 -- Function: get_length_secs
 -- Parameters:
 --
 -- Returns:
 -- length
-function get_length_secs (stream) end
+function get_length_secs (audio_stream) end
 
 -- Function: set_loop_secs
 -- Parameters:
 --
 -- Returns:
 -- success
-function set_loop_secs (stream, start, end) end
+function set_loop_secs (audio_stream, start, end) end

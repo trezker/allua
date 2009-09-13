@@ -15,7 +15,7 @@
 #include "allua/sample.h"
 #include "allua/sample_id.h"
 #include "allua/sample_instance.h"
-#include "allua/stream.h"
+#include "allua/audio_stream.h"
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>
