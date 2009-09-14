@@ -9,7 +9,7 @@ require('liballua')
 allegro5.init()
 allegro5.keyboard.install()
 allegro5.mouse.install()
-allegro5.bitmap.init_iio_addon ()
+allegro5.bitmap.init_image_addon ()
 allegro5.font.init_addon()
 
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
