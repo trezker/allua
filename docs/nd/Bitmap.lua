@@ -1,9 +1,9 @@
 -- Class: bitmap
 
--- Function: init_iio_addon
+-- Function: init_image_addon
 -- Returns:
 -- true on success, false on failure
-function init_iio_addon () end
+function init_image_addon () end
 
 -- Function: clone
 -- Parameters:

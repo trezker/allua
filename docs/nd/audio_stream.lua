@@ -1,11 +1,11 @@
 -- Class: audio_stream
 
--- Function: from_file
+-- Function: load
 -- Parameters:
 --
 -- Returns:
 -- audio_stream on success, nil on failure
-function from_file (filename, buffer_count, samples) end
+function load (filename, buffer_count, samples) end
 
 -- Function: rewind
 -- Parameters:

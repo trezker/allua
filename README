@@ -8,7 +8,7 @@ the development of Allegro 5. So it only works with a certain WIP release of All
 Building Allua:
 
 Requirements:
-Allegro 4.9.13 [http://sourceforge.net/projects/alleg/files/allegro-unstable/4.9.13/]
+Allegro 4.9.14 [http://sourceforge.net/projects/alleg/files/allegro-unstable/4.9.14/]
 Lua [www.lua.org]
 Scons [www.scons.org] to build the project.
 NaturalDocs [www.naturaldocs.org] (Only if you want to build reference manual)
