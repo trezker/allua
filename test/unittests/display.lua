@@ -178,4 +178,5 @@ function Test_display:test24_cleanup()
 	ca = nil
 	cb = nil
 	collectgarbage()
+	superdisplay:set_current()
 end

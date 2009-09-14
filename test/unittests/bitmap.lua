@@ -35,7 +35,7 @@ function Test_bitmap:test03_new_format()
 end
 
 function Test_bitmap:test04_load()
-	allegro5.bitmap.init_iio_addon ()
+	allegro5.bitmap.init_image_addon ()
 	loadbitmap = allegro5.bitmap.load("data/test.png")
 	assertEquals("bitmap", tostring(loadbitmap):sub(1, 6))
 end

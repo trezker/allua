@@ -32,5 +32,7 @@ function Test_keyboard:test04_get_event_source()
 end
 
 function Test_keyboard:test05_uninstall()
+	s = nil
+	collectgarbage()
 	allegro5.keyboard.uninstall ()
 end

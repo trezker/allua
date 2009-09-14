@@ -102,6 +102,7 @@ end
 
 function Test_sample_instance:test03_get_sample()
 	gsample = instance:get_sample ()
+	allegro5.audio.init_ogg_vorbis_addon()
 	assertEquals("sample", tostring(gsample):sub(1, 6))
 end
 

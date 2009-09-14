@@ -3,8 +3,8 @@ require('liballua')
 USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
 
 
-dofile("unittests/allegro5.lua")
 dofile("unittests/display.lua")
+dofile("unittests/allegro5.lua")
 dofile("unittests/bitmap.lua")
 dofile("unittests/color.lua")
 dofile("unittests/event_queue.lua")
@@ -24,6 +24,6 @@ assertEqualsDelta = function(expected, actual, delta)
 end
 
 allegro5.init()
-display = allegro5.display.create(800, 600)
+superdisplay = allegro5.display.create(800, 600)
 
 LuaUnit:run() -- run all tests

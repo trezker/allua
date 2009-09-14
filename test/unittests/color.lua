@@ -42,14 +42,14 @@ function Test_color:test01_map()
 end
 
 function Test_color:test02_put_pixel()
-	display = allegro5.display.create(800, 600)
+--	display = allegro5.display.create(800, 600)
 	color = allegro5.color.map_rgb(2, 34, 4)
 	color:put_pixel(24, 2)
 	color:draw_pixel(24, 2)
 end
 
 function Test_color:test03_cleanup()
-	display = nil
+--	display = nil
 	color = nil
 	collectgarbage()
 end
