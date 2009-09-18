@@ -61,9 +61,27 @@ static int allua_Native_dialog_show (lua_State *L)
 	return 0;
 }
 
+static int allua_Native_dialog_get_count (lua_State *L)
+{
+	ALLUA_native_dialog d = allua_check_native_dialog(L, 1);
+	lua_pushnumber(L, al_get_native_file_dialog_count(d));
+	return 1;
+}
+
+static int allua_Native_dialog_get_path (lua_State *L)
+{
+	ALLUA_native_dialog d = allua_check_native_dialog(L, 1);
+	int i = luaL_checkint(L, 2);
+	const ALLEGRO_PATH *path = al_get_native_file_dialog_path(d, i);
+	lua_pushstring(L, al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP));
+	return 1;
+}
+
 static const luaL_reg allua_Native_dialog_methods[] = {
   {"create", allua_Native_dialog_create},
   {"show", allua_Native_dialog_show},
+  {"get_count", allua_Native_dialog_get_count},
+  {"get_path", allua_Native_dialog_get_path},
   {0,0}
 };
 

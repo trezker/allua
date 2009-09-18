@@ -9,6 +9,13 @@ function Test_native_dialog:test02_show()
 	native_dialog:show()
 end
 
+function Test_native_dialog:test03_get()
+	n = native_dialog:get_count()
+	path = native_dialog:get_path(1)
+	assertEquals("number", type(n))
+	assertEquals("string", type(path))
+end
+
 function Test_native_dialog:test10_destroy()
 	native_dialog = nil
 	collectgarbage()
