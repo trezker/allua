@@ -5,7 +5,11 @@ function Test_native_dialog:test01_create()
 	assertEquals("native_dialog", tostring(native_dialog):sub(1, 13))
 end
 
-function Test_native_dialog:test02_destroy()
+function Test_native_dialog:test02_show()
+	native_dialog:show()
+end
+
+function Test_native_dialog:test10_destroy()
 	native_dialog = nil
 	collectgarbage()
 end

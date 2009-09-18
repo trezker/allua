@@ -54,8 +54,16 @@ static int allua_Native_dialog_create (lua_State *L)
 	return 1;
 }
 
+static int allua_Native_dialog_show (lua_State *L)
+{
+	ALLUA_native_dialog d = allua_check_native_dialog(L, 1);
+	al_show_native_file_dialog(d);
+	return 0;
+}
+
 static const luaL_reg allua_Native_dialog_methods[] = {
   {"create", allua_Native_dialog_create},
+  {"show", allua_Native_dialog_show},
   {0,0}
 };
 
