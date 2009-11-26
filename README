@@ -10,14 +10,15 @@ Building Allua:
 Requirements:
 Allegro 4.9.14 [http://sourceforge.net/projects/alleg/files/allegro-unstable/4.9.14/]
 Lua [www.lua.org]
-Scons [www.scons.org] to build the project.
+premake4 [http://industriousone.com/premake] to build the project.
 NaturalDocs [www.naturaldocs.org] (Only if you want to build reference manual)
 luaunit [luaforge.net] (only for unit tests) 
 
 Build howto:
 First open a terminal and get to the Allua folder.
-Enter scons to build, hopefully it will work.
-Enter scons install to install Allua.
+Enter premake4 gmake (or what environment you're building for)
+Enter make to build
+Enter premake4 install to install Allua.
 
 
 
