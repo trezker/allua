@@ -24,11 +24,11 @@ def CheckLua(context):
 	context.Result(result)
 	return result
 
-conf = Configure(env, custom_tests = {"CheckLua" : CheckLua})
-if not conf.CheckLua():
-	sys.stderr.write("Lua 5.1 not found, please get it from lua.org.\n")
-	Exit(1)
-env = conf.Finish()
+#conf = Configure(env, custom_tests = {"CheckLua" : CheckLua})
+#if not conf.CheckLua():
+#	sys.stderr.write("Lua 5.1 not found, please get it from lua.org.\n")
+#	Exit(1)
+#env = conf.Finish()
 
 debug = ARGUMENTS.get('debug', 0)
 if int(debug):
@@ -36,7 +36,7 @@ if int(debug):
 env.Append(CCFLAGS = '-Wall')
 
 env.BuildDir('obj','src', duplicate = 0)
-env.Append(LIBS=['allegro-4.9.14','allegro_image-4.9.14','allegro_font-4.9.14','allegro_ttf-4.9.14','allegro_primitives-4.9.14','allegro_audio-4.9.14','allegro_vorbis-4.9.14','allegro_dialog-4.9.14'])
+env.Append(LIBS=['lua','allegro-4.9.16','allegro_image-4.9.16','allegro_font-4.9.16','allegro_ttf-4.9.16','allegro_primitives-4.9.16','allegro_audio-4.9.16','allegro_vorbis-4.9.16','allegro_dialog-4.9.16'])
 #allua = env.StaticLibrary('lib/allua',files)
 allua_shared = env.SharedLibrary('lib/allua',files)
 
