@@ -24,6 +24,10 @@ newaction {
 		for index, name in pairs(tests) do
 			os.execute ("cp lib/liballua.so ../test/liballua.so")
 			os.execute ("lua " .. name)
+			cmd = io.stdin:read'*l'
+			if cmd == "q" then
+				break;
+			end
 		end
 	end
 }
