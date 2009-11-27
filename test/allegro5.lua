@@ -1,3 +1,13 @@
+require('luaunit')
+require('liballua')
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
+end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
 Test_allegro5 = {}
 
 function Test_allegro5:test1_init()
@@ -18,3 +28,5 @@ function Test_allegro5:test3_rest()
 	print("Before: " .. start_time .. " After: " .. current_time .. " Diff: " .. diff_time)
 	assert(rest_time <= diff_time)
 end
+
+LuaUnit:run() -- run all tests

@@ -1,13 +1,27 @@
--- Title: primitives example
--- Demonstrates usage of primitives functions
+require('luaunit')
 require('liballua')
-
-allegro5.init()
-allegro5.audio.install(allegro5.audio.AUDIO_DRIVER_AUTODETECT)
-allegro5.audio.init_ogg_vorbis_addon()
-sample = allegro5.sample.load("data/powerup.ogg")
-if not sample then
-	print("Couldn't load")
-else
-	print("Sample loaded")
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
 end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
+Test_audio = {}
+
+function Test_audio:test00_prepare()
+--	allegro5.init()
+end
+
+function Test_audio:test01_functions()
+	install = allegro5.audio.install (allegro5.audio.AUDIO_DRIVER_AUTODETECT)
+	reserve = allegro5.audio.reserve_samples (2)
+	ogg = allegro5.audio.init_ogg_vorbis_addon()
+	allegro5.audio.uninstall ()
+	assertEquals("boolean", type(install))
+	assertEquals("boolean", type(reserve))
+	assertEquals("boolean", type(ogg))
+end
+
+LuaUnit:run() -- run all tests

@@ -1,3 +1,13 @@
+require('luaunit')
+require('liballua')
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
+end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
 Test_audio_stream = {}
 
 function Test_audio_stream:test01_prepare()
@@ -94,3 +104,5 @@ function Test_audio_stream:test10_cleanup()
 	audio_stream = nil
 	collectgarbage()
 end
+
+LuaUnit:run() -- run all tests

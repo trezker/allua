@@ -1,3 +1,13 @@
+require('luaunit')
+require('liballua')
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
+end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
 Test_color = {}
 
 function Test_color:test00_prepare()
@@ -53,3 +63,5 @@ function Test_color:test03_cleanup()
 	color = nil
 	collectgarbage()
 end
+
+LuaUnit:run() -- run all tests

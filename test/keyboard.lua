@@ -1,60 +1,50 @@
--- Title: keyboard example
--- Demonstrates usage of keyboard functions
+require('luaunit')
 require('liballua')
-
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
+end
 allegro5.init()
-allegro5.keyboard.install()
-allegro5.mouse.install()
-allegro5.bitmap.init_image_addon ()
-allegro5.font.init_addon()
+superdisplay = allegro5.display.create(800, 600)
 
-display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
-event_queue = allegro5.event_queue.create()
 
-event_queue:register_event_source(display:get_event_source())
-keyboard = allegro5.keyboard.get_event_source()
-event_queue:register_event_source(keyboard)
+Test_keyboard = {}
 
-print("Keycode of key \"Up\" is " .. tostring(allegro5.keyboard.keycode_from_name("Up")))
-
-pixels = 0
-while not quit do
-	event = event_queue:get_next_event()
-	if event.type == allegro5.display.EVENT_CLOSE or event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
-		quit = true
-	end
-	
-	if event.type then
-		print("Event ", event.type)
-	end
-	
-	if event.type == allegro5.keyboard.EVENT_DOWN then
-		print("\tkey down", allegro5.keyboard.keycode_to_name(event.keycode))
-		print("\tkeycode\t", event.keycode)
-		print("\tunichar\t", event.unichar)
-		print("\tmod\t", event.modifiers)
-	end
-	
-	if event.type == allegro5.keyboard.EVENT_DOWN then
-		if event.keycode == allegro5.keyboard.KEY_A then
-			print("Thou hast presseth A")
-		end
-		if event.keycode == allegro5.keyboard.KEY_Z then
-			print("Thou hast presseth Z")
-		end
-	end
-
-	r = math.random(0, 255)
-	g = math.random(0, 255)
-	b = math.random(0, 255)
-	color = allegro5.color.map_rgba(r, g, b, 0)
-	x = math.random(0, 640)
-	y = math.random(0, 480)
-	color:put_pixel(x, y)
-
-	pixels = pixels + 1
-	
-	allegro5.display.flip()
+function Test_keyboard:test00_prepare()
+--	allegro5.init()
 end
 
-print("Pixels per second ", pixels / allegro5.current_time())
+function Test_keyboard:test01_install()
+	b = allegro5.keyboard.install ()
+	installed = allegro5.keyboard.is_installed ()
+--	keyboard = allegro5.keyboard.get()
+	assertEquals("boolean", type(b))
+	assertEquals("boolean", type(installed))
+	assertEquals(b, installed)
+--	assertEquals("keyboard", tostring(keyboard):sub(1, 8))
+end
+
+function Test_keyboard:test02_keycode_to_name()
+	key_name = allegro5.keyboard.keycode_to_name (allegro5.keyboard.KEY_UP)
+	key_code = allegro5.keyboard.keycode_from_name (key_name)
+	assertEquals("string", type(key_name))
+	assertEquals(allegro5.keyboard.KEY_UP, key_code)
+end
+
+function Test_keyboard:test03_set_leds()
+	b = allegro5.keyboard.set_leds (-1)
+	assertEquals("boolean", type(b))
+end
+
+function Test_keyboard:test04_get_event_source()
+	s = allegro5.keyboard.get_event_source ()
+	assertEquals("event_source", tostring(s):sub(1, 12))
+end
+
+function Test_keyboard:test05_uninstall()
+	s = nil
+	collectgarbage()
+	allegro5.keyboard.uninstall ()
+end
+
+LuaUnit:run() -- run all tests

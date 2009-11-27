@@ -1,63 +1,134 @@
--- Title: bitmap example
--- Demonstrates usage of bitmap functions
-
+require('luaunit')
 require('liballua')
-
-allegro5.init()
-allegro5.keyboard.install()
-allegro5.mouse.install()
-allegro5.bitmap.init_image_addon ()
-
-allegro5.display.set_new_flags(allegro5.display.WINDOWED)
-display = allegro5.display.create(640, 480)
-event_queue = allegro5.event_queue.create()
-
-event_queue:register_event_source(display:get_event_source())
-keyboard = allegro5.keyboard.get_event_source()
-event_queue:register_event_source(keyboard)
-mouse = allegro5.mouse.get_event_source()
-event_queue:register_event_source(mouse)
-
-bitmap = allegro5.bitmap.load("data/leaf.png")
-sub_bitmap = bitmap:create_sub(0, 0, 10, 10)
-font = allegro5.font.load_ttf("data/times.ttf", 16, 0)
-
-gctest_bitmap = allegro5.bitmap.load("data/leaf.png")
-gctest_bitmap = nil
-
-mouse_x = 0
-mouse_y = 0
-mouse_z = 0
-mouse_b = {}
-
-while not quit do
-	event = event_queue:get_next_event()
-	if event.type == allegro5.display.EVENT_CLOSE or event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
-		quit = true
-	end
-
-	if event.type == allegro5.mouse.EVENT_AXES then
-		mouse_x = event.x
-		mouse_y = event.y
-		mouse_z = event.z
-	end
-
-	if event.type == allegro5.mouse.EVENT_DOWN then
-		mouse_b[event.button] = true
-	end
-	if event.type == allegro5.mouse.EVENT_UP then
-		mouse_b[event.button] = false
-	end
-
-	bitmap:draw(10, 100, 0)
-	sub_bitmap:draw(50, 100, 0)
-	bitmap:draw_region(0, 10, 10, 10, 10, 150, 0)
-
-	cx = bitmap:get_width()/2
-	cy = bitmap:get_height()/2
-	bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
-
-	allegro5.display.flip()
-	allegro5.bitmap.clear_to_color (allegro5.color.map_rgba(0, 0, 0, 0))
-	allegro5.rest(0.001)
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
 end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
+Test_bitmap = {}
+
+function Test_bitmap:test00_prepare()
+--	allegro5.init()
+--	display = allegro5.display.create(800, 600)
+end
+
+function Test_bitmap:test01_create()
+	bitmap = allegro5.bitmap.create(100, 200)
+	subbitmap = bitmap:create_sub(20, 30, 40, 50)
+	bitmap_clone = bitmap:clone()
+	assertEquals("bitmap", tostring(bitmap):sub(1, 6))
+	assertEquals("bitmap", tostring(bitmap_clone):sub(1, 6))
+	assertEquals("bitmap", tostring(subbitmap):sub(1, 6))
+
+	assertEquals(true, subbitmap:is_sub())
+	assertEquals(false, bitmap:is_sub())
+end
+
+function Test_bitmap:test02_new_flags()
+	setflags = allegro5.bitmap.KEEP_BITMAP_FORMAT
+	allegro5.bitmap.set_new_flags(setflags)
+	getflags = allegro5.bitmap.get_new_flags()
+	assertEquals("number", type(getflags))
+	assertEquals(setflags, getflags)
+end
+
+function Test_bitmap:test03_new_format()
+	setformat = 32
+	allegro5.bitmap.set_new_format(setformat)
+	getformat = allegro5.bitmap.get_new_format()
+	allegro5.bitmap.set_new_format(0)
+	assertEquals("number", type(getformat))
+	assertEquals(setformat, getformat)
+end
+
+function Test_bitmap:test04_load()
+	allegro5.bitmap.init_image_addon ()
+	loadbitmap = allegro5.bitmap.load("data/test.png")
+	assertEquals("bitmap", tostring(loadbitmap):sub(1, 6))
+end
+
+function Test_bitmap:test05_flags()
+	getflags = bitmap:get_flags()
+	assertEquals("number", type(getflags))
+end
+
+function Test_bitmap:test06_format()
+	getformat = bitmap:get_format()
+	assertEquals("number", type(getformat))
+end
+
+function Test_bitmap:test07_get_size()
+	getw = bitmap:get_width ()
+	geth = bitmap:get_height  ()
+	assertEquals("number", type(getw))
+	assertEquals("number", type(geth))
+end
+
+function Test_bitmap:test08_get_pixel()
+	getpixel = bitmap:get_pixel (0, 0)
+	assertEquals("color", tostring(getpixel):sub(1, 5))
+end
+
+function Test_bitmap:test09_lock()
+	locked = bitmap:is_locked ()
+	assertEquals("boolean", type(locked))
+end
+
+function Test_bitmap:test10_is_compatible()
+	compatible = bitmap:is_compatible ()
+	assertEquals("boolean", type(compatible))
+end
+
+function Test_bitmap:test11_clear_to_color()
+	color = allegro5.color.map_rgba(1, 1, 1, 1)
+	allegro5.bitmap.clear_to_color (color)
+end
+
+function Test_bitmap:test12_draw()
+	bitmap:draw(1, 1, 0)
+	bitmap:draw_region(1, 2, 3, 4, 5, 6, 0)
+	bitmap:draw_rotated (1, 1, 2, 3, 2, 0)
+	bitmap:draw_rotated_scaled  (1, 1, 2, 3, 2, .2, 1, 0)
+	bitmap:draw_scaled (1, 1, 10, 10, 2, 2, 5, 20, 0)
+end
+
+function Test_bitmap:test13_get_target()
+	allegro5.bitmap.set_target(bitmap)	
+	gettarget1 = allegro5.bitmap.get_target ()
+	allegro5.bitmap.set_target(allegro5.display.get_backbuffer())
+	assertEquals("bitmap", tostring(gettarget1):sub(1, 6))
+	-- get_target and get_backbuffer create non_gc bitmap userdata so they can't be compared.
+end
+
+function Test_bitmap:test14_clipping_rectangle()
+	sx, sy, sw, sh = 10, 20, 30, 40
+	allegro5.bitmap.set_clipping_rectangle(sx, sy, sw, sh)
+	x, y, w, h = allegro5.bitmap.get_clipping_rectangle()
+	assertEquals("number", type(x))
+	assertEquals("number", type(y))
+	assertEquals("number", type(w))
+	assertEquals("number", type(h))
+	assertEquals(sx, x)
+	assertEquals(sy, y)
+	assertEquals(sw, w)
+	assertEquals(sh, h)
+end
+
+function Test_bitmap:test15_convert_mask_to_alpha()
+	color = allegro5.color.map_rgba(235, 26, 23, 100)
+	bitmap:convert_mask_to_alpha (color)
+end
+
+function Test_bitmap:test20_cleanup()
+	bitmap = nil
+	subbitmap = nil
+	bitmap_clone = nil
+	loadbitmap = nil
+	gettarget1 = nil
+	collectgarbage()
+end
+
+LuaUnit:run() -- run all tests

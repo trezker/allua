@@ -1,91 +1,194 @@
--- Title: display example
--- Demonstrates usage of display functions
-
+require('luaunit')
 require('liballua')
-
-allegro5.init()
-allegro5.keyboard.install()
-allegro5.mouse.install()
-allegro5.bitmap.init_image_addon ()
-allegro5.display.set_new_flags(allegro5.display.WINDOWED)
-display0 = allegro5.display.create(640, 480)
-print("Number of available display formats: " .. allegro5.display.get_num_display_formats())
-display0 = nil
-collectgarbage("collect")
-
-allegro5.display.set_new_flags(allegro5.display.WINDOWED + allegro5.display.RESIZABLE)
-display1 = allegro5.display.create(640, 480)
-allegro5.display.set_new_flags(allegro5.display.WINDOWED)
-display2 = allegro5.display.create(640, 480)
-
-event_queue = allegro5.event_queue.create()
-
-event_queue:register_event_source(display1:get_event_source())
-event_queue:register_event_source(display2:get_event_source())
-keyboard = allegro5.keyboard.get_event_source()
-event_queue:register_event_source(keyboard)
-mouse = allegro5.mouse.get_event_source()
-event_queue:register_event_source(mouse)
-
-bitmap = allegro5.bitmap.load("data/leaf.png")
-
-mouse_x = 0
-mouse_y = 0
-mouse_z = 0
-mouse_b = {}
-
-while not quit do
-	event = event_queue:get_next_event()
-	if event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
-		quit = true
-	end
-
-	if event.type == allegro5.display.EVENT_CLOSE then
-		if event.source == display2 then
-			event_queue:unregister_event_source(display2)
-			display2 = nil
-			event.source = nil
-		end
-	end
-
-	collectgarbage("collect")
-	if event.type == allegro5.display.EVENT_RESIZE then
-		event.source:acknowledge_resize()
-	end
-
-	if event.type == allegro5.mouse.EVENT_AXES then
-		mouse_x = event.x
-		mouse_y = event.y
-		mouse_z = event.z
-	end
-
-	if event.type == allegro5.mouse.EVENT_DOWN then
-		mouse_b[event.button] = true
-	end
-	if event.type == allegro5.mouse.EVENT_UP then
-		mouse_b[event.button] = false
-
-		display1:set_window_position(event.x, event.y)
-		dix, diy = display1:get_window_position()
-		print(dix .. " " .. diy)
-	end
-
-
-	if display2 then
-		display2:set_current()
-		cx = bitmap:get_width()/2
-		cy = bitmap:get_height()/2
-		bitmap:draw_rotated(cx, cy, mouse_x, mouse_y, allegro5.current_time(), 0)
-
-		allegro5.display.flip()
-		allegro5.bitmap.clear_to_color(allegro5.color.map_rgba(0, 0, 0, 0))
-		allegro5.rest(0.001)
-	end
-
-	display1:set_current()
-	bitmap:draw(10, 100, 0)
-
-	allegro5.display.flip()
-	allegro5.bitmap.clear_to_color(allegro5.color.map_rgba(0, 0, 0, 0))
-	allegro5.rest(0.001)
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
 end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
+Test_display = {}
+
+function Test_display:test00_prepare()
+--	allegro5.init()
+end
+
+function Test_display:test01_create()
+	display = allegro5.display.create(800, 600)
+	assertEquals("display", tostring(display):sub(1, 7))
+end
+
+function Test_display:test02_get_num_display_formats()
+	ndf = allegro5.display.get_num_display_formats()
+	assert("number", type(ndf))
+end
+
+function Test_display:test03_get_format_option()
+	value = allegro5.display.get_format_option(0, allegro5.display.COMPATIBLE_DISPLAY)
+	assert("number", type(value))
+end
+
+function Test_display:test04_set_new_format()
+	allegro5.display.set_new_format(0)
+end
+
+function Test_display:test05_new_flags()
+	flags_set = allegro5.display.WINDOWED + allegro5.display.RESIZABLE
+	allegro5.display.set_new_flags(flags_set)
+	flags_get = allegro5.display.get_new_flags()
+	assert("number", type(flags_get))
+	assertEquals(flags_set, flags_get)
+end
+
+function Test_display:test06_new_refresh_rate()
+	rate_set = 70
+	allegro5.display.set_new_refresh_rate(rate_set)
+	rate_get = allegro5.display.get_new_refresh_rate()
+	assert("number", type(rate_get))
+	assertEquals(rate_set, rate_get)
+end
+
+function Test_display:test07_new_window_position()
+	set_x, set_y = 70, 40
+	allegro5.display.set_new_window_position(set_x, set_y)
+	get_x, get_y = allegro5.display.get_new_window_position()
+	assert("number", type(get_x))
+	assert("number", type(get_y))
+	assertEquals(set_x, get_x)
+	assertEquals(set_y, get_y)
+end
+
+function Test_display:test08_new_option()
+	value_set = 2
+	importance_set = allegro5.display.REQUIRE
+	allegro5.display.set_new_option(allegro5.display.VSYNC, value_set, importance_set)
+	value_get, importance_get = allegro5.display.get_new_option(allegro5.display.VSYNC)
+	allegro5.display.reset_new_options()
+	assert("number", type(value_get))
+	assert("number", type(importance_get))
+	assertEquals(value_set, value_get)
+	assertEquals(importance_set, importance_get)
+end
+
+function Test_display:test09_flip()
+	allegro5.display.flip()
+end
+
+function Test_display:test10_buffers()
+	bb = display:get_backbuffer()
+	fb = display:get_frontbuffer()
+	assertEquals("bitmap", tostring(bb):sub(1, 6))
+	assertEquals("bitmap", tostring(fb):sub(1, 6))
+end
+
+function Test_display:test11_current()
+	d2 = allegro5.display.create(800, 600)
+	ca = allegro5.display.get_current()
+	display:set_current()
+	cb = allegro5.display.get_current()
+	assertEquals(d2, ca)
+	assertEquals(display, cb)
+end
+
+function Test_display:test12_get()
+	gflags = allegro5.display.get_flags()
+	gformat = allegro5.display.get_format()
+	gheight = allegro5.display.get_height()
+	grefresh_rate = allegro5.display.get_refresh_rate()
+	gwidth = allegro5.display.get_width()
+	assertEquals("number", type(gflags))
+	assertEquals("number", type(gformat))
+	assertEquals("number", type(gheight))
+	assertEquals("number", type(grefresh_rate))
+	assertEquals("number", type(gwidth))
+	gfrontbuffer = allegro5.display.get_frontbuffer()
+	assertEquals("bitmap", tostring(gfrontbuffer):sub(1, 6))
+end
+
+function Test_display:test13_inhibit_screensaver()
+	gb = allegro5.display.inhibit_screensaver()
+	assertEquals("boolean", type(gb))
+end
+
+function Test_display:test14_resize()
+	gb = allegro5.display.resize(640, 480)
+	assertEquals("boolean", type(gb))
+	assertEquals(true, gb)
+end
+
+function Test_display:test15_icon()
+	i = allegro5.bitmap.create(16, 16)
+	allegro5.display.set_icon(i)
+end
+
+function Test_display:test16_get_option()
+	i = allegro5.display.VSYNC
+	o = allegro5.display.get_option(i)
+	assertEquals("number", type(o))
+end
+
+function Test_display:test17_window_position()
+	display:set_window_position(100, 50)
+	gpx, gpy = display:get_window_position()
+	assertEquals("number", type(gpx))
+	assertEquals("number", type(gpy))
+	--Doesn't work in compiz (Allegro hasn't implemented get yet)
+--	assertEquals(100, gpx)
+--	assertEquals(50, gpy)
+end
+
+function Test_display:test18_window_title()
+	allegro5.display.set_window_title("A title")
+end
+
+function Test_display:test19_toggle_window_frame()
+	display:toggle_window_frame(true)
+end
+
+function Test_display:test20_update_region()
+	allegro5.display.update_region(10, 10, 100, 100)
+end
+
+function Test_display:test21_vsync()
+	gb = allegro5.display.wait_for_vsync()
+	assertEquals("boolean", type(gb))
+end
+
+function Test_display:test22_modes()
+	gnum = allegro5.display.get_num_modes()
+	assertEquals("number", type(gnum))
+
+	mode = allegro5.display.get_mode(0)
+	if mode then
+		assertEquals("number", type(mode.width))
+		assertEquals("number", type(mode.height))
+		assertEquals("number", type(mode.format))
+		assertEquals("number", type(mode.refresh_rate))
+	end
+end
+
+function Test_display:test23_video_adapter()
+	gnum = allegro5.display.get_current_video_adapter ()
+	assertEquals("number", type(gnum))
+	allegro5.display.set_current_video_adapter (gnum)
+
+	adapters = allegro5.display.get_num_video_adapters ()
+	assertEquals("number", type(adapters))
+
+	info = allegro5.display.get_monitor_info (0)
+	assertEquals("number", type(info.x1))
+	assertEquals("number", type(info.y1))
+	assertEquals("number", type(info.x2))
+	assertEquals("number", type(info.y2))
+end
+
+function Test_display:test24_cleanup()
+	display = nil
+	ca = nil
+	cb = nil
+	collectgarbage()
+	superdisplay:set_current()
+end
+
+LuaUnit:run() -- run all tests

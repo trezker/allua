@@ -1,33 +1,65 @@
--- Title: font example
--- Demonstrates usage of font functions
+require('luaunit')
 require('liballua')
-
-allegro5.init()
-allegro5.keyboard.install()
-allegro5.mouse.install()
-allegro5.bitmap.init_image_addon ()
-allegro5.font.init_addon()
-
-display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
-event_queue = allegro5.event_queue.create()
-
-event_queue:register_event_source(display:get_event_source())
-keyboard = allegro5.keyboard.get_event_source()
-event_queue:register_event_source(keyboard)
-mouse = allegro5.mouse.get_event_source()
-event_queue:register_event_source(mouse)
-
-ttf_font = allegro5.font.load_ttf("data/times.ttf", 24, 0)
-image_font = allegro5.font.load_bitmap("data/font.tga")
-
-while not quit do
-	event = event_queue:get_next_event()
-	if event.type == allegro5.display.EVENT_CLOSE or event.type == allegro5.keyboard.EVENT_DOWN and event.keycode == allegro5.keyboard.KEY_ESCAPE then
-		quit = true
-	end
-	
-	ttf_font:draw_text(10, 10, 0, "Wazzup! TTF font!")
-	image_font:draw_text(10, 50, 0, "Wazzup! Image font!")
-	
-	allegro5.display.flip()
+USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
+assertEqualsDelta = function(expected, actual, delta)
+	assert(math.abs(expected-actual)<delta)
 end
+allegro5.init()
+superdisplay = allegro5.display.create(800, 600)
+
+
+Test_font = {}
+
+function Test_font:test00_prepare()
+--	allegro5.init()
+--	display = allegro5.display.create(800, 600)
+end
+
+function Test_font:test01_init()
+	allegro5.font.init_addon ()
+	b = allegro5.font.init_ttf_addon ()
+	assertEquals("boolean", type(b))
+end
+
+function Test_font:test03_load_ttf()
+	ttf_font_fail = allegro5.font.load_ttf("a.ttf", 23, 0)
+	ttf_font = allegro5.font.load_ttf("data/times.ttf", 23, 0)
+	assertEquals("nil", type(ttf_font_fail))
+	assertEquals("font", tostring(ttf_font):sub(1, 4))
+end
+
+function Test_font:test04_load_bitmap()
+	bitmap_font_fail = allegro5.font.load_bitmap("a.tga")
+	bitmap_font = allegro5.font.load_bitmap("data/font.tga")
+	assertEquals("nil", type(bitmap_font_fail))
+	assertEquals("font", tostring(bitmap_font):sub(1, 4))
+end
+
+function Test_font:test05_draw_text()
+	ttf_font:draw_text (10, 10, 0, "times.ttf")
+	bitmap_font:draw_text (10, 40, 0, "font.tga")
+	ttf_font:draw_justified_text (10, 100, 10, 0, 0, "times.ttf")
+end
+
+function Test_font:test06_text_dimensions()
+	bbx, bby, bbw, bbh, ascent, descent = ttf_font:get_text_dimensions ("times.ttf")
+	line_height = ttf_font:get_line_height ()
+	width = ttf_font:get_text_width ("times.ttf")
+	assertEquals("number", type(bbx))
+	assertEquals("number", type(bby))
+	assertEquals("number", type(bbw))
+	assertEquals("number", type(bbh))
+	assertEquals("number", type(ascent))
+	assertEquals("number", type(descent))
+	assertEquals("number", type(line_height))
+	assertEquals("number", type(width))
+end
+
+function Test_font:test07_cleanup()
+--	display = nil
+	ttf_font = nil
+	bitmap_font = nil
+	collectgarbage()
+end
+
+LuaUnit:run() -- run all tests

@@ -12,24 +12,21 @@ solution (lib_name)
 		targetdir "build/lib"
 		includedirs { "../include" }
 		links (dependencies)
-		postbuildcommands { "cp lib/liballua.so ../test/liballua.so", "cd ../test && lua unittest_main.lua" }
+--		postbuildcommands { "cp lib/liballua.so ../test/liballua.so", "cd ../test && lua unittest_main.lua" }
+
 		
---[[	tests = os.matchfiles("tests/*.cpp")
-	for index, name in pairs(tests) do
-		sname = "test_"..name:sub(7, name:len()-4);
-		project (sname)
-			kind "ConsoleApp"
-			language "C++"
-			location "build"
-			files { name }
-			includedirs { "../include" }
-			libdirs { "../lib" }
-			links (lib_name)
-			links (dependencies)
-			targetdir "build/tests"
-			postbuildcommands { "tests/"..sname }
+newaction {
+	trigger     = "test",
+	description = "Run tests",
+
+	execute = function ()
+		tests = os.matchfiles("test/*.lua")
+		for index, name in pairs(tests) do
+			os.execute ("cp lib/liballua.so ../test/liballua.so")
+			os.execute ("lua " .. name)
+		end
 	end
---]]
+}
 
 newoption {
    trigger     = "dir",
