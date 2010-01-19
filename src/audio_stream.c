@@ -1,4 +1,4 @@
-#include "allua/audio_stream.h"
+#include "../include/allua/audio_stream.h"
 #include <stdio.h>
 
 #define AUDIO_STREAM_STRING "audio_stream"

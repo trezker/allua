@@ -1,6 +1,6 @@
-#include "allua/event_queue.h"
-#include "allua/event_source.h"
-#include "allua/event.h"
+#include "../include/allua/event_queue.h"
+#include "../include/allua/event_source.h"
+#include "../include/allua/event.h"
 #include <stdio.h>
 
 #define EVENT_QUEUE_STRING "event_queue"

@@ -1,7 +1,7 @@
-#include "allua/mixer.h"
-#include "allua/sample.h"
-#include "allua/sample_instance.h"
-#include "allua/audio_stream.h"
+#include "../include/allua/mixer.h"
+#include "../include/allua/sample.h"
+#include "../include/allua/sample_instance.h"
+#include "../include/allua/audio_stream.h"
 #include <stdio.h>
 
 #define MIXER_STRING "mixer"

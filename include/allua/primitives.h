@@ -1,9 +1,9 @@
 #ifndef allua_PRIMITIVES_H
 #define allua_PRIMITIVES_H
 
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
+#include <lua5.1/lua.h>
+#include <lua5.1/lualib.h>
+#include <lua5.1/lauxlib.h>
 #include <allegro5/allegro5.h>
 
 /* Function: allua_register_primitives

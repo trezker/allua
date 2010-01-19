@@ -1,9 +1,9 @@
 #ifndef allua_NATIVE_DIALOG_H
 #define allua_NATIVE_DIALOG_H
 
-#include <lua.h>
-#include <lualib.h>
-#include <lauxlib.h>
+#include <lua5.1/lua.h>
+#include <lua5.1/lualib.h>
+#include <lua5.1/lauxlib.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_native_dialog.h>
 

@@ -1,5 +1,5 @@
-#include "allua/primitives.h"
-#include "allua/color.h"
+#include "../include/allua/primitives.h"
+#include "../include/allua/color.h"
 #include <allegro5/allegro_primitives.h>
 #include <stdio.h>
 

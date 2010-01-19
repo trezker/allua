@@ -1,4 +1,4 @@
-#include "allua/event.h"
+#include "../include/allua/event.h"
 #include <stdio.h>
 
 #define EVENT_STRING "event"

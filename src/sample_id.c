@@ -1,4 +1,4 @@
-#include "allua/sample_id.h"
+#include "../include/allua/sample_id.h"
 #include <stdio.h>
 
 #define SAMPLE_ID_STRING "sample_id"

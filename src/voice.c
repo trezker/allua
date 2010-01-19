@@ -1,4 +1,4 @@
-#include "allua/voice.h"
+#include "../include/allua/voice.h"
 #include <stdio.h>
 
 #define VOICE_STRING "voice"

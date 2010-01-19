@@ -1,5 +1,5 @@
-#include "allua/sample_instance.h"
-#include "allua/sample.h"
+#include "../include/allua/sample_instance.h"
+#include "../include/allua/sample.h"
 //#include <allegro5/acodec.h>
 #include <stdio.h>
 

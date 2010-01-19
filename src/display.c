@@ -1,9 +1,9 @@
-#include "allua/display.h"
-#include "allua/bitmap.h"
-#include "allua/allua.h"
-#include "allua/color.h"
-#include "allua/event_queue.h"
-#include "allua/event_source.h"
+#include "../include/allua/display.h"
+#include "../include/allua/bitmap.h"
+#include "../include/allua/allua.h"
+#include "../include/allua/color.h"
+#include "../include/allua/event_queue.h"
+#include "../include/allua/event_source.h"
 
 //#include <allegro5/a5_direct3d.h>
 #include <allegro5/allegro_opengl.h>

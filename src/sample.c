@@ -1,6 +1,6 @@
-#include "allua/sample.h"
-#include "allua/sample_id.h"
-#include "allua/sample_instance.h"
+#include "../include/allua/sample.h"
+#include "../include/allua/sample_id.h"
+#include "../include/allua/sample_instance.h"
 #include <stdio.h>
 
 #define SAMPLE_STRING "sample"

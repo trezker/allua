@@ -1,6 +1,6 @@
-#include "allua/bitmap.h"
-#include "allua/color.h"
-#include "allua/allua.h"
+#include "../include/allua/bitmap.h"
+#include "../include/allua/color.h"
+#include "../include/allua/allua.h"
 #include <stdio.h>
 #include <allegro5/allegro_image.h>
 

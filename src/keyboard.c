@@ -1,7 +1,7 @@
-#include "allua/keyboard.h"
-#include "allua/event_queue.h"
-#include "allua/event_source.h"
-#include "allua/allua.h"
+#include "../include/allua/keyboard.h"
+#include "../include/allua/event_queue.h"
+#include "../include/allua/event_source.h"
+#include "../include/allua/allua.h"
 #include <stdio.h>
 
 #define KEYBOARD_STRING "keyboard"

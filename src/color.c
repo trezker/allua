@@ -1,4 +1,4 @@
-#include "allua/color.h"
+#include "../include/allua/color.h"
 #include <stdio.h>
 
 #define COLOR_STRING "color"

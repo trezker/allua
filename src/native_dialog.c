@@ -1,5 +1,5 @@
-#include "allua/native_dialog.h"
-#include "allua/allua.h"
+#include "../include/allua/native_dialog.h"
+#include "../include/allua/allua.h"
 #include <stdio.h>
 #include <allegro5/allegro_native_dialog.h>
 

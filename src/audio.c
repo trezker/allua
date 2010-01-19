@@ -1,4 +1,4 @@
-#include "allua/audio.h"
+#include "../include/allua/audio.h"
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_vorbis.h>
 #include <stdio.h>
