@@ -128,6 +128,14 @@ static int allua_Bitmap_load (lua_State *L)
   return 1;
 }
 
+static int allua_Bitmap_save (lua_State *L)
+{
+  ALLUA_bitmap bitmap = allua_check_bitmap(L, 1);
+  const char *filename = luaL_checkstring(L, 2);
+  lua_pushboolean(L, al_save_bitmap(filename, bitmap));
+  return 1;
+}
+
 static int allua_Bitmap_get_flags (lua_State *L)
 {
   ALLUA_bitmap bitmap = allua_check_bitmap(L, 1);
@@ -327,6 +335,7 @@ static const luaL_reg allua_Bitmap_methods[] = {
   {"get_new_format",           allua_Bitmap_get_new_format},
   {"set_new_format",           allua_Bitmap_set_new_format},
   {"load",           allua_Bitmap_load},
+  {"save",           allua_Bitmap_save},
   {"get_flags",           allua_Bitmap_get_flags},
   {"get_format",           allua_Bitmap_get_format},
   {"get_width",           allua_Bitmap_get_width},
