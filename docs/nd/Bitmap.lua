@@ -62,6 +62,15 @@ function set_new_format (format) end
 -- Bitmap instance
 function load (filename) end
 
+-- Function: save
+-- Parameters:
+-- bitmap - image to save
+-- filename - path to file
+--
+-- Returns:
+-- true on success, false on failure
+function load (bitmap, filename) end
+
 -- Function: get_flags
 -- Parameters:
 -- bitmap - bitmap

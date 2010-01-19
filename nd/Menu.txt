@@ -78,20 +78,6 @@ Group: Lua functions  {
    File: voice  (/home/anders/allegro/Projects/allua/docs/nd/voice.lua)
    }  # Group: Lua functions
 
-Group: Examples  {
-
-   File: bitmap example  (/home/anders/allegro/Projects/allua/test/bitmap.lua)
-   File: display example  (/home/anders/allegro/Projects/allua/test/display.lua)
-   File: font example  (/home/anders/allegro/Projects/allua/test/font.lua)
-   File: keyboard example  (/home/anders/allegro/Projects/allua/test/keyboard.lua)
-   File: mouse example  (/home/anders/allegro/Projects/allua/test/mouse.lua)
-   File: Naturoids  (/home/anders/allegro/Projects/allua/test/naturoids.lua)
-   File: Naturoids  (/home/anders/allegro/Projects/allua/test/nomhack/nomhack.lua)
-   File: Pixels example  (/home/anders/allegro/Projects/allua/test/pixels.lua)
-   File: primitives example  (/home/anders/allegro/Projects/allua/test/primitives.lua)
-   File: primitives example  (/home/anders/allegro/Projects/allua/test/audio.lua)
-   }  # Group: Examples
-
 Group: Index  {
 
    Index: Everything
