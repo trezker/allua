@@ -49,8 +49,11 @@ static int allua_audio_stream_create (lua_State *L)
   int depth = luaL_checkint(L, 4);
   int chan_conf = luaL_checkint(L, 5);
 
-  allua_pushaudio_stream(L, al_create_audio_stream(buffer_count, samples, freq, depth, chan_conf), true);
-
+  ALLEGRO_AUDIO_STREAM* stream = al_create_audio_stream(buffer_count, samples, freq, depth, chan_conf);
+  if(stream)
+  	allua_pushaudio_stream(L, stream, true);
+  else
+  	lua_pushnil(L);
   return 1;
 }
 
@@ -60,7 +63,11 @@ static int allua_audio_stream_load (lua_State *L)
   int buffer_count = luaL_checkint(L, 2);
   int samples = luaL_checkint(L, 3);
 
-  allua_pushaudio_stream(L, al_load_audio_stream(filename, buffer_count, samples), true);
+  ALLEGRO_AUDIO_STREAM* stream = al_load_audio_stream(filename, buffer_count, samples);
+  if(stream)
+  	allua_pushaudio_stream(L, stream, true);
+  else
+  	lua_pushnil(L);
 
   return 1;
 }

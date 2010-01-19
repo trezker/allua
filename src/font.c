@@ -29,6 +29,11 @@ ALLUA_font allua_check_font (lua_State *L, int index)
 
 static ALLUA_font *allua_pushFont (lua_State *L, ALLUA_font im)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
   ALLUA_font *pi = (ALLUA_font *)lua_newuserdata(L, sizeof(ALLUA_font));
   *pi = im;
   luaL_getmetatable(L, FONT_STRING);

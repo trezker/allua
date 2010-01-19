@@ -46,6 +46,11 @@ struct ALLUA_sample_instance_s *allua_check_sample_instance_s (lua_State *L, int
 
 struct ALLUA_sample_instance_s *allua_pushsample_instance (lua_State *L, ALLUA_sample_instance im, int gc_allowed)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
   struct ALLUA_sample_instance_s *pi = (struct ALLUA_sample_instance_s *)lua_newuserdata(L, sizeof(struct ALLUA_sample_instance_s));
   pi->sample_instance = im;
   pi->gc_allowed = gc_allowed;

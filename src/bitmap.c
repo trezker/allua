@@ -53,7 +53,11 @@ static int allua_Bitmap_init_image_addon (lua_State *L)
 static int allua_Bitmap_clone (lua_State *L)
 {
   ALLUA_bitmap bitmap = allua_check_bitmap(L, 1);
-  allua_pushBitmap(L, al_clone_bitmap(bitmap), true);
+  ALLUA_bitmap clone = al_clone_bitmap(bitmap);
+  if(clone)
+  	allua_pushBitmap(L, clone, true);
+  else
+  	lua_pushnil(L);
   return 1;
 }
 
@@ -62,7 +66,11 @@ static int allua_Bitmap_create (lua_State *L)
   int w = luaL_checkint(L, 1);
   int h = luaL_checkint(L, 2);
 
-  allua_pushBitmap(L, al_create_bitmap(w, h), true);
+  ALLUA_bitmap bitmap = al_create_bitmap(w, h);
+  if(bitmap)
+  	allua_pushBitmap(L, bitmap, true);
+  else
+  	lua_pushnil(L);
 
   return 1;
 }
@@ -112,7 +120,11 @@ static int allua_Bitmap_set_new_format (lua_State *L)
 static int allua_Bitmap_load (lua_State *L)
 {
   const char *filename = luaL_checkstring(L, 1);
-  allua_pushBitmap(L, al_load_bitmap(filename), true);
+  ALLUA_bitmap bitmap = al_load_bitmap(filename);
+  if(bitmap)
+  	allua_pushBitmap(L, bitmap, true);
+  else
+  	lua_pushnil(L);
   return 1;
 }
 
@@ -258,7 +270,11 @@ static int allua_Bitmap_draw_scaled (lua_State *L)
 
 static int allua_Bitmap_get_target (lua_State *L)
 {
-  allua_pushBitmap(L, al_get_target_bitmap(), false);
+	ALLUA_bitmap bitmap = al_get_target_bitmap();
+	if(bitmap)
+  		allua_pushBitmap(L, bitmap, false);
+  	else
+  		lua_pushnil(L);
   return 1;
 }
 

@@ -32,6 +32,11 @@ ALLUA_sample allua_check_sample (lua_State *L, int index)//, int *gc_allowed)
 
 struct ALLUA_sample_s *allua_pushsample (lua_State *L, ALLUA_sample im, int gc_allowed)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
   struct ALLUA_sample_s *pi = (struct ALLUA_sample_s *)lua_newuserdata(L, sizeof(struct ALLUA_sample_s));
   pi->sample = im;
   pi->gc_allowed = gc_allowed;

@@ -33,6 +33,11 @@ ALLUA_mixer allua_check_mixer (lua_State *L, int index)
 
 struct ALLUA_mixer_s *allua_pushmixer (lua_State *L, ALLUA_mixer im, int gc_allowed)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
   struct ALLUA_mixer_s *pi = (struct ALLUA_mixer_s *)lua_newuserdata(L, sizeof(struct ALLUA_mixer_s));
   pi->mixer = im;
   pi->gc_allowed = gc_allowed;

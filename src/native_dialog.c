@@ -29,6 +29,11 @@ ALLUA_native_dialog allua_check_native_dialog (lua_State *L, int index)
 
 static ALLUA_native_dialog *allua_pushNative_dialog (lua_State *L, ALLUA_native_dialog im)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
   ALLUA_native_dialog *pi = (ALLUA_native_dialog *)lua_newuserdata(L, sizeof(ALLUA_native_dialog));
   *pi = im;
   luaL_getmetatable(L, NATIVE_DIALOG_STRING);

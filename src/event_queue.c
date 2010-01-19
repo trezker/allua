@@ -29,6 +29,11 @@ ALLUA_event_queue allua_check_event_queue (lua_State *L, int index)
 
 static ALLUA_event_queue *allua_pushEvent_queue (lua_State *L, ALLUA_event_queue im)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
   ALLUA_event_queue *pi = (ALLUA_event_queue *)lua_newuserdata(L, sizeof(ALLUA_event_queue));
   *pi = im;
   luaL_getmetatable(L, EVENT_QUEUE_STRING);

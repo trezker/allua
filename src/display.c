@@ -35,6 +35,11 @@ ALLUA_display allua_check_display (lua_State *L, int index)
 
 static ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im)
 {
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
 	lua_getfield (L, LUA_REGISTRYINDEX, "allegro5udatamap");
     lua_pushlightuserdata(L, (void *)im);  // push address 
     lua_gettable(L, -2);  // retrieve value 
