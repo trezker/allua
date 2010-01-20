@@ -97,3 +97,11 @@ function put_pixel (color, x, y) end
 -- x - Horizontal position
 -- y - Vertical position
 function draw_pixel (color, x, y) end
+
+-- Function: clear_backbuffer
+-- This is the al_clear_to_color function.
+-- Since it only takes a color argument it's practical to have in the color class.
+--
+-- Parameters:
+-- color - Color
+function clear_backbuffer (color) end

@@ -150,6 +150,12 @@ static int allua_draw_pixel(lua_State *L)
 	return 0;
 }
 
+static int allua_color_clear_backbuffer(lua_State *L)
+{
+	ALLUA_color color = allua_check_color(L, 1);
+	al_clear_to_color(color);
+}
+
 static const luaL_reg allua_Color_methods[] = {
   {"map_rgb",           allua_map_rgb},
   {"map_rgb_f",           allua_map_rgb_f},
@@ -161,6 +167,7 @@ static const luaL_reg allua_Color_methods[] = {
   {"unmap_rgba_f",           allua_unmap_rgba_f},
   {"put_pixel",           allua_put_pixel},
   {"draw_pixel",           allua_draw_pixel},
+  {"clear_backbuffer",           allua_color_clear_backbuffer},
   {0,0}
 };
 
