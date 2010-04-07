@@ -156,6 +156,14 @@ static int allua_color_clear_backbuffer(lua_State *L)
 	al_clear_to_color(color);
 }
 
+static int allua_color_set_blender(lua_State *L)
+{
+	ALLUA_color color = allua_check_color(L, 1);
+	int src = luaL_checkint(L, 2);
+	int dst = luaL_checkint(L, 3);
+	al_set_blender(src, dst, color);
+}
+
 static const luaL_reg allua_Color_methods[] = {
   {"map_rgb",           allua_map_rgb},
   {"map_rgb_f",           allua_map_rgb_f},
@@ -168,6 +176,7 @@ static const luaL_reg allua_Color_methods[] = {
   {"put_pixel",           allua_put_pixel},
   {"draw_pixel",           allua_draw_pixel},
   {"clear_backbuffer",           allua_color_clear_backbuffer},
+  {"set_blender",           allua_color_set_blender},
   {0,0}
 };
 
@@ -184,6 +193,20 @@ static const luaL_reg allua_Color_meta[] = {
   {0, 0}
 };
 
+/* Other attributes
+ * */
+void allua_color_set_attributes(lua_State *L)
+{
+	lua_pushinteger(L, ALLEGRO_ZERO);
+	lua_setfield(L, -2, "ZERO");
+	lua_pushinteger(L, ALLEGRO_ONE);
+	lua_setfield(L, -2, "ONE");
+	lua_pushinteger(L, ALLEGRO_ALPHA);
+	lua_setfield(L, -2, "ALPHA");
+	lua_pushinteger(L, ALLEGRO_INVERSE_ALPHA);
+	lua_setfield(L, -2, "INVERSE_ALPHA");
+}
+
 /* Register
  * */
 int allua_register_color (lua_State *L)
@@ -191,6 +214,8 @@ int allua_register_color (lua_State *L)
   lua_newtable(L);
   luaL_register(L, NULL, allua_Color_methods);  /* create methods table,
                                                 add it to the globals */
+
+	allua_color_set_attributes(L);
 
   luaL_newmetatable(L, COLOR_STRING);        /* create metatable for Image,
                                          add it to the Lua registry */
