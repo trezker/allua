@@ -1,4 +1,5 @@
 #include "../include/allua/mouse.h"
+#include "../include/allua/display.h"
 #include "../include/allua/event_queue.h"
 #include "../include/allua/event_source.h"
 #include "../include/allua/allua.h"
@@ -96,13 +97,15 @@ static int allua_mouse_get_num_buttons(lua_State *L)
 
 static int allua_mouse_hide_cursor(lua_State *L)
 {
-	lua_pushboolean(L, al_hide_mouse_cursor());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushboolean(L, al_hide_mouse_cursor(display));
 	return 1;
 }
 
 static int allua_mouse_show_cursor(lua_State *L)
 {
-	lua_pushboolean(L, al_show_mouse_cursor());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushboolean(L, al_show_mouse_cursor(display));
 	return 1;
 }
 
@@ -111,16 +114,6 @@ static int allua_mouse_set_axis(lua_State *L)
 	int which = luaL_checkint(L, 1);
 	int value = luaL_checkint(L, 2);
 	lua_pushboolean(L, al_set_mouse_axis(which, value));
-	return 1;
-}
-
-static int allua_mouse_set_range(lua_State *L)
-{
-	int x1 = luaL_checkint(L, 1);
-	int y1 = luaL_checkint(L, 2);
-	int x2 = luaL_checkint(L, 3);
-	int y2 = luaL_checkint(L, 4);
-	lua_pushboolean(L, al_set_mouse_range(x1, y1, x2, y2));
 	return 1;
 }
 
@@ -133,9 +126,10 @@ static int allua_mouse_set_w(lua_State *L)
 
 static int allua_mouse_set_xy(lua_State *L)
 {
-	int x = luaL_checkint(L, 1);
-	int y = luaL_checkint(L, 2);
-	lua_pushboolean(L, al_set_mouse_xy(x, y));
+	ALLUA_display display = allua_check_display(L, 1);
+	int x = luaL_checkint(L, 2);
+	int y = luaL_checkint(L, 3);
+	lua_pushboolean(L, al_set_mouse_xy(display, x, y));
 	return 1;
 }
 
@@ -144,14 +138,12 @@ static const luaL_reg allua_Mouse_methods[] = {
   {"uninstall",           allua_mouse_uninstall},
   {"is_installed",           allua_mouse_is_installed},
   {"get_event_source",           allua_mouse_get_event_source},
-//  {"get",           allua_mouse_get},
   {"get_cursor_position",           allua_mouse_get_cursor_position},
   {"get_num_axes",           allua_mouse_get_num_axes},
   {"get_num_buttons",           allua_mouse_get_num_buttons},
   {"hide_cursor",           allua_mouse_hide_cursor},
   {"show_cursor",           allua_mouse_show_cursor},
   {"set_axis",           allua_mouse_set_axis},
-  {"set_range",           allua_mouse_set_range},
   {"set_w",           allua_mouse_set_w},
   {"set_z",           allua_mouse_set_w},
   {"set_xy",           allua_mouse_set_xy},

@@ -84,27 +84,6 @@ static int allua_display_get_event_source(lua_State *L)
 	return 1;
 }
 
-static int allua_display_get_num_display_formats(lua_State *L)
-{
-	lua_pushnumber(L, al_get_num_display_formats());
-	return 1;
-}
-
-static int allua_display_get_format_option(lua_State *L)
-{
-	int i = luaL_checkint(L, 1);
-	int option = luaL_checkint(L, 2);
-	lua_pushnumber(L, al_get_display_format_option(i, option));
-	return 1;
-}
-
-static int allua_display_set_new_format(lua_State *L)
-{
-	int i = luaL_checkint(L, 1);
-	al_set_new_display_format(i);
-	return 0;
-}
-
 static int allua_display_get_new_flags(lua_State *L)
 {
 	lua_pushnumber(L, al_get_new_display_flags());
@@ -182,13 +161,15 @@ static int allua_display_flip (lua_State *L)
 
 static int allua_display_get_backbuffer (lua_State *L)
 {
-	allua_pushBitmap(L, al_get_backbuffer(), false);
+	ALLUA_display display = allua_check_display(L, 1);
+	allua_pushBitmap(L, al_get_backbuffer(display), false);
 	return 1;
 }
 
 static int allua_display_get_frontbuffer (lua_State *L)
 {
-	ALLEGRO_BITMAP* fb = al_get_frontbuffer();
+	ALLUA_display display = allua_check_display(L, 1);
+	ALLEGRO_BITMAP* fb = al_get_frontbuffer(display);
 	fb ? allua_pushBitmap(L, fb, false): lua_pushnil(L);
 	return 1;
 }
@@ -201,19 +182,22 @@ static int allua_display_get_current (lua_State *L)
 
 static int allua_display_get_flags (lua_State *L)
 {
-	lua_pushnumber(L, al_get_display_flags());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushnumber(L, al_get_display_flags(display));
 	return 1;
 }
 
 static int allua_display_get_format (lua_State *L)
 {
-	lua_pushnumber(L, al_get_display_format());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushnumber(L, al_get_display_format(display));
 	return 1;
 }
 
 static int allua_display_get_refresh_rate (lua_State *L)
 {
-	lua_pushnumber(L, al_get_display_refresh_rate());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushnumber(L, al_get_display_refresh_rate(display));
 	return 1;
 }
 
@@ -237,17 +221,18 @@ static int allua_display_inhibit_screensaver (lua_State *L)
 
 static int allua_display_resize (lua_State *L)
 {
-	int width = luaL_checkint(L, 1);
-	int height = luaL_checkint(L, 2);
-	lua_pushboolean(L, al_resize_display(width, height));
+	ALLUA_display display = allua_check_display(L, 1);
+	int width = luaL_checkint(L, 2);
+	int height = luaL_checkint(L, 3);
+	lua_pushboolean(L, al_resize_display(display, width, height));
 	return 1;
 }
 
 static int allua_display_set_current (lua_State *L)
 {
 	ALLUA_display display = allua_check_display(L, 1);
-	lua_pushboolean(L, al_set_current_display(display));
-	return 1;
+	al_set_target_backbuffer(display);
+	return 0;
 }
 
 static int allua_display_acknowledge_resize (lua_State *L)
@@ -259,15 +244,17 @@ static int allua_display_acknowledge_resize (lua_State *L)
 
 static int allua_display_set_icon (lua_State *L)
 {
-	ALLUA_bitmap bmp = allua_check_bitmap(L, 1);
-	al_set_display_icon(bmp);
+	ALLUA_display display = allua_check_display(L, 1);
+	ALLUA_bitmap bmp = allua_check_bitmap(L, 2);
+	al_set_display_icon(display, bmp);
 	return 0;
 }
 
 static int allua_display_get_option (lua_State *L)
 {
-	int option = luaL_checkint(L, 1);
-	lua_pushnumber(L, al_get_display_option(option));
+	ALLUA_display display = allua_check_display(L, 1);
+	int option = luaL_checkint(L, 2);
+	lua_pushnumber(L, al_get_display_option(display, option));
 	return 1;
 }
 
@@ -283,19 +270,21 @@ static int allua_display_set_window_position (lua_State *L)
 
 static int allua_display_set_window_title (lua_State *L)
 {
-	const char* title = luaL_checkstring(L, 1);
+	ALLUA_display display = allua_check_display(L, 1);
+	const char* title = luaL_checkstring(L, 2);
 
-	al_set_window_title(title);
+	al_set_window_title(display, title);
 	return 0;
 }
 
-static int allua_display_toggle_window_frame (lua_State *L)
+static int allua_display_toggle_flag (lua_State *L)
 {
 	ALLUA_display display = allua_check_display(L, 1);
-	int onoff = lua_toboolean(L, 2);
+	int flag = lua_toboolean(L, 2);
+	int onoff = lua_toboolean(L, 3);
 
-	al_toggle_window_frame(display, onoff);
-	return 0;
+	lua_pushboolean(L, al_toggle_display_flag(display, flag, onoff));
+	return 1;
 }
 
 static int allua_display_update_region (lua_State *L)
@@ -345,19 +334,6 @@ static int allua_display_get_mode (lua_State *L)
 	return 1;
 }
 
-static int allua_display_get_current_video_adapter (lua_State *L)
-{
-	lua_pushinteger(L, al_get_current_video_adapter());
-	return 1;
-}
-
-static int allua_display_set_current_video_adapter (lua_State *L)
-{
-	int index = luaL_checkint(L, 1);
-	al_set_current_video_adapter(index);
-	return 0;
-}
-
 static int allua_display_get_num_video_adapters (lua_State *L)
 {
 	lua_pushinteger(L, al_get_num_video_adapters());
@@ -383,22 +359,21 @@ static int allua_display_get_monitor_info (lua_State *L)
 
 static int allua_display_get_height(lua_State *L)
 {
-	lua_pushinteger(L, al_get_display_height());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushinteger(L, al_get_display_height(display));
 	return 1;
 }
 
 static int allua_display_get_width(lua_State *L)
 {
-	lua_pushinteger(L, al_get_display_width());
+	ALLUA_display display = allua_check_display(L, 1);
+	lua_pushinteger(L, al_get_display_width(display));
 	return 1;
 }
 
 static const luaL_reg allua_display_methods[] = {
 	{"create",           allua_display_create},
 	{"get_event_source",	allua_display_get_event_source},
-	{"get_num_display_formats",	allua_display_get_num_display_formats},
-	{"get_format_option",	allua_display_get_format_option},
-	{"set_new_format",	allua_display_set_new_format},
 	{"get_new_flags",	allua_display_get_new_flags},
 	{"get_new_refresh_rate",	allua_display_get_new_refresh_rate},
 	{"get_new_window_position",	allua_display_get_new_window_position},
@@ -426,13 +401,11 @@ static const luaL_reg allua_display_methods[] = {
 	{"get_option",           allua_display_get_option},
 	{"set_window_position",           allua_display_set_window_position},
 	{"set_window_title",           allua_display_set_window_title},
-	{"toggle_window_frame",           allua_display_toggle_window_frame},
+	{"toggle_flag",           allua_display_toggle_flag},
 	{"update_region",           allua_display_update_region},
 	{"wait_for_vsync",           allua_display_wait_for_vsync},
 	{"get_num_modes",           allua_display_get_num_modes},
 	{"get_mode",           allua_display_get_mode},
-	{"get_current_video_adapter",           allua_display_get_current_video_adapter},
-	{"set_current_video_adapter",           allua_display_set_current_video_adapter},
 	{"get_num_video_adapters",           allua_display_get_num_video_adapters},
 	{"get_monitor_info",           allua_display_get_monitor_info},
 	{0,0}
@@ -490,6 +463,7 @@ void allua_display_set_attributes(lua_State *L)
 	Set_literal("OPENGL", ALLEGRO_OPENGL, -3);
 //	Set_literal("DIRECT3D", ALLEGRO_DIRECT3D, -3);
 	Set_literal("NOFRAME", ALLEGRO_NOFRAME, -3);
+	Set_literal("FULLSCREEN_WINDOW", ALLEGRO_FULLSCREEN_WINDOW, -3);
 	
 	/* display options */
 	Set_literal("RED_SIZE", ALLEGRO_RED_SIZE, -3);

@@ -16,7 +16,7 @@ function Test_native_dialog:test01_create()
 end
 
 function Test_native_dialog:test02_show()
-	native_dialog:show()
+	native_dialog:show(superdisplay)
 end
 
 function Test_native_dialog:test03_get()

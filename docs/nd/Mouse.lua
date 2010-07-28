@@ -38,14 +38,20 @@ function get_num_axes () end
 function get_num_buttons () end
 
 -- Function: hide_cursor
+-- Parameters:
+-- display - display
+--
 -- Returns:
 -- true on success, false on failure
-function hide_cursor () end
+function hide_cursor (display) end
 
 -- Function: show_cursor
+-- Parameters:
+-- display - display
+--
 -- Returns:
 -- true on success, false on failure
-function show_cursor () end
+function show_cursor (display) end
 
 -- Function: set_axis
 -- Parameters:
@@ -55,17 +61,6 @@ function show_cursor () end
 -- Returns:
 -- true on success, false on failure
 function set_axis (which, value) end
-
--- Function: set_range
--- Parameters:
--- x1 - left
--- y1 - top
--- x2 - right
--- y2 - bottom
---
--- Returns:
--- true on success, false on failure
-function set_range (x1, y1, x2, y2) end
 
 -- Function: set_w
 -- Parameters:
@@ -85,12 +80,13 @@ function set_z (z) end
 
 -- Function: set_xy
 -- Parameters:
+-- display - display
 -- x - x
 -- y - y
 --
 -- Returns:
 -- true on success, false on failure
-function set_xy (x, y) end
+function set_xy (display, x, y) end
 
 -- List: Events
 -- EVENT_AXES - one or more mouse axis values changed. Fields: x, y, z, dx, dy, dz.

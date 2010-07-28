@@ -98,7 +98,7 @@ static int allua_mixer_attach_sample (lua_State *L)
 {
 	ALLUA_mixer mixer = allua_check_mixer(L, 1);
 	ALLUA_sample_instance sample_instance = allua_check_sample_instance(L, 2);
-	lua_pushboolean(L, al_attach_sample_to_mixer(sample_instance, mixer));
+	lua_pushboolean(L, al_attach_sample_instance_to_mixer(sample_instance, mixer));
 	return 1;
 }
 

@@ -17,7 +17,9 @@ end
 
 function Test_filesystem:test01_functions()
 	b = allegro5.filesystem.make_directory ("test_mkdir")
+	exists = allegro5.filesystem.filename_exists ("test_mkdir")
 	assertEquals("boolean", type(b))
+	assertEquals(true, exists)
 end
 
 function Test_filesystem:test02_cleanup()

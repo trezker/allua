@@ -1,4 +1,5 @@
 #include "../include/allua/font.h"
+#include "../include/allua/color.h"
 #include "../include/allua/allua.h"
 #include <stdio.h>
 #include <allegro5/allegro_image.h>
@@ -96,28 +97,30 @@ static int allua_Font_load_bitmap (lua_State *L)
 
 static int allua_Font_draw_text (lua_State *L)
 {
-  ALLUA_font font = allua_check_font(L, 1);
-  float x = luaL_checknumber(L, 2);
-  float y = luaL_checknumber(L, 3);
-  int flags = luaL_checkinteger(L, 4);
-  const char* text = luaL_checkstring(L, 5);
+	ALLUA_font font = allua_check_font(L, 1);
+	ALLUA_color color = allua_check_color(L, 2);
+	float x = luaL_checknumber(L, 3);
+	float y = luaL_checknumber(L, 4);
+	int flags = luaL_checkinteger(L, 5);
+	const char* text = luaL_checkstring(L, 6);
 
-  al_draw_text(font, x, y, flags, text);
-  return 0;
+	al_draw_text(font, color, x, y, flags, text);
+	return 0;
 }
 
 static int allua_Font_draw_justified_text (lua_State *L)
 {
-  ALLUA_font font = allua_check_font(L, 1);
-  float x1 = luaL_checknumber(L, 2);
-  float x2 = luaL_checknumber(L, 3);
-  float y = luaL_checknumber(L, 4);
-  float diff = luaL_checknumber(L, 5);
-  int flags = luaL_checkinteger(L, 6);
-  const char* text = luaL_checkstring(L, 7);
+	ALLUA_font font = allua_check_font(L, 1);
+	ALLUA_color color = allua_check_color(L, 2);
+	float x1 = luaL_checknumber(L, 2);
+	float x2 = luaL_checknumber(L, 3);
+	float y = luaL_checknumber(L, 4);
+	float diff = luaL_checknumber(L, 5);
+	int flags = luaL_checkinteger(L, 6);
+	const char* text = luaL_checkstring(L, 7);
 
-  al_draw_justified_text(font, x1, x2, y, diff, flags, text);
-  return 0;
+	al_draw_justified_text(font, color, x1, x2, y, diff, flags, text);
+	return 0;
 }
 
 static int allua_Font_get_text_dimensions (lua_State *L)
@@ -132,14 +135,12 @@ static int allua_Font_get_text_dimensions (lua_State *L)
 	int ascent;
 	int descent;
 
-	al_get_text_dimensions(font, text, &bbx, &bby, &bbw, &bbh, &ascent, &descent);
+	al_get_text_dimensions(font, text, &bbx, &bby, &bbw, &bbh);
 	lua_pushinteger(L, bbx);
 	lua_pushinteger(L, bby);
 	lua_pushinteger(L, bbw);
 	lua_pushinteger(L, bbh);
-	lua_pushinteger(L, ascent);
-	lua_pushinteger(L, descent);
-	return 6;
+	return 4;
 }
 
 static int allua_Font_get_line_height (lua_State *L)

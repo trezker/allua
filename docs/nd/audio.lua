@@ -1,12 +1,10 @@
 -- Class: audio
 
 -- Function: install
--- Parameters:
--- mode - driver
 --
 -- Returns:
 -- true on success, false on failure
-function install (mode) end
+function install () end
 
 -- Function: uninstall
 function uninstall () end
@@ -19,11 +17,11 @@ function uninstall () end
 -- true on success, false on failure
 function install (mode) end
 
--- Function: init_ogg_vorbis_addon
+-- Function: init_acodec_addon
 --
 -- Returns:
 -- success
-function init_ogg_vorbis_addon () end
+function init_acodec_addon () end
 
 --List: drivers
 -- AUDIO_DRIVER_AUTODETECT

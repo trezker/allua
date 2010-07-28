@@ -158,10 +158,10 @@ static int allua_color_clear_backbuffer(lua_State *L)
 
 static int allua_color_set_blender(lua_State *L)
 {
-	ALLUA_color color = allua_check_color(L, 1);
+	int op = luaL_checkint(L, 1);
 	int src = luaL_checkint(L, 2);
 	int dst = luaL_checkint(L, 3);
-	al_set_blender(src, dst, color);
+	al_set_blender(op, src, dst);
 }
 
 static const luaL_reg allua_Color_methods[] = {
@@ -205,6 +205,13 @@ void allua_color_set_attributes(lua_State *L)
 	lua_setfield(L, -2, "ALPHA");
 	lua_pushinteger(L, ALLEGRO_INVERSE_ALPHA);
 	lua_setfield(L, -2, "INVERSE_ALPHA");
+
+	lua_pushinteger(L, ALLEGRO_ADD);
+	lua_setfield(L, -2, "ADD");
+	lua_pushinteger(L, ALLEGRO_DEST_MINUS_SRC);
+	lua_setfield(L, -2, "DEST_MINUS_SRC");
+	lua_pushinteger(L, ALLEGRO_SRC_MINUS_DEST);
+	lua_setfield(L, -2, "SRC_MINUS_DEST");
 }
 
 /* Register

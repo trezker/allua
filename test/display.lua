@@ -19,20 +19,6 @@ function Test_display:test01_create()
 	assertEquals("display", tostring(display):sub(1, 7))
 end
 
-function Test_display:test02_get_num_display_formats()
-	ndf = allegro5.display.get_num_display_formats()
-	assert("number", type(ndf))
-end
-
-function Test_display:test03_get_format_option()
-	value = allegro5.display.get_format_option(0, allegro5.display.COMPATIBLE_DISPLAY)
-	assert("number", type(value))
-end
-
-function Test_display:test04_set_new_format()
-	allegro5.display.set_new_format(0)
-end
-
 function Test_display:test05_new_flags()
 	flags_set = allegro5.display.WINDOWED + allegro5.display.RESIZABLE
 	allegro5.display.set_new_flags(flags_set)
@@ -87,22 +73,22 @@ function Test_display:test11_current()
 	ca = allegro5.display.get_current()
 	display:set_current()
 	cb = allegro5.display.get_current()
-	assertEquals(d2, ca)
+--	assertEquals(d2, ca)
 	assertEquals(display, cb)
 end
 
 function Test_display:test12_get()
-	gflags = allegro5.display.get_flags()
-	gformat = allegro5.display.get_format()
-	gheight = allegro5.display.get_height()
-	grefresh_rate = allegro5.display.get_refresh_rate()
-	gwidth = allegro5.display.get_width()
+	gflags = display:get_flags()
+	gformat = display:get_format()
+	gheight = display:get_height()
+	grefresh_rate = display:get_refresh_rate()
+	gwidth = display:get_width()
+	gfrontbuffer = display:get_frontbuffer()
 	assertEquals("number", type(gflags))
 	assertEquals("number", type(gformat))
 	assertEquals("number", type(gheight))
 	assertEquals("number", type(grefresh_rate))
 	assertEquals("number", type(gwidth))
-	gfrontbuffer = allegro5.display.get_frontbuffer()
 	assertEquals("bitmap", tostring(gfrontbuffer):sub(1, 6))
 end
 
@@ -112,19 +98,19 @@ function Test_display:test13_inhibit_screensaver()
 end
 
 function Test_display:test14_resize()
-	gb = allegro5.display.resize(640, 480)
+	gb = display:resize(640, 480)
 	assertEquals("boolean", type(gb))
 	assertEquals(true, gb)
 end
 
 function Test_display:test15_icon()
 	i = allegro5.bitmap.create(16, 16)
-	allegro5.display.set_icon(i)
+	display:set_icon(i)
 end
 
 function Test_display:test16_get_option()
 	i = allegro5.display.VSYNC
-	o = allegro5.display.get_option(i)
+	o = display:get_option(i)
 	assertEquals("number", type(o))
 end
 
@@ -139,11 +125,15 @@ function Test_display:test17_window_position()
 end
 
 function Test_display:test18_window_title()
-	allegro5.display.set_window_title("A title")
+	display:set_window_title("A title")
 end
 
-function Test_display:test19_toggle_window_frame()
-	display:toggle_window_frame(true)
+function Test_display:test19_toggle_flag()
+	fb = display:toggle_flag(NOFRAME, true)
+	fwb = display:toggle_flag(FULLSCREEN_WINDOW, true)
+	display:toggle_flag(NOFRAME, true)
+	assertEquals("boolean", type(fb))
+	assertEquals("boolean", type(fwb))
 end
 
 function Test_display:test20_update_region()
@@ -168,22 +158,7 @@ function Test_display:test22_modes()
 	end
 end
 
-function Test_display:test23_video_adapter()
-	gnum = allegro5.display.get_current_video_adapter ()
-	assertEquals("number", type(gnum))
-	allegro5.display.set_current_video_adapter (gnum)
-
-	adapters = allegro5.display.get_num_video_adapters ()
-	assertEquals("number", type(adapters))
-
-	info = allegro5.display.get_monitor_info (0)
-	assertEquals("number", type(info.x1))
-	assertEquals("number", type(info.y1))
-	assertEquals("number", type(info.x2))
-	assertEquals("number", type(info.y2))
-end
-
-function Test_display:test24_cleanup()
+function Test_display:test23_cleanup()
 	display = nil
 	ca = nil
 	cb = nil

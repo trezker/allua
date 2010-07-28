@@ -105,3 +105,11 @@ function draw_pixel (color, x, y) end
 -- Parameters:
 -- color - Color
 function clear_backbuffer (color) end
+
+-- Function: set_blender
+--
+-- Parameters:
+-- op - ADD, DEST_MINUS_SRC or SRC_MINUS_DEST
+-- src - source
+-- dst - destination
+function set_blender (op, src, dest) end

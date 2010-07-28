@@ -39,22 +39,24 @@ function load_bitmap (filename) end
 -- Function: draw_text
 -- Parameters:
 -- font - Font to render with
+-- color - color
 -- x - Horizontal position
 -- y - Vertical position
 -- flags - flags
 -- text - The text
-function draw_text (font, x, y, flags, text) end
+function draw_text (font, color, x, y, flags, text) end
 
 -- Function: draw_justified_text
 -- Parameters:
 -- font - Font to render with
+-- color - color
 -- x1 - Horizontal position begin
 -- x2 - Horizontal position end
 -- y - Vertical position
 -- diff - diff
 -- flags - flags
 -- text - The text
-function draw_justified_text (font, x1, x2, y, diff, flags, text) end
+function draw_justified_text (font, color, x1, x2, y, diff, flags, text) end
 
 -- Function: get_text_dimensions
 -- Parameters:
@@ -66,8 +68,6 @@ function draw_justified_text (font, x1, x2, y, diff, flags, text) end
 -- bby - top
 -- bbw - width
 -- bbh - height
--- ascent - ascent
--- descent - descent
 function get_text_dimensions(font, text) end
 
 -- Function: get_line_height

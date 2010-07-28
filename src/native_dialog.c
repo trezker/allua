@@ -1,4 +1,5 @@
 #include "../include/allua/native_dialog.h"
+#include "../include/allua/display.h"
 #include "../include/allua/allua.h"
 #include <stdio.h>
 #include <allegro5/allegro_native_dialog.h>
@@ -62,7 +63,8 @@ static int allua_Native_dialog_create (lua_State *L)
 static int allua_Native_dialog_show (lua_State *L)
 {
 	ALLUA_native_dialog d = allua_check_native_dialog(L, 1);
-	al_show_native_file_dialog(d);
+	ALLUA_display display = allua_check_display(L, 2);
+	al_show_native_file_dialog(display, d);
 	return 0;
 }
 

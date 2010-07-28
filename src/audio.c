@@ -1,6 +1,6 @@
 #include "../include/allua/audio.h"
 #include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_vorbis.h>
+#include <allegro5/allegro_acodec.h>
 #include <stdio.h>
 
 #define AUDIO_STRING "audio"
@@ -9,8 +9,7 @@
  * */
 static int allua_audio_install(lua_State *L)
 {
-	int mode = luaL_checkint(L, 1);
-	lua_pushboolean(L, al_install_audio(mode));
+	lua_pushboolean(L, al_install_audio());
 	return 1;
 }
 
@@ -27,9 +26,9 @@ static int allua_audio_reserve_samples(lua_State *L)
 	return 1;
 }
 
-static int allua_audio_init_ogg_vorbis_addon(lua_State *L)
+static int allua_audio_init_acodec_addon(lua_State *L)
 {
-	lua_pushboolean(L, al_init_ogg_vorbis_addon());
+	lua_pushboolean(L, al_init_acodec_addon());
 	return 1;
 }
 
@@ -37,7 +36,7 @@ static const luaL_reg allua_audio_methods[] = {
 	{"install", allua_audio_install},
 	{"uninstall", allua_audio_uninstall},
 	{"reserve_samples", allua_audio_reserve_samples},
-	{"init_ogg_vorbis_addon", allua_audio_init_ogg_vorbis_addon},
+	{"init_acodec_addon", allua_audio_init_acodec_addon},
 	{0,0}
 };
 
@@ -45,16 +44,6 @@ static const luaL_reg allua_audio_methods[] = {
  * */
 void allua_audio_set_attributes(lua_State *L)
 {
-	lua_pushinteger(L, ALLEGRO_AUDIO_DRIVER_AUTODETECT);
-	lua_setfield(L, -2, "AUDIO_DRIVER_AUTODETECT");
-	lua_pushinteger(L, ALLEGRO_AUDIO_DRIVER_OPENAL);
-	lua_setfield(L, -2, "AUDIO_DRIVER_OPENAL");
-	lua_pushinteger(L, ALLEGRO_AUDIO_DRIVER_ALSA);
-	lua_setfield(L, -2, "AUDIO_DRIVER_ALSA");
-	lua_pushinteger(L, ALLEGRO_AUDIO_DRIVER_DSOUND);
-	lua_setfield(L, -2, "AUDIO_DRIVER_DSOUND");
-	lua_pushinteger(L, ALLEGRO_AUDIO_DRIVER_OSS);
-	lua_setfield(L, -2, "AUDIO_DRIVER_OSS");
 
 	lua_pushinteger(L, ALLEGRO_AUDIO_DEPTH_INT8);
 	lua_setfield(L, -2, "AUDIO_DEPTH_INT8");

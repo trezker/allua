@@ -13,8 +13,15 @@ static int allua_make_directory(lua_State *L)
 	return 1;
 }
 
+static int allua_filename_exists(lua_State *L)
+{
+	const char* path = luaL_checkstring(L, 1);
+	lua_pushboolean(L, al_filename_exists(path));
+	return 1;
+}
 static const luaL_reg allua_filesystem_methods[] = {
   {"make_directory",           allua_make_directory},
+  {"filename_exists",           allua_filename_exists},
   {0,0}
 };
 

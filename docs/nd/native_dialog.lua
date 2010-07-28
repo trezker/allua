@@ -9,6 +9,8 @@ function create (initial_path, title, patterns, mode) end
 
 -- Function: show
 -- Parameters:
+-- native_dialog - dialog
+-- display - display
 --
 -- Returns:
 -- 

@@ -21,22 +21,6 @@ function get_event_source (display) end
 -- Number of available display formats
 function get_num_display_formats () end
 
--- Function: get_format_option
---
--- Parameters:
--- i - Which display format
--- option - Which option to look at
---
--- Returns:
--- Value of the option
-function get_format_option (i, option) end
-
--- Function: set_new_format
---
--- Parameters:
--- i - Which display format
-function set_new_format (i) end
-
 -- Function: get_new_flags
 --
 -- Returns:
@@ -100,7 +84,7 @@ function flip () end
 --
 -- Returns:
 -- backbuffer Bitmap
-function get_backbuffer () end
+function get_backbuffer (display) end
 
 -- Function: get_current
 --
@@ -112,32 +96,32 @@ function get_current () end
 --
 -- Returns:
 -- display flags
-function get_flags () end
+function get_flags (display) end
 
 -- Function: get_format
 --
 -- Returns:
 -- current display pixel format
-function get_format () end
+function get_format (display) end
 
 -- Function: get_refresh_rate
 --
 -- Returns:
 -- current display refreshrate
-function get_refresh_rate () end
+function get_refresh_rate (display) end
 
 -- Function: get_frontbuffer
 --
 -- Returns:
 -- frontbuffer Bitmap
 
-function get_frontbuffer () end
+function get_frontbuffer (display) end
 
 -- Function: get_window_position
 --
 -- Returns:
 -- x, y
-function get_window_position () end
+function get_window_position (display) end
 
 -- Function: inhibit_screensaver
 --
@@ -156,7 +140,7 @@ function inhibit_screensaver (inhibit) end
 --
 -- Returns:
 -- true on success, or false on error
-function resize (width, height) end
+function resize (display, width, height) end
 
 -- Function: set_current
 -- Parameters:
@@ -177,7 +161,7 @@ function acknowledge_resize (display) end
 -- Function: set_icon
 -- Parameters:
 -- icon - Which bitmap to use
-function set_icon (icon) end
+function set_icon (display, icon) end
 
 -- Function: get_option
 -- Parameters:
@@ -185,7 +169,7 @@ function set_icon (icon) end
 --
 -- Returns:
 -- value
-function get_option (option) end
+function get_option (display, option) end
 
 -- Function: set_window_position
 -- Parameters:
@@ -197,13 +181,14 @@ function set_window_position (display, x, y) end
 -- Function: set_window_title
 -- Parameters:
 -- title - A string
-function set_window_title (title) end
+function set_window_title (display, title) end
 
--- Function: toggle_window_frame
+-- Function: toggle_flag
 -- Parameters:
 -- display - Which display
+-- flag - FULLSCREEN_WINDOW or ALLEGRO_NOFRAME
 -- onoff - toggle
-function toggle_window_frame (title, onoff) end
+function toggle_flag (display, flag, onoff) end
 
 -- Function: update_region
 -- Parameters:
@@ -231,16 +216,6 @@ function get_num_modes () end
 -- nil on failure. On success, a table containing the values for width, height, format and refresh_rate
 function get_mode (index) end
 
--- Function: set_current_video_adapter
--- Parameters:
--- adapter - index
-function set_current_video_adapter (adapter) end
-
--- Function: get_current_video_adapter
--- Returns:
--- index of current video adapter
-function get_current_video_adapter () end
-
 -- Function: get_num_video_adapters
 -- Returns:
 -- the number of video "adapters" attached to the computer.
@@ -257,12 +232,12 @@ function get_monitor_info (adapter) end
 -- Function: get_height
 -- Returns:
 -- Height of current display
-function get_height () end
+function get_height (display) end
 
 -- Function: get_width
 -- Returns:
 -- Width of current display
-function get_width () end
+function get_width (display) end
 
 -- List: Events
 -- EVENT_CLOSE - The close button of the window has been pressed.
