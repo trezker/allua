@@ -26,8 +26,9 @@ while not quit do
 		quit = true
 	end
 	
-	ttf_font:draw_text(10, 10, 0, "Wazzup! TTF font!")
-	image_font:draw_text(10, 50, 0, "Wazzup! Image font!")
+	color = allegro5.color.map_rgb_f(1, 1, 1)
+	ttf_font:draw_text(color, 10, 10, 0, "Wazzup! TTF font!")
+	image_font:draw_text(color, 10, 50, 0, "Wazzup! Image font!")
 	
 	allegro5.display.flip()
 end
