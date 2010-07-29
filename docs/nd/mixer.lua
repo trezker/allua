@@ -28,6 +28,13 @@ function set_default (mixer) end
 -- success
 function restore_default () end
 
+-- Function: attach_voice
+-- Parameters:
+--
+-- Returns:
+-- success
+function attach_mixer (mixer, voice) end
+
 -- Function: attach_mixer
 -- Parameters:
 --
