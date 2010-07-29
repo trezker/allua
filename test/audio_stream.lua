@@ -4,21 +4,21 @@ USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
 assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
 end
-allegro5.init()
-superdisplay = allegro5.display.create(800, 600)
+--allegro5.init()
+--superdisplay = allegro5.display.create(800, 600)
 
 
 Test_audio_stream = {}
 
 function Test_audio_stream:test01_prepare()
---	allegro5.init()
-	allegro5.audio.install(allegro5.audio.AUDIO_DRIVER_AUTODETECT)
-	allegro5.audio.reserve_samples(2)
+	allegro5.init()
+	allegro5.audio.install()
+--	allegro5.audio.reserve_samples(2)
 	ogg = allegro5.audio.init_acodec_addon()
 end
 
 function Test_audio_stream:test02_create()
-	audio_stream = allegro5.audio_stream.load ("data/powerup.ogg", 2, 2);
+	audio_stream = allegro5.audio_stream.load ("data/powerup.ogg", 4, 2048);
 	assertEquals("audio_stream", tostring(audio_stream):sub(1, 12))
 end
 
@@ -83,6 +83,11 @@ function Test_audio_stream:test03_playmode()
 end
 
 function Test_audio_stream:test04_attachment()
+	voice = allegro5.voice.create (44100, allegro5.audio.AUDIO_DEPTH_FLOAT32, allegro5.audio.CHANNEL_CONF_2)
+	mixer = allegro5.mixer.create (44100, allegro5.audio.AUDIO_DEPTH_FLOAT32, allegro5.audio.CHANNEL_CONF_2)
+	mixer:attach_voice(voice)
+	attached = mixer:attach_audio_stream(audio_stream)
+
 	g = audio_stream:get_attached ()
 	b = audio_stream:detach ()
 	assertEquals("boolean", type(g))
