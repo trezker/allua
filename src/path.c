@@ -33,12 +33,17 @@ ALLUA_path allua_check_path (lua_State *L, int index)//, int *gc_allowed)
 
 struct ALLUA_path_s *allua_pushPath (lua_State *L, ALLUA_path im, int gc_allowed)
 {
-  struct ALLUA_path_s *pi = (struct ALLUA_path_s *)lua_newuserdata(L, sizeof(struct ALLUA_path_s));
-  pi->path = im;
-  pi->gc_allowed = gc_allowed;
-  luaL_getmetatable(L, PATH_STRING);
-  lua_setmetatable(L, -2);
-  return pi;
+	if(!im)
+	{
+	  	lua_pushnil(L);
+	  	return NULL;
+	}
+	struct ALLUA_path_s *pi = (struct ALLUA_path_s *)lua_newuserdata(L, sizeof(struct ALLUA_path_s));
+	pi->path = im;
+	pi->gc_allowed = gc_allowed;
+	luaL_getmetatable(L, PATH_STRING);
+	lua_setmetatable(L, -2);
+	return pi;
 }
 
 /* Constructor and methods
@@ -46,20 +51,246 @@ struct ALLUA_path_s *allua_pushPath (lua_State *L, ALLUA_path im, int gc_allowed
 
 static int allua_Path_create (lua_State *L)
 {
-  const char* str = luaL_checkstring(L, 1);
+	const char* str = luaL_checkstring(L, 1);
 
-  ALLUA_path path = al_create_path(str);
-  if(path)
-  	allua_pushPath(L, path, true);
-  else
-  	lua_pushnil(L);
+	ALLUA_path path = al_create_path(str);
+	allua_pushPath(L, path, true);
 
-  return 1;
+	return 1;
+}
+
+static int allua_Path_create_for_directory (lua_State *L)
+{
+	const char* str = luaL_checkstring(L, 1);
+
+	ALLUA_path path = al_create_path_for_directory(str);
+	allua_pushPath(L, path, true);
+
+	return 1;
+}
+
+static int allua_Path_clone (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	ALLUA_path clone = al_clone_path(path);
+	allua_pushPath(L, clone, true);
+
+	return 1;
+}
+
+static int allua_Path_join (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	ALLUA_path tail = allua_check_path(L, 2);
+
+	lua_pushboolean(L, al_join_paths(path, tail));
+
+	return 1;
+}
+
+static int allua_Path_get_drive (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	lua_pushstring(L, al_get_path_drive(path));
+
+	return 1;
+}
+
+static int allua_Path_get_num_components (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	lua_pushnumber(L, al_get_path_num_components(path));
+
+	return 1;
+}
+
+static int allua_Path_get_component (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	int i = luaL_checkint(L, 2);
+
+	lua_pushstring(L, al_get_path_component(path, i));
+
+	return 1;
+}
+
+static int allua_Path_get_tail (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	lua_pushstring(L, al_get_path_tail(path));
+
+	return 1;
+}
+
+static int allua_Path_get_filename (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	lua_pushstring(L, al_get_path_filename(path));
+
+	return 1;
+}
+
+static int allua_Path_get_basename (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	lua_pushstring(L, al_get_path_basename(path));
+
+	return 1;
+}
+
+static int allua_Path_get_extension (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	lua_pushstring(L, al_get_path_extension(path));
+
+	return 1;
+}
+
+static int allua_Path_set_drive (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	const char* drive = luaL_checkstring(L, 2);
+
+	al_set_path_drive(path, drive);
+
+	return 0;
+}
+
+static int allua_Path_append_component (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	const char* s = luaL_checkstring(L, 2);
+
+	al_append_path_component(path, s);
+
+	return 0;
+}
+
+static int allua_Path_insert_component (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	int i = luaL_checkint(L, 2);
+	const char* s = luaL_checkstring(L, 3);
+
+	al_insert_path_component(path, i, s);
+
+	return 0;
+}
+
+static int allua_Path_replace_component (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	int i = luaL_checkint(L, 2);
+	const char* s = luaL_checkstring(L, 3);
+
+	al_replace_path_component(path, i, s);
+
+	return 0;
+}
+
+static int allua_Path_remove_component (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	int i = luaL_checkint(L, 2);
+
+	al_remove_path_component(path, i);
+
+	return 0;
+}
+
+static int allua_Path_drop_tail (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+
+	al_drop_path_tail(path);
+
+	return 0;
+}
+
+static int allua_Path_set_filename (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	const char* s = luaL_checkstring(L, 2);
+
+	al_set_path_filename(path, s);
+
+	return 0;
+}
+
+static int allua_Path_set_extension (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	const char* s = luaL_checkstring(L, 2);
+
+	lua_pushboolean(L, al_set_path_extension(path, s));
+
+	return 1;
+}
+
+static int allua_Path_get_string (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	lua_pushstring(L, al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP));
+
+	return 1;
+}
+
+static int allua_Path_make_absolute (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	lua_pushboolean(L, al_make_path_absolute(path));
+
+	return 1;
+}
+
+static int allua_Path_make_canonical (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	lua_pushboolean(L, al_make_path_canonical(path));
+
+	return 1;
+}
+
+static int allua_Path_is_present (lua_State *L)
+{
+	ALLUA_path path = allua_check_path(L, 1);
+	lua_pushboolean(L, al_is_path_present(path));
+
+	return 1;
 }
 
 static const luaL_reg allua_Path_methods[] = {
-  {"create",           allua_Path_create},
-  {0,0}
+	{"create",	allua_Path_create},
+	{"create_for_directory",	allua_Path_create_for_directory},
+	{"clone",	allua_Path_clone},
+	{"join",	allua_Path_join},
+	{"get_drive",	allua_Path_get_drive},
+	{"get_num_components",	allua_Path_get_num_components},
+	{"get_component",	allua_Path_get_component},
+	{"get_tail",	allua_Path_get_tail},
+	{"get_filename",	allua_Path_get_filename},
+	{"get_basename",	allua_Path_get_basename},
+	{"get_extension",	allua_Path_get_extension},
+	{"set_drive",	allua_Path_set_drive},
+	{"append_component",	allua_Path_append_component},
+	{"insert_component",	allua_Path_insert_component},
+	{"replace_component",	allua_Path_replace_component},
+	{"remove_component",	allua_Path_remove_component},
+	{"drop_tail",	allua_Path_drop_tail},
+	{"set_filename",	allua_Path_set_filename},
+	{"set_extension",	allua_Path_set_extension},
+	{"get_string",	allua_Path_get_string},
+	{"make_absolute",	allua_Path_make_absolute},
+	{"make_canonical",	allua_Path_make_canonical},
+	{"is_present",	allua_Path_is_present},
+	{0,0}
 };
 
 /* GC and meta
