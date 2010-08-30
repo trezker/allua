@@ -168,7 +168,6 @@ static int allua_Fs_entry_read_directory (lua_State *L)
 ALLEGRO_FILE *al_open_fs_entry(ALLEGRO_FS_ENTRY *e, const char *mode)
 
 
-ALLEGRO_PATH *al_get_current_directory(void)
 */
 
 static const luaL_reg allua_Fs_entry_methods[] = {

@@ -266,6 +266,12 @@ static int allua_Path_is_present (lua_State *L)
 	return 1;
 }
 
+static int allua_Path_get_current_directory (lua_State *L)
+{
+	allua_pushPath(L, al_get_current_directory(), true);
+	return 1;
+}
+
 static const luaL_reg allua_Path_methods[] = {
 	{"create",	allua_Path_create},
 	{"create_for_directory",	allua_Path_create_for_directory},
@@ -290,6 +296,7 @@ static const luaL_reg allua_Path_methods[] = {
 	{"make_absolute",	allua_Path_make_absolute},
 	{"make_canonical",	allua_Path_make_canonical},
 	{"is_present",	allua_Path_is_present},
+	{"get_current_directory",	allua_Path_get_current_directory},
 	{0,0}
 };
 
