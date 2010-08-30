@@ -4,15 +4,13 @@ USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
 assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
 end
-allegro5.init()
-superdisplay = allegro5.display.create(800, 600)
 
 
 Test_font = {}
 
 function Test_font:test00_prepare()
---	allegro5.init()
---	display = allegro5.display.create(800, 600)
+	allegro5.init()
+	superdisplay = allegro5.display.create(800, 600)
 end
 
 function Test_font:test01_init()
