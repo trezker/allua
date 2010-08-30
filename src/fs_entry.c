@@ -1,4 +1,5 @@
 #include "../include/allua/fs_entry.h"
+#include "../include/allua/path.h"
 #include "../include/allua/color.h"
 #include "../include/allua/allua.h"
 #include <stdio.h>
@@ -33,12 +34,17 @@ ALLUA_fs_entry allua_check_fs_entry (lua_State *L, int index)//, int *gc_allowed
 
 struct ALLUA_fs_entry_s *allua_pushFs_entry (lua_State *L, ALLUA_fs_entry im, int gc_allowed)
 {
-  struct ALLUA_fs_entry_s *pi = (struct ALLUA_fs_entry_s *)lua_newuserdata(L, sizeof(struct ALLUA_fs_entry_s));
-  pi->fs_entry = im;
-  pi->gc_allowed = gc_allowed;
-  luaL_getmetatable(L, FS_ENTRY_STRING);
-  lua_setmetatable(L, -2);
-  return pi;
+	if(!im)
+	{
+		lua_pushnil(L);
+		return NULL;
+	}
+	struct ALLUA_fs_entry_s *pi = (struct ALLUA_fs_entry_s *)lua_newuserdata(L, sizeof(struct ALLUA_fs_entry_s));
+	pi->fs_entry = im;
+	pi->gc_allowed = gc_allowed;
+	luaL_getmetatable(L, FS_ENTRY_STRING);
+	lua_setmetatable(L, -2);
+	return pi;
 }
 
 /* Constructor and methods
@@ -46,20 +52,133 @@ struct ALLUA_fs_entry_s *allua_pushFs_entry (lua_State *L, ALLUA_fs_entry im, in
 
 static int allua_Fs_entry_create (lua_State *L)
 {
-  const char* path = luaL_checkstring(L, 1);
+	const char* path = luaL_checkstring(L, 1);
 
-  ALLUA_fs_entry fs_entry = al_create_fs_entry(path);
-  if(fs_entry)
-  	allua_pushFs_entry(L, fs_entry, true);
-  else
-  	lua_pushnil(L);
+	ALLUA_fs_entry fs_entry = al_create_fs_entry(path);
+	allua_pushFs_entry(L, fs_entry, true);
+
+	return 1;
+}
+
+static int allua_Fs_entry_get_name (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+
+  ALLUA_path path = al_get_fs_entry_name(entry);
+  allua_pushPath(L, path, true);
 
   return 1;
 }
 
+static int allua_Fs_entry_update (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+
+  lua_pushboolean(L, al_update_fs_entry(entry));
+
+  return 1;
+}
+
+static int allua_Fs_entry_get_mode (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+
+  lua_pushnumber(L, al_get_fs_entry_mode(entry));
+
+  return 1;
+}
+
+static int allua_Fs_entry_get_atime (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushnumber(L, al_get_fs_entry_atime(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_get_ctime (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushnumber(L, al_get_fs_entry_ctime(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_get_mtime (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushnumber(L, al_get_fs_entry_mtime(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_get_size (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushnumber(L, al_get_fs_entry_size(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_exists (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushboolean(L, al_fs_entry_exists(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_is_file (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushboolean(L, al_fs_entry_is_file(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_is_directory (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushboolean(L, al_fs_entry_is_directory(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_remove (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushboolean(L, al_remove_fs_entry(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_open_directory (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushboolean(L, al_open_directory(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_close_directory (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  lua_pushboolean(L, al_close_directory(entry));
+  return 1;
+}
+
+static int allua_Fs_entry_read_directory (lua_State *L)
+{
+  ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
+  allua_pushFs_entry(L, al_read_directory(entry), true);
+  return 1;
+}
+/*
+ALLEGRO_FILE *al_open_fs_entry(ALLEGRO_FS_ENTRY *e, const char *mode)
+
+bool al_filename_exists(const char *path)
+bool al_remove_filename(const char *path)
+bool al_change_directory(const char *path)
+bool al_make_directory(const char *path)
+
+ALLEGRO_PATH *al_get_current_directory(void)
+*/
+
 static const luaL_reg allua_Fs_entry_methods[] = {
-  {"create",           allua_Fs_entry_create},
-  {0,0}
+	{"create",	allua_Fs_entry_create},
+	{"get_name",	allua_Fs_entry_get_name},
+	{0,0}
 };
 
 /* GC and meta
