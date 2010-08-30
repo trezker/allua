@@ -167,10 +167,6 @@ static int allua_Fs_entry_read_directory (lua_State *L)
 /*
 ALLEGRO_FILE *al_open_fs_entry(ALLEGRO_FS_ENTRY *e, const char *mode)
 
-bool al_filename_exists(const char *path)
-bool al_remove_filename(const char *path)
-bool al_change_directory(const char *path)
-bool al_make_directory(const char *path)
 
 ALLEGRO_PATH *al_get_current_directory(void)
 */
