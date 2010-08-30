@@ -9,6 +9,7 @@
 #include "../include/allua/bitmap.h"
 #include "../include/allua/font.h"
 #include "../include/allua/filesystem.h"
+#include "../include/allua/fs_entry.h"
 #include "../include/allua/primitives.h"
 #include "../include/allua/audio.h"
 #include "../include/allua/voice.h"
@@ -77,6 +78,7 @@ int allua_register(lua_State *L)
 	allua_register_font(L);
 	allua_register_bitmap(L);
 	allua_register_filesystem(L);
+	allua_register_fs_entry(L);
 	allua_register_keyboard(L);
 	allua_register_mouse(L);
 	allua_register_display(L);
