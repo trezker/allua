@@ -173,6 +173,19 @@ ALLEGRO_FILE *al_open_fs_entry(ALLEGRO_FS_ENTRY *e, const char *mode)
 static const luaL_reg allua_Fs_entry_methods[] = {
 	{"create",	allua_Fs_entry_create},
 	{"get_name",	allua_Fs_entry_get_name},
+	{"udpate",	allua_Fs_entry_update},
+	{"get_mode",	allua_Fs_entry_get_mode},
+	{"get_atime",	allua_Fs_entry_get_atime},
+	{"get_ctime",	allua_Fs_entry_get_ctime},
+	{"get_mtime",	allua_Fs_entry_get_mtime},
+	{"get_size",	allua_Fs_entry_get_size},
+	{"exists",	allua_Fs_entry_exists},
+	{"is_file",	allua_Fs_entry_is_file},
+	{"is_directory",	allua_Fs_entry_is_directory},
+	{"remove",	allua_Fs_entry_remove},
+	{"open_directory",	allua_Fs_entry_open_directory},
+	{"close_directory",	allua_Fs_entry_close_directory},
+	{"read_directory",	allua_Fs_entry_read_directory},
 	{0,0}
 };
 
