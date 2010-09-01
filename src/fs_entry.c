@@ -65,7 +65,7 @@ static int allua_Fs_entry_get_name (lua_State *L)
   ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
 
   ALLUA_path path = al_get_fs_entry_name(entry);
-  allua_pushPath(L, path, true);
+  allua_pushPath(L, path, false);
 
   return 1;
 }
