@@ -116,8 +116,14 @@ function Test_path:test13_is_present()
 	assertEquals("boolean", type(b))
 end
 
-function Test_path:test05_shutdown()
-	s = nil
+function Test_path:test14_get_current_directory()
+	path = allegro5.path.get_current_directory ()
+	assertEquals("path", tostring(path):sub(1, 4))
+end
+
+
+function Test_path:test15_shutdown()
+	path = nil
 	collectgarbage()
 end
 
