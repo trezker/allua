@@ -71,6 +71,7 @@ Group: Lua functions  {
    File: event_queue  (/home/anders/allegro/Projects/allua/docs/nd/Event_queue.lua)
    File: filesystem  (/home/anders/allegro/Projects/allua/docs/nd/Filesystem.lua)
    File: font  (/home/anders/allegro/Projects/allua/docs/nd/Font.lua)
+   File: fs_entry  (/home/anders/allegro/Projects/allua/docs/nd/Fs_entry.lua)
    File: Getting started  (/home/anders/allegro/Projects/allua/docs/nd/Getting_started.txt)
    File: keyboard  (/home/anders/allegro/Projects/allua/docs/nd/Keyboard.lua)
    File: mixer  (/home/anders/allegro/Projects/allua/docs/nd/mixer.lua)
