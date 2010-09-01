@@ -29,8 +29,48 @@ function Test_fs_entry:test03_update()
 	assertEquals("boolean", type(b))
 end
 
+function Test_fs_entry:test04_get()
+	entry = allegro5.fs_entry.create ("../data/ball.png")
+	mode = entry:get_mode()
+	atime = entry:get_atime()
+	ctime = entry:get_ctime()
+	mtime = entry:get_mtime()
+	size = entry:get_size()
+	assertEquals("number", type(mode))
+	assertEquals("number", type(atime))
+	assertEquals("number", type(ctime))
+	assertEquals("number", type(mtime))
+	assertEquals("number", type(size))
+end
+
+function Test_fs_entry:test05_info()
+	entry = allegro5.fs_entry.create ("../data/ball.png")
+	exists = entry:exists()
+	is_file = entry:is_file()
+	is_directory = entry:is_directory()
+	assertEquals("boolean", type(exists))
+	assertEquals("boolean", type(is_file))
+	assertEquals("boolean", type(is_directory))
+end
+
+function Test_fs_entry:test05_remove()
+	entry = allegro5.fs_entry.create ("../data/dummy")
+	b = entry:remove()
+	assertEquals("boolean", type(b))
+end
+
+function Test_fs_entry:test06_directory()
+	entry = allegro5.fs_entry.create ("../data/")
+	open = entry:open_directory()
+	entry_read = entry:read_directory()
+	close = entry:close_directory()
+	assertEquals("boolean", type(open))
+	assertEquals("fs_entry", tostring(entry_read):sub(1, 8))
+	assertEquals("boolean", type(close))
+end
+
 function Test_fs_entry:test05_uninstall()
-	s = nil
+	entry = nil
 	collectgarbage()
 end
 
