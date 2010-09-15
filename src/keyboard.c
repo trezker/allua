@@ -131,6 +131,12 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 	Set_literal("keycode", event->keyboard.keycode, -3);
 	if(event->type != ALLEGRO_EVENT_KEY_UP)
 	{
+		ALLEGRO_USTR *us = al_ustr_new("");
+		al_ustr_append_chr(us, event->keyboard.unichar);
+		const char *cstr = al_cstr(us);
+		lua_pushstring(L, cstr);
+		lua_setfield(L, -2, "string");
+		
 		Set_literal("unichar", event->keyboard.unichar, -3);
 		Set_literal("modifiers", event->keyboard.modifiers, -3);
 	}
