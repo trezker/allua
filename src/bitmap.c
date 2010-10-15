@@ -243,7 +243,7 @@ static int allua_Bitmap_draw_rotated (lua_State *L)
   return 0;
 }
 
-static int allua_Bitmap_draw_rotated_scaled (lua_State *L)
+static int allua_Bitmap_draw_scaled_rotated (lua_State *L)
 {
   ALLUA_bitmap bitmap = allua_check_bitmap(L, 1);
   float cx = luaL_checknumber(L, 2);
@@ -255,7 +255,7 @@ static int allua_Bitmap_draw_rotated_scaled (lua_State *L)
   float angle = luaL_checknumber(L, 8);
   int flags = luaL_checkint(L, 9);
 
-  al_draw_rotated_scaled_bitmap(bitmap, cx, cy, dx, dy, scalex, scaley, angle, flags);
+  al_draw_scaled_rotated_bitmap(bitmap, cx, cy, dx, dy, scalex, scaley, angle, flags);
   return 0;
 }
 
@@ -348,7 +348,7 @@ static const luaL_reg allua_Bitmap_methods[] = {
   {"draw",           allua_Bitmap_draw},
   {"draw_region",           allua_Bitmap_draw_region},
   {"draw_rotated",           allua_Bitmap_draw_rotated},
-  {"draw_rotated_scaled",           allua_Bitmap_draw_rotated_scaled},
+  {"draw_scaled_rotated",           allua_Bitmap_draw_scaled_rotated},
   {"draw_scaled",           allua_Bitmap_draw_scaled},
   {"get_target",           allua_Bitmap_get_target},
   {"set_target",           allua_Bitmap_set_target},

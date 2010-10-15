@@ -19,7 +19,7 @@
 #include "../include/allua/sample_id.h"
 #include "../include/allua/sample_instance.h"
 #include "../include/allua/audio_stream.h"
-#include "../include/allua/native_dialog.h"
+#include "../include/allua/filechooser.h"
 #include <stdio.h>
 
 #include <allegro5/allegro5.h>
@@ -96,7 +96,7 @@ int allua_register(lua_State *L)
 	allua_register_sample_id(L);
 	allua_register_sample_instance(L);
 	allua_register_audio_stream(L);
-	allua_register_native_dialog(L);
+	allua_register_filechooser(L);
 	lua_pop(L, 1);
 	return 1;
 }

@@ -5,24 +5,24 @@ assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
 end
 allegro5.init()
-superdisplay = allegro5.display.create(800, 600)
+--superdisplay = allegro5.display.create(800, 600)
 
 
-Test_native_dialog = {}
+Test_filechooser = {}
 
-function Test_native_dialog:test01_create()
-	native_dialog = allegro5.native_dialog.create ("", "test", "*.*", allegro5.native_dialog.FILECHOOSER_SAVE)
-	assertEquals("native_dialog", tostring(native_dialog):sub(1, 13))
+function Test_filechooser:test01_create()
+	filechooser = allegro5.filechooser.create ("", "test", "*.*", allegro5.filechooser.FILECHOOSER_SAVE)
+	assertEquals("filechooser", tostring(filechooser):sub(1, 11))
 end
 
-function Test_native_dialog:test02_show()
-	native_dialog:show(superdisplay)
+function Test_filechooser:test02_show()
+	filechooser:show()
 end
 
-function Test_native_dialog:test03_get()
-	n = native_dialog:get_count()
+function Test_filechooser:test03_get()
+	n = filechooser:get_count()
 	if n>0 then
-		path = native_dialog:get_path(0)
+		path = filechooser:get_path(0)
 	else
 		print("To test get_path you must select a file");
 	end
@@ -32,8 +32,8 @@ function Test_native_dialog:test03_get()
 	end
 end
 
-function Test_native_dialog:test10_destroy()
-	native_dialog = nil
+function Test_filechooser:test10_destroy()
+	filechooser = nil
 	collectgarbage()
 end
 

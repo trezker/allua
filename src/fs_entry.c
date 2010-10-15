@@ -122,20 +122,20 @@ static int allua_Fs_entry_exists (lua_State *L)
   lua_pushboolean(L, al_fs_entry_exists(entry));
   return 1;
 }
-
+/*
 static int allua_Fs_entry_is_file (lua_State *L)
 {
   ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
-  lua_pushboolean(L, al_fs_entry_is_file(entry));
+  lua_pushboolean(L, al_is_fs_entry_file(entry));
   return 1;
 }
-
 static int allua_Fs_entry_is_directory (lua_State *L)
 {
   ALLUA_fs_entry entry = allua_check_fs_entry(L, 1);
   lua_pushboolean(L, al_fs_entry_is_directory(entry));
   return 1;
 }
+*/
 
 static int allua_Fs_entry_remove (lua_State *L)
 {
@@ -180,8 +180,8 @@ static const luaL_reg allua_Fs_entry_methods[] = {
 	{"get_mtime",	allua_Fs_entry_get_mtime},
 	{"get_size",	allua_Fs_entry_get_size},
 	{"exists",	allua_Fs_entry_exists},
-	{"is_file",	allua_Fs_entry_is_file},
-	{"is_directory",	allua_Fs_entry_is_directory},
+//	{"is_file",	allua_Fs_entry_is_file},
+//	{"is_directory",	allua_Fs_entry_is_directory},
 	{"remove",	allua_Fs_entry_remove},
 	{"open_directory",	allua_Fs_entry_open_directory},
 	{"close_directory",	allua_Fs_entry_close_directory},
