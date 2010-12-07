@@ -5,8 +5,6 @@ assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
 end
 allegro5.init()
---superdisplay = allegro5.display.create(800, 600)
-
 
 Test_filechooser = {}
 

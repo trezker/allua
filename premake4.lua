@@ -12,6 +12,7 @@ solution (lib_name)
 		targetdir "build/lib"
 		includedirs { "../include" }
 		links (dependencies)
+		flags { "ExtraWarnings", "FatalWarnings" }
 --		postbuildcommands { "cp lib/liballua.so ../test/liballua.so", "cd ../test && lua unittest_main.lua" }
 
 		

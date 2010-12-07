@@ -132,8 +132,6 @@ static int allua_Font_get_text_dimensions (lua_State *L)
 	int bby;
 	int bbw;
 	int bbh;
-	int ascent;
-	int descent;
 
 	al_get_text_dimensions(font, text, &bbx, &bby, &bbw, &bbh);
 	lua_pushinteger(L, bbx);

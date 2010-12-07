@@ -166,14 +166,6 @@ static int allua_display_get_backbuffer (lua_State *L)
 	return 1;
 }
 
-static int allua_display_get_frontbuffer (lua_State *L)
-{
-	ALLUA_display display = allua_check_display(L, 1);
-	ALLEGRO_BITMAP* fb = al_get_frontbuffer(display);
-	fb ? allua_pushBitmap(L, fb, false): lua_pushnil(L);
-	return 1;
-}
-
 static int allua_display_get_current (lua_State *L)
 {
 	allua_pushdisplay(L, al_get_current_display());
@@ -392,7 +384,6 @@ static const luaL_reg allua_display_methods[] = {
 	{"get_height",           allua_display_get_height},
 	{"get_refresh_rate",           allua_display_get_refresh_rate},
 	{"get_width",           allua_display_get_width},
-	{"get_frontbuffer",           allua_display_get_frontbuffer},
 	{"get_window_position",           allua_display_get_window_position},
 	{"inhibit_screensaver",           allua_display_inhibit_screensaver},
 	{"resize",           allua_display_resize},

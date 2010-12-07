@@ -46,11 +46,7 @@ end
 function Test_fs_entry:test05_info()
 	entry = allegro5.fs_entry.create ("../data/ball.png")
 	exists = entry:exists()
-	is_file = entry:is_file()
-	is_directory = entry:is_directory()
 	assertEquals("boolean", type(exists))
-	assertEquals("boolean", type(is_file))
-	assertEquals("boolean", type(is_directory))
 end
 
 function Test_fs_entry:test05_remove()

@@ -242,33 +242,11 @@ static int allua_Path_get_string (lua_State *L)
 	return 1;
 }
 
-static int allua_Path_make_absolute (lua_State *L)
-{
-	ALLUA_path path = allua_check_path(L, 1);
-	lua_pushboolean(L, al_make_path_absolute(path));
-
-	return 1;
-}
-
 static int allua_Path_make_canonical (lua_State *L)
 {
 	ALLUA_path path = allua_check_path(L, 1);
 	lua_pushboolean(L, al_make_path_canonical(path));
 
-	return 1;
-}
-/*
-static int allua_Path_is_present (lua_State *L)
-{
-	ALLUA_path path = allua_check_path(L, 1);
-	lua_pushboolean(L, al_is_path_present(path));
-
-	return 1;
-}
-*/
-static int allua_Path_get_current_directory (lua_State *L)
-{
-	allua_pushPath(L, al_get_current_directory(), true);
 	return 1;
 }
 
@@ -293,10 +271,7 @@ static const luaL_reg allua_Path_methods[] = {
 	{"set_filename",	allua_Path_set_filename},
 	{"set_extension",	allua_Path_set_extension},
 	{"get_string",	allua_Path_get_string},
-	{"make_absolute",	allua_Path_make_absolute},
 	{"make_canonical",	allua_Path_make_canonical},
-//	{"is_present",	allua_Path_is_present},
-	{"get_current_directory",	allua_Path_get_current_directory},
 	{0,0}
 };
 

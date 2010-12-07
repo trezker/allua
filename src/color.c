@@ -154,6 +154,7 @@ static int allua_color_clear_backbuffer(lua_State *L)
 {
 	ALLUA_color color = allua_check_color(L, 1);
 	al_clear_to_color(color);
+	return 0;
 }
 
 static int allua_color_set_blender(lua_State *L)
@@ -162,6 +163,7 @@ static int allua_color_set_blender(lua_State *L)
 	int src = luaL_checkint(L, 2);
 	int dst = luaL_checkint(L, 3);
 	al_set_blender(op, src, dst);
+	return 0;
 }
 
 static const luaL_reg allua_Color_methods[] = {
