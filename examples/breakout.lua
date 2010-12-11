@@ -11,6 +11,7 @@ allegro5.mouse.install()
 allegro5.bitmap.init_image_addon ()
 allegro5.font.init_addon()
 allegro5.font.init_ttf_addon()
+allegro5.primitives.init_addon()
 
 display = allegro5.display.create(800, 600, allegro5.display.WINDOWED)
 event_queue = allegro5.event_queue.create()
@@ -63,8 +64,8 @@ set_up_level1 = function()
 end
 
 draw_bricks = function()
-	dw = allegro5.display.get_width()
-	dh = allegro5.display.get_height()
+	dw = display:get_width()
+	dh = display:get_height()
 	bw = math.floor(dw/14)
 	bh = math.floor(dh/28)
 	light = allegro5.color.map_rgba(255, 255, 255, 127)
@@ -111,8 +112,8 @@ update_balls = function(dt)
 			v.vel.y = -v.vel.y
 		end
 		-- Collision with brick
-		dw = allegro5.display.get_width()
-		dh = allegro5.display.get_height()
+		dw = display:get_width()
+		dh = display:get_height()
 		bw = math.floor(dw/14)
 		bh = math.floor(dh/28)
 
