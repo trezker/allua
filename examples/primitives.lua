@@ -7,6 +7,7 @@ allegro5.keyboard.install()
 allegro5.mouse.install()
 allegro5.bitmap.init_image_addon ()
 allegro5.font.init_addon()
+allegro5.primitives.init_addon()
 
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
 keyboard = allegro5.keyboard.get_event_source()
@@ -83,15 +84,13 @@ while not quit do
 
 	y1 = y1 + 110
 
-	a1 = a1 + dt
-	a2 = a2 + dt
 	if a1 > math.pi * 2 then
 		a1 = 0
 	end
-	if a2 > math.pi * 2 then
-		a2 = 0
+	if a1 ~= 0 then
+		allegro5.primitives.draw_arc(x1, y1, 50, a1, a1, blue, thickness)
 	end
-	allegro5.primitives.draw_arc(x1, y1, 50, a1, a2, blue, thickness)
+	a1 = a1 + dt
 
 	pixels = pixels + 1
 
