@@ -11,6 +11,7 @@ allegro5.keyboard.install()
 allegro5.mouse.install()
 allegro5.bitmap.init_image_addon ()
 allegro5.font.init_addon()
+allegro5.font.init_ttf_addon()
 
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
 event_queue = allegro5.event_queue.create()
@@ -27,7 +28,7 @@ wasp = allegro5.bitmap.load("data/wasp.png")
 background = allegro5.bitmap.load("data/background.png")
 
 font = allegro5.font.load_ttf("data/times.ttf", 16, 0)
-
+text_color = allegro5.color.map_rgb_f(1, 1, 1)
 mouse_x = 0
 mouse_y = 0
 mouse_z = 0
@@ -50,8 +51,8 @@ leafs = {}
 stingers = {}
 
 Screenwrap = function(self)
-	width = allegro5.display.get_width()
-	height = allegro5.display.get_height()
+	width = display:get_width()
+	height = display:get_height()
 	if self.x<0 then self.x = self.x + width end
 	if self.x>width then self.x = self.x - width end
 	if self.y<0 then self.y = self.y + height end
@@ -290,13 +291,13 @@ while not quit do
 	end
 
 	text = "Score: " .. tostring(player.score)
-	font:draw_text(10, 10, 0, text)
+	font:draw_text(text_color, 10, 10, 0, text)
 	text = "Lives: " .. tostring(player.lives)
-	font:draw_text(10, 20, 0, text)
+	font:draw_text(text_color, 10, 20, 0, text)
 
 	if game_over then
-		font:draw_text(200, 100, 0, "GAME OVER")
-		font:draw_text(200, 120, 0, "Press enter to play again")
+		font:draw_text(text_color, 200, 100, 0, "GAME OVER")
+		font:draw_text(text_color, 200, 120, 0, "Press enter to play again")
 	end
 
 	allegro5.display.flip()
