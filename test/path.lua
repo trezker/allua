@@ -104,23 +104,9 @@ end
 
 function Test_path:test12_make_absolute_canonical()
 	path = allegro5.path.create ("../data/ball.png")
-	absolute = path:make_absolute()
 	canonical = path:make_canonical()
-	assertEquals("boolean", type(absolute))
 	assertEquals("boolean", type(canonical))
 end
-
-function Test_path:test13_is_present()
-	path = allegro5.path.create ("../data/ball.png")
-	b = path:is_present()
-	assertEquals("boolean", type(b))
-end
-
-function Test_path:test14_get_current_directory()
-	path = allegro5.path.get_current_directory ()
-	assertEquals("path", tostring(path):sub(1, 4))
-end
-
 
 function Test_path:test15_shutdown()
 	path = nil

@@ -20,7 +20,7 @@ end
 function Test_fs_entry:test02_get_name()
 	entry = allegro5.fs_entry.create ("../data/ball.png")
 	path = entry:get_name()
-	assertEquals("path", tostring(path):sub(1, 4))
+	assertEquals("string", type(path))
 end
 
 function Test_fs_entry:test03_update()
@@ -56,7 +56,7 @@ function Test_fs_entry:test05_remove()
 end
 
 function Test_fs_entry:test06_directory()
-	entry = allegro5.fs_entry.create ("../data/")
+	entry = allegro5.fs_entry.create ("data/")
 	open = entry:open_directory()
 	entry_read = entry:read_directory()
 	close = entry:close_directory()

@@ -11,8 +11,7 @@ superdisplay = allegro5.display.create(800, 600)
 Test_primitives = {}
 
 function Test_primitives:test00_prepare()
---	allegro5.init()
---	display = allegro5.display.create(800, 600)
+	allegro5.primitives.init_addon()
 end
 
 function Test_primitives:test01_functions()

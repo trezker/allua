@@ -7,6 +7,13 @@
 
 /* Methods
  * */
+
+static int allua_primitives_init(lua_State *L)
+{
+	lua_pushboolean(L, al_init_primitives_addon());
+	return 1;
+}
+
 static int allua_draw_line(lua_State *L)
 {
 	float x1 = luaL_checknumber(L, 1);
@@ -170,6 +177,7 @@ static int allua_draw_arc(lua_State *L)
 }
 
 static const luaL_reg allua_Primitives_methods[] = {
+  {"init_addon",           allua_primitives_init},
   {"draw_line",           allua_draw_line},
   {"draw_triangle",           allua_draw_triangle},
   {"draw_filled_triangle",           allua_draw_filled_triangle},
