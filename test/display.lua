@@ -63,9 +63,7 @@ end
 
 function Test_display:test10_buffers()
 	bb = display:get_backbuffer()
-	fb = display:get_frontbuffer()
 	assertEquals("bitmap", tostring(bb):sub(1, 6))
-	assertEquals("bitmap", tostring(fb):sub(1, 6))
 end
 
 function Test_display:test11_current()
@@ -83,13 +81,11 @@ function Test_display:test12_get()
 	gheight = display:get_height()
 	grefresh_rate = display:get_refresh_rate()
 	gwidth = display:get_width()
-	gfrontbuffer = display:get_frontbuffer()
 	assertEquals("number", type(gflags))
 	assertEquals("number", type(gformat))
 	assertEquals("number", type(gheight))
 	assertEquals("number", type(grefresh_rate))
 	assertEquals("number", type(gwidth))
-	assertEquals("bitmap", tostring(gfrontbuffer):sub(1, 6))
 end
 
 function Test_display:test13_inhibit_screensaver()

@@ -4,16 +4,12 @@ USE_EXPECTED_ACTUAL_IN_ASSERT_EQUALS = false
 assertEqualsDelta = function(expected, actual, delta)
 	assert(math.abs(expected-actual)<delta)
 end
---allegro5.init()
---superdisplay = allegro5.display.create(800, 600)
-
 
 Test_audio_stream = {}
 
 function Test_audio_stream:test01_prepare()
 	allegro5.init()
 	allegro5.audio.install()
---	allegro5.audio.reserve_samples(2)
 	ogg = allegro5.audio.init_acodec_addon()
 end
 

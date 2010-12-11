@@ -10,11 +10,6 @@ superdisplay = allegro5.display.create(800, 600)
 
 Test_bitmap = {}
 
-function Test_bitmap:test00_prepare()
---	allegro5.init()
---	display = allegro5.display.create(800, 600)
-end
-
 function Test_bitmap:test01_create()
 	bitmap = allegro5.bitmap.create(100, 200)
 	subbitmap = bitmap:create_sub(20, 30, 40, 50)
@@ -28,20 +23,15 @@ function Test_bitmap:test01_create()
 end
 
 function Test_bitmap:test02_new_flags()
-	setflags = allegro5.bitmap.KEEP_BITMAP_FORMAT
-	allegro5.bitmap.set_new_flags(setflags)
+	allegro5.bitmap.set_new_flags(0)
 	getflags = allegro5.bitmap.get_new_flags()
 	assertEquals("number", type(getflags))
-	assertEquals(setflags, getflags)
 end
 
 function Test_bitmap:test03_new_format()
-	setformat = 32
-	allegro5.bitmap.set_new_format(setformat)
-	getformat = allegro5.bitmap.get_new_format()
 	allegro5.bitmap.set_new_format(0)
+	getformat = allegro5.bitmap.get_new_format()
 	assertEquals("number", type(getformat))
-	assertEquals(setformat, getformat)
 end
 
 function Test_bitmap:test04_load()

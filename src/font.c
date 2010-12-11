@@ -112,12 +112,12 @@ static int allua_Font_draw_justified_text (lua_State *L)
 {
 	ALLUA_font font = allua_check_font(L, 1);
 	ALLUA_color color = allua_check_color(L, 2);
-	float x1 = luaL_checknumber(L, 2);
-	float x2 = luaL_checknumber(L, 3);
-	float y = luaL_checknumber(L, 4);
-	float diff = luaL_checknumber(L, 5);
-	int flags = luaL_checkinteger(L, 6);
-	const char* text = luaL_checkstring(L, 7);
+	float x1 = luaL_checknumber(L, 3);
+	float x2 = luaL_checknumber(L, 4);
+	float y = luaL_checknumber(L, 5);
+	float diff = luaL_checknumber(L, 6);
+	int flags = luaL_checkinteger(L, 7);
+	const char* text = luaL_checkstring(L, 8);
 
 	al_draw_justified_text(font, color, x1, x2, y, diff, flags, text);
 	return 0;

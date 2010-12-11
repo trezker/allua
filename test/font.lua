@@ -10,6 +10,7 @@ Test_font = {}
 
 function Test_font:test00_prepare()
 	allegro5.init()
+	allegro5.bitmap.init_image_addon()
 	superdisplay = allegro5.display.create(800, 600)
 end
 
