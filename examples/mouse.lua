@@ -7,6 +7,7 @@ allegro5.keyboard.install()
 allegro5.mouse.install()
 allegro5.bitmap.init_image_addon ()
 allegro5.font.init_addon()
+allegro5.font.init_ttf_addon()
 
 display = allegro5.display.create(640, 480, allegro5.display.WINDOWED)
 event_queue = allegro5.event_queue.create()
@@ -20,6 +21,7 @@ event_queue:register_event_source(mouse)
 bitmap = allegro5.bitmap.load("data/leaf.png")
 
 font = allegro5.font.load_ttf("data/times.ttf", 16, 0)
+text_color = allegro5.color.map_rgb_f(1, 1, 1, 1)
 
 mouse_x = 0
 mouse_y = 0
@@ -47,13 +49,13 @@ while not quit do
 
 	bitmap:draw(mouse_x, mouse_y, 0)
 
-	font:draw_text(10, 10, 0, "mouse X:"..mouse_x)
-	font:draw_text(10, 30, 0, "mouse Y:"..mouse_y)
-	font:draw_text(10, 50, 0, "mouse Z:"..mouse_z)
+	font:draw_text(text_color, 10, 10, 0, "mouse X:"..mouse_x)
+	font:draw_text(text_color, 10, 30, 0, "mouse Y:"..mouse_y)
+	font:draw_text(text_color, 10, 50, 0, "mouse Z:"..mouse_z)
 	
 	y = 70
     for i,v in ipairs(mouse_b) do
-     	font:draw_text(10, y, 0, "mouse button " .. tostring(i) .. ": " .. tostring(v))
+     	font:draw_text(text_color, 10, y, 0, "mouse button " .. tostring(i) .. ": " .. tostring(v))
      	y = y + 20
     end
 
