@@ -1,5 +1,12 @@
 -- Class: audio_stream
 
+-- Function: create
+-- Parameters:
+--
+-- Returns:
+-- audio_stream on success, nil on failure
+function load (buffer_count, samples, freq, depth, chan_conf) end
+
 -- Function: load
 -- Parameters:
 --

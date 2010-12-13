@@ -15,20 +15,13 @@ function uninstall () end
 --
 -- Returns:
 -- true on success, false on failure
-function install (mode) end
+function install (reserve_samples) end
 
 -- Function: init_acodec_addon
 --
 -- Returns:
 -- success
 function init_acodec_addon () end
-
---List: drivers
--- AUDIO_DRIVER_AUTODETECT
--- AUDIO_DRIVER_OPENAL
--- AUDIO_DRIVER_ALSA
--- AUDIO_DRIVER_DSOUND
--- AUDIO_DRIVER_OSS
 
 --List: depths
 -- AUDIO_DEPTH_INT8

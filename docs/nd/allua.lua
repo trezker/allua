@@ -1,8 +1,7 @@
 -- Namespace: allegro5
 
 -- Function: init
--- Initiates allegro
--- Temporarily, this function installs and inits a whole bunch of stuff. That's why mouse and keyboard among other things don't have init/install functions, yet.
+-- Initiates allegro, but no components, remember to init everything you need.
 function init () end
 
 -- Function: current_time
