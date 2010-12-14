@@ -69,7 +69,7 @@ function load (filename) end
 --
 -- Returns:
 -- true on success, false on failure
-function load (bitmap, filename) end
+function save (bitmap, filename) end
 
 -- Function: get_flags
 -- Parameters:
@@ -173,7 +173,7 @@ function draw_region (bitmap, sx, sy, sw, sh, dx, dy, flags) end
 -- flags - Bitmap flags
 function draw_rotated (bitmap, cx, cy, dx, dy, angle, flags) end
 
--- Function: draw_rotated_scaled
+-- Function: draw_scaled_rotated
 -- Parameters:
 -- bitmap - bitmap
 -- cx - Source Center x
@@ -184,7 +184,7 @@ function draw_rotated (bitmap, cx, cy, dx, dy, angle, flags) end
 -- scaley - Scale y-wise
 -- angle - Rotation
 -- flags - Bitmap flags
-function draw_rotated_scaled (bitmap, cx, cy, dx, dy, scalex, scaley, angle, flags) end
+function draw_scaled_rotated (bitmap, cx, cy, dx, dy, scalex, scaley, angle, flags) end
 
 -- Function: draw_scaled
 -- Parameters:
@@ -227,7 +227,7 @@ function set_clipping_rectangle (x, y, w, h) end
 -- Parameters:
 -- bitmap - bitmap
 -- mask_color - color
-function convert_mask_to_alpha (x, y, w, h) end
+function convert_mask_to_alpha (bitmap, color) end
 
 -- List: flags
 -- FLIP_HORIZONTAL
