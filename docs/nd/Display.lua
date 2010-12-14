@@ -15,12 +15,6 @@ function create (w, h) end
 -- event_source
 function get_event_source (display) end
 
--- Function: get_num_display_formats
---
--- Returns:
--- Number of available display formats
-function get_num_display_formats () end
-
 -- Function: get_new_flags
 --
 -- Returns:
@@ -110,13 +104,6 @@ function get_format (display) end
 -- current display refreshrate
 function get_refresh_rate (display) end
 
--- Function: get_frontbuffer
---
--- Returns:
--- frontbuffer Bitmap
-
-function get_frontbuffer (display) end
-
 -- Function: get_window_position
 --
 -- Returns:
@@ -152,7 +139,7 @@ function set_current (display) end
 
 -- Function: acknowledge_resize
 -- Parameters:
--- display - Which display to set
+-- display - Which display
 --
 -- Returns:
 -- true on success
@@ -165,6 +152,7 @@ function set_icon (display, icon) end
 
 -- Function: get_option
 -- Parameters:
+-- display - display
 -- option - Which option to get
 --
 -- Returns:
@@ -251,6 +239,7 @@ function get_width (display) end
 -- OPENGL - opengl
 -- DIRECT3D - d3d, not yet supported (allua so far only developed using Linux)
 -- NOFRAME - no frame
+-- FULLSCREEN_WINDOW
 
 -- List: display options
 -- RED_SIZE - ALLEGRO_RED_SIZE
