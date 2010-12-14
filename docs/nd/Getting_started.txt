@@ -14,5 +14,4 @@ But there's no guarantee this will not conflict with other stuff in Lua,
 Allua documentation currently lacks full descriptions on the functions.
 Therefore I refer you to the official documentation of Allegro5 for full documentation
  while you use the Allua docs for the syntax differences.
-This is because Allegro5 itself is still under development
-and its own documentation is naturally quite incomplete.
+This is because Allegro5 itself is still under development.

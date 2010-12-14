@@ -27,11 +27,6 @@ function get_event_source () end
 -- false if the current keyboard driver cannot set LED indicators.
 function set_leds (leds) end
 
--- Function: get
--- Returns:
--- Keyboard
-function get () end
-
 -- Function: keycode_to_name
 -- Parameters:
 -- keycode - Keycode to get a name for

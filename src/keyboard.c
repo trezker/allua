@@ -68,13 +68,7 @@ static int allua_keyboard_set_leds(lua_State *L)
 	lua_pushboolean(L, al_set_keyboard_leds(leds));
 	return 1;
 }
-/*
-static int allua_get_keyboard(lua_State *L)
-{
-	allua_pushKeyboard(L, al_get_keyboard());
-	return 1;
-}
-*/
+
 static int allua_keycode_to_name(lua_State *L)
 {
 	int keycode = luaL_checkint(L, 1);
@@ -105,7 +99,6 @@ static const luaL_reg allua_Keyboard_methods[] = {
   {"is_installed",           allua_keyboard_is_installed},
   {"get_event_source",           allua_keyboard_get_event_source},
   {"set_leds",           allua_keyboard_set_leds},
-//  {"get",           allua_get_keyboard},
   {"keycode_to_name",           allua_keycode_to_name},
   {"keycode_from_name",           allua_keycode_from_name},
   {0,0}
