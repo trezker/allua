@@ -2,60 +2,91 @@
 
 -- Function: create
 -- Parameters:
-function create (path) end
+--
+-- Returns:
+-- fs_entry
+function create (fs_entry) end
 
 -- Function: get_name
 -- Parameters:
-function get_name (path) end
+--
+-- Returns:
+-- string
+function get_name (fs_entry) end
 
 -- Function: update
 -- Parameters:
-function update (path) end
+--
+-- Returns:
+-- boolean
+function update (fs_entry) end
 
 -- Function: get_mode
 -- Parameters:
-function get_mode (path) end
+--
+-- Returns:
+-- mode
+function get_mode (fs_entry) end
 
 -- Function: get_atime
 -- Parameters:
-function get_atime (path) end
+--
+-- Returns:
+-- time
+function get_atime (fs_entry) end
 
 -- Function: get_ctime
 -- Parameters:
-function get_ctime (path) end
+--
+-- Returns:
+-- time
+function get_ctime (fs_entry) end
 
 -- Function: get_mtime
 -- Parameters:
-function get_mtime (path) end
+--
+-- Returns:
+-- time
+function get_mtime (fs_entry) end
 
 -- Function: get_size
 -- Parameters:
-function get_size (path) end
+--
+-- Returns:
+-- time
+function get_size (fs_entry) end
 
 -- Function: exists
 -- Parameters:
-function exists (path) end
-
--- Function: is_file
--- Parameters:
-function is_file (path) end
-
--- Function: is_directory
--- Parameters:
-function is_directory (path) end
+--
+-- Returns:
+-- boolean
+function exists (fs_entry) end
 
 -- Function: remove
 -- Parameters:
-function remove (path) end
+--
+-- Returns:
+-- boolean
+function remove (fs_entry) end
 
 -- Function: open_directory
 -- Parameters:
-function open_directory (path) end
+--
+-- Returns:
+-- boolean
+function open_directory (fs_entry) end
 
 -- Function: close_directory
 -- Parameters:
-function close_directory (path) end
+--
+-- Returns:
+-- boolean
+function close_directory (fs_entry) end
 
 -- Function: read_directory
 -- Parameters:
-function read_directory (path) end
+--
+-- Returns:
+-- fs_entry
+function read_directory (fs_entry) end
