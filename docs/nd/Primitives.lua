@@ -1,5 +1,12 @@
 -- Class: primitives
 
+-- Function: init_addon
+-- Parameters:
+--
+-- Returns:
+-- success
+function init_addon () end
+
 -- Function: draw_line
 -- Parameters:
 function draw_line (x1, y1, x2, y2, color, thickness) end
