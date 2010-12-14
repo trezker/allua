@@ -109,7 +109,16 @@ function clear_backbuffer (color) end
 -- Function: set_blender
 --
 -- Parameters:
--- op - ADD, DEST_MINUS_SRC or SRC_MINUS_DEST
+-- op - blend
 -- src - source
 -- dst - destination
 function set_blender (op, src, dest) end
+
+-- List: blend
+-- ZERO
+-- ONE
+-- ALPHA
+-- INVERSE_ALPHA
+-- ADD
+-- DEST_MINUS_SRC
+-- SRC_MINUS_DEST
