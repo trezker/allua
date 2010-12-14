@@ -167,10 +167,3 @@ function set_playing (sample_instance, val) end
 -- Returns:
 -- attached
 function get_attached (sample_instance) end
-
--- Function: get_sample
--- Parameters:
---
--- Returns:
--- sample data, or nil
-function get_sample (sample_instance) end
