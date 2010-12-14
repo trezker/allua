@@ -5,26 +5,17 @@
 -- event_queue
 function create () end
 
--- Function: drop_next_event
+-- Function: register_event_source
 -- Parameters:
--- event_queue - event_queue
---
--- Returns:
--- true if an event was dropped.
-function drop_next_event (event_queue) end
+-- event_queue - Event_queue to which registering is done
+-- event_source - Event_source
+function register_event_source (event_queue, event_source) end
 
--- Function: is_empty
+-- Function: unregister_event_source
 -- Parameters:
--- event_queue - event_queue
---
--- Returns:
--- true if the queue is empty.
-function is_empty (event_queue) end
-
--- Function: flush
--- Parameters:
--- event_queue - event_queue
-function flush (event_queue) end
+-- event_queue - Event_queue to which unregistering is done
+-- event_source - Event_source
+function unregister_event_source (event_queue, event_source) end
 
 -- Function: get_next_event
 -- Parameters:
@@ -66,15 +57,23 @@ function wait_for_event (event_queue) end
 -- If there was no event, the table is empty.
 function wait_for_event_timed (event_queue, secs) end
 
--- Function: register_event_source
+-- Function: drop_next_event
 -- Parameters:
--- event_queue - Event_queue to which registering is done
--- event_source - Event_source
-function register_event_source (event_queue, event_source) end
+-- event_queue - event_queue
+--
+-- Returns:
+-- true if an event was dropped.
+function drop_next_event (event_queue) end
 
--- Function: unregister_event_source
+-- Function: is_empty
 -- Parameters:
--- event_queue - Event_queue to which unregistering is done
--- event_source - Event_source
-function unregister_event_source (event_queue, event_source) end
+-- event_queue - event_queue
+--
+-- Returns:
+-- true if the queue is empty.
+function is_empty (event_queue) end
 
+-- Function: flush
+-- Parameters:
+-- event_queue - event_queue
+function flush (event_queue) end
