@@ -11,11 +11,6 @@ function uninstall () end
 -- Function: is_installed
 function is_installed () end
 
--- Function: get
--- Returns:
--- Handle to the Mouse
-function get () end
-
 -- Function: get_event_source
 --
 -- Returns:

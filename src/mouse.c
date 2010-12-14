@@ -62,13 +62,7 @@ static int allua_mouse_get_event_source(lua_State *L)
 	allua_pushevent_source(L, al_get_mouse_event_source());
 	return 1;
 }
-/*
-static int allua_mouse_get(lua_State *L)
-{
-	allua_pushMouse(L, al_get_mouse());
-	return 1;
-}
-*/
+
 static int allua_mouse_get_cursor_position(lua_State *L)
 {
 	int x;
