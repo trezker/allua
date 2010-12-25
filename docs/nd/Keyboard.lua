@@ -46,6 +46,6 @@ function keycode_to_name (keycode) end
 function keycode_from_name (name) end
 
 -- List: Events
--- EVENT_DOWN - a keyboard key was pressed. Fields: keycode, unichar, string, modifiers.
--- EVENT_REPEAT - a typed character auto-repeated. Fields: keycode, unichar, string, modifiers.
--- EVENT_UP - a keyboard key was released. Fields: keycode.
+-- EVENT_DOWN - a keyboard key was pressed. Fields: keycode, display
+-- EVENT_CHAR - a typed character. Fields: keycode, unichar, string, modifiers, display.
+-- EVENT_UP - a keyboard key was released. Fields: keycode, display.
