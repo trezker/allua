@@ -18,5 +18,6 @@ int allua_register_display (lua_State* L);
  * Pointer to display instance.
  * */
 ALLUA_display allua_check_display (lua_State *L, int index);
+ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im);
 
 #endif

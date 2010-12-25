@@ -1,4 +1,5 @@
 #include "../include/allua/keyboard.h"
+#include "../include/allua/display.h"
 #include "../include/allua/event_queue.h"
 #include "../include/allua/event_source.h"
 #include "../include/allua/allua.h"
@@ -122,7 +123,8 @@ static const luaL_reg allua_Keyboard_meta[] = {
 void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
 	Set_literal("keycode", event->keyboard.keycode, -3);
-	if(event->type != ALLEGRO_EVENT_KEY_UP)
+	allua_pushdisplay(L, event->keyboard.display);
+	if(event->type != ALLEGRO_EVENT_KEY_CHAR)
 	{
 		ALLEGRO_USTR *us = al_ustr_new("");
 		al_ustr_append_chr(us, event->keyboard.unichar);
@@ -132,6 +134,9 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 		
 		Set_literal("unichar", event->keyboard.unichar, -3);
 		Set_literal("modifiers", event->keyboard.modifiers, -3);
+
+		lua_pushboolean(L, event->keyboard.repeat);
+		lua_setfield(L, -2, "repeat");
 	}
 }
 
@@ -140,7 +145,7 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 void allua_Keyboard_set_attributes(lua_State *L)
 {
 	Set_literal("EVENT_DOWN", ALLEGRO_EVENT_KEY_DOWN, -3);
-	Set_literal("EVENT_REPEAT", ALLEGRO_EVENT_KEY_REPEAT, -3);
+	Set_literal("EVENT_CHAR", ALLEGRO_EVENT_KEY_CHAR, -3);
 	Set_literal("EVENT_UP", ALLEGRO_EVENT_KEY_UP, -3);
 
 	//Keycode constants
@@ -273,7 +278,7 @@ void allua_Keyboard_set_attributes(lua_State *L)
 int allua_register_keyboard (lua_State *L)
 {
 	allua_set_event_callback(ALLEGRO_EVENT_KEY_DOWN, allua_keyboard_event_callback);
-	allua_set_event_callback(ALLEGRO_EVENT_KEY_REPEAT, allua_keyboard_event_callback);
+	allua_set_event_callback(ALLEGRO_EVENT_KEY_CHAR, allua_keyboard_event_callback);
 	allua_set_event_callback(ALLEGRO_EVENT_KEY_UP, allua_keyboard_event_callback);
 
   lua_newtable(L);

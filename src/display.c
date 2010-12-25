@@ -33,7 +33,7 @@ ALLUA_display allua_check_display (lua_State *L, int index)
   return im;
 }
 
-static ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im)
+ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im)
 {
 	if(!im)
 	{
