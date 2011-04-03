@@ -247,8 +247,8 @@ while not quit do
 			player.vy = player.vy * .999
 		end
 		if player.move_reverse then
-			player.vx = player.vx - math.cos(-player.angle) * 700 * dt
-			player.vy = player.vy - math.sin(-player.angle) * 700 * dt
+			player.vx = player.vx - math.cos(player.angle) * 700 * dt
+			player.vy = player.vy - math.sin(player.angle) * 700 * dt
 			player.vx = player.vx * .999
 			player.vy = player.vy * .999
 		end
