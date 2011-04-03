@@ -28,11 +28,15 @@ while not quit do
 		print("Event ", event.type)
 	end
 	
-	if event.type == allegro5.keyboard.EVENT_DOWN then
+	if event.type == allegro5.keyboard.EVENT_DOWN
+	or event.type == allegro5.keyboard.EVENT_UP then
 		print("\tkey down", allegro5.keyboard.keycode_to_name(event.keycode))
 		print("\tkeycode\t", event.keycode)
+	end
+	if event.type == allegro5.keyboard.EVENT_CHAR then
 		print("\tunichar\t", event.unichar)
 		print("\tmod\t", event.modifiers)
+		print("\trepeated\t", event.repeated)
 	end
 	
 	if event.type == allegro5.keyboard.EVENT_DOWN then

@@ -124,7 +124,8 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
 	Set_literal("keycode", event->keyboard.keycode, -3);
 	allua_pushdisplay(L, event->keyboard.display);
-	if(event->type != ALLEGRO_EVENT_KEY_CHAR)
+	lua_setfield(L, -2, "display");
+	if(event->type == ALLEGRO_EVENT_KEY_CHAR)
 	{
 		ALLEGRO_USTR *us = al_ustr_new("");
 		al_ustr_append_chr(us, event->keyboard.unichar);
@@ -136,7 +137,7 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 		Set_literal("modifiers", event->keyboard.modifiers, -3);
 
 		lua_pushboolean(L, event->keyboard.repeat);
-		lua_setfield(L, -2, "repeat");
+		lua_setfield(L, -2, "repeated");
 	}
 }
 

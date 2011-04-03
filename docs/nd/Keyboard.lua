@@ -47,5 +47,5 @@ function keycode_from_name (name) end
 
 -- List: Events
 -- EVENT_DOWN - a keyboard key was pressed. Fields: keycode, display
--- EVENT_CHAR - a typed character. Fields: keycode, unichar, string, modifiers, display.
 -- EVENT_UP - a keyboard key was released. Fields: keycode, display.
+-- EVENT_CHAR - a typed character. Fields: keycode, unichar, string, modifiers, repeated, display.
