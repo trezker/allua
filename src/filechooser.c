@@ -52,7 +52,8 @@ static int allua_Filechooser_create (lua_State *L)
 	const char* patterns = luaL_checkstring(L, 3);
 	int mode = luaL_checkint(L, 4);
 	ALLEGRO_PATH *initial_path = al_create_path(ipath);
-	ALLUA_filechooser d = al_create_native_file_dialog(initial_path, title, patterns, mode);
+	ALLUA_filechooser d = al_create_native_file_dialog(al_path_cstr (initial_path, ALLEGRO_NATIVE_PATH_SEP), title, patterns, mode);
+	al_destroy_path (initial_path);
 	if(d)
 		allua_pushFilechooser(L, d);
 	else
@@ -81,8 +82,7 @@ static int allua_Filechooser_get_path (lua_State *L)
 {
 	ALLUA_filechooser d = allua_check_filechooser(L, 1);
 	int i = luaL_checkint(L, 2);
-	const ALLEGRO_PATH *path = al_get_native_file_dialog_path(d, i);
-	lua_pushstring(L, al_path_cstr(path, ALLEGRO_NATIVE_PATH_SEP));
+	lua_pushstring(L, al_get_native_file_dialog_path (d, i));
 	return 1;
 }
 
