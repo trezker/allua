@@ -15,6 +15,9 @@ solution (lib_name)
 		flags { "ExtraWarnings", "FatalWarnings" }
 --		postbuildcommands { "cp lib/liballua.so ../test/liballua.so", "cd ../test && lua unittest_main.lua" }
 
+if _ACTION == "clean" then
+	os.rmdir "build"
+end
 		
 newaction {
 	trigger     = "test",
