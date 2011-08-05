@@ -35,6 +35,14 @@ solution (NAME)
          -- Turn GCC into a C89-loving maniac
          buildoptions {"-ansi", "-pedantic"}
 
+      configuration "Debug"
+         defines "DEBUG"
+         flags "Symbols"
+
+      configuration "Release"
+         defines "NDEBUG"
+         flags "Optimize"
+
 newaction
 {
    trigger = "test",
