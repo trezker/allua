@@ -250,7 +250,7 @@ void allua_Keyboard_set_attributes(lua_State *L)
 	Set_literal("KEY_SCROLLLOCK", ALLEGRO_KEY_SCROLLLOCK, -3);
 	Set_literal("KEY_NUMLOCK", ALLEGRO_KEY_NUMLOCK, -3);
 	Set_literal("KEY_CAPSLOCK", ALLEGRO_KEY_CAPSLOCK, -3);
-	Set_literal("KEY_EQUALS_PAD", ALLEGRO_KEY_EQUALS_PAD, -3);
+	Set_literal("KEY_PAD_EQUALS", ALLEGRO_KEY_PAD_EQUALS, -3);
 	Set_literal("KEY_BACKQUOTE", ALLEGRO_KEY_BACKQUOTE, -3);
 	Set_literal("KEY_SEMICOLON2", ALLEGRO_KEY_SEMICOLON2, -3);
 	Set_literal("KEY_COMMAND", ALLEGRO_KEY_COMMAND, -3);
