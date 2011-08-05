@@ -19,4 +19,5 @@ int allua_register_mouse(lua_State * L);
  * */
 ALLUA_mouse allua_check_mouse(lua_State * L, int index);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

@@ -22,3 +22,5 @@ ALLUA_event_queue allua_check_event_queue(lua_State * L, int index);
  * */
 void allua_set_event_callback(ALLEGRO_EVENT_TYPE event,
                               void (*cb) (lua_State * L, ALLEGRO_EVENT * e));
+
+/* vim: set sts=3 sw=3 et: */

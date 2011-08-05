@@ -68,3 +68,5 @@ int allua_register_event(lua_State * L)
    lua_setfield(L, -2, EVENT_STRING);
    return 0;                    /* return methods on the stack */
 }
+
+/* vim: set sts=3 sw=3 et: */

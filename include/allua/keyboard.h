@@ -19,4 +19,5 @@ int allua_register_keyboard(lua_State * L);
  * */
 ALLUA_keyboard allua_check_keyboard(lua_State * L, int index);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

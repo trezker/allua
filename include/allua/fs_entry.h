@@ -28,4 +28,5 @@ ALLUA_fs_entry allua_check_fs_entry(lua_State * L,
 struct ALLUA_fs_entry_s *allua_pushFs_entry(lua_State * L, ALLUA_fs_entry im,
                                             int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

@@ -36,4 +36,5 @@ struct ALLUA_sample_instance_s *allua_pushsample_instance(lua_State * L,
                                                           ALLUA_sample_instance
                                                           im, int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

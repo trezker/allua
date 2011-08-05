@@ -28,4 +28,5 @@ ALLUA_bitmap allua_check_bitmap(lua_State * L,
 struct ALLUA_bitmap_s *allua_pushBitmap(lua_State * L, ALLUA_bitmap im,
                                         int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

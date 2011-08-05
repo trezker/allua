@@ -20,4 +20,5 @@ ALLEGRO_EVENT allua_check_event(lua_State * L, int index);
 
 ALLEGRO_EVENT *allua_pushEvent(lua_State * L, ALLEGRO_EVENT im);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

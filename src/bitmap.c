@@ -435,3 +435,5 @@ int allua_register_bitmap(lua_State * L)
 
    return 0;                    /* return methods on the stack */
 }
+
+/* vim: set sts=3 sw=3 et: */

@@ -29,4 +29,5 @@ ALLUA_sample allua_check_sample(lua_State * L,
 struct ALLUA_sample_s *allua_pushsample(lua_State * L, ALLUA_sample im,
                                         int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

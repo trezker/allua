@@ -28,4 +28,5 @@ ALLUA_voice allua_check_voice(lua_State * L, int index /* int *gc_allowed */ );
 struct ALLUA_voice_s *allua_pushvoice(lua_State * L, ALLUA_voice im,
                                       int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

@@ -21,4 +21,5 @@ int allua_register_sample_id(lua_State * L);
 ALLUA_sample_id allua_check_sample_id(lua_State * L, int index);
 ALLUA_sample_id *allua_pushsample_id(lua_State * L, ALLUA_sample_id im);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

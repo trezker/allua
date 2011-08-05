@@ -20,4 +20,5 @@ int allua_register_color(lua_State * L);
 ALLUA_color allua_check_color(lua_State * L, int index);
 ALLUA_color *allua_pushColor(lua_State * L, ALLUA_color im);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

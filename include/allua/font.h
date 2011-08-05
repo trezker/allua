@@ -20,4 +20,5 @@ int allua_register_font(lua_State * L);
  * */
 ALLUA_font allua_check_font(lua_State * L, int index);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

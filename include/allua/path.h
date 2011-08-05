@@ -27,4 +27,5 @@ ALLUA_path allua_check_path(lua_State * L, int index /* int *gc_allowed */ );
 struct ALLUA_path_s *allua_pushPath(lua_State * L, ALLUA_path im,
                                     int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

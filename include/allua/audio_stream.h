@@ -30,4 +30,5 @@ struct ALLUA_audio_stream_s *allua_pushaudio_stream(lua_State * L,
                                                     ALLUA_audio_stream im,
                                                     int gc_allowed);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

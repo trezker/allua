@@ -20,4 +20,5 @@ int allua_register_filechooser(lua_State * L);
  * */
 ALLUA_filechooser allua_check_filechooser(lua_State * L, int index);
 
+/* vim: set sts=3 sw=3 et: */
 #endif

@@ -21,4 +21,5 @@ ALLUA_event_source allua_check_event_source(lua_State * L, int index);
 ALLUA_event_source *allua_pushevent_source(lua_State * L,
                                            ALLUA_event_source im);
 
+/* vim: set sts=3 sw=3 et: */
 #endif
