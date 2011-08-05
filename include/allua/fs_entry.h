@@ -1,9 +1,9 @@
 #ifndef allua_FS_ENTRY_H
 #define allua_FS_ENTRY_H
 
-#include <lua5.1/lua.h>
-#include <lua5.1/lualib.h>
-#include <lua5.1/lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
 typedef ALLEGRO_FS_ENTRY* ALLUA_fs_entry;

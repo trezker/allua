@@ -1,9 +1,9 @@
 #ifndef allegro5_lua_h
 #define allegro5_lua_h
 
-#include <lua5.1/lua.h>
-#include <lua5.1/lualib.h>
-#include <lua5.1/lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 
 #define Set_literal(key, value, index) lua_pushliteral(L, key);\
 	lua_pushinteger(L, value);\

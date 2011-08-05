@@ -1,9 +1,9 @@
 #ifndef allua_COLOR_H
 #define allua_COLOR_H
 
-#include <lua5.1/lua.h>
-#include <lua5.1/lualib.h>
-#include <lua5.1/lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
 #include <allegro5/allegro5.h>
 
 typedef ALLEGRO_COLOR ALLUA_color;
