@@ -1,3 +1,6 @@
+#ifndef allua_EVENT_QUEUE_H
+#define allua_EVENT_QUEUE_H
+
 #include <lua.h>
 #include <lualib.h>
 #include <lauxlib.h>
@@ -24,3 +27,4 @@ void allua_set_event_callback(ALLEGRO_EVENT_TYPE event,
                               void (*cb) (lua_State * L, ALLEGRO_EVENT * e));
 
 /* vim: set sts=3 sw=3 et: */
+#endif
