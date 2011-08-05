@@ -9,6 +9,6 @@
 /* Function: allua_register_primitives
  * Registers filesystem functionality to the lua state.
  * */
-int allua_register_filesystem (lua_State* L);
+int allua_register_filesystem(lua_State * L);
 
 #endif

@@ -7,17 +7,17 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_ttf.h>
 
-typedef ALLEGRO_FONT* ALLUA_font;
+typedef ALLEGRO_FONT *ALLUA_font;
 
 /* Function: allua_register_font
  * Registers Font functionality to the lua state.
  * */
-int allua_register_font (lua_State* L);
+int allua_register_font(lua_State * L);
 
 /* Function: allua_check_font
  * Returns:
  * Pointer to Font instance.
  * */
-ALLUA_font allua_check_font (lua_State *L, int index);
+ALLUA_font allua_check_font(lua_State * L, int index);
 
 #endif

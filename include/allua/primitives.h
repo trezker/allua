@@ -9,6 +9,6 @@
 /* Function: allua_register_primitives
  * Registers Primitives functionality to the lua state.
  * */
-int allua_register_primitives (lua_State* L);
+int allua_register_primitives(lua_State * L);
 
 #endif

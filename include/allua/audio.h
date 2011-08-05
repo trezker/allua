@@ -9,6 +9,6 @@
 /* Function: allua_register_audio
  * Registers audio functionality to the lua state.
  * */
-int allua_register_audio (lua_State* L);
+int allua_register_audio(lua_State * L);
 
 #endif

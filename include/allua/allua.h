@@ -16,6 +16,6 @@
 /* Function: allua_register
  * Registers all subsystem functionality to the lua state.
  * */
-int allua_register(lua_State *L);
+int allua_register(lua_State * L);
 
 #endif

@@ -1,4 +1,13 @@
 NAME = "allua"
+SOURCES = {}
+
+for i, file in pairs(os.matchfiles("src/**.c")) do
+  table.insert (SOURCES, file)
+end
+
+for i, file in pairs(os.matchfiles("include/allua/**.h")) do
+  table.insert (SOURCES, file)
+end
 
 solution (NAME)
   configurations { "Debug", "Release" }
@@ -6,9 +15,9 @@ solution (NAME)
   project (NAME)
     kind "SharedLib"
     language "C"
-    files {"src/**.c", "include/allua/**.h" }
+    files (SOURCES)
     includedirs "include"
-    flags {"ExtraWarnings", "FatalWarnings"}
+    flags { "ExtraWarnings", "FatalWarnings" }
 
     links
     {
@@ -89,6 +98,14 @@ newaction {
   description = "Build documentation",
   execute = function ()
     os.execute("../NaturalDocs/NaturalDocs -i include -i src -i test -i docs/nd -o HTML docs/html -p nd -ro")
+  end
+}
+
+newaction {
+  trigger     = "indent",
+  description = "Indent source code with GNU Indent",
+  execute = function ()
+    os.execute("indent -kr -nce -ss -ncs -i3 -cli3 -nut -bls -l80" .. table.implode(SOURCES, " ", "", ""))
   end
 }
 
