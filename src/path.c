@@ -17,7 +17,7 @@
   return pi->path;
 }
 */
-ALLUA_path allua_check_path (lua_State *L, int index)//, int *gc_allowed)
+ALLUA_path allua_check_path (lua_State *L, int index /* int *gc_allowed */)
 {
   struct ALLUA_path_s *pi;
   ALLUA_path im;
@@ -33,12 +33,13 @@ ALLUA_path allua_check_path (lua_State *L, int index)//, int *gc_allowed)
 
 struct ALLUA_path_s *allua_pushPath (lua_State *L, ALLUA_path im, int gc_allowed)
 {
+	struct ALLUA_path_s *pi;
 	if(!im)
 	{
 	  	lua_pushnil(L);
 	  	return NULL;
 	}
-	struct ALLUA_path_s *pi = (struct ALLUA_path_s *)lua_newuserdata(L, sizeof(struct ALLUA_path_s));
+	pi = (struct ALLUA_path_s *)lua_newuserdata(L, sizeof(struct ALLUA_path_s));
 	pi->path = im;
 	pi->gc_allowed = gc_allowed;
 	luaL_getmetatable(L, PATH_STRING);
@@ -283,7 +284,7 @@ static int allua_Path_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_path im = pi->path;
-	  printf("goodbye path (%p)\n", im);
+	  printf("goodbye path (%p)\n", (void *) im);
 	  if (im) al_destroy_path(im);
   }
   return 0;

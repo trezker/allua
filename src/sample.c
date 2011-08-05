@@ -16,7 +16,7 @@
   return pi->sample;
 }
 */
-ALLUA_sample allua_check_sample (lua_State *L, int index)//, int *gc_allowed)
+ALLUA_sample allua_check_sample (lua_State *L, int index /* int *gc_allowed */)
 {
   struct ALLUA_sample_s *pi;
   ALLUA_sample im;
@@ -32,12 +32,13 @@ ALLUA_sample allua_check_sample (lua_State *L, int index)//, int *gc_allowed)
 
 struct ALLUA_sample_s *allua_pushsample (lua_State *L, ALLUA_sample im, int gc_allowed)
 {
+	struct ALLUA_sample_s *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-  struct ALLUA_sample_s *pi = (struct ALLUA_sample_s *)lua_newuserdata(L, sizeof(struct ALLUA_sample_s));
+  pi = (struct ALLUA_sample_s *)lua_newuserdata(L, sizeof(struct ALLUA_sample_s));
   pi->sample = im;
   pi->gc_allowed = gc_allowed;
   luaL_getmetatable(L, SAMPLE_STRING);
@@ -94,13 +95,16 @@ static int allua_sample_stop_samples (lua_State *L)
 
 static int allua_sample_create_instance (lua_State *L)
 {
-	struct ALLUA_sample_s *pi = (struct ALLUA_sample_s*)(lua_touserdata(L, 1));
+	struct ALLUA_sample_s *pi;
 	ALLUA_sample sample_data;
+	ALLUA_sample_instance instance;
+
+	pi = (struct ALLUA_sample_s*)(lua_touserdata(L, 1));
 	if (pi == NULL) 
 		sample_data = NULL;
 	else
 		sample_data = allua_check_sample(L, 1);
-	ALLUA_sample_instance instance = al_create_sample_instance(sample_data);
+	instance = al_create_sample_instance(sample_data);
 	if(instance)
 	{
 		struct ALLUA_sample_instance_s *si_s = allua_pushsample_instance(L, instance, true);
@@ -163,7 +167,7 @@ static int allua_sample_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_sample im = pi->sample;
-	  printf("goodbye sample (%p)\n", im);
+	  printf("goodbye sample (%p)\n", (void *) im);
 	  if (im) al_destroy_sample(im);
   }
   return 0;

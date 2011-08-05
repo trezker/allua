@@ -127,9 +127,10 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 	lua_setfield(L, -2, "display");
 	if(event->type == ALLEGRO_EVENT_KEY_CHAR)
 	{
+		const char *cstr;
 		ALLEGRO_USTR *us = al_ustr_new("");
 		al_ustr_append_chr(us, event->keyboard.unichar);
-		const char *cstr = al_cstr(us);
+		cstr = al_cstr(us);
 		lua_pushstring(L, cstr);
 		lua_setfield(L, -2, "string");
 		
@@ -145,11 +146,14 @@ void allua_keyboard_event_callback(lua_State *L, ALLEGRO_EVENT *event)
  * */
 void allua_Keyboard_set_attributes(lua_State *L)
 {
+	char key[6] = "KEY_A";
+	int i;
+
 	Set_literal("EVENT_DOWN", ALLEGRO_EVENT_KEY_DOWN, -3);
 	Set_literal("EVENT_CHAR", ALLEGRO_EVENT_KEY_CHAR, -3);
 	Set_literal("EVENT_UP", ALLEGRO_EVENT_KEY_UP, -3);
 
-	//Keycode constants
+	/* Keycode constants */
 	Set_literal("KEY_ESCAPE", ALLEGRO_KEY_ESCAPE, -3);
 	Set_literal("KEY_DOWN", ALLEGRO_KEY_DOWN, -3);
 	Set_literal("KEY_UP", ALLEGRO_KEY_UP, -3);
@@ -159,8 +163,6 @@ void allua_Keyboard_set_attributes(lua_State *L)
 	Set_literal("KEY_ENTER", ALLEGRO_KEY_ENTER, -3);
 	Set_literal("KEY_PAD_ENTER", ALLEGRO_KEY_PAD_ENTER, -3);
 
-	char key[6] = "KEY_A";
-	int i;
 	for(i = ALLEGRO_KEY_A; i <= ALLEGRO_KEY_Z; ++i)
 	{
 		key[4] = 'A' + (i-ALLEGRO_KEY_A);
@@ -255,7 +257,7 @@ void allua_Keyboard_set_attributes(lua_State *L)
 	Set_literal("KEY_SEMICOLON2", ALLEGRO_KEY_SEMICOLON2, -3);
 	Set_literal("KEY_COMMAND", ALLEGRO_KEY_COMMAND, -3);
 
-	//Modifier flags
+	/* Modifier flags */
 	Set_literal("KEYMOD_SHIFT", ALLEGRO_KEYMOD_SHIFT, -3);
 	Set_literal("KEYMOD_CTRL", ALLEGRO_KEYMOD_CTRL, -3);
 	Set_literal("KEYMOD_ALT", ALLEGRO_KEYMOD_ALT, -3);

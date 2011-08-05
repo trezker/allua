@@ -30,13 +30,14 @@ ALLUA_event_source allua_check_event_source (lua_State *L, int index)
 
 ALLUA_event_source *allua_pushevent_source (lua_State *L, ALLUA_event_source im)
 {
+	ALLUA_event_source *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
 
-  ALLUA_event_source *pi = (ALLUA_event_source *)lua_newuserdata(L, sizeof(ALLUA_event_source));
+  pi = (ALLUA_event_source *)lua_newuserdata(L, sizeof(ALLUA_event_source));
   *pi = im;
   luaL_getmetatable(L, EVENT_SOURCE_STRING);
   lua_setmetatable(L, -2);

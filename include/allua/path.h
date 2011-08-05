@@ -23,7 +23,7 @@ int allua_register_path (lua_State* L);
  * Returns:
  * Pointer to Path instance.
  * */
-ALLUA_path allua_check_path (lua_State *L, int index);//, int *gc_allowed);
+ALLUA_path allua_check_path (lua_State *L, int index /* int *gc_allowed */);
 struct ALLUA_path_s *allua_pushPath (lua_State *L, ALLUA_path im, int gc_allowed);
 
 #endif

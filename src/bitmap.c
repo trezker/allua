@@ -17,7 +17,7 @@
   return pi->bitmap;
 }
 */
-ALLUA_bitmap allua_check_bitmap (lua_State *L, int index)//, int *gc_allowed)
+ALLUA_bitmap allua_check_bitmap (lua_State *L, int index /* int *gc_allowed */)
 {
   struct ALLUA_bitmap_s *pi;
   ALLUA_bitmap im;
@@ -130,8 +130,10 @@ static int allua_Bitmap_load (lua_State *L)
 
 static int allua_Bitmap_save (lua_State *L)
 {
-  ALLUA_bitmap bitmap = allua_check_bitmap(L, 1);
-  const char *filename = luaL_checkstring(L, 2);
+  ALLUA_bitmap bitmap;
+  const char *filename;
+  bitmap = allua_check_bitmap(L, 1);
+  filename = luaL_checkstring(L, 2);
   lua_pushboolean(L, al_save_bitmap(filename, bitmap));
   return 1;
 }
@@ -366,7 +368,7 @@ static int allua_Bitmap_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_bitmap im = pi->bitmap;
-	  printf("goodbye bitmap (%p)\n", im);
+	  printf("goodbye bitmap (%p)\n", (void *) im);
 	  if (im) al_destroy_bitmap(im);
   }
   return 0;

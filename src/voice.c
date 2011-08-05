@@ -14,7 +14,7 @@
   return pi->voice;
 }
 */
-ALLUA_voice allua_check_voice (lua_State *L, int index)//, int *gc_allowed)
+ALLUA_voice allua_check_voice (lua_State *L, int index /* int *gc_allowed */)
 {
   struct ALLUA_voice_s *pi;
   ALLUA_voice im;
@@ -30,12 +30,13 @@ ALLUA_voice allua_check_voice (lua_State *L, int index)//, int *gc_allowed)
 
 struct ALLUA_voice_s *allua_pushvoice (lua_State *L, ALLUA_voice im, int gc_allowed)
 {
+	struct ALLUA_voice_s *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-  struct ALLUA_voice_s *pi = (struct ALLUA_voice_s *)lua_newuserdata(L, sizeof(struct ALLUA_voice_s));
+  pi = (struct ALLUA_voice_s *)lua_newuserdata(L, sizeof(struct ALLUA_voice_s));
   pi->voice = im;
   pi->gc_allowed = gc_allowed;
   luaL_getmetatable(L, VOICE_STRING);
@@ -73,7 +74,7 @@ static int allua_voice_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_voice im = pi->voice;
-	  printf("goodbye voice (%p)\n", im);
+	  printf("goodbye voice (%p)\n", (void *) im);
 	  if (im) al_destroy_voice(im);
   }
   return 0;

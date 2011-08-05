@@ -29,12 +29,13 @@ ALLUA_event_queue allua_check_event_queue (lua_State *L, int index)
 
 static ALLUA_event_queue *allua_pushEvent_queue (lua_State *L, ALLUA_event_queue im)
 {
+	ALLUA_event_queue *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-  ALLUA_event_queue *pi = (ALLUA_event_queue *)lua_newuserdata(L, sizeof(ALLUA_event_queue));
+  pi = (ALLUA_event_queue *)lua_newuserdata(L, sizeof(ALLUA_event_queue));
   *pi = im;
   luaL_getmetatable(L, EVENT_QUEUE_STRING);
   lua_setmetatable(L, -2);
@@ -60,8 +61,8 @@ static int allua_Event_queue_register_event_source (lua_State *L)
   }
   al_register_event_source(event_queue, event_source);
 
-  printf("Event_queue (%p) ", event_queue);
-  printf("registered (%p)\n", event_source);
+  printf("Event_queue (%p) ", (void *) event_queue);
+  printf("registered (%p)\n", (void *) event_source);
   return 0;
 }
 
@@ -76,8 +77,8 @@ static int allua_Event_queue_unregister_event_source (lua_State *L)
   }
   al_unregister_event_source(event_queue, event_source);
 
-  printf("Event_queue (%p) ", event_queue);
-  printf("unregistered (%p)\n", event_source);
+  printf("Event_queue (%p) ", (void *) event_queue);
+  printf("unregistered (%p)\n", (void *) event_source);
   return 0;
 }
 
@@ -87,7 +88,7 @@ struct allua_Event_callback
 	void (*cb) (lua_State *L, ALLEGRO_EVENT *e);
 }event_callbacks[29];
 
-//Event_callback ;
+/* event_callback */
 int num_event_callbacks = 0;
 
 void allua_set_event_callback(ALLEGRO_EVENT_TYPE event, void (*cb) (lua_State *L, ALLEGRO_EVENT *e))
@@ -105,6 +106,8 @@ static int allua_Event_queue_get_event_common (lua_State *L, bool got_event, ALL
 	lua_newtable (L);
 	if (got_event)
 	{
+		int i;
+
 		lua_pushstring(L, "type");
 		lua_pushinteger(L, event->type);
 		lua_settable(L, -3);
@@ -116,8 +119,7 @@ static int allua_Event_queue_get_event_common (lua_State *L, bool got_event, ALL
 		/* Each type of event source may have different data in the event
 		 * This lookup calls a handler that fills in that data
 		 * */
-		int i = 0;
-		for(; i<num_event_callbacks; ++i)
+		for(i = 0; i<num_event_callbacks; ++i)
 		{
 			if(event_callbacks[i].event == event->type)
 			{
@@ -202,7 +204,7 @@ static const luaL_reg allua_Event_queue_methods[] = {
 static int allua_Event_queue_gc (lua_State *L)
 {
   ALLUA_event_queue im = allua_toEvent_queue(L, 1);
-  printf("goodbye Event_queue (%p)\n", im);
+  printf("goodbye Event_queue (%p)\n", (void *) im);
   if (im) al_destroy_event_queue(im);
   return 0;
 }

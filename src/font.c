@@ -30,12 +30,13 @@ ALLUA_font allua_check_font (lua_State *L, int index)
 
 static ALLUA_font *allua_pushFont (lua_State *L, ALLUA_font im)
 {
+	ALLUA_font *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-  ALLUA_font *pi = (ALLUA_font *)lua_newuserdata(L, sizeof(ALLUA_font));
+  pi = (ALLUA_font *)lua_newuserdata(L, sizeof(ALLUA_font));
   *pi = im;
   luaL_getmetatable(L, FONT_STRING);
   lua_setmetatable(L, -2);
@@ -175,7 +176,7 @@ static const luaL_reg allua_Font_methods[] = {
 static int allua_Font_gc (lua_State *L)
 {
   ALLUA_font im = allua_toFont(L, 1);
-  printf("goodbye Font (%p)\n", im);
+  printf("goodbye Font (%p)\n", (void *) im);
   if (im) al_destroy_font(im);
   return 0;
 }

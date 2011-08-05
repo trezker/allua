@@ -24,7 +24,7 @@ int allua_register_voice (lua_State* L);
  * Returns:
  * Pointer to voice instance.
  * */
-ALLUA_voice allua_check_voice (lua_State *L, int index);//, int *gc_allowed);
+ALLUA_voice allua_check_voice (lua_State *L, int index /* int *gc_allowed */);
 struct ALLUA_voice_s *allua_pushvoice (lua_State *L, ALLUA_voice im, int gc_allowed);
 
 #endif

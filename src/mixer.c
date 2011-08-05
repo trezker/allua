@@ -34,12 +34,13 @@ ALLUA_mixer allua_check_mixer (lua_State *L, int index)
 
 struct ALLUA_mixer_s *allua_pushmixer (lua_State *L, ALLUA_mixer im, int gc_allowed)
 {
+	struct ALLUA_mixer_s *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-  struct ALLUA_mixer_s *pi = (struct ALLUA_mixer_s *)lua_newuserdata(L, sizeof(struct ALLUA_mixer_s));
+  pi = (struct ALLUA_mixer_s *)lua_newuserdata(L, sizeof(struct ALLUA_mixer_s));
   pi->mixer = im;
   pi->gc_allowed = gc_allowed;
   luaL_getmetatable(L, MIXER_STRING);
@@ -221,7 +222,7 @@ static int allua_mixer_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_mixer im = pi->mixer;
-	  printf("goodbye mixer (%p)\n", im);
+	  printf("goodbye mixer (%p)\n", (void *) im);
 	  if (im) al_destroy_mixer(im);
   }
   return 0;

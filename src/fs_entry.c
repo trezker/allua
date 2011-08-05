@@ -18,7 +18,7 @@
   return pi->fs_entry;
 }
 */
-ALLUA_fs_entry allua_check_fs_entry (lua_State *L, int index)//, int *gc_allowed)
+ALLUA_fs_entry allua_check_fs_entry (lua_State *L, int index /* int *gc_allowed */)
 {
   struct ALLUA_fs_entry_s *pi;
   ALLUA_fs_entry im;
@@ -34,12 +34,13 @@ ALLUA_fs_entry allua_check_fs_entry (lua_State *L, int index)//, int *gc_allowed
 
 struct ALLUA_fs_entry_s *allua_pushFs_entry (lua_State *L, ALLUA_fs_entry im, int gc_allowed)
 {
+	struct ALLUA_fs_entry_s *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-	struct ALLUA_fs_entry_s *pi = (struct ALLUA_fs_entry_s *)lua_newuserdata(L, sizeof(struct ALLUA_fs_entry_s));
+	pi = (struct ALLUA_fs_entry_s *)lua_newuserdata(L, sizeof(struct ALLUA_fs_entry_s));
 	pi->fs_entry = im;
 	pi->gc_allowed = gc_allowed;
 	luaL_getmetatable(L, FS_ENTRY_STRING);
@@ -178,7 +179,7 @@ static int allua_Fs_entry_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_fs_entry im = pi->fs_entry;
-	  printf("goodbye fs_entry (%p)\n", im);
+	  printf("goodbye fs_entry (%p)\n", (void *) im);
 	  if (im) al_destroy_fs_entry(im);
   }
   return 0;

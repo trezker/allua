@@ -74,7 +74,7 @@ int allua_register(lua_State *L)
 	lua_setmetatable (L, -2);
     lua_setfield(L, LUA_REGISTRYINDEX, "allegro5udatamap");
 
-	// Register everything
+	/* Register everything */
 	luaL_register (L, "allegro5", allua_lib);
 	allua_register_font(L);
 	allua_register_bitmap(L);

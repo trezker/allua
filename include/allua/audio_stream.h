@@ -24,7 +24,7 @@ int allua_register_audio_stream (lua_State* L);
  * Returns:
  * Pointer to audio_stream instance.
  * */
-ALLUA_audio_stream allua_check_audio_stream (lua_State *L, int index);//, int *gc_allowed);
+ALLUA_audio_stream allua_check_audio_stream (lua_State *L, int index /* int *gc_allowed */);
 struct ALLUA_audio_stream_s *allua_pushaudio_stream (lua_State *L, ALLUA_audio_stream im, int gc_allowed);
 
 #endif

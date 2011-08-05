@@ -30,12 +30,13 @@ ALLUA_filechooser allua_check_filechooser (lua_State *L, int index)
 
 static ALLUA_filechooser *allua_pushFilechooser (lua_State *L, ALLUA_filechooser im)
 {
+	ALLUA_filechooser *pi;
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
-  ALLUA_filechooser *pi = (ALLUA_filechooser *)lua_newuserdata(L, sizeof(ALLUA_filechooser));
+  pi = (ALLUA_filechooser *)lua_newuserdata(L, sizeof(ALLUA_filechooser));
   *pi = im;
   luaL_getmetatable(L, FILECHOOSER_STRING);
   lua_setmetatable(L, -2);
@@ -99,7 +100,7 @@ static const luaL_reg allua_Filechooser_methods[] = {
 static int allua_Filechooser_gc (lua_State *L)
 {
   ALLUA_filechooser im = allua_toFilechooser(L, 1);
-  printf("goodbye Filechooser (%p)\n", im);
+  printf("goodbye Filechooser (%p)\n", (void *) im);
   if (im) al_destroy_native_file_dialog(im);
   return 0;
 }

@@ -24,7 +24,7 @@ int allua_register_sample (lua_State* L);
  * Returns:
  * Pointer to sample instance.
  * */
-ALLUA_sample allua_check_sample (lua_State *L, int index);//, int *gc_allowed);
+ALLUA_sample allua_check_sample (lua_State *L, int index /* int *gc_allowed */);
 struct ALLUA_sample_s *allua_pushsample (lua_State *L, ALLUA_sample im, int gc_allowed);
 
 #endif

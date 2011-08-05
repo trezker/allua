@@ -8,7 +8,7 @@ solution (NAME)
     language "C"
     files {"src/**.c", "include/allua/**.h" }
     includedirs "include"
-    flags {"ExtraWarnings", --[["FatalWarnings"]]}
+    flags {"ExtraWarnings", "FatalWarnings"}
 
     links
     {
@@ -22,9 +22,9 @@ solution (NAME)
       "allegro_dialog"
     }
 
---  configuration { "linux", "gmake" }
---    -- Turn GCC into a C89-loving maniac
---    buildoptions { "-ansi", "-pedantic" }
+    configuration { "linux", "gmake" }
+      -- Turn GCC into a C89-loving maniac
+      buildoptions { "-ansi", "-pedantic" }
 
 newaction {
   trigger     = "test",

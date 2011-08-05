@@ -14,7 +14,7 @@
   return pi->audio_stream;
 }
 */
-ALLUA_audio_stream allua_check_audio_stream (lua_State *L, int index)//, int *gc_allowed)
+ALLUA_audio_stream allua_check_audio_stream (lua_State *L, int index /* int *gc_allowed */)
 {
   struct ALLUA_audio_stream_s *pi;
   ALLUA_audio_stream im;
@@ -262,7 +262,7 @@ static int allua_audio_stream_gc (lua_State *L)
   if(pi->gc_allowed)
   {
 	  ALLUA_audio_stream im = pi->audio_stream;
-	  printf("goodbye audio_stream (%p)\n", im);
+	  printf("goodbye audio_stream (%p)\n", (void *) im);
 	  if (im) al_destroy_audio_stream(im);
   }
   return 0;

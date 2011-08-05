@@ -5,7 +5,7 @@
 #include "../include/allua/event_queue.h"
 #include "../include/allua/event_source.h"
 
-//#include <allegro5/a5_direct3d.h>
+/*#include <allegro5/a5_direct3d.h>*/
 #include <allegro5/allegro_opengl.h>
 #include <stdio.h>
 
@@ -35,33 +35,34 @@ ALLUA_display allua_check_display (lua_State *L, int index)
 
 ALLUA_display *allua_pushdisplay (lua_State *L, ALLUA_display im)
 {
+	ALLUA_display *pi;
+
 	if(!im)
 	{
 		lua_pushnil(L);
 		return NULL;
 	}
 	lua_getfield (L, LUA_REGISTRYINDEX, "allegro5udatamap");
-    lua_pushlightuserdata(L, (void *)im);  // push address 
-    lua_gettable(L, -2);  // retrieve value 
+    lua_pushlightuserdata(L, (void *)im); /* push address */
+    lua_gettable(L, -2); /* retrieve value  */
 
-	ALLUA_display *pi;
 	if(!lua_isnil (L, -1))
 	{
 		pi = lua_touserdata (L, -1);
 	}
 	else
 	{
-		lua_pop(L, 1); //Pop the nil
-		// Create new userdata
-		lua_pushlightuserdata(L, (void *)im); //Key
-		pi = (ALLUA_display *)lua_newuserdata(L, sizeof(ALLUA_display)); //value
+		lua_pop(L, 1); /* pop the nil */
+		/* create new userdata */
+		lua_pushlightuserdata(L, (void *)im); /* key */
+		pi = (ALLUA_display *)lua_newuserdata(L, sizeof(ALLUA_display)); /* value */
 		*pi = im;
 		luaL_getmetatable(L, DISPLAY_STRING);
 		lua_setmetatable(L, -2);
 		lua_settable(L, -3);
 
-		lua_pushlightuserdata(L, (void *)im);  // push address
-		lua_gettable(L, -2);  // retrieve value
+		lua_pushlightuserdata(L, (void *)im);  /* push address */
+		lua_gettable(L, -2);  /* retrieve value */
 	}
 	lua_remove (L, -2);
 	return pi;
@@ -407,7 +408,7 @@ static const luaL_reg allua_display_methods[] = {
 static int allua_display_gc (lua_State *L)
 {
   ALLUA_display im = allua_todisplay(L, 1);
-  printf("goodbye display (%p)\n", im);
+  printf("goodbye display (%p)\n", (void *) im);
   if (im) al_destroy_display(im);
   return 0;
 }
@@ -428,7 +429,7 @@ static const luaL_reg allua_display_meta[] = {
  * */
 void allua_display_event_callback(lua_State *L, ALLEGRO_EVENT *event)
 {
-	printf("Allegro event source: %p \n",event->display.source);
+	printf("Allegro event source: %p \n", (void *) event->display.source);
 	allua_pushdisplay(L, event->display.source);
 	lua_setfield(L, -2, "source");
 
@@ -452,7 +453,7 @@ void allua_display_set_attributes(lua_State *L)
 	Set_literal("FULLSCREEN", ALLEGRO_FULLSCREEN, -3);
 	Set_literal("RESIZABLE", ALLEGRO_RESIZABLE, -3);
 	Set_literal("OPENGL", ALLEGRO_OPENGL, -3);
-//	Set_literal("DIRECT3D", ALLEGRO_DIRECT3D, -3);
+/*	Set_literal("DIRECT3D", ALLEGRO_DIRECT3D, -3); */
 	Set_literal("NOFRAME", ALLEGRO_NOFRAME, -3);
 	Set_literal("FULLSCREEN_WINDOW", ALLEGRO_FULLSCREEN_WINDOW, -3);
 	

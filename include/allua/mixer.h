@@ -24,7 +24,7 @@ int allua_register_mixer (lua_State* L);
  * Returns:
  * Pointer to mixer instance.
  * */
-ALLUA_mixer allua_check_mixer (lua_State *L, int index);//, int *gc_allowed);
+ALLUA_mixer allua_check_mixer (lua_State *L, int index /* int *gc_allowed */);
 struct ALLUA_mixer_s *allua_pushmixer (lua_State *L, ALLUA_mixer im, int gc_allowed);
 
 #endif
