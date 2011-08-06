@@ -8,3 +8,4 @@ test/test.lua
 test/test.o
 nd/Data/
 docs/html/
+*~
